@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "id": "my-character",
+  "name": "My character",
+  "texture": {
+    "src": "./texture.png",
+    "width": 1024,
+    "height": 1536
+  },
+  "mesh": {
+    "columns": 33,
+    "rows": 50
+  },
+  "pins": [
+    {
+      "name": "surface-anchor",
+      "type": "fixed",
+      "x": 0.5011051739581784,
+      "y": 0.43645325919360634,
+      "radius": 0.48681640625
+    }
+  ],
+  "hair": [],
+  "accessories": [],
+  "faceClearance": [],
+  "pose": {
+    "headCenter": 0.5011051739581784,
+    "headBounds": [
+      0.01,
+      0.02
+    ],
+    "headHorizontal": [
+      0.01,
+      0.02
+    ],
+    "bodyBounds": [
+      0.01,
+      0.02
+    ],
+    "bodyPivot": [
+      0.5011051739581784,
+      0.43645325919360634
+    ],
+    "swayPivot": [
+      0.5011051739581784,
+      0.99
+    ]
+  },
+  "motion": {
+    "sway": 0.25,
+    "speed": 0.65,
+    "hair": 0,
+    "accessories": 0,
+    "follow": 0
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "image": {
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+    "width": 1024,
+    "height": 1536
+  },
+  "id": "mirea-prepared",
+  "name": "Mirea · assisted preparation",
+  "mode": "humanoid",
+  "confidence": 0.9,
+  "waveSafe": false,
+  "regions": [
+    {
+      "id": "visible-head",
+      "polygon": [
+        [
+          0.49,
+          0.1
+        ],
+        [
+          0.61,
+          0.096
+        ],
+        [
+          0.654,
+          0.126
+        ],
+        [
+          0.642,
+          0.207
+        ],
+        [
+          0.592,
+          0.237
+        ],
+        [
+          0.516,
+          0.225
+        ],
+        [
+          0.479,
+          0.18
+        ]
+      ]
+    },
+    {
+      "id": "outer-hair",
+      "polygon": [
+        [
+          0.807,
+          0.31
+        ],
+        [
+          0.891,
+          0.314
+        ],
+        [
+          0.947,
+          0.353
+        ],
+        [
+          0.972,
+          0.421
+        ],
+        [
+          0.957,
+          0.476
+        ],
+        [
+          0.919,
+          0.521
+        ],
+        [
+          0.862,
+          0.528
+        ],
+        [
+          0.842,
+          0.507
+        ],
+        [
+          0.887,
+          0.466
+        ],
+        [
+          0.911,
+          0.413
+        ],
+        [
+          0.894,
+          0.378
+        ],
+        [
+          0.84,
+          0.358
+        ]
+      ]
+    }
+  ],
+  "hair": [],
+  "accessories": [],
+  "unsupportedMotions": [
+    "Blink, lip-sync, independent layers and large turns require additional material and engine behavior."
+  ],
+  "evidence": "Viewed full-resolution grid: upright humanoid, face centered near x=.56/y=.18, neck at y=.23, waist y=.355. Image-left hand grips the umbrella shaft; image-right arm hangs alongside the skirt. Both waving candidates are unsuitable: keep all arm/prop pixels together and disable wave. Outer hair strands are visible but densely overlap skirt and umbrella ribbons; begin without independent chains.",
+  "headBounds": [
+    0.44,
+    0.087,
+    0.68,
+    0.228
+  ],
+  "landmarks": {
+    "waist": [
+      0.58,
+      0.355
+    ],
+    "head-root": [
+      0.555,
+      0.223
+    ],
+    "head-top": [
+      0.552,
+      0.106
+    ]
+  }
+}

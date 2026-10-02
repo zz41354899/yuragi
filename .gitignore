@@ -1,0 +1,12 @@
+node_modules/
+.npm-cache/
+.DS_Store
+apps/site/dist/
+packages/rig/dist/
+*.tsbuildinfo
+
+# Rebuilt from skills/ before site dev, tests and build.
+apps/site/public/.well-known/skills/
+
+__pycache__/
+*.pyc

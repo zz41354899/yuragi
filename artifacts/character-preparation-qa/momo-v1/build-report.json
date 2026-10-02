@@ -1,0 +1,41 @@
+{
+  "mode": "humanoid",
+  "confidence": 0.9,
+  "controls": {
+    "idle": true,
+    "follow": true,
+    "wave": true
+  },
+  "runtimeReady": true,
+  "parts": [
+    "parts/visible-head.png",
+    "parts/visible-wave-hand.png"
+  ],
+  "warnings": [
+    "Extracted parts contain visible source pixels only; hidden anatomy was not reconstructed.",
+    "Local preview reviewed at conservative motion; physical touch and production device coverage remain unverified."
+  ],
+  "unsupportedMotions": [
+    "Blink, lip-sync, independent layers and large turns require additional material and engine behavior."
+  ],
+  "visualAcceptance": "reviewed-local-preview",
+  "verification": {
+    "schema": "passed",
+    "simulation": {
+      "validated": true,
+      "frames": 1200,
+      "finiteVertices": true,
+      "minMotionScale": 1,
+      "maxDisplacementGradient": 0.17098269695243448
+    },
+    "desktop": "1280px browser inspected",
+    "mobile": "390px viewport inspected; no page overflow",
+    "wave": "enabled and clicked in actual browser",
+    "keyboard": "not separately tested",
+    "reducedMotion": "engine unit coverage only",
+    "fallback": "missing runtime shows original loaded artwork",
+    "navigation": "left and reopened local preview; engine abort/destroy unit tests passed",
+    "physicalTouch": "not tested",
+    "partExtraction": "visible-mask candidates inspected, not reconstructed layers"
+  }
+}

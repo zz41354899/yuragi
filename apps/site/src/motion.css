@@ -1,0 +1,8 @@
+/* Keep native wheel, touch, keyboard, and draggable scrollbar behavior. */
+html { scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: #4db5dc #edf8fc; }
+:is(html, .docs-sidebar, .studio-inspector-scroll, .studio-pin-tree, .code-block pre)::-webkit-scrollbar { width: 9px; height: 9px; }
+:is(html, .docs-sidebar, .studio-inspector-scroll, .studio-pin-tree, .code-block pre)::-webkit-scrollbar-track { background: #edf8fc; }
+:is(html, .docs-sidebar, .studio-inspector-scroll, .studio-pin-tree, .code-block pre)::-webkit-scrollbar-thumb { border: 2px solid #edf8fc; border-radius: 20px; background: #4db5dc; }
+:is(html, .docs-sidebar, .studio-inspector-scroll, .studio-pin-tree, .code-block pre)::-webkit-scrollbar-thumb:hover { background: #168fbd; }
+.site-scroll-progress { position: fixed; inset: 0 0 auto; height: 3px; background: #c5eafa60; z-index: 60; pointer-events: none; }
+.site-scroll-progress > span { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #087fc7, #77dbf4); transform: scaleX(0); transform-origin: left center; }

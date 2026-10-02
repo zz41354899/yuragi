@@ -1,0 +1,24 @@
+{
+  "name": "yuragi-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/rig",
+    "apps/site"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @yuragi/site",
+    "build": "npm run build:lib && npm run build --workspace @yuragi/site",
+    "build:lib": "npm run build --workspace @yuragi/rig",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspaces --if-present",
+    "pack:lib": "npm run build:lib && npm pack --workspace @yuragi/rig --pack-destination artifacts",
+    "preview": "npm run preview --workspace @yuragi/site",
+    "sync:skills": "node scripts/sync-skills.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^22.18.0"
+  }
+}

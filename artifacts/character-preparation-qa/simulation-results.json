@@ -1,0 +1,16 @@
+{
+  "mirea": {
+    "validated": true,
+    "frames": 1200,
+    "finiteVertices": true,
+    "minMotionScale": 1,
+    "maxDisplacementGradient": 0.09733905460577653
+  },
+  "momo": {
+    "validated": true,
+    "frames": 1200,
+    "finiteVertices": true,
+    "minMotionScale": 1,
+    "maxDisplacementGradient": 0.17098269695243448
+  }
+}

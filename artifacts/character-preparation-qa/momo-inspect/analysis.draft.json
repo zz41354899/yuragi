@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "image": {
+    "sha256": "5b84b60034748a50efa3ba8103e6ce267de38f180e1cfdf43c45a40f7eca4475",
+    "width": 1024,
+    "height": 1536
+  },
+  "id": "my-character",
+  "name": "My character",
+  "mode": "silhouette",
+  "confidence": 0,
+  "evidence": "Silhouette measured by Python; semantic anatomy has not been reviewed.",
+  "landmarks": {},
+  "regions": [],
+  "hair": [],
+  "accessories": [],
+  "waveSafe": false,
+  "unsupportedMotions": []
+}

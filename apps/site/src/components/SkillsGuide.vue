@@ -1,0 +1,66 @@
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import { useText } from '../i18n'
+import CodeBlock from './CodeBlock.vue'
+const { tr } = useText()
+const origin = ref('http://127.0.0.1:4310')
+onMounted(() => { origin.value = window.location.origin })
+const isLocal = computed(() => ['localhost', '127.0.0.1', '[::1]'].includes(new URL(origin.value).hostname))
+const install = computed(() => `npx skills add ${origin.value} --skill yuragi-character yuragi-rig-spec`)
+const onlyRig = computed(() => `npx skills add ${origin.value} --skill yuragi-rig-spec`)
+const local = 'npx skills add /path/to/yuragi --skill yuragi-character yuragi-rig-spec'
+const characterPrompt = '$yuragi-character\n' + '請從零建立我的原創角色，先整理角色設定與固定特徵。\n' + '交付角色基準與 character-brief.md，供後續動態規劃使用。'
+const rigPrompt = "$yuragi-rig-spec\n請把 /path/to/my-character.png 轉成我的動態角色，保留原本設計。\n先看圖判斷合適的動作，使用 Python 量測、拆解可見部位並建立綁定。\n對應 Yuragi API，交付 model.json、rig-spec.md 與可播放的預覽，實際檢查並修正動態。"
+const prepareCommand = `python3 -m venv .venv
+.venv/bin/python -m pip install -r /path/to/yuragi-rig-spec/scripts/requirements.txt
+.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py inspect artwork.png --out character-inspect
+# AI writes character-analysis.json after inspecting the image
+.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py build artwork.png --analysis character-analysis.json --out character-v1 --rig-package /path/to/node_modules/@yuragi/rig
+python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
+</script>
+
+<template>
+  <div class="skills-guide">
+    <p class="docs-lead">{{ tr('同一套 Yuragi，兩個英文 skill。從零設計角色，或讓 AI 看懂既有立繪、選擇合適動作並建立可播放的預覽；Prompt 可使用任何語言。') }}</p>
+    <div class="skill-paths">
+      <article><span class="skill-step">01 · CHARACTER</span><h2>{{ tr('從零建立角色') }}</h2><code>yuragi-character</code><p>{{ tr('從想法開始，鎖定角色設定、立繪與素材品質，交付可接續的角色基準。') }}</p><strong>character-brief.md</strong></article>
+      <article><span class="skill-step">02 · CHARACTER MOTION</span><h2>{{ tr('把既有角色轉成動態') }}</h2><code>yuragi-rig-spec</code><p>{{ tr('AI 判讀造型與可動部位，Python 產出綁定、可見部位素材與 spec，再使用 Yuragi API 建立並驗證動態預覽。') }}</p><strong>model.json · rig-spec.md · preview.html</strong></article>
+    </div>
+    <h2>{{ tr('安裝 Yuragi Skills') }}</h2>
+    <p>{{ tr('在你使用 AI 的專案目錄執行，一次安裝兩個 skill；也可以只安裝角色轉換 skill。') }}</p>
+    <CodeBlock :code="install" language="Terminal" />
+    <div v-if="isLocal" class="notice"><strong>{{ tr('目前網站是本機預覽。') }}</strong><p>{{ tr('本機網址只適用於這台電腦。公開網站後，這裡會顯示公開網址；其他人才能從網站安裝。目前也可以從取得的 Yuragi 專案目錄安裝。') }}</p></div>
+    <CodeBlock :code="local" language="Terminal · local source" />
+    <h3>{{ tr('已有角色，只需要轉換動態') }}</h3><CodeBlock :code="onlyRig" language="Terminal" />
+    <p>{{ tr('Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外安裝目前的本機 Yuragi 套件。') }} <RouterLink to="/docs?section=installation">{{ tr('查看套件安裝') }}</RouterLink></p>
+    <h2>{{ tr('讓 AI 接續你的進度') }}</h2>
+    <p>{{ tr('沒有角色時，先用角色設計 skill；已有立繪時，提供原畫路徑與想要的互動，AI 會完成判讀、轉換與預覽。也可以指定只寫 spec。') }}</p>
+    <CodeBlock :code="tr(characterPrompt)" :language="tr('角色設計 Prompt')" />
+    <CodeBlock :code="tr(rigPrompt)" :language="tr('角色轉換 Prompt')" />
+    <p>{{ tr('只要 spec 時，在 Prompt 加上「這次只完成 spec，不建立播放器」。') }}</p>
+    <h2>{{ tr('AI 如何完成轉換？') }}</h2>
+    <ul><li>{{ tr('看懂原畫：量測尺寸、透明度與留白，判讀身體、髮束、配件和遮擋。') }}</li><li>{{ tr('選擇適合的動作：人形可嘗試輕微跟隨；持道具或手臂不適合時停用揮手，其他造型先用整體微動。') }}</li><li>{{ tr('Python 輸出：依原畫座標建立 model.json、綁定圖、可見部位 PNG 與 rig-spec.md。') }}</li><li>{{ tr('API 播放與驗收：使用本機 runtime 預覽，檢查臉部、接縫與動態品質，再修正綁定。') }}</li></ul>
+    <p>{{ tr('AI 負責圖片語意判讀，Python 負責量測與檔案產出。可見部位拆圖不會補出被遮住的像素；播放器使用完整原畫的單一網格。眨眼、口型與大幅轉身需要額外素材和引擎功能。') }}</p>
+    <h2>{{ tr('Python 輔助工具') }}</h2>
+    <p>{{ tr('安裝後，AI 會從 skill 目錄執行以下流程，並依你的原畫寫出 character-analysis.json；你不用自己標控制點。') }}</p>
+    <CodeBlock :code="prepareCommand" language="Terminal · Python" />
+    <p><a href="/.well-known/skills/yuragi-rig-spec/references/character-preparation.md">{{ tr('查看 Python 判讀與轉換指南') }}</a></p>
+    <RouterLink to="/docs?section=custom-character">{{ tr('查看角色綁定完整流程') }}</RouterLink>
+    <h2>{{ tr('查看 skill 原始文件') }}</h2>
+    <div class="skill-sources"><a href="/.well-known/skills/yuragi-character/SKILL.md">Yuragi Character · SKILL.md</a><a href="/.well-known/skills/yuragi-rig-spec/SKILL.md">Yuragi Rig Spec · SKILL.md</a></div>
+    <p class="skill-cli-source"><a href="https://github.com/vercel-labs/skills" target="_blank" rel="noreferrer">{{ tr('安裝工具：官方 Skills CLI') }}</a></p>
+  </div>
+</template>
+
+<style scoped>
+.skill-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 28px 0 36px; }
+.skill-paths article { padding: 24px; border: 1px solid #dceaf0; border-radius: 16px; background: #f7fbfd; min-width: 0; }
+.skill-paths h2 { margin: 12px 0; font-size: 21px; }
+.skill-step { color: #007fa8; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.skill-paths code { overflow-wrap: anywhere; font-size: 14px; }
+.skill-paths strong { display: block; color: #244a5e; font-size: 14px; }
+.skill-sources { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.skill-cli-source { font-size: 13px; }
+@media (max-width: 640px) { .skill-paths { grid-template-columns: 1fr; } .skill-paths article { padding: 20px; } }
+</style>

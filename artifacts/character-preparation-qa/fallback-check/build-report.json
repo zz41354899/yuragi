@@ -1,0 +1,17 @@
+{
+  "mode": "silhouette",
+  "confidence": 0,
+  "controls": {
+    "idle": true,
+    "follow": false,
+    "wave": false
+  },
+  "runtimeReady": false,
+  "parts": [],
+  "warnings": [
+    "Extracted parts contain visible source pixels only; hidden anatomy was not reconstructed.",
+    "Model data is a binding candidate; visual motion acceptance has not been performed."
+  ],
+  "unsupportedMotions": [],
+  "visualAcceptance": "not-run"
+}

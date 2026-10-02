@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yuragi Rig Spec"
+  short_description: "Prepare character bindings and verify Yuragi animation."
+  default_prompt: "Use $yuragi-rig-spec to inspect my artwork, select suitable motions, run the Python helper and deliver a verified local animated-character preview with rig-spec.md."

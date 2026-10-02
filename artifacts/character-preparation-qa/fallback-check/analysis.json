@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "image": {
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+    "width": 1024,
+    "height": 1536
+  },
+  "id": "my-character",
+  "name": "My character",
+  "mode": "silhouette",
+  "confidence": 0,
+  "evidence": "Silhouette measured by Python; no semantic anatomy review.",
+  "waveSafe": false
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "id": "my-character",
+  "name": "My character",
+  "texture": { "src": "/models/my-character/texture.png", "width": 1024, "height": 1536 },
+  "mesh": { "columns": 32, "rows": 48 },
+  "pins": [
+    { "name": "waist", "type": "fixed", "x": 0.5, "y": 0.55, "radius": 0.2 },
+    { "name": "head-root", "type": "fixed", "parent": "waist", "x": 0.5, "y": 0.28, "radius": 0.15 },
+    { "name": "head-top", "type": "joint", "parent": "head-root", "x": 0.5, "y": 0.12, "radius": 0.12 },
+    { "name": "shoulder-left", "type": "fixed", "parent": "waist", "x": 0.38, "y": 0.35, "radius": 0.12 },
+    { "name": "wrist-left", "type": "joint", "parent": "shoulder-left", "x": 0.22, "y": 0.43, "radius": 0.08 },
+    { "name": "shoulder-right", "type": "fixed", "parent": "waist", "x": 0.62, "y": 0.35, "radius": 0.12 },
+    { "name": "elbow-right", "type": "joint", "parent": "shoulder-right", "x": 0.73, "y": 0.41, "radius": 0.09 },
+    { "name": "wrist-right", "type": "joint", "parent": "elbow-right", "x": 0.82, "y": 0.46, "radius": 0.08 }
+  ],
+  "hair": [],
+  "accessories": [],
+  "faceClearance": [],
+  "motion": { "sway": 0.4, "speed": 0.7, "hair": 0, "accessories": 0, "follow": 0.4 },
+  "pose": {
+    "headCenter": 0.5,
+    "headBounds": [0.28, 0.42],
+    "headHorizontal": [0.16, 0.3],
+    "bodyBounds": [0.55, 0.9],
+    "bodyPivot": [0.5, 0.58],
+    "swayPivot": [0.5, 0.85]
+  }
+}

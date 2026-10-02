@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yuragi Character"
+  short_description: "Create original characters and reusable visual assets."
+  default_prompt: "Use $yuragi-character to establish an original character baseline and deliver character-brief.md for the requested assets."

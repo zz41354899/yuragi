@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "id": "mirea-prepared",
+  "name": "Mirea · assisted preparation",
+  "texture": {
+    "src": "./texture.png",
+    "width": 1024,
+    "height": 1536
+  },
+  "mesh": {
+    "columns": 33,
+    "rows": 50
+  },
+  "pins": [
+    {
+      "name": "waist",
+      "type": "fixed",
+      "x": 0.58,
+      "y": 0.355,
+      "radius": 0.18
+    },
+    {
+      "name": "head-root",
+      "type": "fixed",
+      "x": 0.555,
+      "y": 0.223,
+      "radius": 0.18,
+      "parent": "waist"
+    },
+    {
+      "name": "head-top",
+      "type": "joint",
+      "x": 0.552,
+      "y": 0.106,
+      "radius": 0.18,
+      "parent": "head-root"
+    }
+  ],
+  "hair": [],
+  "accessories": [],
+  "faceClearance": [
+    [
+      0.56,
+      0.1575,
+      0.12000000000000002,
+      0.07050000000000001
+    ]
+  ],
+  "pose": {
+    "headCenter": 0.56,
+    "headBounds": [
+      0.228,
+      0.2844
+    ],
+    "headHorizontal": [
+      0.084,
+      0.18000000000000005
+    ],
+    "headWarpBounds": [
+      0.087,
+      0.228
+    ],
+    "bodyBounds": [
+      0.355,
+      0.8657916666666667
+    ],
+    "bodyPivot": [
+      0.58,
+      0.355
+    ],
+    "swayPivot": [
+      0.5011051739581784,
+      0.99
+    ]
+  },
+  "motion": {
+    "sway": 0.25,
+    "speed": 0.65,
+    "hair": 0,
+    "accessories": 0,
+    "follow": 0.25
+  }
+}
