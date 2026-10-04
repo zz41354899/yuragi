@@ -3,6 +3,7 @@ node_modules/
 .DS_Store
 apps/site/dist/
 packages/rig/dist/
+packages/rig/studio/
 *.tsbuildinfo
 
 # Rebuilt from skills/ before site dev, tests and build.

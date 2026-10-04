@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "modelId": "mirea-neck-rig",
+  "texture": {
+    "src": "/models/mirea/texture.png",
+    "width": 1024,
+    "height": 1536
+  },
+  "eyes": 2,
+  "pins": 7,
+  "parts": 25,
+  "pointerGroups": 2,
+  "copyVerified": true,
+  "ssrImport": true
+}

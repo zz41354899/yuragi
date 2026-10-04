@@ -571,43 +571,6 @@ h1,h2,h3 {
   font-weight: 600;
   margin-bottom: 8px
 }
-.site-footer {
-  max-width: 1440px;
-  padding: 40px 56px 30px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  column-gap: 36px;
-  row-gap: 24px
-}
-.footer-brand {
-  font-size: 27px;
-  font-weight: 700;
-  letter-spacing: -1px
-}
-.footer-brand span {
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-left: 6px;
-  font-weight: 400
-}
-.site-footer>p {
-  font-size: 13px;
-  color: var(--muted)
-}
-.site-footer>div {
-  grid-column: 1/-1;
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
-  display: flex;
-  gap: 25px;
-  font-size: 12px;
-  color: #537d92
-}
-.site-footer>div>span {
-  margin-left: auto
-}
 .docs-shell {
   display: grid;
   grid-template-columns: 228px minmax(0,1fr);
@@ -1857,30 +1820,6 @@ h1,h2,h3 {
   .home-invite h2 {
     font-size: 28px
   }
-  .site-footer {
-    padding: 30px 24px;
-    column-gap: 18px;
-    row-gap: 18px
-  }
-  .footer-brand {
-    font-size: 25px
-  }
-  .footer-brand span {
-    display: none
-  }
-  .site-footer>p {
-    font-size: 11px
-  }
-  .site-footer>div {
-    gap: 20px;
-    font-size: 11px;
-    flex-wrap: wrap
-  }
-  .site-footer>div>span {
-    margin-left: 0;
-    flex-basis: 100%;
-    font-size: 10px
-  }
   .docs-shell {
     display: block;
     padding-top: 23px;
@@ -2234,16 +2173,6 @@ h1,h2,h3 {
   font-weight: 600;
   letter-spacing: 1.4px;
   color: #4a7893
-}
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #007fa8
-}
-.footer-brand .brand-symbol {
-  width: 30px;
-  height: 30px
 }
 .language-switch select {
   border: 1px solid #bddde9;

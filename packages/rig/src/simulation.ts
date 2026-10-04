@@ -1,7 +1,11 @@
-import type { RigModel, RigPin, ParameterName, PinSpec, MeshSpec, RigMesh, MotionSettings } from './types.js'
+import type { RigModel, RigPin, ParameterName, PinSpec, MeshSpec, RigMesh, MotionSettings, DeformationPart, TrackingSettings, Vec2 } from './types.js'
 import { validateModel } from './validation.js'
 import { createHairDynamics } from './hair.js'
 import { createAccessoryDynamics } from './accessories.js'
+import { createPartDynamics } from './parts.js'
+import { bindSurfaceRegions } from './regions.js'
+import { bindHead } from './head.js'
+import { createPointerGroups } from './pointer-groups.js'
 import { sampleSway, applySway } from './sway.js'
 
 export function createSimulation(input: RigModel) {
@@ -10,9 +14,13 @@ export function createSimulation(input: RigModel) {
   const parameters = { lookX: 0, lookY: 0, bodyX: 0, wave: 0 }
   const targets = { lookX: 0, lookY: 0, bodyX: 0 }
   const velocity = { lookX: 0, lookY: 0 }
+  let pointer: Vec2 | undefined
+  let trackingRemainder = 0
   const textureSize = model.texture
   const hair = createHairDynamics(model)
   const accessories = createAccessoryDynamics(model)
+  const parts = createPartDynamics(model)
+  const pointerGroups = createPointerGroups(model)
   let swayTime = 0
   let sway = sampleSway(0, model)
 
@@ -28,9 +36,11 @@ export function createSimulation(input: RigModel) {
   }
 
   function setPointer(x: number, y: number) {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) throw new Error('Pointer coordinates must be finite')
+    pointer = [x, y]
     targets.lookX = clamp(x * 60 * model.motion.follow, -30, 30)
     targets.lookY = clamp(y * 60 * model.motion.follow, -30, 30)
-    targets.bodyX = clamp(x * 20 * model.motion.follow, -10, 10)
+    targets.bodyX = clamp(x * 20 * model.motion.follow * (model.tracking?.bodyFollow ?? 1), -10, 10)
   }
 
   function setParameter(name: ParameterName, value: number) {
@@ -41,17 +51,22 @@ export function createSimulation(input: RigModel) {
       return true
     }
     if (name !== 'lookX' && name !== 'lookY' && name !== 'bodyX') return false
+    pointer = undefined
     const limits = { lookX: 30, lookY: 30, bodyX: 10 }
     targets[name] = clamp(next, -limits[name], limits[name])
     return true
   }
 
   function reset() {
+    pointer = undefined
+    trackingRemainder = 0
     targets.lookX = 0
     targets.lookY = 0
     targets.bodyX = 0
     parameters.wave = 0
     waveStartedAt = -1
+    parts.reset()
+    pointerGroups.reset()
   }
 
   function wave(time = performance.now()) {
@@ -70,12 +85,26 @@ export function createSimulation(input: RigModel) {
     return { x: pivot.px + x * cos - y * sin, y: pivot.py + x * sin + y * cos }
   }
 
-  function updateParameters() {
-    velocity.lookX = clamp((velocity.lookX + (targets.lookX - parameters.lookX) * .018) * .75, -2.4, 2.4)
-    velocity.lookY = clamp((velocity.lookY + (targets.lookY - parameters.lookY) * .018) * .75, -2.4, 2.4)
-    parameters.lookX += velocity.lookX
-    parameters.lookY += velocity.lookY
-    parameters.bodyX += (targets.bodyX - parameters.bodyX) * .075
+  function updateParameters(delta: number) {
+    const { response = .018, damping = .75, maxVelocity = 2.4 } = model.tracking ?? {}
+    // Preserve the original legacy tick. Opt-in tracking integrates fixed half ticks
+    // so 30/60/120 Hz produce the same follow timing, with bounded stall catch-up.
+    const duration = model.tracking ? (delta === 0 ? 1 : clamp(Number.isFinite(delta) ? delta / 16.67 : 0, 0, 3)) : 1
+    const dt = model.tracking ? .5 : 1
+    trackingRemainder += duration
+    const steps = Math.floor((trackingRemainder + 1e-9) / dt)
+    trackingRemainder -= steps * dt
+    for (let i = 0; i < steps; i++) {
+      for (const key of ['lookX', 'lookY'] as const) {
+        velocity[key] = clamp((velocity[key] + (targets[key] - parameters[key]) * response * dt) * Math.pow(damping, dt), -maxVelocity, maxVelocity)
+        parameters[key] += velocity[key] * dt
+        if (!model.tracking) continue
+        const bounded = clamp(parameters[key], -30, 30)
+        if (parameters[key] !== bounded) velocity[key] = 0
+        parameters[key] = bounded
+      }
+      parameters.bodyX += (targets.bodyX - parameters.bodyX) * (model.tracking ? 1 - Math.pow(.925, dt) : .075)
+    }
   }
 
   function pinTarget(pin: RigPin, time: number) {
@@ -89,14 +118,23 @@ export function createSimulation(input: RigModel) {
       y += breath
     }
     if (pin.name === 'head-root') {
-      x += parameters.lookX / 30 * .012 + parameters.bodyX / 10 * .004
-      y += parameters.lookY / 30 * .007 + breath
+      x += parameters.lookX / 30 * (model.pose.headFollow?.region ? model.pose.headFollow.translation[0] : .012) + parameters.bodyX / 10 * .004
+      y += parameters.lookY / 30 * (model.pose.headFollow?.region ? model.pose.headFollow.translation[1] : .007) + breath
     }
     if (pin.name === 'head-top') {
       const root = pinsByName.get('head-root')
-      const turned = rotateAround({ x, y }, root, parameters.lookX / 30 * .105 - parameters.lookY / 30 * .025)
-      x = turned.x + parameters.lookX / 30 * .008
-      y = turned.y + parameters.lookY / 30 * .005
+      if (model.pose.headFollow?.region && root) {
+        // The custom profile replaces the legacy skull pose; do not stack both.
+        const aspect = model.texture.height / model.texture.width
+        const dx = x - root.x, dy = (y - root.y) * aspect
+        const angle = parameters.lookX / 30 * model.pose.headFollow.rotation
+        x = root.px + dx * Math.cos(angle) - dy * Math.sin(angle)
+        y = root.py + (dx * Math.sin(angle) + dy * Math.cos(angle)) / aspect
+      } else {
+        const turned = rotateAround({ x, y }, root, parameters.lookX / 30 * .105 - parameters.lookY / 30 * .025)
+        x = turned.x + parameters.lookX / 30 * .008
+        y = turned.y + parameters.lookY / 30 * .005
+      }
     }
     if (['shoulder-left', 'shoulder-right', 'hip-raised', 'hip-standing'].includes(pin.name)) {
       x += parameters.bodyX / 10 * .003
@@ -149,7 +187,8 @@ export function createSimulation(input: RigModel) {
   }
 
   function updatePins(time: number, deltaTime: number) {
-    updateParameters()
+    updateParameters(deltaTime)
+    pointerGroups.update(deltaTime, parameters.lookX, parameters.lookY)
     // Advance only while rendered; tab suspension must not jump to a new pose.
     swayTime += clamp(Number.isFinite(deltaTime) ? deltaTime : 0, 0, 50)
     sway = sampleSway(swayTime, model)
@@ -163,6 +202,7 @@ export function createSimulation(input: RigModel) {
       }
     }
     accessories.update(time, deltaTime, followVelocity, parameters.wave)
+    parts.update(time, deltaTime, parameters.lookX, followVelocity, parameters.lookY, clamp(velocity.lookY, -2.4, 2.4))
     const frameScale = clamp(deltaTime / 16.67, .5, 2)
     for (const pin of pins) {
       const target = pinTarget(pin, time)
@@ -194,6 +234,31 @@ export function createSimulation(input: RigModel) {
     }
   }
 
+  function bindPinWeights(x: number, y: number, weights: Float32Array, vertex: number) {
+    const start = vertex * pins.length
+    let sum = 0, maxLog = -Infinity
+    for (let index = 0; index < pins.length; index++) {
+      const pin = pins[index]
+      const distance = (x - pin.x) ** 2 + ((y - pin.y) * .72) ** 2
+      const logWeight = -distance / (2 * pin.radius ** 2)
+      const weight = Math.exp(logWeight)
+      weights[start + index] = weight; sum += weight
+      maxLog = Math.max(maxLog, logWeight)
+    }
+    // Very small radii can underflow every Gaussian. Rescale only in that case
+    // so ordinary/default bindings retain their original arithmetic.
+    if (sum < 1e-30) {
+      sum = 0
+      for (let index = 0; index < pins.length; index++) {
+        const pin = pins[index]
+        const distance = (x - pin.x) ** 2 + ((y - pin.y) * .72) ** 2
+        const weight = Math.exp(-distance / (2 * pin.radius ** 2) - maxLog)
+        weights[start + index] = weight; sum += weight
+      }
+    }
+    for (let index = 0; index < pins.length; index++) weights[start + index] /= sum
+  }
+
   function buildContinuousMesh(spec: MeshSpec = { x: 0, y: 0, width: textureSize.width, height: textureSize.height }, columns = model.mesh.columns, rowCount = model.mesh.rows): RigMesh {
     const cols = columns
     const rows = rowCount
@@ -215,16 +280,7 @@ export function createSimulation(input: RigModel) {
         rest[offset + 1] = positions[offset + 1] = y
         uvs[offset] = u
         uvs[offset + 1] = v
-        const vertex = offset / 2
-        let sum = 0
-        for (let index = 0; index < pins.length; index += 1) {
-          const pin = pins[index]
-          const distance = (x - pin.x) ** 2 + ((y - pin.y) * .72) ** 2
-          const weight = Math.exp(-distance / (2 * pin.radius ** 2))
-          weights[vertex * pins.length + index] = weight
-          sum += weight
-        }
-        for (let index = 0; index < pins.length; index += 1) weights[vertex * pins.length + index] /= sum
+        bindPinWeights(x, y, weights, offset / 2)
         offset += 2
       }
     }
@@ -245,7 +301,20 @@ export function createSimulation(input: RigModel) {
         indices[indexOffset++] = c
       }
     }
-    return { ...spec, rest, positions, uvs, indices, weights, hairBinding: hair.bind(rest, cols + 1), accessoryBinding: accessories.bind(rest) }
+    return { ...spec, rest, positions, uvs, indices, weights, hairBinding: hair.bind(rest, cols + 1), accessoryBinding: accessories.bind(rest),
+      ...(parts.states.length ? { partBinding: parts.bind(rest) } : {}),
+      ...(model.surfaceRegions?.length ? { regionBinding: bindSurfaceRegions(model, rest) } : {}),
+      ...(model.pointerGroups?.length ? { pointerBinding: pointerGroups.bind(rest) } : {}),
+      ...(model.pose.headFollow?.region ? { headBinding: bindHead(model, rest) } : {}) }
+  }
+
+  /** Pin edits do not change the source geometry or polygon ownership. */
+  function rebindPin(mesh: RigMesh, name: string, patch: Partial<PinSpec>) {
+    if (!['x', 'y', 'radius'].some(key => key in patch)) return
+    for (let vertex = 0; vertex < mesh.rest.length / 2; vertex++) {
+      bindPinWeights(mesh.rest[vertex * 2], mesh.rest[vertex * 2 + 1], mesh.weights, vertex)
+    }
+    if (name === 'head-root' && ('x' in patch || 'y' in patch)) mesh.headBinding = bindHead(model, mesh.rest)
   }
 
   function smoothstep(edge0: number, edge1: number, value: number) {
@@ -253,21 +322,24 @@ export function createSimulation(input: RigModel) {
     return x * x * (3 - 2 * x)
   }
 
-  function basePoint(restX: number, restY: number, weights?: Float32Array) {
+  function basePoint(restX: number, restY: number, weights?: Float32Array, allowed?: string[]) {
     const turn = parameters.lookX / 30
     const tilt = parameters.lookY / 30
     let x = restX
     let y = restY
     let sum = 0
+    const ownedHead = !!model.pose.headFollow?.region
     for (let index = 0; index < pins.length; index += 1) {
       const pin = pins[index]
+      if (ownedHead && (pin.name === 'head-root' || pin.name === 'head-top')) continue
+      if (allowed && !allowed.includes(pin.name)) continue
       const distance = (restX - pin.x) ** 2 + ((restY - pin.y) * .72) ** 2
       const weight = weights?.[index] ?? Math.exp(-distance / (2 * pin.radius ** 2))
       x += (pin.px - pin.x) * weight
       y += (pin.py - pin.y) * weight
-      sum += weights ? 0 : weight
+      sum += weights && !allowed && !ownedHead ? 0 : weight
     }
-    if (!weights && sum) {
+    if ((!weights || allowed || ownedHead) && sum) {
       x = restX + (x - restX) / sum
       y = restY + (y - restY) / sum
     }
@@ -282,8 +354,10 @@ export function createSimulation(input: RigModel) {
 
     const verticalHead = 1 - smoothstep(...model.pose.headBounds, restY)
     const horizontalHead = 1 - smoothstep(...model.pose.headHorizontal, Math.abs(restX - model.pose.headCenter))
-    const headWeight = verticalHead * horizontalHead
-    if (headWeight > 0) {
+    const topBounds = model.pose.headWarpBounds
+    const upperHead = model.pose.headFollow && topBounds ? smoothstep(Math.max(0, topBounds[0] - .10), topBounds[0], restY) : 1
+    const headWeight = verticalHead * horizontalHead * upperHead
+    if (headWeight > 0 && !ownedHead) {
       const localX = restX - model.pose.headCenter
       const warp = model.pose.headWarpBounds
       const localY = warp ? clamp((warp[1] - restY) / (warp[1] - warp[0]), 0, 1) : clamp((.40 - restY) / .38, 0, 1)
@@ -299,14 +373,32 @@ export function createSimulation(input: RigModel) {
       const centerWeight = 1 - leftWeight - rightWeight
       const poseX = leftPose.x * leftWeight + centerPose.x * centerWeight + rightPose.x * rightWeight
       const poseY = leftPose.y * leftWeight + centerPose.y * centerWeight + rightPose.y * rightWeight
-      x += (poseX - x) * headWeight
-      y += (poseY - y) * headWeight
+      const custom = model.pose.headFollow
+      if (custom) {
+        const aspect = model.texture.height / model.texture.width
+        const cx = model.pose.headCenter, cy = model.pose.headBounds[0]
+        const dx = x - cx, dy = (y - cy) * aspect, angle = turn * custom.rotation
+        const tx = cx + dx * Math.cos(angle) - dy * Math.sin(angle) + turn * custom.translation[0]
+        const ty = cy + (dx * Math.sin(angle) + dy * Math.cos(angle)) / aspect + tilt * custom.translation[1]
+        x += (tx - x) * headWeight; y += (ty - y) * headWeight
+      } else {
+        x += (poseX - x) * headWeight; y += (poseY - y) * headWeight
+      }
     }
     return { x, y }
   }
 
 
   function updateVertices(surface: RigMesh, time: number, neutral = false) {
+    const head = model.pose.headFollow, root = pinsByName.get('head-root')
+    const aspect = model.texture.height / model.texture.width
+    const pivot = head?.region && root ? basePoint(root.x, root.y) : undefined
+    const angle = parameters.lookX / 30 * (head?.rotation ?? 0), cos = Math.cos(angle), sin = Math.sin(angle)
+    const headPoint = (x: number, y: number) => {
+      const dx = x - root!.x, dy = (y - root!.y) * aspect
+      return { x: pivot!.x + dx * cos - dy * sin + parameters.lookX / 30 * head!.translation[0],
+        y: pivot!.y + (dx * sin + dy * cos) / aspect + parameters.lookY / 30 * head!.translation[1] }
+    }
     for (let vertex = 0; vertex < surface.rest.length / 2; vertex += 1) {
       const offset = vertex * 2
       const x = surface.rest[offset], y = surface.rest[offset + 1]
@@ -314,17 +406,83 @@ export function createSimulation(input: RigModel) {
       const point = neutral ? { x, y } : basePoint(x, y, surface.weights.subarray(weightOffset, weightOffset + pins.length))
       const flow = neutral ? { x: 0, y: 0 } : hair.displacement(surface.hairBinding, vertex)
       const secondary = neutral ? { x: 0, y: 0 } : accessories.displacement(surface.accessoryBinding, vertex, x, y)
-      const posed = neutral ? point : applySway(point.x + flow.x + secondary.x, point.y + flow.y + secondary.y, sway, model)
+      const local = neutral ? { x: 0, y: 0 } : parts.displacement(surface.partBinding, vertex, x, y)
+      let px = point.x + flow.x + secondary.x + local.x, py = point.y + flow.y + secondary.y + local.y
+      const binding = surface.regionBinding
+      if (!neutral && binding) {
+        let ownedX = 0, ownedY = 0, total = 0
+        for (let i = binding.offsets[vertex]; i < binding.offsets[vertex + 1]; i++) {
+          const region = model.surfaceRegions![binding.indices[i]], weight = binding.weights[i]
+          if (weight === 0) continue
+          let rx: number, ry: number
+          if (region.mode === 'rigid') {
+            const anchor = pinsByName.get(region.anchor ?? '')
+            const cx = anchor?.x ?? model.pose.bodyPivot[0], cy = anchor?.y ?? model.pose.bodyPivot[1]
+            const aspect = model.texture.height / model.texture.width
+            const angle = region.rotation === 'head' ? parameters.lookX / 30 * (model.pose.headFollow?.rotation ?? .08)
+              : region.rotation === 'body' ? parameters.bodyX / 10 * .05 : 0
+            const dx = x - cx, dy = (y - cy) * aspect
+            const pivot = region.rotation === 'head' && model.pose.headFollow?.region && anchor ? { x: anchor.px, y: anchor.py }
+              : region.rotation === 'head' || region.rotation === 'body' ? basePoint(cx, cy)
+              : { x: anchor?.px ?? cx, y: anchor?.py ?? cy }
+            rx = pivot.x + dx * Math.cos(angle) - dy * Math.sin(angle)
+            ry = pivot.y + (dx * Math.sin(angle) + dy * Math.cos(angle)) / aspect
+          } else {
+            const owned = basePoint(x, y, surface.weights.subarray(weightOffset, weightOffset + pins.length), region.pins)
+            rx = owned.x; ry = owned.y
+            if (region.secondary !== false) { rx += flow.x + secondary.x + local.x; ry += flow.y + secondary.y + local.y }
+          }
+          ownedX += rx * weight; ownedY += ry * weight; total += weight
+        }
+        px = px * Math.max(0,1-total) + ownedX; py = py * Math.max(0,1-total) + ownedY
+      }
+      if (!neutral && surface.headBinding && pivot) {
+        const binding = surface.headBinding, n = binding.neck[vertex], h = binding.head[vertex] * (1 - n)
+        // One shared matrix for skull/bangs; only reviewed local hair flow is added.
+        const rigid = headPoint(x, y), detail = headPoint(x + flow.x + secondary.x + local.x, y + flow.y + secondary.y + local.y)
+        const progress = binding.neckProgress[vertex]
+        const nx = point.x + (rigid.x - point.x) * progress, ny = point.y + (rigid.y - point.y) * progress
+        px = px * (1 - h - n) + detail.x * h + nx * n
+        py = py * (1 - h - n) + detail.y * h + ny * n
+      }
+      const grouped = neutral ? point : pointerGroups.apply(surface.pointerBinding, vertex, px, py)
+      const posed = neutral ? point : applySway(grouped.x, grouped.y, sway, model)
       surface.positions[offset] = posed.x
       surface.positions[offset + 1] = posed.y
     }
-    return constrainSharedSurface(surface)
+    const diagnostics = constrainSharedSurface(surface)
+    if (!neutral && model.tracking?.translation) {
+      // Translate the complete guarded surface equally: this cannot change local proportions,
+      // and the fold limiter must not attenuate this separate whole-character travel.
+      const dx = parameters.lookX / 30 * model.tracking.translation[0]
+      const dy = parameters.lookY / 30 * model.tracking.translation[1]
+      for (let offset = 0; offset < surface.positions.length; offset += 2) {
+        surface.positions[offset] += dx; surface.positions[offset + 1] += dy
+      }
+    }
+    const weight = neutral ? 0 : model.motion.weight ?? 1
+    if (weight !== 1) {
+      for (let offset = 0; offset < surface.positions.length; offset++) {
+        surface.positions[offset] = surface.rest[offset] + (surface.positions[offset] - surface.rest[offset]) * weight
+      }
+      diagnostics.maxDisplacementGradient *= weight
+    }
+    return diagnostics
   }
 
   function setMotion(settings: Partial<MotionSettings>) {
     const next = { ...model.motion, ...settings }
     validateModel({ ...model, motion: next })
     Object.assign(model.motion, next)
+    if (pointer) setPointer(...pointer)
+  }
+  function setTracking(settings: Partial<TrackingSettings>) {
+    const next = structuredClone({ response: .018, damping: .75, maxVelocity: 2.4, ...model.tracking, ...settings })
+    validateModel({ ...model, tracking: next })
+    model.tracking = next
+    trackingRemainder = 0
+    for (const key of ['lookX', 'lookY'] as const) velocity[key] = clamp(velocity[key], -next.maxVelocity, next.maxVelocity)
+    if (pointer) setPointer(...pointer)
   }
   function setPin(name: string, patch: Partial<Omit<PinSpec, 'name' | 'parent' | 'type'>>) {
     const pin = pinsByName.get(name)
@@ -336,7 +494,17 @@ export function createSimulation(input: RigModel) {
     Object.assign(pin, next, { px: next.x, py: next.y, vx: 0, vy: 0 })
   }
 
-  return { model, setMotion, setPin, pins, hair, accessories, parameters, velocity, textureSize, get sway() { return sway }, setPointer, setParameter, reset, wave, updatePins, buildContinuousMesh, updateVertices }
+  function setPart(id: string, patch: Partial<Omit<DeformationPart, 'id'>>) {
+    const spec = model.parts?.find(p => p.id === id)
+    if (!spec) throw new Error('Unknown part: ' + id)
+    const next = { ...spec, ...structuredClone(patch), id }
+    validateModel({ ...model, parts: model.parts!.map(p => p.id === id ? next : p) })
+    Object.assign(spec, next)
+    const state = parts.states.find(p => p.spec.id === id)!
+    state.rotation = 0; state.velocity = 0
+  }
+
+  return { model, setMotion, setTracking, setPin, setPart, rebindPin, pins, hair, accessories, parts, pointerGroups, parameters, velocity, textureSize, get sway() { return sway }, setPointer, setParameter, reset, wave, updatePins, buildContinuousMesh, updateVertices }
 }
 
 // Bound the displacement gradient over EVERY triangle, rather than only clamping

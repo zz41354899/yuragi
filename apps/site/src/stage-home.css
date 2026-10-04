@@ -13,7 +13,7 @@
 .stage-home :is(button,a) svg { flex-shrink: 0; }
 .stage-two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .stage-hero, .stage-cta { background: #008ebc url('/images/home/blue-stage-v1.png') center / cover no-repeat; color: #fff; overflow: hidden; }
-.stage-hero { overflow-x: clip; overflow-y: visible; }
+.stage-hero { overflow: clip; }
 .stage-hero-layout { position: relative; min-height: 650px; display: flex; align-items: center; }
 .stage-hero-copy { position: relative; z-index: 2; width: 52%; align-self: flex-start; padding-block: 100px 28px; }
 .stage-hero h1 { font-size: clamp(38px, 3.8vw, 56px); }
@@ -33,8 +33,13 @@
 .stage-button-glass:hover { background: #006c9e70; }
 .stage-button-outline { color: #007da9; background: #fff; border-color: #83d3eb; }
 .stage-button-outline:hover { background: #eafaff; }
-.stage-hero-art { position: absolute; left: calc(52% + clamp(48px, 4.4vw, 72px)); top: -62px; width: 54%; height: calc(100% + 62px); overflow: hidden; pointer-events: none; }
+.stage-hero-art { position: absolute; right: 0; top: 0; width: 48%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: clip; container-type: size; }
 .stage-hero-art img { display: block; width: 100%; height: auto; }
+.stage-hero-character { width: min(90%, 60cqh); aspect-ratio: 2 / 3; }
+.stage-hero-character .character-stage { width: 100%; aspect-ratio: 2 / 3; }
+.stage-hero-character { position: relative; touch-action: pan-y; }
+.stage-hero-character:focus-visible { outline: 3px solid #fff; outline-offset: -4px; }
+.stage-hero-hint { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 6px 12px; border-radius: 20px; background: #005f827a; color: #e6faff; font-size: 12px; pointer-events: none; }
 .stage-section-copy p { color: #547080; margin-top: 22px; max-width: 500px; }
 .stage-accent { display: block; height: 2px; width: 42px; background: #00a8d4; margin-bottom: 25px; }
 .stage-demo { scroll-margin-top: 96px; padding-block: 26px 38px; }
@@ -134,10 +139,6 @@
 .stage-site-header nav > a[aria-current=page]:not(.nav-play) { background: transparent; border-bottom: 2px solid #00a2cb; }
 .stage-site-header .nav-play { border: 0; }
 .stage-site-header .nav-play svg { display: none; }
-.stage-site-footer { display: flex; max-width: 1440px; padding: 26px 68px; min-height: 100px; gap: 34px; border: 0; align-items: center; }
-.stage-site-footer .footer-brand { font-size: 23px; }
-.stage-site-footer > p { font-size: 13px; margin: 0; }
-.stage-site-footer > div { margin-left: auto; font-size: 13px; border: 0; padding: 0; }
 :lang(en) .stage-home h1 { font-size: clamp(36px,3.1vw,48px); max-width: 680px; }
 :lang(en) .stage-home h2 { font-size: clamp(30px,2.45vw,38px); }
 :lang(en) .stage-home h1 br { display: none; }
@@ -148,7 +149,6 @@
   .stage-site-header { padding-inline: 40px; }
   .stage-hero-layout { min-height: 570px; }
   .stage-hero-copy { width: 52%; padding-block: 78px 46px; }
-  .stage-hero-art { width: 54%; left: calc(52% + 40px); top: -42px; height: calc(100% + 42px); }
   .stage-intro { max-width: 530px; font-size: 18px !important; }
   .stage-hero .stage-actions { gap: 16px; }
   .stage-hero .stage-button { min-height: 56px; font-size: 16px; }
@@ -180,7 +180,6 @@
   .stage-cta-copy > p { font-size: 15px; }
   .stage-cta-art { width: 58%; left: 60%; top: -58px; }
   .stage-cta-art figcaption { top: 375px; }
-  .stage-site-footer { padding-inline: 40px; }
 }
 @media (max-width: 860px) {
   .stage-container { width: calc(100% - 44px); }
@@ -204,7 +203,8 @@
   .stage-button { padding: 10px 21px; min-height: 49px; font-size: 14px; gap: 10px; }
   .stage-hero .stage-actions { gap: 12px; margin-top: 25px; }
   .stage-hero .stage-button { min-width: 0; min-height: 49px; font-size: 14px; }
-  .stage-hero-art { position: relative; width: min(520px,120%); top: auto; height: 455px; left: 50%; transform: translateX(-50%); }
+  .stage-hero-art { position: relative; width: min(520px,100%); height: auto; margin-inline: auto; padding-block: 24px 48px; container-type: normal; }
+  .stage-hero-character { width: 90%; }
   .stage-home .stage-hero-art { margin-top: 48px; }
   .stage-two-columns, .stage-editor-layout, .stage-details-layout { grid-template-columns: minmax(0,1fr); gap: 30px; }
   .stage-demo { padding-block: 50px 42px; }
@@ -245,9 +245,6 @@
   .stage-home .stage-release-note { font-size: 11px; }
   .stage-cta-art { width: min(450px,110%); left: 50%; top: 272px; transform: translateX(-50%); }
   .stage-cta-art figcaption { top: 331px; right: 11%; font-size: 10px; }
-  .stage-site-footer { padding: 25px 22px; gap: 16px; flex-wrap: wrap; }
-  .stage-site-footer > p { width: auto; font-size: 11px; }
-  .stage-site-footer > div { margin-left: 0; width: 100%; font-size: 12px; }
   :lang(en) .stage-home h1 { font-size: 35px; }
   :lang(en) .stage-home h2 { font-size: 29px; }
   :lang(en) .stage-hero-layout { min-height: 880px; }
@@ -258,7 +255,6 @@
   .stage-home h1 { font-size: 30px; }
   .stage-home h2 { font-size: 26px; }
   .stage-hero-layout { min-height: 755px; }
-  .stage-hero-art { height: 390px; }
   .stage-motion-controls button { gap: 5px; padding-inline: 9px; }
   .stage-editor-toolbar { padding-bottom: 10px; }
   .stage-editor-zoom button:last-child { display: none; }

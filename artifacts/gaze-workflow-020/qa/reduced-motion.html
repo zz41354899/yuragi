@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="../mirea-preview/"><script>const nativeMatchMedia=window.matchMedia.bind(window);window.matchMedia=query=>query.includes("prefers-reduced-motion")?{matches:true,addEventListener(){},removeEventListener(){}}:nativeMatchMedia(query);</script><title>Yuragi character preview</title><style>
+*{box-sizing:border-box}body{margin:0;background:#eff7fa;color:#15394b;font:16px/1.6 system-ui}main{max-width:960px;margin:auto;padding:32px 24px}h1{margin:0}button,a{font:inherit}button{padding:8px 16px;border:1px solid #92c8d9;border-radius:8px;background:white;color:#15394b;cursor:pointer}button:disabled{opacity:.5;cursor:default}button:focus-visible{outline:3px solid #007fa8}#stage{position:relative;width:min(100%,380px);margin:48px auto}#fallback{display:block;width:100%;height:100%;object-fit:contain;position:relative;z-index:1}#fallback[hidden]{display:none}canvas{position:absolute;left:-12%;top:-12%;width:124%;height:124%}.controls{display:flex;gap:8px;flex-wrap:wrap}#status{min-height:2em}pre{overflow:auto;background:white;padding:16px;border-radius:8px}
+</style><main><h1 id="title">Your character</h1><p>Small motion on your original artwork. Review the binding before increasing intensity.</p>
+<div id="stage" tabindex="0" role="group" aria-label="Character pointer and arrow-key controls"><img id="fallback" src="./texture.png" alt="Character artwork"><canvas id="canvas" aria-hidden="true"></canvas></div>
+<div class="controls"><button id="play" disabled>Play</button><button id="pause" disabled>Pause</button><button id="wave" disabled>Wave</button><button id="reset" disabled>Reset</button></div>
+<div id="face-controls" hidden><label>Gaze strength <input id="gaze-strength" type="range" min="0" max="1" step=".05" value="1"></label><label>Eye X <input id="gaze-x" type="range" min="-1" max="1" step=".05" value="0"></label><label>Eye Y <input id="gaze-y" type="range" min="-1" max="1" step=".05" value="0"></label></div><label>Motion strength <input id="motion-strength" type="range" min="0" max="1" step=".05" value="1"></label>
+<div id="pose-controls" hidden><label>Pose X <input id="pose-x" type="range" min="-30" max="30" step="1" value="0"></label><label>Pose Y <input id="pose-y" type="range" min="-30" max="30" step="1" value="0"></label></div>
+<p id="status" role="status">Loading local runtime…</p><p><a href="./binding-overlay.png">Binding overlay</a> · <a href="./rig-spec.md">Rig spec</a></p>
+<pre id="diagnostics">Waiting for player</pre></main><script type="module">
+const fallback=document.querySelector('#fallback'),stage=document.querySelector('#stage'),status=document.querySelector('#status'),diagnostics=document.querySelector('#diagnostics');
+const controller=new AbortController();let player;let controls;let ended=false;
+const stop=()=>{ended=true;controller.abort();player?.destroy()};window.addEventListener('pagehide',stop,{once:true});window.addEventListener('pageshow',event=>{if(event.persisted)location.reload()});
+try {
+ const {createPlayer,validateModel}=await import('./runtime/index.js');
+ const [response,report]=await Promise.all([fetch('./model.json',{signal:controller.signal}),fetch('./build-report.json',{signal:controller.signal})]);
+ if(!response.ok||!report.ok)throw new Error('Unable to load model or build report');
+ const model=await response.json();controls=(await report.json()).controls;validateModel(model);
+ model.texture.src=new URL(model.texture.src,response.url).href;
+ document.querySelector('#title').textContent=model.name;fallback.alt=model.name;stage.style.aspectRatio=`${model.texture.width}/${model.texture.height}`;
+ if(ended)throw new DOMException('Preview left','AbortError');
+ player=await createPlayer({canvas:document.querySelector('#canvas'),model,signal:controller.signal,reducedMotion:'respect',
+ onError:error=>{fallback.hidden=false;document.querySelector('#canvas').hidden=true;player?.destroy();status.textContent=error.message},
+ onFrame:snapshot=>{diagnostics.textContent=JSON.stringify({playing:snapshot.playing,...snapshot.diagnostics,parameters:snapshot.parameters,face:snapshot.face},null,2)}});
+ fallback.hidden=true;status.textContent=controls.follow?'Move your pointer to try gentle following.':'Silhouette mode: gentle idle only; no anatomy was guessed.';
+ for(const id of ['play','pause','reset'])document.querySelector('#'+id).disabled=false;
+ document.querySelector('#wave').disabled=!controls.wave;
+ document.querySelector('#reset').addEventListener('click',()=>{for(const id of ['gaze-x','gaze-y','pose-x','pose-y'])document.querySelector('#'+id).value='0';for(const id of ['gaze-strength','motion-strength'])document.querySelector('#'+id).value='1'},{signal:controller.signal});
+ document.querySelector('#pose-controls').hidden=!controls.follow;
+ for(const [id,name] of [['pose-x','lookX'],['pose-y','lookY']])document.querySelector('#'+id).addEventListener('input',event=>player.setParameter(name,Number(event.target.value)),{signal:controller.signal});
+ document.querySelector('#face-controls').hidden=!model.face;
+ document.querySelector('#gaze-strength').addEventListener('input',event=>player.setGazeStrength(Number(event.target.value)),{signal:controller.signal});
+ for(const id of ['gaze-x','gaze-y'])document.querySelector('#'+id).addEventListener('input',()=>player.setGaze(Number(document.querySelector('#gaze-x').value),Number(document.querySelector('#gaze-y').value)),{signal:controller.signal});
+ document.querySelector('#motion-strength').addEventListener('input',event=>player.setMotion({weight:Number(event.target.value)}),{signal:controller.signal});
+ stage.addEventListener('pointermove',event=>{if(!controls.follow||event.pointerType==='touch'&&!event.buttons)return;const r=stage.getBoundingClientRect();player.setPointer((event.clientX-r.left)/r.width-.5,(event.clientY-r.top)/r.height-.5)},{signal:controller.signal});
+ for(const name of ['pointerup','pointercancel'])stage.addEventListener(name,event=>{if(event.pointerType==='touch')player.setPointer(0,0)},{signal:controller.signal});
+ stage.addEventListener('blur',()=>player.setPointer(0,0),{signal:controller.signal});
+ stage.addEventListener('keydown',event=>{if(event.target!==stage||!controls.follow)return;const points={ArrowLeft:[-.5,0],ArrowRight:[.5,0],ArrowUp:[0,-.5],ArrowDown:[0,.5],Escape:[0,0]};if(points[event.key]){event.preventDefault();player.setPointer(...points[event.key])}},{signal:controller.signal});
+ stage.addEventListener('pointerleave',()=>player.setPointer(0,0),{signal:controller.signal});
+ for(const id of ['play','pause','reset'])document.querySelector('#'+id).addEventListener('click',()=>player[id](),{signal:controller.signal});
+ document.querySelector('#wave').addEventListener('click',()=>{if(controls.wave)player.wave()},{signal:controller.signal});
+} catch(error) {fallback.hidden=false;if(!ended)status.textContent=error.name==='AbortError'?'Loading cancelled':`${error.message}. Original artwork remains available; check browser WebGL support and local runtime files.`;}
+</script></html>

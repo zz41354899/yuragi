@@ -16,13 +16,20 @@ const prepareCommand = `python3 -m venv .venv
 .venv/bin/python -m pip install -r /path/to/yuragi-rig-spec/scripts/requirements.txt
 .venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py inspect artwork.png --out character-inspect
 # AI writes character-analysis.json after inspecting the image
-.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py build artwork.png --analysis character-analysis.json --out character-v1 --rig-package /path/to/node_modules/@yuragi/rig
+.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py extract artwork.png --analysis character-analysis.json --out character-parts
+.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py build artwork.png --prepared character-parts --out character-v1 --rig-package /path/to/node_modules/@yuragi/rig
 python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
 </script>
 
 <template>
   <div class="skills-guide">
     <p class="docs-lead">{{ tr('同一套 Yuragi，兩個英文 skill。從零設計角色，或讓 AI 看懂既有立繪、選擇合適動作並建立可播放的預覽；Prompt 可使用任何語言。') }}</p>
+    <div class="notice">
+      <strong>{{ tr('MIT 授權與 AI 圖片商用提醒') }}</strong>
+      <p>{{ tr('程式碼與 Skills 採 MIT 授權；角色素材與生成圖片的權利另行確認。') }}</p>
+      <p>{{ tr('透過 Skill 與 AI 工具生成或修改的圖片，可能涉及第三方權利，不保證可合法商用。商用前請自行確認素材授權與工具條款。') }}</p>
+      <p>{{ tr('使用者須自行處理生成圖片的授權與使用爭議；Yuragi 不提供權利審查或法律爭議處理服務。雙方責任仍依適用法律判斷。') }}</p>
+    </div>
     <div class="skill-paths">
       <article><span class="skill-step">01 · CHARACTER</span><h2>{{ tr('從零建立角色') }}</h2><code>yuragi-character</code><p>{{ tr('從想法開始，鎖定角色設定、立繪與素材品質，交付可接續的角色基準。') }}</p><strong>character-brief.md</strong></article>
       <article><span class="skill-step">02 · CHARACTER MOTION</span><h2>{{ tr('把既有角色轉成動態') }}</h2><code>yuragi-rig-spec</code><p>{{ tr('AI 判讀造型與可動部位，Python 產出綁定、可見部位素材與 spec，再使用 Yuragi API 建立並驗證動態預覽。') }}</p><strong>model.json · rig-spec.md · preview.html</strong></article>
@@ -41,10 +48,12 @@ python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
     <p>{{ tr('只要 spec 時，在 Prompt 加上「這次只完成 spec，不建立播放器」。') }}</p>
     <h2>{{ tr('AI 如何完成轉換？') }}</h2>
     <ul><li>{{ tr('看懂原畫：量測尺寸、透明度與留白，判讀身體、髮束、配件和遮擋。') }}</li><li>{{ tr('選擇適合的動作：人形可嘗試輕微跟隨；持道具或手臂不適合時停用揮手，其他造型先用整體微動。') }}</li><li>{{ tr('Python 輸出：依原畫座標建立 model.json、綁定圖、可見部位 PNG 與 rig-spec.md。') }}</li><li>{{ tr('API 播放與驗收：使用本機 runtime 預覽，檢查臉部、接縫與動態品質，再修正綁定。') }}</li></ul>
-    <p>{{ tr('AI 負責圖片語意判讀，Python 負責量測與檔案產出。可見部位拆圖不會補出被遮住的像素；播放器使用完整原畫的單一網格。眨眼、口型與大幅轉身需要額外素材和引擎功能。') }}</p>
+    <p>{{ tr('AI 負責原圖分析，Python 負責量測與拆件。此流程輸出 v1 完整原圖；v2 獨立附件需另用 build_layers.py 建置並提供遮擋補圖。') }}</p>
+    <h2>{{ tr('Skill 如何呼叫 Python？') }}</h2><p>{{ tr('Agent 必須先讀 yuragi-rig-spec 與 API 契約，再看圖標註並執行 inspect／extract／build。Python 不會啟動 Skill；角色設計與素材製作交給 yuragi-character。') }}</p>
     <h2>{{ tr('Python 輔助工具') }}</h2>
     <p>{{ tr('安裝後，AI 會從 skill 目錄執行以下流程，並依你的原畫寫出 character-analysis.json；你不用自己標控制點。') }}</p>
     <CodeBlock :code="prepareCommand" language="Terminal · Python" />
+    <h2>{{ tr('產出檔案與完成條件') }}</h2><p>{{ tr('inspect 產生量測、格線與標註草稿；extract 產生部件、遮罩與指紋 manifest；build --prepared --rig-package 驗證模型並產生本機互動預覽。') }}</p><p>{{ tr('partsExtracted 表示部件已拆出；modelValidation: passed 表示實際 runtime 驗證通過。visualAcceptance 仍為 not-run，需開啟 HTTP 預覽檢查動態後才更新。') }}</p><p>{{ tr('輸出資料夾非空時請換新版本；SHA 不符時重新 inspect。缺少 PIL 時在同一個 Python 環境安裝 requirements；缺少 dist/index.js 時先建置本機 library。') }}</p><p><a href="/.well-known/skills/yuragi-rig-spec/references/character-preparation.md#cli-contract-and-current-exporter-gaps">{{ tr('Python 命令、錯誤與功能缺口') }}</a></p>
     <p><a href="/.well-known/skills/yuragi-rig-spec/references/character-preparation.md">{{ tr('查看 Python 判讀與轉換指南') }}</a></p>
     <RouterLink to="/docs?section=custom-character">{{ tr('查看角色綁定完整流程') }}</RouterLink>
     <h2>{{ tr('查看 skill 原始文件') }}</h2>

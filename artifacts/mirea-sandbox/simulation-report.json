@@ -1,0 +1,82 @@
+{
+  "textureSHA256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "vertices": 3577,
+  "parts": 25,
+  "headMotion": "single rigid rotation/translation with body-attached neck bridge",
+  "pointerGroups": [
+    {
+      "id": "upper-follow",
+      "response": 105,
+      "translation": [
+        0.008,
+        0.004
+      ],
+      "rotation": 0.014
+    },
+    {
+      "id": "pelvis-follow",
+      "response": 220,
+      "translation": [
+        0.004,
+        0.003
+      ],
+      "rotation": 0.006
+    }
+  ],
+  "tracking": {
+    "lookX": 30,
+    "averageFaceShiftSourcePixels": 95.00845947265626
+  },
+  "results": [
+    {
+      "preset": "gentle",
+      "frames": 1800,
+      "minMotionScale": 1,
+      "maxGradient": 0.5456265378047849,
+      "minTriangleArea": 0.00018028184694296456,
+      "maxNormalizedOffset": 0.12299370765686035,
+      "maxHeadDistanceErrorPixels": 0.0000883605606318838,
+      "maxLegEdgeStrain": 0.000008457724068100525
+    },
+    {
+      "preset": "breeze",
+      "frames": 1800,
+      "minMotionScale": 1,
+      "maxGradient": 0.5272065461616062,
+      "minTriangleArea": 0.0001819906558386819,
+      "maxNormalizedOffset": 0.13521325588226318,
+      "maxHeadDistanceErrorPixels": 0.0000779779506245859,
+      "maxLegEdgeStrain": 0.000008482182383251491
+    },
+    {
+      "preset": "test",
+      "frames": 1800,
+      "minMotionScale": 1,
+      "maxGradient": 0.5249363586952611,
+      "minTriangleArea": 0.00018246870242366597,
+      "maxNormalizedOffset": 0.14805954694747925,
+      "maxHeadDistanceErrorPixels": 0.00008618615053279655,
+      "maxLegEdgeStrain": 0.000008515703086686699
+    },
+    {
+      "preset": "minimum-inertia",
+      "frames": 1800,
+      "minMotionScale": 1,
+      "maxGradient": 0.5503202732699266,
+      "minTriangleArea": 0.00017977732789375978,
+      "maxNormalizedOffset": 0.14817214012145996,
+      "maxHeadDistanceErrorPixels": 0.00008771634031035092,
+      "maxLegEdgeStrain": 0.000008400583074497092
+    },
+    {
+      "preset": "maximum-inertia",
+      "frames": 1800,
+      "minMotionScale": 1,
+      "maxGradient": 0.5249363586952611,
+      "minTriangleArea": 0.00018246870242366597,
+      "maxNormalizedOffset": 0.14805954694747925,
+      "maxHeadDistanceErrorPixels": 0.00008618615053279655,
+      "maxLegEdgeStrain": 0.000008515703086686699
+    }
+  ]
+}

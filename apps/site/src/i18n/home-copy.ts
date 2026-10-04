@@ -1,4 +1,6 @@
 export const homeCopy: [string, string, string][] = [
+  ['移動游標，與海月互動。', 'Move your cursor to interact with Mirea.', 'カーソルを動かして、海月とふれあおう。'],
+  ['海月互動；移動游標或使用方向鍵，離開時回正。', 'Mirea interaction; move the cursor or use arrow keys. Returns to center when you leave.', '海月とのふれあい。カーソルや矢印キーで操作し、離れると中央に戻ります。'],
   [
     "2D 插畫動態函式庫",
     "2D illustration motion library",
@@ -25,9 +27,9 @@ export const homeCopy: [string, string, string][] = [
     "カーソル追従、手振りを加えます。Vue・React・JavaScript に対応。"
   ],
   [
-    "體驗 Momo",
-    "Try Momo",
-    "Momo を体験"
+    "體驗 Mirea",
+    "Try Mirea",
+    "Mirea を体験"
   ],
   [
     "海月みれあ，手持水母傘的銀藍髮原創虛擬偶像。",
@@ -55,9 +57,9 @@ export const homeCopy: [string, string, string][] = [
     "手を振る"
   ],
   [
-    "Momo 互動範例",
-    "Momo interactive demo",
-    "Momo インタラクティブデモ"
+    "Mirea 互動範例",
+    "Mirea interactive demo",
+    "Mirea インタラクティブデモ"
   ],
   [
     "每個動作，",
@@ -175,9 +177,9 @@ export const homeCopy: [string, string, string][] = [
     "新しい画像にはモデルと動作設定が必要です。任意の画像が自動で動くわけではありません。"
   ],
   [
-    "從 Momo 開始，",
-    "Start with Momo.",
-    "Momo から始めて、"
+    "從 Mirea 開始，",
+    "Start with Mirea.",
+    "Mirea から始めて、"
   ],
   [
     "建立你的第一個動態角色。",

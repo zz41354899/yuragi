@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "id": "mirea-sandbox-v1",
+  "name": "海月みれあ · 水母公主",
+  "texture": {
+    "src": "./texture.png",
+    "width": 1024,
+    "height": 1536
+  },
+  "mesh": {
+    "columns": 48,
+    "rows": 72
+  },
+  "pins": [
+    {
+      "name": "waist",
+      "type": "fixed",
+      "x": 0.58,
+      "y": 0.355,
+      "radius": 0.18
+    },
+    {
+      "name": "head-root",
+      "type": "fixed",
+      "x": 0.555,
+      "y": 0.223,
+      "radius": 0.18,
+      "parent": "waist"
+    },
+    {
+      "name": "head-top",
+      "type": "joint",
+      "x": 0.552,
+      "y": 0.106,
+      "radius": 0.18,
+      "parent": "head-root"
+    },
+    {
+      "name": "umbrella-grip",
+      "type": "fixed",
+      "x": 0.444,
+      "y": 0.275,
+      "radius": 0.07
+    },
+    {
+      "name": "umbrella-canopy",
+      "type": "fixed",
+      "x": 0.34,
+      "y": 0.075,
+      "radius": 0.14
+    },
+    {
+      "name": "feet-anchor",
+      "type": "fixed",
+      "x": 0.53,
+      "y": 0.92,
+      "radius": 0.23
+    },
+    {
+      "name": "resting-hand",
+      "type": "fixed",
+      "x": 0.75,
+      "y": 0.525,
+      "radius": 0.075
+    }
+  ],
+  "hair": [
+    {
+      "id": "outer-left",
+      "points": [
+        [
+          0.42,
+          0.285
+        ],
+        [
+          0.265,
+          0.405
+        ],
+        [
+          0.165,
+          0.515
+        ]
+      ],
+      "phase": 1.4,
+      "radius": 0.035,
+      "gain": 0.5
+    },
+    {
+      "id": "outer-right",
+      "points": [
+        [
+          0.824,
+          0.312
+        ],
+        [
+          0.927,
+          0.412
+        ],
+        [
+          0.869,
+          0.515
+        ]
+      ],
+      "phase": 3.1,
+      "radius": 0.041,
+      "gain": 0.55
+    }
+  ],
+  "accessories": [
+    {
+      "id": "umbrella-ribbon-left",
+      "root": [
+        0.165,
+        0.185
+      ],
+      "tip": [
+        0.095,
+        0.435
+      ],
+      "radius": 0.052,
+      "angle": 0.03,
+      "stiffness": 0.038,
+      "damping": 0.93,
+      "phase": 0.3
+    },
+    {
+      "id": "umbrella-ribbon-center",
+      "root": [
+        0.29,
+        0.164
+      ],
+      "tip": [
+        0.204,
+        0.393
+      ],
+      "radius": 0.041,
+      "angle": 0.03,
+      "stiffness": 0.04,
+      "damping": 0.92,
+      "phase": 1.7
+    },
+    {
+      "id": "dress-trail-left",
+      "root": [
+        0.283,
+        0.557
+      ],
+      "tip": [
+        0.31,
+        0.901
+      ],
+      "radius": 0.052,
+      "angle": 0.022,
+      "stiffness": 0.03,
+      "damping": 0.94,
+      "phase": 2.5
+    },
+    {
+      "id": "dress-trail-right",
+      "root": [
+        0.77,
+        0.566
+      ],
+      "tip": [
+        0.765,
+        0.892
+      ],
+      "radius": 0.047,
+      "angle": 0.022,
+      "stiffness": 0.032,
+      "damping": 0.94,
+      "phase": 3.8
+    }
+  ],
+  "faceClearance": [
+    [
+      0.56,
+      0.1575,
+      0.12000000000000002,
+      0.07050000000000001
+    ]
+  ],
+  "pose": {
+    "headCenter": 0.56,
+    "headBounds": [
+      0.228,
+      0.2844
+    ],
+    "headHorizontal": [
+      0.084,
+      0.18000000000000005
+    ],
+    "headWarpBounds": [
+      0.087,
+      0.228
+    ],
+    "bodyBounds": [
+      0.355,
+      0.8657916666666667
+    ],
+    "bodyPivot": [
+      0.58,
+      0.355
+    ],
+    "swayPivot": [
+      0.5011051739581784,
+      0.99
+    ]
+  },
+  "motion": {
+    "sway": 0.32,
+    "speed": 0.65,
+    "hair": 0.55,
+    "accessories": 0.55,
+    "follow": 0.28
+  }
+}

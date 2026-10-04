@@ -14,6 +14,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: Home, meta: { title: '讓插畫輕輕動起來' } },
+    { path: '/docs/api/:group?/:slug?', component: () => import('./pages/Api.vue'), meta: { title: 'API' } },
     { path: '/docs', component: () => import('./pages/Docs.vue'), meta: { title: '文件' } },
     { path: '/playground', component: () => import('./pages/Playground.vue'), meta: { title: '遊樂場' } },
     { path: '/:pathMatch(.*)*', redirect: '/' },
@@ -25,7 +26,7 @@ const router = createRouter({
     return { top: 0 }
   },
 })
-router.beforeEach(to => { if (isLocale(to.query.lang)) i18n.global.locale.value = to.query.lang })
+router.beforeEach(to => { if (to.path === '/docs' && to.query.section === 'api') return { path: '/docs/api', query: Object.fromEntries(Object.entries(to.query).filter(([key]) => key !== 'section')), replace: true }; if (isLocale(to.query.lang)) i18n.global.locale.value = to.query.lang })
 createApp(App).use(i18n).use(router).mount('#app')
 watchEffect(() => {
   const locale = i18n.global.locale.value

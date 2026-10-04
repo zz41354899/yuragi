@@ -1,0 +1,21 @@
+{
+  "modelValidation": "passed",
+  "visualAcceptance": "not-run",
+  "prototype": true,
+  "neutralMaxChannelError": 0,
+  "prunedWeightErrorBoundPixels": 0,
+  "atlasBytes": 16777216,
+  "attachments": 3,
+  "sampledGeometry": {
+    "pointerSamples": 9,
+    "framesPerSample": 120,
+    "minimumAreaRatio": 0.9983389967737671,
+    "sharedJointGroups": 0,
+    "maxJointErrorPixels": null
+  },
+  "attachmentFingerprints": {
+    "body": "2b67e2223a0cb14e62568c01a6daebeaef5dd9ea882ff543c957ae4ce9634190",
+    "hair": "59f12828e8b3d710da6ebb7408a7ff4d0cea90e68a08c52ee6bf5794a39317c1",
+    "held-prop": "5e4bca037e6cbe7047d24be7d7a340255f79c8f1bcb106179010c6b0672a5a9a"
+  }
+}

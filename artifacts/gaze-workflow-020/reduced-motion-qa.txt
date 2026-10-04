@@ -1,0 +1,36 @@
+- heading "Generated-preview QA" [level=1]
+- paragraph: Isolated browser test harness; does not change the site or OS preferences.
+- button "Simulate touch drag and cancellation"
+- button "Load reduced motion fixture" [active]
+- button "Load WebGL fallback fixture"
+- button "Load normal preview"
+- generic: "Fixture: reduced"
+- iframe:
+  - main:
+    - heading "海月みれあ · 水母公主" [level=1]
+    - paragraph: Small motion on your original artwork. Review the binding before increasing intensity.
+    - group "Character pointer and arrow-key controls"
+    - button "Play"
+    - button "Pause"
+    - button "Wave" [disabled]
+    - button "Reset"
+    - text: Gaze strength
+    - slider "Gaze strength"
+    - text: Eye X
+    - slider "Eye X"
+    - text: Eye Y
+    - slider "Eye Y"
+    - text: Motion strength
+    - slider "Motion strength"
+    - text: Pose X
+    - slider "Pose X"
+    - text: Pose Y
+    - slider "Pose Y"
+    - status: Move your pointer to try gentle following.
+    - paragraph:
+      - link "Binding overlay":
+        - /url: ./binding-overlay.png
+      - text: ·
+      - link "Rig spec":
+        - /url: ./rig-spec.md
+    - generic: "{ \"playing\": false, \"motionScale\": 1, \"maxDisplacementGradient\": 0, \"parameters\": { \"lookX\": 0, \"lookY\": 0, \"bodyX\": 0, \"wave\": 0 }, \"face\": { \"gaze\": [ 0, 0 ], \"strength\": 0 } }"

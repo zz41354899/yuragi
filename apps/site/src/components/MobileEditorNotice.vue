@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
       <div class="editor-notice-icon"><Icon name="desktop" :size="32" /></div>
       <p class="editor-notice-eyebrow">YURAGI PLAYGROUND</p>
       <h2 id="mobile-editor-title">{{ tr('建議使用電腦瀏覽') }}</h2>
-      <p id="mobile-editor-description">{{ tr('遊樂場需要拖曳控制點與調整細部參數，使用電腦和滑鼠會更好操作。你也可以繼續用手機預覽與嘗試。') }}</p>
+      <p id="mobile-editor-description">{{ tr('使用電腦調整圖層與動態會更好操作。你也可以繼續用手機預覽與嘗試。') }}</p>
       <div class="editor-notice-actions">
         <button class="editor-notice-primary" type="button" autofocus @click="goHome">{{ tr('返回首頁') }}<Icon name="arrow-right" :size="18" /></button>
         <button class="editor-notice-secondary" type="button" @click="dismiss">{{ tr('繼續使用手機') }}</button>

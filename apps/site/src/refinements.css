@@ -64,7 +64,6 @@ button, select, input { letter-spacing: .01em; }
 .docs-version-switch { flex-wrap: wrap; min-width: 0; }
 .slider-field > div { gap: 12px; }
 .slider-field output { flex-shrink: 0; }
-.site-footer > div { flex-wrap: wrap; }
 @media (max-width: 1100px) {
   .docs-shell { gap: 32px; }
   .editor-view-tools { justify-content: center; padding-left: 8px; padding-right: 8px; }

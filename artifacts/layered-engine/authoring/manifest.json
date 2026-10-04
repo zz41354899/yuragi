@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "renderer": "layered-authoring",
+  "id": "mirea-layered-prototype",
+  "name": "Mirea layered prototype",
+  "source": {
+    "file": "source.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05"
+  },
+  "nodes": [
+    {
+      "id": "whole",
+      "pivot": [
+        0.45,
+        0.255
+      ],
+      "rotation": 0.009,
+      "translation": [
+        0.006,
+        0.003
+      ],
+      "response": 140
+    },
+    {
+      "id": "hair-tip",
+      "parent": "whole",
+      "pivot": [
+        0.83,
+        0.36
+      ],
+      "rotation": 0,
+      "translation": [
+        0,
+        0
+      ],
+      "response": 160,
+      "spring": {
+        "rotation": 0.004,
+        "stiffness": 0.035,
+        "damping": 0.92,
+        "wind": 0.6,
+        "phase": 0.5
+      }
+    }
+  ],
+  "joints": [],
+  "attachments": [
+    {
+      "id": "body",
+      "image": "body.png",
+      "boundsPixels": [
+        0,
+        0,
+        1011,
+        1536
+      ],
+      "node": "whole",
+      "mesh": [
+        1,
+        1
+      ],
+      "coverage": "visible-only",
+      "provenance": "Visible pixels from reviewed Mirea masks; no occluded artwork completion."
+    },
+    {
+      "id": "hair",
+      "image": "hair.png",
+      "boundsPixels": [
+        850,
+        554,
+        1009,
+        833
+      ],
+      "node": "whole",
+      "mesh": [
+        12,
+        18
+      ],
+      "coverage": "visible-only",
+      "provenance": "Visible pixels from reviewed Mirea masks; no occluded artwork completion.",
+      "flex": {
+        "root": [
+          0.83,
+          0.36
+        ],
+        "tip": [
+          0.94,
+          0.53
+        ],
+        "node": "hair-tip"
+      }
+    },
+    {
+      "id": "held-prop",
+      "image": "held-prop.png",
+      "boundsPixels": [
+        171,
+        8,
+        563,
+        477
+      ],
+      "node": "whole",
+      "mesh": [
+        1,
+        1
+      ],
+      "coverage": "visible-only",
+      "provenance": "Visible pixels from reviewed Mirea masks; no occluded artwork completion."
+    }
+  ]
+}

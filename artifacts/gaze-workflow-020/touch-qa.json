@@ -1,0 +1,75 @@
+{
+  "touchSimulation": "passed",
+  "hover": {
+    "playing": true,
+    "motionScale": 1,
+    "maxDisplacementGradient": 0.2216376724541168,
+    "parameters": {
+      "lookX": 0,
+      "lookY": 0,
+      "bodyX": 0,
+      "wave": 0
+    },
+    "face": {
+      "gaze": [
+        0,
+        0
+      ],
+      "strength": 1
+    }
+  },
+  "drag": {
+    "playing": true,
+    "motionScale": 1,
+    "maxDisplacementGradient": 0.3170671127105083,
+    "parameters": {
+      "lookX": 29.46893851366386,
+      "lookY": 29.46893851366386,
+      "bodyX": 1.8755428108168386,
+      "wave": 0
+    },
+    "face": {
+      "gaze": [
+        0.9976270855738388,
+        0.9976270855738388
+      ],
+      "strength": 1
+    }
+  },
+  "reverse": {
+    "playing": true,
+    "motionScale": 1,
+    "maxDisplacementGradient": 0.31977827622584704,
+    "parameters": {
+      "lookX": -22.046572437886756,
+      "lookY": -22.046572437886756,
+      "bodyX": -1.2356308767983788,
+      "wave": 0
+    },
+    "face": {
+      "gaze": [
+        -0.9884216958044252,
+        -0.9884216958044252
+      ],
+      "strength": 1
+    }
+  },
+  "cancel": {
+    "playing": true,
+    "motionScale": 1,
+    "maxDisplacementGradient": 0.18958036312883508,
+    "parameters": {
+      "lookX": -0.04457815083960705,
+      "lookY": -0.04457815083960705,
+      "bodyX": -0.12238501778200442,
+      "wave": 0
+    },
+    "face": {
+      "gaze": [
+        -0.00004520207378782316,
+        -0.00004520207378782316
+      ],
+      "strength": 1
+    }
+  }
+}

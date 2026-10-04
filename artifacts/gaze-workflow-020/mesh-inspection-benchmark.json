@@ -1,0 +1,13 @@
+{
+  "label": "mesh-inspection",
+  "node": "v25.9.0",
+  "platform": "darwin",
+  "coreGzipBytes": 18939,
+  "frameMs": [
+    1.0505984033333333,
+    1.2567335416666667,
+    1.2341780900000003
+  ],
+  "medianFrameMs": 1.2341780900000003,
+  "scope": "CPU simulation, mesh and gaze state; excludes browser/GPU upload and rendering; 300 warmup + 1200 frames, three runs on same host"
+}

@@ -5,7 +5,9 @@ import { experienceCopy } from './experience-copy'
 import { homeCopy } from './home-copy'
 import { skillsCopy } from './skills-copy'
 import { workspaceCopy } from './workspace-copy'
-const copy = [...siteCopy, ...guideCopy, ...experienceCopy, ...homeCopy, ...workspaceCopy, ...skillsCopy]
+import { footerCopy } from './footer-copy'
+import { docsCopy } from './docs-copy'
+const copy = [...siteCopy, ...guideCopy, ...experienceCopy, ...homeCopy, ...workspaceCopy, ...skillsCopy, ...footerCopy, ...docsCopy]
 
 export const locales = ['zh-TW', 'en', 'ja'] as const
 export type Locale = typeof locales[number]

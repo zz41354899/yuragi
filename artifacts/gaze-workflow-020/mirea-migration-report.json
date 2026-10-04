@@ -1,0 +1,130 @@
+[
+  {
+    "file": "artifacts/mirea-sandbox/model.json",
+    "from": "0.1",
+    "to": "0.2.0",
+    "changes": [
+      {
+        "path": "$.face.mode",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.blink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].ink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].ink",
+        "action": "removed"
+      }
+    ],
+    "validation": "not-run; validate with target runtime before playback"
+  },
+  {
+    "file": "artifacts/mirea-sandbox/character-analysis.json",
+    "from": "0.1",
+    "to": "0.2.0",
+    "changes": [
+      {
+        "path": "$.face.mode",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.blink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].ink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].ink",
+        "action": "removed"
+      }
+    ],
+    "validation": "not-run; validate with target runtime before playback"
+  },
+  {
+    "file": "artifacts/mirea-sandbox/prepared/model.json",
+    "from": "0.1",
+    "to": "0.2.0",
+    "changes": [
+      {
+        "path": "$.face.blink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.mouth",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].ink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].ink",
+        "action": "removed"
+      }
+    ],
+    "validation": "not-run; validate with target runtime before playback"
+  },
+  {
+    "file": "artifacts/mirea-sandbox/prepared/analysis.json",
+    "from": "0.1",
+    "to": "0.2.0",
+    "changes": [
+      {
+        "path": "$.face.blink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.mouth",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[0].ink",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].skinSample",
+        "action": "removed"
+      },
+      {
+        "path": "$.face.eyes[1].ink",
+        "action": "removed"
+      }
+    ],
+    "validation": "not-run; validate with target runtime before playback"
+  }
+]

@@ -2,7 +2,7 @@
 
 Prepare artwork → inspect and annotate → build a model → verify in a local player → integrate with Vue or React.
 
-Yuragi renders a single continuous WebGL mesh over the original illustration. It is suited to gentle idle, pose following and visible local hair/accessory motion. Different artwork needs different dimensions, pins and regions. Image replacement alone is not rigging. Eyes, mouth shapes, large turns, independently composited layers and occlusion changes require additional work.
+Yuragi renders a single continuous WebGL mesh over the original illustration. It is suited to gentle idle, pose following and visible local hair/accessory motion. Different artwork needs different dimensions, pins and regions. Image replacement alone is not rigging. Reviewed face annotations support eye tracking and procedural eyelid/mouth compositing. Large turns, artist-authored face attachments, independently composited layers and occlusion changes require additional work.
 
 ## Artwork and automated preparation
 
@@ -20,9 +20,9 @@ This library has not been published to npm. In a Yuragi checkout run `npm run bu
 npm install /path/to/yuragi/packages/rig
 ```
 
-The installed package includes `assets/momo`, `assets/starter/model.json`, TypeScript declarations and ESM code. Skill installation is separate and does not install the runtime. Do not call `createMomoModel()` for a different illustration: it retains Momo's dimensions and binding.
+The installed package includes `assets/mirea`, `assets/starter/model.json`, TypeScript declarations and ESM code. Skill installation is separate and does not install the runtime. Do not use `createMireaModel()` bindings for a different illustration: dimensions and binding must be measured from that artwork.
 
-Copy the humanoid starter into your own public model directory, add the actual artwork, and replace all coordinates and pose/chain settings. Empty hair/accessory/face-clearance arrays are valid. Alternatively, use the installed skill helper to generate a candidate from measured annotations. Its output is still a candidate until inspected in motion. The website's playground edits Momo only and cannot validate arbitrary artwork imports.
+Copy the humanoid starter into your own public model directory, add the actual artwork, and replace all coordinates and pose/chain settings. Empty hair/accessory/face-clearance arrays are valid. Alternatively, use the installed skill helper to generate a candidate from measured annotations. Its output is still a candidate until inspected in motion. The website's playground edits Mirea only and cannot validate arbitrary artwork imports.
 
 ## Coordinate and binding semantics
 
@@ -66,7 +66,7 @@ Hair chains require separate root/middle/tip points; accessories have root/tip, 
 | pose.headCenter | Normalized head center X, not Y |
 | pose.headBounds | [startY,endY], increasing 0–1; head influence fades downward |
 | pose.headHorizontal | [innerDistance,outerDistance], increasing 0–1; distances from headCenter, not left/right X bounds |
-| pose.headWarpBounds | Optional increasing [topY,bottomY] in 0–1; adapts internal head warping to measured head position. Omission preserves the original Momo behavior. Older runtimes may ignore this extension; rebuild/update before using it. |
+| pose.headWarpBounds | Optional increasing [topY,bottomY] in 0–1; adapts internal head warping to measured head position. Omission preserves the legacy behavior. Older runtimes may ignore this extension; rebuild/update before using it. |
 | pose.bodyBounds | Increasing [startY,endY], 0–1; body lean fade |
 | pose.bodyPivot / swayPivot | Normalized [x,y] rotation pivots |
 
@@ -142,3 +142,65 @@ React uses the separately imported `@yuragi/rig/react` component. Load after mou
 - WebGL unavailable: retain the original artwork fallback.
 - Unknown pin / invalid parameter: use existing pin names and lookX/lookY/bodyX/wave with finite values.
 - Valid JSON but wrong motion: repair full-image coordinates, semantic layout, pose distances and observed chains; unsupported anatomy needs a conservative mode or explicit engine extension.
+
+## Optional polygon-bound parts and stronger head following
+
+`parts?: DeformationPart[]` adds up to 64 independent spring regions on the same continuous texture. This is implemented locally; it is not a layered image renderer. Each region requires a unique nonempty `id`, a `kind` (`hair`, `cloth`, `ribbon`, `accessory`), a simple polygon with 3–32 normalized original-image vertices, distinct `root` and `tip`, and the following numeric fields:
+
+| Field | Range / meaning |
+| --- | --- |
+| feather | 0.002–0.2, in source-image-width units with aspect-correct Y distance |
+| rotation | 0–0.35 radians, spring rotation limit |
+| stiffness / damping | 0.001–1, restoring force and reference-frame velocity retention |
+| phase | -100–100, wind phase |
+| wind | 0–2, wind response |
+| follow | -2–2, gaze/turn-velocity response; positive trails, negative reverses |
+
+Optional `name` is a display label; kind is metadata, while numeric settings determine material response. Masks feather inward, suppress face-clearance areas, fade at the root, and normalize overlap. `motion.parts` (0–2, default 1) scales the final part displacement; zero disables it. `getSnapshot().parts` reports `{id, rotation}` for configured parts, with zero rotations under reduced motion. Per-frame spring state belongs to the engine; snapshots remain low-frequency. Use setPart(id, patch) to edit an existing part and rebuild its binding atomically. Adding/removing parts requires player recreation; no setLayer API exists.
+
+Optional `pose.headFollow: {rotation, translation: [x,y]}` replaces legacy head warping with aspect-correct rotation and translation. Rotation is 0–0.3 radians, each translation amplitude 0–0.08. Existing headCenter, headBounds and headHorizontal still feather the pose. Omitting the new fields preserves the numeric baseline. Image replacement alone does not bind a rig. Independent image layers, draw order, occlusion and hidden-surface reconstruction remain unsupported.
+
+The website and playground use `createMireaModel()` from `@yuragi/rig/mirea` for polygon parts, rigid protection and bounded tracking. Python annotations can generate `surfaceRegions` from region binding and `parts` from deformation. `parts-manifest.json` indexes full-canvas/cropped PNGs, masks, source bounds, hierarchy and authoring root/middle/tip anchors. Rigid props and their grip share attachment transforms; free ribbons remain flexible. These visible-pixel exports require occlusion completion for independent layer playback. See the installed skill's character-preparation reference for the exact schema.
+
+Existing parts can be edited with `player.setPart(id, patch)`: root/tip, polygon/exclusions, material response and channel are validated before any state change. Binding rebuild uses existing GPU buffers; part spring state resets without duplicating the animation loop. Inputs are copied and getModel() includes edits. Recreate for adding/removing parts or changing surfaceRegions.
+
+Owned head tracking uses pose.headFollow.region/feather plus neck.polygon/base/feather and tracking.bodyFollow. It replaces head-pin warping with a single skull transform and a body-attached neck bridge. The Python headMotion annotation produces these fields from reviewed regions and landmarks; fine anatomy and bangs remain visible-only authoring assets. Calibrate against props and recreate the player after pose edits.
+
+
+## Live floating tracking
+
+`TrackingSettings` is exported by the TypeScript core. Use `player.setTracking(patch)` to validate and copy response, damping, maxVelocity, bodyFollow and translation live, without rebinding or allocating a new player. Omitted fields keep their values; invalid patches leave both model and state unchanged. No existing tracking profile means the call explicitly opts into bounded tracking defaults.
+
+```ts
+player.setTracking({
+  response: .05425, damping: .757, maxVelocity: 2.72,
+  bodyFollow: 0, translation: [.06, .04],
+})
+player.setPointer(.5, -.5)
+player.setPart('hair-strand-left', { stiffness: .018, damping: .95, followY: .55 })
+```
+
+`tracking.translation` is an optional nonnegative X/Y pair, 0–.08 in full-source normalized units at look ±30. It moves every guarded vertex by the same offset AFTER local deformation safety checks; it adds no local stretching. `bodyFollow: 0` removes pointer-driven body lean, while whole-artwork travel still applies. A normalized stage pointer is a direction and travel fraction, not a request to teleport the character's center onto the cursor. Keep sufficient canvas overscan.
+
+Opt-in tracking uses fixed half reference ticks from elapsed delta, with at most 50ms catch-up per update. This keeps its parameter response consistent at 30/60/120 Hz and avoids a jump after suspension. The original model without tracking preserves the legacy tick. Zero-delta manual preview edits retain settle behavior.
+
+`DeformationPart.followY` is optional -2–2 vertical follow/inertia response; omitted preserves X-only behavior. Positive/negative signs should follow each reviewed strand's direction. Separate stiffness/damping per material supplies delayed flow without increasing the skull rotation. `getSnapshot().trackingOffset` reports whole-source travel (zero under reduced motion); snapshots remain low frequency. It is separate from local gradient diagnostics, which exclude uniform travel.
+
+Independent attachments and independent bones require additional renderer support and completed artwork. Parameter/gaze.strength/motion clips with Bézier keys already exist; setTracking and extraction do not generate them.
+
+## Gaze and animation curves (0.2.0)
+
+`model.face` contains only two unique left/right eyes: center, radius, iris, irisRadius, bounded travel, angle and sclera RGB. It requires owned `pose.headFollow.region`. Models without face annotations reject gaze setters. `setGaze(x,y)` clamps finite direction to −1…1; `setGazeStrength(value)` requires finite 0–1, default 1. These setters require reviewed eyes. Neutral and reduced motion preserve source pixels; eyelids and mouth remain untouched. Eye state smooths over approximately 55ms and is independent of geometry motion weight. Snapshot face is `{ gaze: Vec2, strength: number }`; reduced motion returns zero gaze/strength. Editing measured eye geometry requires validation and player recreation.
+
+`playAnimation`, `pauseAnimation`, `seekAnimation(ms)` and `stopAnimation` manage one clip per player. Tracks target parameter lookX/lookY/bodyX/wave, gaze.strength or motion.weight. Keys use milliseconds and outgoing linear/step/[x1,y1,x2,y2] Bezier curves. Active parameter tracks drive spring targets. Pause freezes the player; pauseAnimation freezes only the clip; stop retains last values, reset restores gaze strength 1 and neutral direction.
+
+0.2.0 removes blink/setExpression and expression types/tracks. Old face mode/blink/mouth and eye skinSample/ink are rejected with migration guidance. Run the Skill's `scripts/migrate_gaze.py old.json --out new.json`; it writes a removal/conversion report, never overwrites input, maps expression.gaze to gaze.strength and removes other expression tracks. Empty resulting clips require removal or reauthoring. Validate migrated data in the target runtime before playback. Models retain version:1.
+
+## Bundled sample assets
+
+The primary packaged example is Mirea: copy assets/mirea to public/models/mirea and import createMireaModel from @yuragi/rig/mirea. Starter remains the template for new artwork. Neither sample can be reused on arbitrary images without new measured bindings.
+
+
+## Independent layered v2
+
+The existing preparation workflow still builds v1 shared-surface models. Independent attachments now use the separate `LayeredModel` / `createLayeredPlayer` contract and `build_layers.py` authoring compiler. See [the v2 guide](layered-engine.zh-TW.md). Visible extracts require completed occluded artwork before full visual acceptance; prototype mode does not supply those pixels.

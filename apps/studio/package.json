@@ -1,0 +1,12 @@
+{
+  "name": "@yuragi/studio-app",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": { "@yuragi/rig": "0.2.0", "vue": "^3.5.0" },
+  "devDependencies": { "@vitejs/plugin-vue": "^6.0.0", "vite": "^7.1.0", "vue-tsc": "^3.1.0" }
+}

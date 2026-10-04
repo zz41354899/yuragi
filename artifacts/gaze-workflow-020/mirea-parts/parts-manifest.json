@@ -1,0 +1,2630 @@
+{
+  "version": 1,
+  "analysisSha256": "611e4782dd75953bbb43b1fd3c02c60e195b4e66062751fbc97865d8d124d380",
+  "image": {
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+    "width": 1024,
+    "height": 1536
+  },
+  "canvas": [
+    1024,
+    1536
+  ],
+  "coordinateSpace": "full-source-normalized",
+  "renderer": "shared-surface",
+  "parts": [
+    {
+      "id": "bang-left-outer",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-left-outer.png",
+      "cropped": "parts/cropped/bang-left-outer.png",
+      "mask": "parts/masks/bang-left-outer.png",
+      "boundsPixels": [
+        481,
+        153,
+        533,
+        274
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-left-outer-root",
+          "position": [
+            0.509,
+            0.104
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-left-outer-mid-1",
+          "position": [
+            0.483,
+            0.136
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-left-outer-tip",
+          "position": [
+            0.489,
+            0.177
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.009359999999999999,
+        "rotation": 0.011000000000000001,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 0,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": 0.55
+      }
+    },
+    {
+      "id": "bang-left-middle",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-left-middle.png",
+      "cropped": "parts/cropped/bang-left-middle.png",
+      "mask": "parts/masks/bang-left-middle.png",
+      "boundsPixels": [
+        502,
+        153,
+        549,
+        249
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-left-middle-root",
+          "position": [
+            0.522,
+            0.103
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-left-middle-mid-1",
+          "position": [
+            0.505,
+            0.135
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-left-middle-tip",
+          "position": [
+            0.526,
+            0.166
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.01008,
+        "rotation": 0.0099,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 0.79,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "bang-left-inner",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-left-inner.png",
+      "cropped": "parts/cropped/bang-left-inner.png",
+      "mask": "parts/masks/bang-left-inner.png",
+      "boundsPixels": [
+        529,
+        155,
+        571,
+        243
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-left-inner-root",
+          "position": [
+            0.534,
+            0.102
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-left-inner-mid-1",
+          "position": [
+            0.529,
+            0.129
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-left-inner-tip",
+          "position": [
+            0.548,
+            0.163
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.00864,
+        "rotation": 0.0099,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 1.58,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "bang-center",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-center.png",
+      "cropped": "parts/cropped/bang-center.png",
+      "mask": "parts/masks/bang-center.png",
+      "boundsPixels": [
+        548,
+        157,
+        591,
+        244
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-center-root",
+          "position": [
+            0.547,
+            0.103
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-center-mid-1",
+          "position": [
+            0.548,
+            0.132
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-center-tip",
+          "position": [
+            0.57,
+            0.159
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.00792,
+        "rotation": 0.0099,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 2.37,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "bang-right-middle",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-right-middle.png",
+      "cropped": "parts/cropped/bang-right-middle.png",
+      "mask": "parts/masks/bang-right-middle.png",
+      "boundsPixels": [
+        566,
+        158,
+        621,
+        226
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-right-middle-root",
+          "position": [
+            0.565,
+            0.107
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-right-middle-mid-1",
+          "position": [
+            0.585,
+            0.132
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-right-middle-tip",
+          "position": [
+            0.598,
+            0.152
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.009359999999999999,
+        "rotation": 0.0099,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 3.16,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "bang-right-outer",
+      "role": "bangs",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/bang-right-outer.png",
+      "cropped": "parts/cropped/bang-right-outer.png",
+      "mask": "parts/masks/bang-right-outer.png",
+      "boundsPixels": [
+        595,
+        166,
+        642,
+        273
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "bang-right-outer-root",
+          "position": [
+            0.592,
+            0.111
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "bang-right-outer-mid-1",
+          "position": [
+            0.608,
+            0.138
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "bang-right-outer-tip",
+          "position": [
+            0.616,
+            0.178
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.00792,
+        "rotation": 0.011000000000000001,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 3.95,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "lock-left",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/lock-left.png",
+      "cropped": "parts/cropped/lock-left.png",
+      "mask": "parts/masks/lock-left.png",
+      "boundsPixels": [
+        483,
+        241,
+        529,
+        499
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "lock-left-root",
+          "position": [
+            0.488,
+            0.158
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "lock-left-mid-1",
+          "position": [
+            0.505,
+            0.245
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "lock-left-tip",
+          "position": [
+            0.484,
+            0.323
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.00864,
+        "rotation": 0.030250000000000003,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 4.74,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": 0.55
+      }
+    },
+    {
+      "id": "lock-right",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/lock-right.png",
+      "cropped": "parts/cropped/lock-right.png",
+      "mask": "parts/masks/lock-right.png",
+      "boundsPixels": [
+        642,
+        262,
+        759,
+        458
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "lock-right-root",
+          "position": [
+            0.641,
+            0.173
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "lock-right-mid-1",
+          "position": [
+            0.662,
+            0.244
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "lock-right-tip",
+          "position": [
+            0.731,
+            0.291
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.01008,
+        "rotation": 0.030250000000000003,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 5.53,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "hair-left-upper",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hair-left-upper.png",
+      "cropped": "parts/cropped/hair-left-upper.png",
+      "mask": "parts/masks/hair-left-upper.png",
+      "boundsPixels": [
+        209,
+        396,
+        435,
+        667
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hair-left-upper-root",
+          "position": [
+            0.422,
+            0.282
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hair-left-upper-mid-1",
+          "position": [
+            0.325,
+            0.332
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hair-left-upper-tip",
+          "position": [
+            0.242,
+            0.418
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.0324,
+        "rotation": 0.02475,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 6.32,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": 0.55
+      }
+    },
+    {
+      "id": "hair-left-curl",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hair-left-curl.png",
+      "cropped": "parts/cropped/hair-left-curl.png",
+      "mask": "parts/masks/hair-left-curl.png",
+      "boundsPixels": [
+        117,
+        561,
+        321,
+        811
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hair-left-curl-root",
+          "position": [
+            0.281,
+            0.39
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hair-left-curl-mid-1",
+          "position": [
+            0.184,
+            0.447
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hair-left-curl-tip",
+          "position": [
+            0.163,
+            0.522
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.03528,
+        "rotation": 0.02475,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 7.11,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": 0.55
+      }
+    },
+    {
+      "id": "hair-right-upper",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hair-right-upper.png",
+      "cropped": "parts/cropped/hair-right-upper.png",
+      "mask": "parts/masks/hair-right-upper.png",
+      "boundsPixels": [
+        715,
+        393,
+        960,
+        638
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hair-right-upper-root",
+          "position": [
+            0.719,
+            0.282
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hair-right-upper-mid-1",
+          "position": [
+            0.826,
+            0.32
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hair-right-upper-tip",
+          "position": [
+            0.911,
+            0.398
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.03168,
+        "rotation": 0.02475,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 7.9,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": -0.55
+      }
+    },
+    {
+      "id": "hair-right-curl",
+      "role": "hair",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hair-right-curl.png",
+      "cropped": "parts/cropped/hair-right-curl.png",
+      "mask": "parts/masks/hair-right-curl.png",
+      "boundsPixels": [
+        850,
+        554,
+        1009,
+        833
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hair-right-curl-root",
+          "position": [
+            0.884,
+            0.372
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hair-right-curl-mid-1",
+          "position": [
+            0.935,
+            0.452
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hair-right-curl-tip",
+          "position": [
+            0.876,
+            0.528
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "face",
+        "neck",
+        "body",
+        "shoulder-left",
+        "shoulder-right",
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "umbrella-shaft-rigid"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.036719999999999996,
+        "rotation": 0.02475,
+        "stiffness": 0.018,
+        "damping": 0.95,
+        "phase": 8.690000000000001,
+        "wind": 0.85,
+        "follow": 1.1,
+        "followY": 0.55
+      }
+    },
+    {
+      "id": "sleeve-left",
+      "role": "cloth",
+      "parent": "upper-arm-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/sleeve-left.png",
+      "cropped": "parts/cropped/sleeve-left.png",
+      "mask": "parts/masks/sleeve-left.png",
+      "boundsPixels": [
+        354,
+        424,
+        432,
+        565
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "sleeve-left-root",
+          "position": [
+            0.403,
+            0.284
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "sleeve-left-mid-1",
+          "position": [
+            0.379,
+            0.326
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "sleeve-left-tip",
+          "position": [
+            0.41,
+            0.355
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.02376,
+        "rotation": 0.052000000000000005,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 9.48,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": -0.22
+      }
+    },
+    {
+      "id": "sleeve-right",
+      "role": "cloth",
+      "parent": "upper-arm-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/sleeve-right.png",
+      "cropped": "parts/cropped/sleeve-right.png",
+      "mask": "parts/masks/sleeve-right.png",
+      "boundsPixels": [
+        673,
+        468,
+        754,
+        583
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "sleeve-right-root",
+          "position": [
+            0.687,
+            0.311
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "sleeve-right-mid-1",
+          "position": [
+            0.705,
+            0.349
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "sleeve-right-tip",
+          "position": [
+            0.69,
+            0.379
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.02232,
+        "rotation": 0.048,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 10.27,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": -0.22
+      }
+    },
+    {
+      "id": "skirt-left-upper",
+      "role": "cloth",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/skirt-left-upper.png",
+      "cropped": "parts/cropped/skirt-left-upper.png",
+      "mask": "parts/masks/skirt-left-upper.png",
+      "boundsPixels": [
+        346,
+        494,
+        588,
+        724
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "skirt-left-upper-root",
+          "position": [
+            0.54,
+            0.356
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "skirt-left-upper-mid-1",
+          "position": [
+            0.455,
+            0.394
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "skirt-left-upper-tip",
+          "position": [
+            0.381,
+            0.442
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.04392,
+        "rotation": 0.032,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 11.06,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": 0.22
+      }
+    },
+    {
+      "id": "skirt-right-upper",
+      "role": "cloth",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/skirt-right-upper.png",
+      "cropped": "parts/cropped/skirt-right-upper.png",
+      "mask": "parts/masks/skirt-right-upper.png",
+      "boundsPixels": [
+        588,
+        513,
+        786,
+        714
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "skirt-right-upper-root",
+          "position": [
+            0.608,
+            0.361
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "skirt-right-upper-mid-1",
+          "position": [
+            0.675,
+            0.399
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "skirt-right-upper-tip",
+          "position": [
+            0.725,
+            0.444
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.037439999999999994,
+        "rotation": 0.032,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 11.850000000000001,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": -0.22
+      }
+    },
+    {
+      "id": "hem-left",
+      "role": "cloth",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hem-left.png",
+      "cropped": "parts/cropped/hem-left.png",
+      "mask": "parts/masks/hem-left.png",
+      "boundsPixels": [
+        344,
+        650,
+        517,
+        822
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hem-left-root",
+          "position": [
+            0.465,
+            0.438
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hem-left-mid-1",
+          "position": [
+            0.426,
+            0.484
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hem-left-tip",
+          "position": [
+            0.357,
+            0.508
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.0324,
+        "rotation": 0.044000000000000004,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 12.64,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": 0.22
+      }
+    },
+    {
+      "id": "hem-right",
+      "role": "cloth",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/hem-right.png",
+      "cropped": "parts/cropped/hem-right.png",
+      "mask": "parts/masks/hem-right.png",
+      "boundsPixels": [
+        610,
+        648,
+        759,
+        826
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "hem-right-root",
+          "position": [
+            0.632,
+            0.435
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "hem-right-mid-1",
+          "position": [
+            0.672,
+            0.485
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "hem-right-tip",
+          "position": [
+            0.737,
+            0.515
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [
+        "upper-arm-left",
+        "forearm-left",
+        "holding-hand-rigid",
+        "upper-arm-right",
+        "forearm-right",
+        "thigh-left",
+        "knee-left",
+        "shin-left",
+        "thigh-right",
+        "knee-right",
+        "shin-right"
+      ],
+      "binding": null,
+      "deformation": {
+        "feather": 0.02952,
+        "rotation": 0.04000000000000001,
+        "stiffness": 0.032,
+        "damping": 0.93,
+        "phase": 13.43,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": -0.22
+      }
+    },
+    {
+      "id": "umbrella-tail-left",
+      "role": "ribbon",
+      "parent": "umbrella-canopy-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/umbrella-tail-left.png",
+      "cropped": "parts/cropped/umbrella-tail-left.png",
+      "mask": "parts/masks/umbrella-tail-left.png",
+      "boundsPixels": [
+        35,
+        234,
+        234,
+        673
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "umbrella-tail-left-root",
+          "position": [
+            0.182,
+            0.157
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "umbrella-tail-left-mid-1",
+          "position": [
+            0.116,
+            0.285
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "umbrella-tail-left-tip",
+          "position": [
+            0.083,
+            0.434
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.03528,
+        "rotation": 0.0145,
+        "stiffness": 0.013,
+        "damping": 0.96,
+        "phase": 14.22,
+        "wind": 1.15,
+        "follow": 1.25,
+        "followY": 0.65
+      }
+    },
+    {
+      "id": "umbrella-tail-middle",
+      "role": "ribbon",
+      "parent": "umbrella-canopy-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/umbrella-tail-middle.png",
+      "cropped": "parts/cropped/umbrella-tail-middle.png",
+      "mask": "parts/masks/umbrella-tail-middle.png",
+      "boundsPixels": [
+        154,
+        230,
+        354,
+        642
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "umbrella-tail-middle-root",
+          "position": [
+            0.303,
+            0.161
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "umbrella-tail-middle-mid-1",
+          "position": [
+            0.234,
+            0.276
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "umbrella-tail-middle-tip",
+          "position": [
+            0.195,
+            0.412
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.0324,
+        "rotation": 0.016,
+        "stiffness": 0.013,
+        "damping": 0.96,
+        "phase": 15.010000000000002,
+        "wind": 1.15,
+        "follow": 1.25,
+        "followY": 0.65
+      }
+    },
+    {
+      "id": "umbrella-tail-right",
+      "role": "ribbon",
+      "parent": "umbrella-canopy-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/umbrella-tail-right.png",
+      "cropped": "parts/cropped/umbrella-tail-right.png",
+      "mask": "parts/masks/umbrella-tail-right.png",
+      "boundsPixels": [
+        319,
+        222,
+        453,
+        508
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "umbrella-tail-right-root",
+          "position": [
+            0.412,
+            0.151
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "umbrella-tail-right-mid-1",
+          "position": [
+            0.369,
+            0.24
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "umbrella-tail-right-tip",
+          "position": [
+            0.342,
+            0.326
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.02232,
+        "rotation": 0.0175,
+        "stiffness": 0.013,
+        "damping": 0.96,
+        "phase": 15.8,
+        "wind": 1.15,
+        "follow": 1.25,
+        "followY": 0.65
+      }
+    },
+    {
+      "id": "dress-tail-left",
+      "role": "ribbon",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/dress-tail-left.png",
+      "cropped": "parts/cropped/dress-tail-left.png",
+      "mask": "parts/masks/dress-tail-left.png",
+      "boundsPixels": [
+        209,
+        862,
+        380,
+        1423
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "dress-tail-left-root",
+          "position": [
+            0.289,
+            0.566
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "dress-tail-left-mid-1",
+          "position": [
+            0.261,
+            0.729
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "dress-tail-left-tip",
+          "position": [
+            0.319,
+            0.923
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.04176,
+        "rotation": 0.0135,
+        "stiffness": 0.013,
+        "damping": 0.96,
+        "phase": 16.59,
+        "wind": 1.15,
+        "follow": 1.25,
+        "followY": -0.65
+      }
+    },
+    {
+      "id": "dress-tail-right",
+      "role": "ribbon",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/dress-tail-right.png",
+      "cropped": "parts/cropped/dress-tail-right.png",
+      "mask": "parts/masks/dress-tail-right.png",
+      "boundsPixels": [
+        734,
+        866,
+        869,
+        1383
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "dress-tail-right-root",
+          "position": [
+            0.773,
+            0.567
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "dress-tail-right-mid-1",
+          "position": [
+            0.798,
+            0.752
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "dress-tail-right-tip",
+          "position": [
+            0.758,
+            0.899
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.037439999999999994,
+        "rotation": 0.014,
+        "stiffness": 0.013,
+        "damping": 0.96,
+        "phase": 17.380000000000003,
+        "wind": 1.15,
+        "follow": 1.25,
+        "followY": 0.65
+      }
+    },
+    {
+      "id": "neck-pendant",
+      "role": "accessory",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/neck-pendant.png",
+      "cropped": "parts/cropped/neck-pendant.png",
+      "mask": "parts/masks/neck-pendant.png",
+      "boundsPixels": [
+        576,
+        351,
+        620,
+        395
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "neck-pendant-root",
+          "position": [
+            0.58,
+            0.225
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "neck-pendant-mid-1",
+          "position": [
+            0.582,
+            0.239
+          ],
+          "type": "spring"
+        },
+        {
+          "id": "neck-pendant-tip",
+          "position": [
+            0.584,
+            0.253
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.018,
+        "rotation": 0.052000000000000005,
+        "stiffness": 0.045,
+        "damping": 0.93,
+        "phase": 18.17,
+        "wind": 0.65,
+        "follow": 0.75,
+        "followY": -0.22
+      }
+    },
+    {
+      "id": "arm-right-follow",
+      "role": "accessory",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/arm-right-follow.png",
+      "cropped": "parts/cropped/arm-right-follow.png",
+      "mask": "parts/masks/arm-right-follow.png",
+      "boundsPixels": [
+        693,
+        497,
+        802,
+        850
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "arm-right-follow-root",
+          "position": [
+            0.687,
+            0.329
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "arm-right-follow-tip",
+          "position": [
+            0.765,
+            0.54
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": {
+        "feather": 0.028,
+        "rotation": 0.017,
+        "stiffness": 0.027,
+        "damping": 0.92,
+        "phase": 0,
+        "wind": 0.12,
+        "follow": 2,
+        "followY": 0.8
+      }
+    },
+    {
+      "id": "head",
+      "role": "head",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/head.png",
+      "cropped": "parts/cropped/head.png",
+      "mask": "parts/masks/head.png",
+      "boundsPixels": [
+        454,
+        93,
+        702,
+        331
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "face",
+        "neck",
+        "headpiece",
+        "bang-left-outer",
+        "bang-left-middle",
+        "bang-left-inner",
+        "bang-center",
+        "bang-right-middle",
+        "bang-right-outer"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "face",
+      "role": "face",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/face.png",
+      "cropped": "parts/cropped/face.png",
+      "mask": "parts/masks/face.png",
+      "boundsPixels": [
+        510,
+        215,
+        636,
+        325
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "eye-left",
+        "eye-right"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "neck",
+      "role": "neck",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/neck.png",
+      "cropped": "parts/cropped/neck.png",
+      "mask": "parts/masks/neck.png",
+      "boundsPixels": [
+        549,
+        313,
+        616,
+        366
+      ],
+      "empty": false,
+      "anchors": [
+        {
+          "id": "neck-root",
+          "position": [
+            0.576,
+            0.237
+          ],
+          "type": "fixed"
+        },
+        {
+          "id": "neck-tip",
+          "position": [
+            0.57,
+            0.213
+          ],
+          "type": "spring"
+        }
+      ],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "headpiece",
+      "role": "accessory",
+      "parent": "head",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/headpiece.png",
+      "cropped": "parts/cropped/headpiece.png",
+      "mask": "parts/masks/headpiece.png",
+      "boundsPixels": [
+        462,
+        89,
+        674,
+        262
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "body",
+      "role": "body",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/body.png",
+      "cropped": "parts/cropped/body.png",
+      "mask": "parts/masks/body.png",
+      "boundsPixels": [
+        500,
+        353,
+        705,
+        569
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "shoulder-left",
+      "role": "shoulder",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/shoulder-left.png",
+      "cropped": "parts/cropped/shoulder-left.png",
+      "mask": "parts/masks/shoulder-left.png",
+      "boundsPixels": [
+        473,
+        334,
+        527,
+        424
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "holding-hand-rigid"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "shoulder-right",
+      "role": "shoulder",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/shoulder-right.png",
+      "cropped": "parts/cropped/shoulder-right.png",
+      "mask": "parts/masks/shoulder-right.png",
+      "boundsPixels": [
+        655,
+        367,
+        710,
+        464
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "holding-thumb",
+      "role": "finger",
+      "parent": "holding-hand-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/holding-thumb.png",
+      "cropped": "parts/cropped/holding-thumb.png",
+      "mask": "parts/masks/holding-thumb.png",
+      "boundsPixels": [
+        442,
+        382,
+        474,
+        426
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "holding-fingers",
+      "role": "finger",
+      "parent": "holding-hand-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/holding-fingers.png",
+      "cropped": "parts/cropped/holding-fingers.png",
+      "mask": "parts/masks/holding-fingers.png",
+      "boundsPixels": [
+        440,
+        357,
+        483,
+        406
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "holding-thumb"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "upper-arm-left",
+      "role": "upper-arm",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/upper-arm-left.png",
+      "cropped": "parts/cropped/upper-arm-left.png",
+      "mask": "parts/masks/upper-arm-left.png",
+      "boundsPixels": [
+        411,
+        348,
+        493,
+        558
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "holding-hand-rigid",
+        "forearm-left"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "forearm-left",
+      "role": "forearm",
+      "parent": "upper-arm-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/forearm-left.png",
+      "cropped": "parts/cropped/forearm-left.png",
+      "mask": "parts/masks/forearm-left.png",
+      "boundsPixels": [
+        409,
+        415,
+        468,
+        580
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "holding-hand-rigid"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "upper-arm-right",
+      "role": "upper-arm",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/upper-arm-right.png",
+      "cropped": "parts/cropped/upper-arm-right.png",
+      "mask": "parts/masks/upper-arm-right.png",
+      "boundsPixels": [
+        693,
+        497,
+        757,
+        692
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "forearm-right",
+      "role": "forearm",
+      "parent": "upper-arm-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/forearm-right.png",
+      "cropped": "parts/cropped/forearm-right.png",
+      "mask": "parts/masks/forearm-right.png",
+      "boundsPixels": [
+        731,
+        646,
+        802,
+        850
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "thigh-left",
+      "role": "thigh",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/thigh-left.png",
+      "cropped": "parts/cropped/thigh-left.png",
+      "mask": "parts/masks/thigh-left.png",
+      "boundsPixels": [
+        442,
+        755,
+        594,
+        984
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "knee-left",
+      "role": "knee",
+      "parent": "thigh-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/knee-left.png",
+      "cropped": "parts/cropped/knee-left.png",
+      "mask": "parts/masks/knee-left.png",
+      "boundsPixels": [
+        525,
+        956,
+        594,
+        1062
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "shin-left",
+      "role": "shin",
+      "parent": "knee-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/shin-left.png",
+      "cropped": "parts/cropped/shin-left.png",
+      "mask": "parts/masks/shin-left.png",
+      "boundsPixels": [
+        473,
+        1035,
+        567,
+        1275
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "thigh-right",
+      "role": "thigh",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/thigh-right.png",
+      "cropped": "parts/cropped/thigh-right.png",
+      "mask": "parts/masks/thigh-right.png",
+      "boundsPixels": [
+        563,
+        792,
+        668,
+        982
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "thigh-left",
+        "knee-left",
+        "shin-left"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "knee-right",
+      "role": "knee",
+      "parent": "thigh-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/knee-right.png",
+      "cropped": "parts/cropped/knee-right.png",
+      "mask": "parts/masks/knee-right.png",
+      "boundsPixels": [
+        579,
+        956,
+        628,
+        1068
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "thigh-left",
+        "knee-left",
+        "shin-left"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "shin-right",
+      "role": "shin",
+      "parent": "knee-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/shin-right.png",
+      "cropped": "parts/cropped/shin-right.png",
+      "mask": "parts/masks/shin-right.png",
+      "boundsPixels": [
+        523,
+        1029,
+        637,
+        1358
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "thigh-left",
+        "knee-left",
+        "shin-left"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "ankle-left",
+      "role": "ankle",
+      "parent": "shin-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/ankle-left.png",
+      "cropped": "parts/cropped/ankle-left.png",
+      "mask": "parts/masks/ankle-left.png",
+      "boundsPixels": [
+        476,
+        1251,
+        530,
+        1311
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "heel-left",
+      "role": "heel",
+      "parent": "ankle-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/heel-left.png",
+      "cropped": "parts/cropped/heel-left.png",
+      "mask": "parts/masks/heel-left.png",
+      "boundsPixels": [
+        450,
+        1296,
+        528,
+        1421
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "toe-left",
+      "role": "toe",
+      "parent": "heel-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/toe-left.png",
+      "cropped": "parts/cropped/toe-left.png",
+      "mask": "parts/masks/toe-left.png",
+      "boundsPixels": [
+        454,
+        1370,
+        532,
+        1444
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "ankle-right",
+      "role": "ankle",
+      "parent": "shin-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/ankle-right.png",
+      "cropped": "parts/cropped/ankle-right.png",
+      "mask": "parts/masks/ankle-right.png",
+      "boundsPixels": [
+        527,
+        1320,
+        584,
+        1377
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "heel-right",
+      "role": "heel",
+      "parent": "ankle-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/heel-right.png",
+      "cropped": "parts/cropped/heel-right.png",
+      "mask": "parts/masks/heel-right.png",
+      "boundsPixels": [
+        500,
+        1362,
+        579,
+        1482
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "toe-right",
+      "role": "toe",
+      "parent": "heel-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/toe-right.png",
+      "cropped": "parts/cropped/toe-right.png",
+      "mask": "parts/masks/toe-right.png",
+      "boundsPixels": [
+        485,
+        1460,
+        560,
+        1528
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "umbrella-canopy-rigid",
+      "role": "prop",
+      "parent": "umbrella-shaft-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/umbrella-canopy-rigid.png",
+      "cropped": "parts/cropped/umbrella-canopy-rigid.png",
+      "mask": "parts/masks/umbrella-canopy-rigid.png",
+      "boundsPixels": [
+        171,
+        8,
+        563,
+        269
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": {
+        "mode": "rigid",
+        "feather": 0.12,
+        "anchor": "wrist-left",
+        "rotation": "body"
+      },
+      "deformation": null
+    },
+    {
+      "id": "umbrella-shaft-rigid",
+      "role": "prop",
+      "parent": "holding-hand-rigid",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/umbrella-shaft-rigid.png",
+      "cropped": "parts/cropped/umbrella-shaft-rigid.png",
+      "mask": "parts/masks/umbrella-shaft-rigid.png",
+      "boundsPixels": [
+        350,
+        135,
+        503,
+        477
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "holding-hand-rigid"
+      ],
+      "binding": {
+        "mode": "rigid",
+        "feather": 0.12,
+        "anchor": "wrist-left",
+        "rotation": "body"
+      },
+      "deformation": null
+    },
+    {
+      "id": "holding-hand-rigid",
+      "role": "hand",
+      "parent": "forearm-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/holding-hand-rigid.png",
+      "cropped": "parts/cropped/holding-hand-rigid.png",
+      "mask": "parts/masks/holding-hand-rigid.png",
+      "boundsPixels": [
+        436,
+        357,
+        489,
+        447
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": {
+        "mode": "rigid",
+        "feather": 0.1,
+        "anchor": "wrist-left",
+        "rotation": "body"
+      },
+      "deformation": null
+    },
+    {
+      "id": "lower-body-rigid",
+      "role": "leg",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/lower-body-rigid.png",
+      "cropped": "parts/cropped/lower-body-rigid.png",
+      "mask": "parts/masks/lower-body-rigid.png",
+      "boundsPixels": [
+        428,
+        728,
+        691,
+        1536
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": {
+        "mode": "rigid",
+        "feather": 0.065,
+        "anchor": "waist",
+        "rotation": "body"
+      },
+      "deformation": null
+    },
+    {
+      "id": "upper-body-rigid",
+      "role": "body",
+      "parent": "body",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/upper-body-rigid.png",
+      "cropped": "parts/cropped/upper-body-rigid.png",
+      "mask": "parts/masks/upper-body-rigid.png",
+      "boundsPixels": [
+        409,
+        331,
+        724,
+        592
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": {
+        "mode": "rigid",
+        "feather": 0.08,
+        "anchor": "wrist-left",
+        "rotation": "body"
+      },
+      "deformation": null
+    },
+    {
+      "id": "eye-left",
+      "role": "eye",
+      "parent": "face",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left.png",
+      "cropped": "parts/cropped/eye-left.png",
+      "mask": "parts/masks/eye-left.png",
+      "boundsPixels": [
+        515,
+        243,
+        558,
+        270
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "iris-left",
+        "eyelid-left"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "iris-left",
+      "role": "iris",
+      "parent": "eye-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/iris-left.png",
+      "cropped": "parts/cropped/iris-left.png",
+      "mask": "parts/masks/iris-left.png",
+      "boundsPixels": [
+        529,
+        248,
+        546,
+        266
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eyelid-left",
+      "role": "eyelid",
+      "parent": "eye-left",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eyelid-left.png",
+      "cropped": "parts/cropped/eyelid-left.png",
+      "mask": "parts/masks/eyelid-left.png",
+      "boundsPixels": [
+        516,
+        243,
+        555,
+        260
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right",
+      "role": "eye",
+      "parent": "face",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right.png",
+      "cropped": "parts/cropped/eye-right.png",
+      "mask": "parts/masks/eye-right.png",
+      "boundsPixels": [
+        576,
+        226,
+        620,
+        253
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "iris-right",
+        "eyelid-right"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "iris-right",
+      "role": "iris",
+      "parent": "eye-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/iris-right.png",
+      "cropped": "parts/cropped/iris-right.png",
+      "mask": "parts/masks/iris-right.png",
+      "boundsPixels": [
+        590,
+        230,
+        608,
+        249
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eyelid-right",
+      "role": "eyelid",
+      "parent": "eye-right",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eyelid-right.png",
+      "cropped": "parts/cropped/eyelid-right.png",
+      "mask": "parts/masks/eyelid-right.png",
+      "boundsPixels": [
+        578,
+        226,
+        617,
+        243
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    }
+  ],
+  "originalTexture": "texture.png",
+  "note": "Visible-pixel authoring exports; cropped images and authoring anchors are not automatically loaded as runtime layers.",
+  "assets": {
+    "binding-overlay.png": "b730bf7e7cd83a3f2381f8c85f342cc949e5a738626235b0b21514197cf663be",
+    "parts/ankle-left.png": "75253a7cf153324713f838c88efead305b46818f67caf7ee9aeff01eeea09725",
+    "parts/ankle-right.png": "1b9437c151387262b17d01fe53e46d32b93f12c70e2386694832e069aef2adc1",
+    "parts/arm-right-follow.png": "9a2f74154328101108ce4bf3d3cb4178e406e7945fdec96a736b73f5053666e1",
+    "parts/bang-center.png": "1e98c3ac0a7d0177b0058ba7163f61114c64afff543caa0dd951ea4794fe139c",
+    "parts/bang-left-inner.png": "1e813ca699cb3c821fb33f300af794ab4056e69bc710646e9fbea5b840d59619",
+    "parts/bang-left-middle.png": "9f609a8326bf6789e027a282d2108d7f953f9d2a94138824771eb02e94fbe59f",
+    "parts/bang-left-outer.png": "b495689fa2680cf35d05ddc214ede69ae4f98395f44e3a062197ef0c18b680a4",
+    "parts/bang-right-middle.png": "0e0015653a8f4832118e36e8343a731fab22c2999f931bd9edd80cedfc2b8a3d",
+    "parts/bang-right-outer.png": "9bacb88cc9a8e57a263049431e0a48406fd86503965655a6c3937f48a7d0527e",
+    "parts/body.png": "5673f64f38219b2078641f750116be19387a4a66d502db90726af72f6ec7491f",
+    "parts/cropped/ankle-left.png": "038c5aa0134222464392a7b813fe46d8777ae78d4cbdc6921b2d6d7b8efa0e62",
+    "parts/cropped/ankle-right.png": "5a28d0f5da26e314c3687b4152ef7f6b4ab673702509c12842308236ba4d1f4d",
+    "parts/cropped/arm-right-follow.png": "826a5e2e6d83726a55afcbd7e2a5e6c736b7d933010fe8c23aa681433a4af8bd",
+    "parts/cropped/bang-center.png": "36f443ea76f1d39d9189a1e78796432ba49a5469d22b0a5b3f36550ad06587be",
+    "parts/cropped/bang-left-inner.png": "07efabcdd235113c7805d1218f8e1aeb9ab6be0c86b79b76ff34d66aae842617",
+    "parts/cropped/bang-left-middle.png": "175dca0bbbb6a052f58d01141c2bc8d5ce06ec5d60dcd5716c196238aeef3b78",
+    "parts/cropped/bang-left-outer.png": "1c89b360f156c1bf1456864909f81302c34d51dfa9b66bca3615a324d649b96b",
+    "parts/cropped/bang-right-middle.png": "0076ae29e09fc6464384974b5d7476ff293b5aa7c8206b14ae1780b4a263fd69",
+    "parts/cropped/bang-right-outer.png": "df4d4bdf708cb2748d65685dd71d2e9eb3677096101fe43ceff5d1f93ff83d8f",
+    "parts/cropped/body.png": "f3d849936bc05e3d1de6ffe6c69eea51d75c9a48f57629f2c4d00865fd0fdfaa",
+    "parts/cropped/dress-tail-left.png": "cef1a68b77ddeb1af70efb9128c33514370051dfe4e8efc8cca8d309fc79737c",
+    "parts/cropped/dress-tail-right.png": "4579d8d9dcd7c1219c0a34a0605a83981f9678ecd39b507ab028cc0d1007d300",
+    "parts/cropped/eye-left.png": "c89edd1b5d3cb12274644fe8c89cddab648bd284f397e8186c77abc49caac496",
+    "parts/cropped/eye-right.png": "5f883efe0b2f4fbe55fd4c1cf76ee8a2bb1e741471ff72c90873262042dda92b",
+    "parts/cropped/eyelid-left.png": "74c3524312ba7b059e7a69a2c0733932112798432dc5a359fc48e9e49f85cb0c",
+    "parts/cropped/eyelid-right.png": "747dffb4219b2780873d9f74f3bfffa9f145232e2e319f6a737965accdf8fae6",
+    "parts/cropped/face.png": "d075c572f78c62062f16135d719aa3ff190cfb4fc6710b55f5d76f09d4ba8768",
+    "parts/cropped/forearm-left.png": "c92fcd339251368636a797975b697b32fee1cfedfffc49299c0c9e910a1c883f",
+    "parts/cropped/forearm-right.png": "501a3755369d9d0d67f0a9586e715751405aac081d50207befadb47bf920a0c7",
+    "parts/cropped/hair-left-curl.png": "ad4807d75a3577e8b1360286fa8ab9c88fe816d9ef97ebb69a57f82bb89b25ca",
+    "parts/cropped/hair-left-upper.png": "8b77871e11af2214d4af2579255f3c13a6e03299763ca680e5ee8a2714baa278",
+    "parts/cropped/hair-right-curl.png": "4ddf654a1d93271df5281a6f0b1bd24f18bd35141baa9ff243c1a1fc205f21d3",
+    "parts/cropped/hair-right-upper.png": "d664923899318c8a99dde5a531679282713b470dd902da003d001597f3060726",
+    "parts/cropped/head.png": "9e5db79e76a9d7fddcdcdf6fa9a1f41a1d4465534b9d60379b69993aaf6cba47",
+    "parts/cropped/headpiece.png": "6b626b85a22a3db301e9db2d6ebf4786d72b29f9e9b89789a7c138eac4801b18",
+    "parts/cropped/heel-left.png": "c692776e951a98141ae00e8063102dddb4bac299cd8df09ff113d9819e0ea836",
+    "parts/cropped/heel-right.png": "919e6bda26523479ccccf6b87750699947e021a649f7913ce43be492183e46c3",
+    "parts/cropped/hem-left.png": "1e060ea5dad183facb0639c0083fd8fbcafb75b2e7f37fcfa9ef1e74db90f138",
+    "parts/cropped/hem-right.png": "fa3ab3944c0012c2cc16936c2843d759365a300555ed94f75fa1cea20cc6263d",
+    "parts/cropped/holding-fingers.png": "bc8689dc325ee8638bda70107ee2b86fdcad7c1bac06bca3774fe739dad7f09f",
+    "parts/cropped/holding-hand-rigid.png": "c693feb0cd3530acd066feb2d648ad87faf24906d8b912909d6445919c09c1c1",
+    "parts/cropped/holding-thumb.png": "9491863efaa8d0f26299ae0d96a2c5376e09cf8a1f1c5598ee181c69c2931319",
+    "parts/cropped/iris-left.png": "2747da21b97e5c92ebd32baa62981ef0e856f0018279bd0c12bea37370bcb883",
+    "parts/cropped/iris-right.png": "6c19e9baa5057c96bcf9ad82c8c2bd3a12f81ab78fcb563a089446cb30c139e1",
+    "parts/cropped/knee-left.png": "4a89c6f942849065287fe8dfe675f6966f1e51048e2c468a2c872c7a23021077",
+    "parts/cropped/knee-right.png": "e4467fc94a4fb21da97e3d0299df073dc2e60d3791b8503682f751162e02dd74",
+    "parts/cropped/lock-left.png": "9523911b2c788c037a4823767340ec91b4b60b607d62682409f59583756b3bc1",
+    "parts/cropped/lock-right.png": "4e7226587bffeb08570f99f5b8dfded4a5ae606bf6579061caab91f0e4fc88c1",
+    "parts/cropped/lower-body-rigid.png": "b21f45779acb2d8e2d681e3936a56a5ee8d25529a015a1a0071897227e628697",
+    "parts/cropped/neck-pendant.png": "0ba924745c6abb56e99e56db3a66203825421b6ab84b3fdda1468c60fdb0f734",
+    "parts/cropped/neck.png": "297c735f2592fae6756a027612cda11790ec96f4930152ac102756836faf8082",
+    "parts/cropped/shin-left.png": "9f377ccacb9f800a2924ed345603a1151a73397ce0ca4cab328938ff4ade6542",
+    "parts/cropped/shin-right.png": "5d2541cb1db1909bda54f0557fbd6938419c9332f05fe83400d665ab9a31b5b6",
+    "parts/cropped/shoulder-left.png": "2165674ab2bd6b680524d1abe68b05075b4547379f0f393d0a44183c3302f071",
+    "parts/cropped/shoulder-right.png": "6f441070aec488d6d70337f57c5b59ba748d29b1581c19a061aaef6345326fb7",
+    "parts/cropped/skirt-left-upper.png": "412c686fdfa8a556de9ae717a22028c570fabfba94bedf126514edfc08fb2242",
+    "parts/cropped/skirt-right-upper.png": "a6eba851a4c7e3c7c00f069e70fd5fb7296ad33d88c33a2861267a316e40f9bd",
+    "parts/cropped/sleeve-left.png": "a7d94bd5989af147be368bd35e40ad7f39b0881bf689bafff0096fa35d11284d",
+    "parts/cropped/sleeve-right.png": "16e14092e90bd71ba2492992c682456bf28c3afd28f38ef41c636c95d75f7a37",
+    "parts/cropped/thigh-left.png": "b947f7d9c6851d8347e4e1d9a2f9929b497e7774f5e9fd027e01091c2db8c8fd",
+    "parts/cropped/thigh-right.png": "ed08141d4df345e9c7e1037dc121317f8d82894721eb0ae8a3f18dfe6dfcc9ab",
+    "parts/cropped/toe-left.png": "4978131b1d5f495e3053bee1a04fb65737228f7f627ed95e57f3fc958d8c4e87",
+    "parts/cropped/toe-right.png": "092b0ee644087c029c00834ab4c11a5702693310e3a864a536635b83a97d967c",
+    "parts/cropped/umbrella-canopy-rigid.png": "4593f70af17fece6149051d0908cab237f56564104294b9ff1f968878b48a281",
+    "parts/cropped/umbrella-shaft-rigid.png": "037f199c98bac96a85b85f5184a61fec04e23c7de99d1f1577140f64bdcfb9c8",
+    "parts/cropped/umbrella-tail-left.png": "d3acb53bc66a24b62a4c6256d9dd55737e8d586f9b898acada44e108f9a50893",
+    "parts/cropped/umbrella-tail-middle.png": "009871a1cf1e4b90fce540763a085aa79aac0c8553dfac6b121f302cd697b6f9",
+    "parts/cropped/umbrella-tail-right.png": "2cdf36a14e6ddd32ae036fc9a185746ff3ec8cb4a99ad68867170d55b0ca7f91",
+    "parts/cropped/upper-arm-left.png": "39fda1865fe09a9b506785eba548054c51dcac95e040b2c426722a6e92ade301",
+    "parts/cropped/upper-arm-right.png": "94847d8e7003878fee9d54a416b2ab327119f0d35c0ce59c8e0c6d9e35108ac0",
+    "parts/cropped/upper-body-rigid.png": "25515df7d975ebd655c9f0194347b9d51f484db4498ef8e830544bda26628c3b",
+    "parts/dress-tail-left.png": "e7ba612573b5ea74044a8c596280cd7be434edc794ccfda08ecc2d30dd135476",
+    "parts/dress-tail-right.png": "4bc5288f5eeb095d175da87ae8149e3f6c2ce088ad0661b81691800b90dfee77",
+    "parts/eye-left.png": "985186d42d9465dcd70dc9f6e32a48cb830dbef39b4adc25d9073f63c6a830c3",
+    "parts/eye-right.png": "a7a9df0c4a79a919085c45b684bb02b913beaecde8be3f03140daccc295d47b9",
+    "parts/eyelid-left.png": "c67f394f8f9cbf78bcb5ec027c92146b69acf14d865ba153abf508578319f426",
+    "parts/eyelid-right.png": "344a825af470b0fb10f2ff23ebfa7fec4288a1239db68117d82eaffa87ef3169",
+    "parts/face.png": "fae2a7277cad7b592184e74cdb0d8030a25c1d6f2818125c05072c0cc46e5639",
+    "parts/forearm-left.png": "3f09bf4970c2bb99e09a267da98d64cd4e3b9fdca63412a6d03327e10f50c7f0",
+    "parts/forearm-right.png": "4afba1d287e4b7c8a6b30ee76f84c8b955666b21387ca64b826c211c1871a9e9",
+    "parts/hair-left-curl.png": "c72412d845b1ea6235c7856b6d5f932bfc5f140644dc916023f682828c9ada71",
+    "parts/hair-left-upper.png": "2463f4c9f6c375041ea6a7617effece69f0570d7e339865443f99c08b021d326",
+    "parts/hair-right-curl.png": "4974187d13e9e0a05ba9c60b6de930781d78d3e0a836915c3d8d7864aebc8cc3",
+    "parts/hair-right-upper.png": "c9ae0a2d9e865e05de1a0e9feb87d5d420e4b1efe6f485dc08904c335694f6c0",
+    "parts/head.png": "069c6ba61ede736dcd129defa72e9459cf248f6be7f8a7606a1ea8e2d255ef05",
+    "parts/headpiece.png": "2506fdb2577b1eb82fa161463414f975548235d1a101d23ae42c47b264fe4542",
+    "parts/heel-left.png": "503663644e71d2ca387b31105b672cfef2923a9735132dde685abdee906f67f1",
+    "parts/heel-right.png": "b5a28f774fe5f9a7878427a9bee98978fbdf3fb82cdd431c10271bc74f86d3c8",
+    "parts/hem-left.png": "e63ec56cadaccf8294b6cbe47760e4bbb04df15423da35a7ecf4eaff9e00699c",
+    "parts/hem-right.png": "a4df95305e0a14234836cf4d70b9dfd72e046a39cc4766eee750ca75780d8da7",
+    "parts/holding-fingers.png": "3d580b8b9af508ed5bb6e1dbb97977c65577f9c5ab0dc399e1ab3b1feef93604",
+    "parts/holding-hand-rigid.png": "bfa22a559e3aba8b0d245907e0c674b97e4afe0fcc8d22053d43874a5f673cad",
+    "parts/holding-thumb.png": "96620105c6a515ecec3934a647982d3eff38980205c569df7b5d24d0ca2b6b2d",
+    "parts/iris-left.png": "88020e1695eef04c30d5a6922fb1da5d9a15fedd67de935c6af8cd6ab19970c8",
+    "parts/iris-right.png": "af865ad0d84a71fc3e102f5066b69db934695e31bda252eef6358ff0f5f53cde",
+    "parts/knee-left.png": "1e3e77b0a34908645713acf70d71cfb774326f77617fd4800b1e77014c585e65",
+    "parts/knee-right.png": "3fd9fb64844242d9779530c94edaf7ab176d53bad02fe8fa66519cb57a5ca3ad",
+    "parts/lock-left.png": "2ab6032aa3d1882fd475758447d4c2da43c0fc2939abd6dddc95943fe2d76b20",
+    "parts/lock-right.png": "2c316240a7a173e6bb83293bc53446301c204b65bfdc828c5ee65b681b9a8fd4",
+    "parts/lower-body-rigid.png": "a06e9a1b63b400e67dfa8c243fe8146d02d31fc9e92e2b65acf3fe2995c1e664",
+    "parts/masks/ankle-left.png": "15d11f5f7c6bb17258ba60a8bc5ed2e888b9bd56a75606fd90383b301bf17cae",
+    "parts/masks/ankle-right.png": "923cdd09d024968b9de3232c99eaf98ad0842f14940216ed7a293101e7131f28",
+    "parts/masks/arm-right-follow.png": "e04ec0409be7805f6f64f74b8641261be5108d834ea2f8c3b9b97ca9b1b8fa95",
+    "parts/masks/bang-center.png": "2532216ffd61b9ac49af8b91229e93f491a4584d8c3174965defef112a48e6c5",
+    "parts/masks/bang-left-inner.png": "92570cf60bdb4e9776a6f4cc35549703d8f040c7286b83b3e6ebc2a0c831f2ab",
+    "parts/masks/bang-left-middle.png": "c15eb94f0fafbbad103b03ac727b3568ece76402fc6de0dadda3bda3fbd8ef27",
+    "parts/masks/bang-left-outer.png": "1b1c1d0ec364ddf545a22e191fb5dd2653165ec0bbfe023a6bd1886747c27533",
+    "parts/masks/bang-right-middle.png": "ef186f75589cdf40d3d023e0b533946b5b4e2f27a5bfd3e9c0b863c23ba7434c",
+    "parts/masks/bang-right-outer.png": "ab26ca48f054c800a87b4c1baa277f7f031d22cabe4147a5a7d0f5719866d50e",
+    "parts/masks/body.png": "4aeb9b1d84a3d21ea90393675cff256cccb3fd8ff0fd1440d3c7332b74b4b151",
+    "parts/masks/dress-tail-left.png": "b51cc4a4209f277b070af6b6d8fa4c5b9022c54b9dae5706197f9c77874aa893",
+    "parts/masks/dress-tail-right.png": "bed6c5f47d9e2f96e72c21fe5da819edb3ae2d6d4b0a185197be57dbba247d8f",
+    "parts/masks/eye-left.png": "175701284899c16517e3a371bb389130e489831a022c664cbf3148ad058af5fd",
+    "parts/masks/eye-right.png": "8dcac9180ff6bd0683f6f371b785f4ff94db44d36b79dd2ea1fec8bf25e59be3",
+    "parts/masks/eyelid-left.png": "15c3dea1004184a7d2e54b8f2b921b3baaefb5c80c911958ca9d59e16c51a16a",
+    "parts/masks/eyelid-right.png": "8d4d0b8b25a0f74dfe4e8cc145eb24f4bb3782ba6c9a7b029a2830d754179a49",
+    "parts/masks/face.png": "4d02e53d5f4ab54d91ca3bacb6ee5490077c8b049c1bbdfe6083981038abf477",
+    "parts/masks/forearm-left.png": "7e23bdea2ead5f5833e8f7e3216cda8973448a3133e80c2342fb832b6f458c31",
+    "parts/masks/forearm-right.png": "bea563f485582fbd28fe67a416f5e4a44815eb0b934503c756635e9f66626ac8",
+    "parts/masks/hair-left-curl.png": "14d750209717d73c17b49ef4ac8ea6812ecd5575213943d71b742e4a4bedfa5d",
+    "parts/masks/hair-left-upper.png": "7fb5046ecf986160cd579b3b4f027e3e7d0d31dca17fa0b212babbd53750d27a",
+    "parts/masks/hair-right-curl.png": "f9a2c5323a785d79854b0e0faee536968ae4fa707933e5f6e363cd9f4549b928",
+    "parts/masks/hair-right-upper.png": "89c5964848d9ae6aa272bab4baa4a86e9be6c7a42ccae6b23bc2a88791b2e4c0",
+    "parts/masks/head.png": "31d44611f0a98a12ed73cd8a0f69d544d733fcffab71b93348c3c69ba7aab6ea",
+    "parts/masks/headpiece.png": "32f11dfe18dcd35213a756bbc8ab43287513146e8492d227d61fbb8e396763a9",
+    "parts/masks/heel-left.png": "665036e7e9db203b4564ed0b7794ea4a2b2a7bc13f379d2717803e014a1a2c28",
+    "parts/masks/heel-right.png": "8437f559c99a5607e89f19df86ab1325adea951b8806aab703c03441a083b818",
+    "parts/masks/hem-left.png": "85df32c3a7655a54f1c7c0a1d8baff3b47f26cad50d49916c544e143c2a354c4",
+    "parts/masks/hem-right.png": "44e82ef33958b6d86a8f35f13f2dd464dc09ad72bbe3ec2db89e7cb63bb8b2e3",
+    "parts/masks/holding-fingers.png": "019a050b62f95adc031dc6bcc54b0972688d7ea9f711db0c093765e7025c21a3",
+    "parts/masks/holding-hand-rigid.png": "205a752ac5d934bda41c7693e0dd63460c56c6d94d89c6a1e52883577faed0ef",
+    "parts/masks/holding-thumb.png": "6b511e08eaa09ae83759f6bcf2b0d077481b4df0497226c8f4984c745d0b9ae5",
+    "parts/masks/iris-left.png": "9973aef6115911c80784233225d34cd773b962fe14803a93ca06adcb16d36a8d",
+    "parts/masks/iris-right.png": "453c8a6dd991fc1f7fe1780560fc8919ee3ce6fd4f5c76f96ac5c3e26486e6b9",
+    "parts/masks/knee-left.png": "fc0e10c790e60ac60623a23d6d85066ec8f3ed70cb95fed01f0b8e73649fe38a",
+    "parts/masks/knee-right.png": "7366a6546a7b2ee09cc543ba9c2c6d2e8c84adb84fda76ca04d41fc29a7e3298",
+    "parts/masks/lock-left.png": "c674d976d4e4dd6d66c49d624e9df8d84d01ef8337ff739ee49596791e16cf24",
+    "parts/masks/lock-right.png": "0f2a62eeda59e020b33c9117b5e7417e5f4c56c0a893467b21cc911a7bed0e2d",
+    "parts/masks/lower-body-rigid.png": "83a86f319e4816534a6a7bb7132801ac0c682cf1ba2b7da194df8bc49ff46f8a",
+    "parts/masks/neck-pendant.png": "be3afd4d92b8085f39b1a0ea0e2165aed1c79078bfba2afef675aac1eaf5f287",
+    "parts/masks/neck.png": "d72343ddb5c67196b8b827f440b2bcee9daf778a6db47b17782c66c8935ce38b",
+    "parts/masks/shin-left.png": "e53ce26b76c9772b7ff7e9e695321a95eee1bd76e251a8923ef190e91ef6de83",
+    "parts/masks/shin-right.png": "d5c85707e8b06a1b2c5554818906a63cd45665722015678efa8e71a0b53ff38c",
+    "parts/masks/shoulder-left.png": "018eaa84b93d0cab33e59a7cd628aa1fbc5022833f77b67001e209ea6c1fbf0a",
+    "parts/masks/shoulder-right.png": "ffd41cb7da6e033c8de39223c41137356bcb72697d6187c8558ae836c65d5c06",
+    "parts/masks/skirt-left-upper.png": "adfc815bc18ccedfb5258de3ce75020713e027d6e40be0c296454c395d774d9c",
+    "parts/masks/skirt-right-upper.png": "e2677f5c4891f34d7842b367fd045e3eea15d63fc537eb548a45496d6f291910",
+    "parts/masks/sleeve-left.png": "ae870be39b42ed644501184674e739ab8ff0c8a94a387aa99919fdc502c36334",
+    "parts/masks/sleeve-right.png": "b1261cbf74d0a8429a5e699f0271f45a0b7acd5420e0c6263f1a4de786d29e6d",
+    "parts/masks/thigh-left.png": "51c8884c6f71119bc1e6820720e04d44402e8fd211cc8dd2a7ddeed077d1ddda",
+    "parts/masks/thigh-right.png": "0a226a99bbeab2eaf688bb3fee42c04bc471f7deeb46b992001dd2ae55fc983b",
+    "parts/masks/toe-left.png": "1359ee20e37136392275c53be4f0269040087ee076867e8b9919289fa2078b5e",
+    "parts/masks/toe-right.png": "18d7a2367c9fbd7ac63632af8c47c3e7f7baefddcd6dd6a3bcbb9c0cadceb836",
+    "parts/masks/umbrella-canopy-rigid.png": "02819c490393926da20eeecc8a0c9de8578de4bfb34d885f22e1d541f9d32f23",
+    "parts/masks/umbrella-shaft-rigid.png": "4fa95b51f653f8997a58c016a11ed5955c17745e690b8f13b4a2d7e81e565e3c",
+    "parts/masks/umbrella-tail-left.png": "4d64df0d4fdaa00408eabaf33e2ef6001d69d269b4166b82b1f0f1d24eaf6c2a",
+    "parts/masks/umbrella-tail-middle.png": "ea0b9018ff4098c90ec82b6335d648a42d5df35d2e47fded3f63f8fa6e6eec1e",
+    "parts/masks/umbrella-tail-right.png": "85d90fc53324c0de57f69727b4bfda366efe902b716d3fc80106f7170cbc5bf4",
+    "parts/masks/upper-arm-left.png": "8afcf1533386462b44d5427a41eaf4459719714145d1411125ca13e5352400bd",
+    "parts/masks/upper-arm-right.png": "21bc1c7385f796d1b7e748964a8b967dc1b0a20f9d3bb33929d14d56dadf7624",
+    "parts/masks/upper-body-rigid.png": "d1bb302cca0b4f398702d6cc23d9c5ff5899ae8e60f33ba8df53474d70c078e6",
+    "parts/neck-pendant.png": "a6dcbbbf78ed637acf33234fa5eb7411b85b5aace55ba867a975e207cf437cbf",
+    "parts/neck.png": "fd375f801bce78b5344e1e34f61af929a5355d9d5b1561bae427082b0b68bbc9",
+    "parts/shin-left.png": "bd8585ec169608db4202c5b67bf3360d8abd798c8f568aa98b85da81d5dc6826",
+    "parts/shin-right.png": "7ef191979f004c94ff8a9e6746e3225ee5ffea463a761e1dad6337bdd679d686",
+    "parts/shoulder-left.png": "b20362efe290936066581542722f5716096a2f14bb3cc6247a0f321d46315257",
+    "parts/shoulder-right.png": "fcb7626c5baa0ad718c4e8383dd92e5595ecc8b00edbc61b0c94bf58cfc7776a",
+    "parts/skirt-left-upper.png": "5eaa38658a771a7a41624942b38dfbc037321c7a370b488da744bf789829c40f",
+    "parts/skirt-right-upper.png": "4e2c6ae0f4af5759cab74e364893f88fd2632e9041a37b2893114bed235a8b30",
+    "parts/sleeve-left.png": "d54de78bfb456bc9e3523f71eaaa5e7a79b2c530ebc967b60e5d31683110ec96",
+    "parts/sleeve-right.png": "5e60f88d5ee1f9f05b6fb6c5e7b4d1f0e5983e244f402320348695e27a12b33b",
+    "parts/thigh-left.png": "8c52e7eb649400eb5c0cc9f08237177f2b3fab6e92886df1555111a86fd120ca",
+    "parts/thigh-right.png": "576750c0cac8e84c098582b4f34485cf60fffc663b4a12fcb6bc62c04f2244fa",
+    "parts/toe-left.png": "9c9b3df4e2d7d35f740a2e3674b4dadafdf11283f8791a17dc7ab7c1d96fc534",
+    "parts/toe-right.png": "7d8f36a4358ac41ad821d1822b685f988e16510884ab21bb3a6b0aee0d771d55",
+    "parts/umbrella-canopy-rigid.png": "6ac143b357f483e1c5fb57393c6224163a21e6495cb10ec16c966360c500fd41",
+    "parts/umbrella-shaft-rigid.png": "dbdb6ea2cf0e8df6df81c0b121fea732075f4297b3efc96db591e01084ddd984",
+    "parts/umbrella-tail-left.png": "c4c33186a8b8ea81684c3d0bca482b49313797511b65425456b1359fdbb27a6d",
+    "parts/umbrella-tail-middle.png": "f697db0688b19e9b7830b19e9407a0ef73d51728c78ef4fcfa823f8d51c51b44",
+    "parts/umbrella-tail-right.png": "b8b2541b0f41b064ba057b6a2c96add211c2c61c6ea23ae627c8728e84cf3e33",
+    "parts/upper-arm-left.png": "b309ff3f90d8ca28b8cf3fce917af23118edcd6aa9fa777fccfe4147560a4ba4",
+    "parts/upper-arm-right.png": "422847b222f1243d17794db96d33d5f7c6519fd45e5eae996007ffe37298f62f",
+    "parts/upper-body-rigid.png": "7cc4ffe2a3e8c361ec1438237ede6a3dc53535981cfe82efa370a7295ac3dd33",
+    "parts-contact-sheet.png": "6277950395ce5fe88dc6dce9bdf01e3fac2793c449b725b41a28f86717585bde",
+    "texture.png": "7a2b452447da950aafa4f089c340d8bc0496f1c704a63fadefb4936e6eb05605"
+  }
+}

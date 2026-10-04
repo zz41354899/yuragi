@@ -1,13 +1,23 @@
+import './generate-api.mjs'
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 const names = ['yuragi-character', 'yuragi-rig-spec']
+// Preserve the canonical MIT terms and scope in standalone installable copies.
+for (const directory of ['packages/rig', ...names.map(name => 'skills/' + name)]) {
+  for (const file of ['LICENSE', 'LICENSE-SCOPE.md']) {
+    cpSync(resolve(root, file), resolve(root, directory, file))
+  }
+}
 const rig = resolve(root, 'skills/yuragi-rig-spec')
 // Installed skills carry the same model contract and guide as this checkout.
 mkdirSync(resolve(rig, 'references'), { recursive: true })
 cpSync(resolve(root, 'packages/rig/src/types.ts'), resolve(rig, 'references/api-types.ts'))
+writeFileSync(resolve(rig, 'references/layered-api-types.ts'), readFileSync(resolve(root, 'packages/rig/src/layered-types.ts'), 'utf8').replace('./types.js', './api-types.js'))
+cpSync(resolve(root, 'docs/layered-engine.zh-TW.md'), resolve(rig, 'references/layered-engine.zh-TW.md'))
+writeFileSync(resolve(rig, 'references/layered-engine.md'), '# Layered v2 runtime\n\nSee [the complete v2 contract](layered-engine.zh-TW.md) and [public types](layered-api-types.ts). Independent attachments use createLayeredPlayer, createLayeredSimulation and validateLayeredModel; v1 shared-surface models continue to use createPlayer.\n')
 cpSync(resolve(root, 'docs/custom-character.en.md'), resolve(rig, 'references/custom-character.md'))
 cpSync(resolve(root, 'packages/rig/assets/starter/model.json'), resolve(rig, 'assets/starter-model.json'))
 

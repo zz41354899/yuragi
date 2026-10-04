@@ -52,3 +52,5 @@ export const YuragiCharacter = defineComponent({
     ])
   },
 })
+
+export { YuragiLayeredCharacter } from './vue-layered.js'

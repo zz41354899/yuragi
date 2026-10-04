@@ -1,0 +1,13 @@
+{
+  "label": "after",
+  "node": "v25.9.0",
+  "platform": "darwin",
+  "coreGzipBytes": 18889,
+  "frameMs": [
+    2.297826840833333,
+    1.428597360833333,
+    1.3605272575000003
+  ],
+  "medianFrameMs": 1.428597360833333,
+  "scope": "CPU simulation, mesh and gaze state; excludes browser/GPU upload and rendering; 300 warmup + 1200 frames, three runs on same host"
+}

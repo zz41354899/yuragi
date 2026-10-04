@@ -1,0 +1,3543 @@
+{
+  "version": "0.2.0",
+  "modules": [
+    "@yuragi/rig",
+    "@yuragi/rig/vue",
+    "@yuragi/rig/react",
+    "@yuragi/rig/mirea"
+  ],
+  "resources": [
+    {
+      "module": "@yuragi/rig/assets/*",
+      "target": "./assets/*"
+    }
+  ],
+  "groups": {
+    "core": {
+      "zh-TW": "核心",
+      "en": "Core",
+      "ja": "コア"
+    },
+    "player": {
+      "zh-TW": "播放器",
+      "en": "Player",
+      "ja": "プレイヤー"
+    },
+    "simulation": {
+      "zh-TW": "模擬器",
+      "en": "Simulation",
+      "ja": "シミュレーション"
+    },
+    "animation": {
+      "zh-TW": "動畫",
+      "en": "Animation",
+      "ja": "アニメーション"
+    },
+    "characters": {
+      "zh-TW": "角色工廠",
+      "en": "Characters",
+      "ja": "キャラクター"
+    },
+    "vue": {
+      "zh-TW": "Vue",
+      "en": "Vue",
+      "ja": "Vue"
+    },
+    "react": {
+      "zh-TW": "React",
+      "en": "React",
+      "ja": "React"
+    },
+    "layered": {
+      "zh-TW": "分層引擎",
+      "en": "Layered engine",
+      "ja": "分層エンジン"
+    },
+    "layered-player": {
+      "zh-TW": "分層播放器",
+      "en": "Layered player",
+      "ja": "分層プレイヤー"
+    },
+    "layered-simulation": {
+      "zh-TW": "分層模擬器",
+      "en": "Layered simulation",
+      "ja": "分層シミュレーション"
+    },
+    "types": {
+      "zh-TW": "型別與常數",
+      "en": "Types / constants",
+      "ja": "型・定数"
+    },
+    "simulation-hair": {
+      "zh-TW": "模擬器・髮絲",
+      "en": "Simulation / hair",
+      "ja": "シミュレーション・髪"
+    },
+    "simulation-accessories": {
+      "zh-TW": "模擬器・配件",
+      "en": "Simulation / accessories",
+      "ja": "シミュレーション・アクセサリ"
+    },
+    "simulation-parts": {
+      "zh-TW": "模擬器・柔性部件",
+      "en": "Simulation / parts",
+      "ja": "シミュレーション・パーツ"
+    },
+    "simulation-pointer-groups": {
+      "zh-TW": "模擬器・共同變換",
+      "en": "Simulation / pointer groups",
+      "ja": "シミュレーション・グループ"
+    }
+  },
+  "entries": [
+    {
+      "id": "animation/sample-curve",
+      "name": "sampleCurve",
+      "group": "animation",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "取樣線性、階梯或 cubic-bezier 曲線。",
+        "en": "Sample a linear, step or cubic-bezier animation curve.",
+        "ja": "linear・step・cubic-bezier の曲線を評価します。"
+      },
+      "signature": "(progress: number, curve?: AnimationCurve): number",
+      "parameters": [
+        {
+          "name": "progress",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "曲線的正規化進度。",
+            "en": "Normalized curve progress.",
+            "ja": "曲線の正規化された進捗。"
+          }
+        },
+        {
+          "name": "curve",
+          "type": "AnimationCurve",
+          "optional": true,
+          "default": "'linear'",
+          "description": {
+            "zh-TW": "linear、step 或 cubic-bezier [x1,y1,x2,y2]。",
+            "en": "linear, step, or cubic-bezier [x1,y1,x2,y2].",
+            "ja": "linear・step・cubic-bezier [x1,y1,x2,y2]。"
+          }
+        }
+      ],
+      "returns": "number",
+      "notes": {
+        "zh-TW": "先驗證外部動畫片段；曲線取樣不會驗證整個動畫。",
+        "en": "Validate externally supplied clips first. Curve evaluation is not animation validation.",
+        "ja": "外部クリップを先に検証。曲線評価はアニメ全体の検証を行いません。"
+      },
+      "example": "const eased = sampleCurve(.5, [.42, 0, .58, 1]);",
+      "related": [
+        "animation/validate-animation",
+        "animation/sample-track"
+      ]
+    },
+    {
+      "id": "animation/sample-track",
+      "name": "sampleTrack",
+      "group": "animation",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "依毫秒時間取樣一條已驗證動畫軌。",
+        "en": "Sample a validated animation track at a time in milliseconds.",
+        "ja": "検証済みトラックをミリ秒の時刻で評価します。"
+      },
+      "signature": "(track: AnimationTrack, time: number): number",
+      "parameters": [
+        {
+          "name": "track",
+          "type": "AnimationTrack",
+          "optional": false,
+          "description": {
+            "zh-TW": "來自已驗證片段的動畫軌。",
+            "en": "An animation track from a previously validated clip.",
+            "ja": "検証済みクリップのトラック。"
+          }
+        },
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        }
+      ],
+      "returns": "number",
+      "notes": {
+        "zh-TW": "時間單位為毫秒，先驗證片段；關鍵影格範圍之外取端點值。",
+        "en": "Times are milliseconds. Validate the clip first. Values before/after the keyed range use the endpoint keys.",
+        "ja": "時刻はミリ秒。クリップを先に検証し、範囲外は端点の値を使用。"
+      },
+      "example": "validateAnimation(clip);\nconst value = sampleTrack(clip.tracks[0], 500);",
+      "related": [
+        "animation/validate-animation",
+        "animation/sample-curve"
+      ]
+    },
+    {
+      "id": "animation/validate-animation",
+      "name": "validateAnimation",
+      "group": "animation",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "驗證動畫軌與關鍵影格；眼神強度軌需有已審核的 face。",
+        "en": "Validate tracks and keyframes. Gaze-strength tracks require reviewed face features.",
+        "ja": "トラックとキーフレームを検証。視線強度には確認済みの face が必要です。"
+      },
+      "signature": "(clip: AnimationClip, face?: boolean): void",
+      "parameters": [
+        {
+          "name": "clip",
+          "type": "AnimationClip",
+          "optional": false,
+          "description": {
+            "zh-TW": "有限長度、合法動畫軌與依序排列的關鍵影格。",
+            "en": "AnimationClip with finite duration, valid tracks and ordered keyframes.",
+            "ja": "有限の長さ・有効なトラック・順序付きキーフレーム。"
+          }
+        },
+        {
+          "name": "face",
+          "type": "boolean",
+          "optional": true,
+          "default": "false",
+          "description": {
+            "zh-TW": "是否已有審核完成的眼睛綁定，預設 false。",
+            "en": "Whether this clip has reviewed eyes; false by default.",
+            "ja": "確認済みの目のバインドがあるか。既定は false。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "face 旗標預設 false。支援 parameter、gaze.strength、motion.weight，沒有任意骨骼軌、表情或 Spine 匯入。",
+        "en": "The reviewed-face flag defaults to false. Track targets are parameter, gaze/strength and motion/weight. No arbitrary bone tracks, expressions or Spine imports.",
+        "ja": "face は false。parameter・gaze.strength・motion.weight に対応。任意骨格トラック・表情・Spine 読み込みは未対応。"
+      },
+      "example": "validateAnimation(clip, Boolean(model.face));",
+      "related": [
+        "animation/sample-curve",
+        "animation/sample-track"
+      ]
+    },
+    {
+      "id": "characters/create-mirea-model",
+      "name": "createMireaModel",
+      "group": "characters",
+      "module": "@yuragi/rig/mirea",
+      "summary": {
+        "zh-TW": "從獨立角色入口取得內附海月綁定；圖片必須符合原模型。",
+        "en": "Create the bundled Mirea bindings through the separate character entry. The image must match the authored rig.",
+        "ja": "独立した入口から海月のバインドを取得。画像は既存リグに一致する必要があります。"
+      },
+      "signature": "(textureSrc?: string): RigModel",
+      "parameters": [
+        {
+          "name": "textureSrc",
+          "type": "string",
+          "optional": true,
+          "default": "'/models/mirea/texture.png'",
+          "description": {
+            "zh-TW": "與內附綁定相符的原圖網址；替換圖片不會自動綁定。",
+            "en": "URL of the exact artwork matching these bundled bindings; replacing the image does not produce a rig.",
+            "ja": "既存バインドに一致する原画 URL。画像の変更だけではバインドされません。"
+          }
+        }
+      ],
+      "returns": "RigModel",
+      "notes": {
+        "zh-TW": "從獨立角色入口取得內附海月綁定；圖片必須符合原模型。",
+        "en": "Create the bundled Mirea bindings through the separate character entry. The image must match the authored rig.",
+        "ja": "独立した入口から海月のバインドを取得。画像は既存リグに一致する必要があります。"
+      },
+      "example": "const model = createMireaModel(\"/models/mirea/texture.png\");",
+      "related": []
+    },
+    {
+      "id": "core/constrain-shared-surface",
+      "name": "constrainSharedSurface",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "依三角形位移梯度降低整體動態，直接修改 positions。",
+        "en": "Limit triangle displacement gradients by scaling the positions buffer in place.",
+        "ja": "三角形の変位勾配を制限し、positions を直接調整します。"
+      },
+      "signature": "(surface: Pick<RigMesh, \"rest\" | \"positions\" | \"indices\">, limit?: number): { motionScale: number; maxDisplacementGradient: number; }",
+      "parameters": [
+        {
+          "name": "surface",
+          "type": "Pick<RigMesh, \"rest\" | \"positions\" | \"indices\">",
+          "optional": false,
+          "description": {
+            "zh-TW": "包含可變 positions、基礎 rest 與三角形 indices 的網格。",
+            "en": "The mutable mesh positions with immutable rest positions and triangle indices.",
+            "ja": "可変 positions・基準 rest・三角形 indices を持つメッシュ。"
+          }
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "optional": true,
+          "default": ".65",
+          "description": {
+            "zh-TW": "最大位移梯度，預設 0.65。",
+            "en": "Maximum displacement gradient; defaults to 0.65.",
+            "ja": "最大変位勾配。既定は0.65。"
+          }
+        }
+      ],
+      "returns": "{ motionScale: number; maxDisplacementGradient: number; }",
+      "notes": {
+        "zh-TW": "直接修改 positions，保留 rest／indices。梯度上限預設 0.65；幾何限制不代表視覺驗收通過。",
+        "en": "Mutates positions, not rest/indices. The default gradient limit is 0.65. It is a geometric limiter, not a guarantee of visual acceptance.",
+        "ja": "positions を直接変更、rest/indices は保持。勾配上限は0.65。幾何制限は見た目の合格を保証しません。"
+      },
+      "example": "const simulation = createSimulation(model);\nconst mesh = simulation.buildContinuousMesh();\nconst diagnostics = constrainSharedSurface(mesh, .65);",
+      "related": [
+        "core/create-player",
+        "core/to-canvas",
+        "core/create-simulation",
+        "core/validate-model"
+      ]
+    },
+    {
+      "id": "core/create-player",
+      "name": "createPlayer",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "建立共享網格播放器；驗證模型並載入原圖後回傳 Promise。",
+        "en": "Create a shared-surface player after model validation and source-image loading.",
+        "ja": "モデル検証と原画の読み込み後、共有メッシュプレイヤーを作成します。"
+      },
+      "signature": "(options: PlayerOptions & { signal?: AbortSignal; }): Promise<RigPlayer>",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "PlayerOptions & { signal?: AbortSignal; }",
+          "optional": false,
+          "description": {
+            "zh-TW": "以實際型別簽名為準；signal 可取消載入並清理播放器。",
+            "en": "See the actual options signature and linked PlayerOptions/LayeredPlayerOptions. signal can cancel loading and trigger cleanup.",
+            "ja": "実際の型シグネチャを参照。signal は読み込み取消・解放用です。"
+          }
+        }
+      ],
+      "returns": "Promise<RigPlayer>",
+      "notes": {
+        "zh-TW": "autoplay 預設 true；reducedMotion 預設 respect；pixelRatio 預設裝置倍率並限制 1–2。signal 在函式選項交集型別中。初始化失敗會 reject，onError 回報之後的渲染錯誤。onFrame 約每 100ms 與手動操作時回報。",
+        "en": "autoplay=true; reducedMotion=\"respect\"; pixelRatio defaults to devicePixelRatio, clamped to 1…2. signal is part of the callable options intersection. Initialization errors reject the Promise; onError reports later rendering errors. onFrame reports about every 100 ms plus explicit operations.",
+        "ja": "autoplay は true、reducedMotion は respect、pixelRatio は装置値を 1–2 に制限。signal は実際の交差型に含まれます。初期化失敗は reject、その後は onError。onFrame は約100msごとと手動操作時。"
+      },
+      "example": "const player = await createPlayer({ canvas, model, signal });\nplayer.pause();\nplayer.destroy();",
+      "related": [
+        "core/to-canvas",
+        "core/create-simulation",
+        "core/constrain-shared-surface",
+        "core/validate-model"
+      ]
+    },
+    {
+      "id": "core/create-simulation",
+      "name": "createSimulation",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "建立不依賴框架的共享網格模擬器；自行管理時間與渲染。",
+        "en": "Create a framework-independent shared-surface simulation; the caller owns time and rendering.",
+        "ja": "共有メッシュのシミュレーションを作成。時間・描画は呼び出し側で管理します。"
+      },
+      "signature": "(input: RigModel): { model: RigModel; setMotion: (settings: Partial<MotionSettings>) => void; setTracking: (settings: Partial<TrackingSettings>) => void; setPin: (name: string, patch: Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>) => void; setPart: (id: string, patch: Partial<Omit<DeformationPart, \"id\">>) => void; rebindPin: (mesh: RigMesh, name: string, patch: Partial<PinSpec>) => void; pins: RigPin[]; hair: { pins: { name: string; parent: string; x: number; y: number; depth: number; dx: number; dy: number; vx: number; vy: number; phase: number; gain: number; maximum: number; front: boolean; stiffness: number; damping: number; }[]; chains: HairChain[]; update: (time: number, deltaTime: number, lookX: number, lookVelocity: number) => void; bind: (rest: Float32Array, columns?: number) => Binding; displacement: (binding: Binding, vertex: number) => { x: number; y: number; }; }; accessories: { pins: { rotation: number; velocity: number; id: string; root: Vec2; tip: Vec2; radius: number; angle: number; stiffness: number; damping: number; phase: number; }[]; update: (time: number, deltaTime: number, lookVelocity: number, wave: number) => void; bind: (rest: Float32Array) => Binding; displacement: (binding: Binding, vertex: number, x: number, y: number) => { x: number; y: number; }; }; parts: { states: { spec: DeformationPart; rotation: number; velocity: number; }[]; update: (time: number, delta: number, lookX: number, lookVelocity: number, lookY?: number, verticalVelocity?: number) => void; bind: (rest: Float32Array) => Binding; displacement: (binding: Binding | undefined, vertex: number, x: number, y: number) => { x: number; y: number; }; reset: () => void; }; pointerGroups: { states: { spec: PointerMotionGroup; x: number; y: number; rotation: number; dx: number; dy: number; sin: number; cos: number; }[]; update: (delta: number, lookX: number, lookY: number) => void; bind: (rest: Float32Array) => Binding; apply: (binding: Binding | undefined, vertex: number, x: number, y: number) => { x: number; y: number; }; reset: () => void; }; parameters: { lookX: number; lookY: number; bodyX: number; wave: number; }; velocity: { lookX: number; lookY: number; }; textureSize: { src: string; width: number; height: number; }; readonly sway: SwayPose; setPointer: (x: number, y: number) => void; setParameter: (name: ParameterName, value: number) => boolean; reset: () => void; wave: (time?: number) => boolean; updatePins: (time: number, deltaTime: number) => void; buildContinuousMesh: (spec?: MeshSpec, columns?: number, rowCount?: number) => RigMesh; updateVertices: (surface: RigMesh, time: number, neutral?: boolean) => { motionScale: number; maxDisplacementGradient: number; }; }",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "RigModel",
+          "optional": false,
+          "description": {
+            "zh-TW": "模型或待驗證外部資料，依簽名指定。建構器會複製模型；v1、v2 格式分開。",
+            "en": "A validated model; the constructor clones it. Model v1 and layered v2 are separate formats.",
+            "ja": "型に応じたモデルまたは検証対象。生成時にコピーし、v1 と v2 は別形式です。"
+          }
+        }
+      ],
+      "returns": "{ model: RigModel; setMotion: (settings: Partial<MotionSettings>) => void; setTracking: (settings: Partial<TrackingSettings>) => void; setPin: (name: string, patch: Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>) => void; setPart: (id: string, patch: Partial<Omit<DeformationPart, \"id\">>) => void; rebindPin: (mesh: RigMesh, name: string, patch: Partial<PinSpec>) => void; pins: RigPin[]; hair: { pins: { name: string; parent: string; x: number; y: number; depth: number; dx: number; dy: number; vx: number; vy: number; phase: number; gain: number; maximum: number; front: boolean; stiffness: number; damping: number; }[]; chains: HairChain[]; update: (time: number, deltaTime: number, lookX: number, lookVelocity: number) => void; bind: (rest: Float32Array, columns?: number) => Binding; displacement: (binding: Binding, vertex: number) => { x: number; y: number; }; }; accessories: { pins: { rotation: number; velocity: number; id: string; root: Vec2; tip: Vec2; radius: number; angle: number; stiffness: number; damping: number; phase: number; }[]; update: (time: number, deltaTime: number, lookVelocity: number, wave: number) => void; bind: (rest: Float32Array) => Binding; displacement: (binding: Binding, vertex: number, x: number, y: number) => { x: number; y: number; }; }; parts: { states: { spec: DeformationPart; rotation: number; velocity: number; }[]; update: (time: number, delta: number, lookX: number, lookVelocity: number, lookY?: number, verticalVelocity?: number) => void; bind: (rest: Float32Array) => Binding; displacement: (binding: Binding | undefined, vertex: number, x: number, y: number) => { x: number; y: number; }; reset: () => void; }; pointerGroups: { states: { spec: PointerMotionGroup; x: number; y: number; rotation: number; dx: number; dy: number; sin: number; cos: number; }[]; update: (delta: number, lookX: number, lookY: number) => void; bind: (rest: Float32Array) => Binding; apply: (binding: Binding | undefined, vertex: number, x: number, y: number) => { x: number; y: number; }; reset: () => void; }; parameters: { lookX: number; lookY: number; bodyX: number; wave: number; }; velocity: { lookX: number; lookY: number; }; textureSize: { src: string; width: number; height: number; }; readonly sway: SwayPose; setPointer: (x: number, y: number) => void; setParameter: (name: ParameterName, value: number) => boolean; reset: () => void; wave: (time?: number) => boolean; updatePins: (time: number, deltaTime: number) => void; buildContinuousMesh: (spec?: MeshSpec, columns?: number, rowCount?: number) => RigMesh; updateVertices: (surface: RigMesh, time: number, neutral?: boolean) => { motionScale: number; maxDisplacementGradient: number; }; }",
+      "notes": {
+        "zh-TW": "建立時完整驗證並複製模型；無效模型會拋錯，不載入圖片、不建立 GPU。自行管理毫秒時間與網格。原圖正規化座標包含圖片留白。",
+        "en": "Validates and clones the model; invalid models throw. Does not load artwork or allocate a GPU. The caller owns millisecond timing and mesh rendering. Source-normalized coordinates include image margins.",
+        "ja": "生成時にモデルを検証・コピー。不正なモデルは例外。画像読み込み・GPU 生成なし。ミリ秒の時間と描画は利用側で管理し、原画座標に余白を含みます。"
+      },
+      "example": "const simulation = createSimulation(model);\nconst mesh = simulation.buildContinuousMesh();\nsimulation.updatePins(16.67, 16.67);\nsimulation.updateVertices(mesh, 16.67);",
+      "related": [
+        "core/create-player",
+        "core/to-canvas",
+        "core/constrain-shared-surface",
+        "core/validate-model"
+      ]
+    },
+    {
+      "id": "core/to-canvas",
+      "name": "toCanvas",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "將原圖 0–1 座標轉為含 12% 留白的 canvas 0–1 座標。",
+        "en": "Convert source-normalized coordinates to canvas coordinates with 12% padding.",
+        "ja": "原画の 0–1 座標を 12% の余白を含む canvas 座標に変換します。"
+      },
+      "signature": "(n: number): number",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "原圖的正規化座標。",
+            "en": "Source-normalized coordinate.",
+            "ja": "原画の正規化座標。"
+          }
+        }
+      ],
+      "returns": "number",
+      "notes": {
+        "zh-TW": "CANVAS_PADDING 為 0.12；中心仍是 0.5，Y 正值向下。原圖座標、游標位移及參數角度是不同單位。",
+        "en": "CANVAS_PADDING is 0.12. Center remains 0.5. Positive source Y points down. Do not mix source coordinates, pointer offsets and parameter degrees.",
+        "ja": "CANVAS_PADDING は0.12、中央は0.5、Y は下向き。原画・ポインター・パラメーター角度は別の単位です。"
+      },
+      "example": "const center = toCanvas(.5);",
+      "related": [
+        "core/create-player",
+        "core/create-simulation",
+        "core/constrain-shared-surface",
+        "core/validate-model"
+      ]
+    },
+    {
+      "id": "core/validate-model",
+      "name": "validateModel",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "驗證 v1 模型；成功會縮窄 unknown，失敗會拋錯。",
+        "en": "Assert the complete v1 model contract, narrow unknown on success and throw on failure.",
+        "ja": "v1 モデルを検証。成功時は unknown を絞り込み、失敗時は例外になります。"
+      },
+      "signature": "(value: unknown): asserts value is RigModel",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "unknown",
+          "optional": false,
+          "description": {
+            "zh-TW": "依簽名使用有限數值或待驗證的 unknown 資料。",
+            "en": "Finite numeric input or unknown data to validate, according to the signature.",
+            "ja": "型に応じて有限数値または検証対象の unknown を渡します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "純結構驗證，成功回傳 void 並縮窄 unknown；失敗拋出 Invalid rig model 錯誤。不会讀圖，也不建立視覺驗收紀錄。",
+        "en": "Structural validation returns void and narrows unknown on success. Throws an Invalid rig model error on failure. It neither loads images nor establishes visual acceptance.",
+        "ja": "構造検証のみ。成功時は void、unknown を絞り込み、失敗時は Invalid rig model の例外。画像読み込み・見た目の認定は行いません。"
+      },
+      "example": "const input: unknown = JSON.parse(serialized);\nvalidateModel(input);\nconsole.log(input.pins);",
+      "related": [
+        "core/create-player",
+        "core/to-canvas",
+        "core/create-simulation",
+        "core/constrain-shared-surface"
+      ]
+    },
+    {
+      "id": "layered-player/destroy",
+      "name": "destroy",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "取消播放、移除監聽並釋放 GPU 資源；可重複呼叫。",
+        "en": "Stop playback, detach listeners and release GPU resources; repeated calls are safe.",
+        "ja": "再生停止・監視解除・GPU 解放を行います。繰り返し呼び出せます。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "銷毀後需建立新的播放器才能繼續。清理可重複呼叫；AbortSignal 也觸發清理。",
+        "en": "After destruction, create a new player to resume. Resource cleanup is idempotent. An AbortSignal also triggers cleanup.",
+        "ja": "破棄後の再生には新プレイヤーが必要。終了処理は繰り返せ、AbortSignal でも実行されます。"
+      },
+      "example": "player.destroy();",
+      "related": [
+        "player/destroy",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-model"
+      ]
+    },
+    {
+      "id": "layered-player/get-mesh-snapshot",
+      "name": "getMeshSnapshot",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "按需複製最後提交的網格；適合低頻檢視，避免每幀大量複製。",
+        "en": "Copy the last submitted mesh on demand for low-frequency inspection.",
+        "ja": "最後に送信したメッシュを必要時だけ複製。低頻度の確認向けです。"
+      },
+      "signature": "(): { rest: Float32Array; positions: Float32Array; indices: Uint16Array; }",
+      "parameters": [],
+      "returns": "{ rest: Float32Array; positions: Float32Array; indices: Uint16Array; }",
+      "notes": {
+        "zh-TW": "v1 包含 rest、positions、indices、基礎 weights 與 pinNames；基礎權重不代表頭頸／區域／部件覆蓋。v2 只有 rest、positions、indices。",
+        "en": "v1 includes rest, positions, indices, base pin weights and pinNames. Base weights do not describe head/region/part ownership overrides. v2 includes rest, positions and indices only.",
+        "ja": "v1：rest・positions・indices・基礎weights・pinNames。基礎重みは頭・領域・パーツ所有権を表しません。v2：rest・positions・indices。"
+      },
+      "example": "const mesh = player.getMeshSnapshot();",
+      "related": [
+        "player/get-mesh-snapshot",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-model"
+      ]
+    },
+    {
+      "id": "layered-player/get-model",
+      "name": "getModel",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
+        "en": "Return a deep model copy; resolve image URLs in the consuming project.",
+        "ja": "モデルの独立コピーを取得。画像 URL は利用側で解決します。"
+      },
+      "signature": "(): LayeredModel",
+      "parameters": [],
+      "returns": "LayeredModel",
+      "notes": {
+        "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
+        "en": "Return a deep model copy; resolve image URLs in the consuming project.",
+        "ja": "モデルの独立コピーを取得。画像 URL は利用側で解決します。"
+      },
+      "example": "const exported = player.getModel();",
+      "related": [
+        "player/get-model",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-snapshot"
+      ]
+    },
+    {
+      "id": "layered-player/get-snapshot",
+      "name": "getSnapshot",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
+        "en": "Read current state and diagnostics; snapshots are not a frame clock.",
+        "ja": "現在の状態・診断を取得。フレームごとの時計として使いません。"
+      },
+      "signature": "(): LayeredSnapshot",
+      "parameters": [],
+      "returns": "LayeredSnapshot",
+      "notes": {
+        "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
+        "en": "Read current state and diagnostics; snapshots are not a frame clock.",
+        "ja": "現在の状態・診断を取得。フレームごとの時計として使いません。"
+      },
+      "example": "const snapshot = player.getSnapshot();",
+      "related": [
+        "player/get-snapshot",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-model"
+      ]
+    },
+    {
+      "id": "layered-player/pause",
+      "name": "pause",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "停止動畫迴圈並保留目前姿態。",
+        "en": "Stop the animation loop and retain the current pose.",
+        "ja": "アニメーションループを停止し、現在の姿勢を保持します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "停止動畫迴圈並保留目前姿態。",
+        "en": "Stop the animation loop and retain the current pose.",
+        "ja": "アニメーションループを停止し、現在の姿勢を保持します。"
+      },
+      "example": "player.pause();",
+      "related": [
+        "player/pause",
+        "layered-player/play",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-model",
+        "layered-player/get-snapshot"
+      ]
+    },
+    {
+      "id": "layered-player/play",
+      "name": "play",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
+        "en": "Start or resume playback while respecting reducedMotion.",
+        "ja": "reducedMotion に従って再生・再開します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
+        "en": "Start or resume playback while respecting reducedMotion.",
+        "ja": "reducedMotion に従って再生・再開します。"
+      },
+      "example": "player.play();",
+      "related": [
+        "player/play",
+        "layered-player/pause",
+        "layered-player/set-pointer",
+        "layered-player/reset",
+        "layered-player/get-model",
+        "layered-player/get-snapshot"
+      ]
+    },
+    {
+      "id": "layered-player/reset",
+      "name": "reset",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
+        "en": "Restore neutral state while retaining edited model settings.",
+        "ja": "編集したモデル設定を保持し、中立状態に戻します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器停止時間軸、重設眼神與參數，但保留模型動態設定。與原畫比較時將 motion.weight 及眼神強度設為 0。",
+        "en": "The v1 player stops its timeline and resets gaze/parameters. It preserves model motion values; zero motion.weight and gaze strength when comparing against unchanged artwork.",
+        "ja": "v1 プレイヤーは時間軸・視線・パラメーターをリセット、動作設定を保持。原画比較時は motion.weight と視線強度を0にします。"
+      },
+      "example": "player.reset();",
+      "related": [
+        "simulation-parts/reset",
+        "simulation-pointer-groups/reset",
+        "simulation/reset",
+        "layered-simulation/reset",
+        "player/reset",
+        "layered-player/play"
+      ]
+    },
+    {
+      "id": "layered-player/set-pointer",
+      "name": "setPointer",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
+        "en": "Set centered pointer coordinates, normally −0.5…0.5 per axis; positive X is right and Y is down.",
+        "ja": "中央基準のポインターを設定。通常各軸 −0.5…0.5、X は右、Y は下です。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+      },
+      "example": "player.setPointer(.2, -.1);",
+      "related": [
+        "simulation/set-pointer",
+        "layered-simulation/set-pointer",
+        "player/set-pointer",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/reset"
+      ]
+    },
+    {
+      "id": "layered-simulation/get-pointer",
+      "name": "getPointer",
+      "group": "layered-simulation",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation",
+      "summary": {
+        "zh-TW": "取得 v2 目前設定的游標目標。",
+        "en": "Return the current v2 pointer target.",
+        "ja": "v2 の現在のポインター目標を返します。"
+      },
+      "signature": "(): [number, number]",
+      "parameters": [],
+      "returns": "[number, number]",
+      "notes": {
+        "zh-TW": "回傳 v2 的正規化游標目標（每軸 −1…1），是 setPointer 輸入的兩倍後限制範圍，不是節點目前姿態。沒有位置參數。",
+        "en": "Returns the v2 normalized target in −1…1 per axis: twice the setPointer input, clamped. This is a target, not the current node pose. No positional arguments.",
+        "ja": "v2 の目標を各軸 −1…1 で返します。setPointer 入力の2倍を制限した値で、現在の姿勢ではありません。引数なし。"
+      },
+      "example": "const pointer = simulation.getPointer();",
+      "related": [
+        "layered-simulation/set-pointer",
+        "layered-simulation/reset",
+        "layered-simulation/update"
+      ]
+    },
+    {
+      "id": "layered-simulation/reset",
+      "name": "reset",
+      "group": "layered-simulation",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation",
+      "summary": {
+        "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
+        "en": "Restore neutral state while retaining edited model settings.",
+        "ja": "編集したモデル設定を保持し、中立状態に戻します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器停止時間軸、重設眼神與參數，但保留模型動態設定。與原畫比較時將 motion.weight 及眼神強度設為 0。",
+        "en": "The v1 player stops its timeline and resets gaze/parameters. It preserves model motion values; zero motion.weight and gaze strength when comparing against unchanged artwork.",
+        "ja": "v1 プレイヤーは時間軸・視線・パラメーターをリセット、動作設定を保持。原画比較時は motion.weight と視線強度を0にします。"
+      },
+      "example": "simulation.reset();",
+      "related": [
+        "simulation-parts/reset",
+        "simulation-pointer-groups/reset",
+        "simulation/reset",
+        "layered-simulation/set-pointer",
+        "layered-simulation/update",
+        "layered-simulation/get-pointer"
+      ]
+    },
+    {
+      "id": "layered-simulation/set-pointer",
+      "name": "setPointer",
+      "group": "layered-simulation",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation",
+      "summary": {
+        "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
+        "en": "Set centered pointer coordinates, normally −0.5…0.5 per axis; positive X is right and Y is down.",
+        "ja": "中央基準のポインターを設定。通常各軸 −0.5…0.5、X は右、Y は下です。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+      },
+      "example": "simulation.setPointer(.2, -.1);",
+      "related": [
+        "simulation/set-pointer",
+        "layered-simulation/reset",
+        "layered-simulation/update",
+        "layered-simulation/get-pointer",
+        "player/set-pointer",
+        "layered-player/set-pointer"
+      ]
+    },
+    {
+      "id": "layered-simulation/update",
+      "name": "update",
+      "group": "layered-simulation",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation",
+      "summary": {
+        "zh-TW": "更新 v2 節點矩陣與變形網格；時間為毫秒，回傳頂點是否改變。",
+        "en": "Update v2 node matrices and mesh positions using milliseconds; return whether positions changed.",
+        "ja": "ミリ秒で v2 ノード行列・メッシュを更新し、頂点変更の有無を返します。"
+      },
+      "signature": "(time: number, delta: number, reduced?: boolean): boolean",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        },
+        {
+          "name": "reduced",
+          "type": "boolean",
+          "optional": true,
+          "default": "false",
+          "description": {
+            "zh-TW": "是否使用減少動態的靜態中立幾何，預設 false。",
+            "en": "Whether to evaluate reduced-motion neutral geometry; defaults to false.",
+            "ja": "動作軽減の静的中立形状を評価するか。既定は false。"
+          }
+        }
+      ],
+      "returns": "boolean",
+      "notes": {
+        "zh-TW": "time／delta 為毫秒。reduced 預設 false；true 使用靜態中立姿態。緩衝區與矩陣重用，勿每幀更換。",
+        "en": "time and delta are milliseconds. reduced=false by default; true evaluates the static neutral pose. Mesh buffers and matrices are reused; do not replace them per frame.",
+        "ja": "time/delta はミリ秒。reduced は false、true で静的中立姿勢。バッファ・行列は再使用。"
+      },
+      "example": "simulation.update(16.67, 16.67);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-accessories/update",
+        "simulation-parts/update",
+        "simulation-pointer-groups/update",
+        "layered-simulation/set-pointer",
+        "layered-simulation/reset"
+      ]
+    },
+    {
+      "id": "layered/create-layered-player",
+      "name": "createLayeredPlayer",
+      "group": "layered",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "建立 v2 分層播放器，載入圖集並保留附件順序。",
+        "en": "Create a v2 player, load atlases and preserve authored attachment order.",
+        "ja": "アトラスを読み込み、指定されたアタッチメント順で v2 を描画します。"
+      },
+      "signature": "(options: LayeredPlayerOptions): Promise<LayeredPlayer>",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "LayeredPlayerOptions",
+          "optional": false,
+          "description": {
+            "zh-TW": "以實際型別簽名為準；signal 可取消載入並清理播放器。",
+            "en": "See the actual options signature and linked PlayerOptions/LayeredPlayerOptions. signal can cancel loading and trigger cleanup.",
+            "ja": "実際の型シグネチャを参照。signal は読み込み取消・解放用です。"
+          }
+        }
+      ],
+      "returns": "Promise<LayeredPlayer>",
+      "notes": {
+        "zh-TW": "autoplay 預設 true，reducedMotion 預設 respect，pixelRatio 限制 1–2。AbortSignal 可取消載入並清理播放器。缺圖或尺寸不符會 reject。快照不應作為框架每幀渲染狀態。",
+        "en": "autoplay=true; reducedMotion=\"respect\"; pixelRatio is clamped to 1…2. AbortSignal cancels loading and destroys an initialized player. Missing images/dimension mismatches reject; callbacks and cleanup are not framework render state.",
+        "ja": "autoplay は true、reducedMotion は respect、pixelRatio は 1–2。AbortSignal で読み込み取消・解放。画像不足・寸法不一致は reject。フレーム状態を UI レンダーに保存しません。"
+      },
+      "example": "const player = await createLayeredPlayer({ canvas, model: layeredModel, signal });\nplayer.destroy();",
+      "related": [
+        "layered/validate-layered-model",
+        "layered/create-layered-simulation"
+      ]
+    },
+    {
+      "id": "layered/create-layered-simulation",
+      "name": "createLayeredSimulation",
+      "group": "layered",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "編譯 v2 節點、權重與批次；自行呼叫 update 更新。",
+        "en": "Compile v2 nodes, sparse weights and consecutive draw batches; call update yourself.",
+        "ja": "v2 のノード・重み・連続描画バッチを構築し、update で更新します。"
+      },
+      "signature": "(input: LayeredModel): { model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; }[]; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "LayeredModel",
+          "optional": false,
+          "description": {
+            "zh-TW": "模型或待驗證外部資料，依簽名指定。建構器會複製模型；v1、v2 格式分開。",
+            "en": "A validated model; the constructor clones it. Model v1 and layered v2 are separate formats.",
+            "ja": "型に応じたモデルまたは検証対象。生成時にコピーし、v1 と v2 は別形式です。"
+          }
+        }
+      ],
+      "returns": "{ model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; }[]; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
+      "notes": {
+        "zh-TW": "建立時驗證 v2，無效節點、權重、附件與共享接點會拋錯。矩陣、稀疏綁定與批次為引擎狀態，不能每幀複製到框架 UI。",
+        "en": "Validates v2 and throws for invalid nodes, weights, attachments or joints. Matrices, sparse bindings and batches are engine state; do not copy them into framework UI on every frame.",
+        "ja": "v2 を検証し、不正なノード・重み・アタッチメント・接点は例外。行列・バインド・バッチはエンジン状態として管理します。"
+      },
+      "example": "const simulation = createLayeredSimulation(layeredModel);\nsimulation.setPointer(.2, 0);\nsimulation.update(16.67, 16.67);",
+      "related": [
+        "layered/validate-layered-model",
+        "layered/create-layered-player"
+      ]
+    },
+    {
+      "id": "layered/validate-layered-model",
+      "name": "validateLayeredModel",
+      "group": "layered",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "驗證 v2 圖集、父子節點、权重、共享接點與附件資料。",
+        "en": "Assert v2 atlases, parent order, normalized weights, shared joints and attachments.",
+        "ja": "v2 のアトラス・親子順・正規化重み・共有接点・アタッチメントを検証します。"
+      },
+      "signature": "(input: unknown): asserts input is LayeredModel",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "unknown",
+          "optional": false,
+          "description": {
+            "zh-TW": "模型或待驗證外部資料，依簽名指定。建構器會複製模型；v1、v2 格式分開。",
+            "en": "A validated model; the constructor clones it. Model v1 and layered v2 are separate formats.",
+            "ja": "型に応じたモデルまたは検証対象。生成時にコピーし、v1 と v2 は別形式です。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "純結構驗證，成功縮窄 unknown；錯誤會拋出。驗證拓樸、順序、權重與共享接點，不會驗證圖片內容或自動拆件。",
+        "en": "Structural validation narrows unknown on success and throws on failure. Checks topology, ordering, weights and shared joints; does not inspect pixels or extract layers.",
+        "ja": "成功時は unknown を絞り込み、失敗時は例外。トポロジー・順序・重み・接点を検証。画素確認・自動分割は行いません。"
+      },
+      "example": "const input: unknown = JSON.parse(serialized);\nvalidateLayeredModel(input);\nconsole.log(input.attachments);",
+      "related": [
+        "layered/create-layered-simulation",
+        "layered/create-layered-player"
+      ]
+    },
+    {
+      "id": "player/destroy",
+      "name": "destroy",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "取消播放、移除監聽並釋放 GPU 資源；可重複呼叫。",
+        "en": "Stop playback, detach listeners and release GPU resources; repeated calls are safe.",
+        "ja": "再生停止・監視解除・GPU 解放を行います。繰り返し呼び出せます。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "銷毀後需建立新的播放器才能繼續。清理可重複呼叫；AbortSignal 也觸發清理。",
+        "en": "After destruction, create a new player to resume. Resource cleanup is idempotent. An AbortSignal also triggers cleanup.",
+        "ja": "破棄後の再生には新プレイヤーが必要。終了処理は繰り返せ、AbortSignal でも実行されます。"
+      },
+      "example": "player.destroy();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/get-mesh-snapshot",
+      "name": "getMeshSnapshot",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "按需複製最後提交的網格；適合低頻檢視，避免每幀大量複製。",
+        "en": "Copy the last submitted mesh on demand for low-frequency inspection.",
+        "ja": "最後に送信したメッシュを必要時だけ複製。低頻度の確認向けです。"
+      },
+      "signature": "(): RigMeshSnapshot",
+      "parameters": [],
+      "returns": "RigMeshSnapshot",
+      "notes": {
+        "zh-TW": "v1 包含 rest、positions、indices、基礎 weights 與 pinNames；基礎權重不代表頭頸／區域／部件覆蓋。v2 只有 rest、positions、indices。",
+        "en": "v1 includes rest, positions, indices, base pin weights and pinNames. Base weights do not describe head/region/part ownership overrides. v2 includes rest, positions and indices only.",
+        "ja": "v1：rest・positions・indices・基礎weights・pinNames。基礎重みは頭・領域・パーツ所有権を表しません。v2：rest・positions・indices。"
+      },
+      "example": "const mesh = player.getMeshSnapshot();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/get-model",
+      "name": "getModel",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
+        "en": "Return a deep model copy; resolve image URLs in the consuming project.",
+        "ja": "モデルの独立コピーを取得。画像 URL は利用側で解決します。"
+      },
+      "signature": "(): RigModel",
+      "parameters": [],
+      "returns": "RigModel",
+      "notes": {
+        "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
+        "en": "Return a deep model copy; resolve image URLs in the consuming project.",
+        "ja": "モデルの独立コピーを取得。画像 URL は利用側で解決します。"
+      },
+      "example": "const exported = player.getModel();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/get-snapshot",
+      "name": "getSnapshot",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
+        "en": "Read current state and diagnostics; snapshots are not a frame clock.",
+        "ja": "現在の状態・診断を取得。フレームごとの時計として使いません。"
+      },
+      "signature": "(): RigSnapshot",
+      "parameters": [],
+      "returns": "RigSnapshot",
+      "notes": {
+        "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
+        "en": "Read current state and diagnostics; snapshots are not a frame clock.",
+        "ja": "現在の状態・診断を取得。フレームごとの時計として使いません。"
+      },
+      "example": "const snapshot = player.getSnapshot();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/pause",
+      "name": "pause",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "停止動畫迴圈並保留目前姿態。",
+        "en": "Stop the animation loop and retain the current pose.",
+        "ja": "アニメーションループを停止し、現在の姿勢を保持します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "停止動畫迴圈並保留目前姿態。",
+        "en": "Stop the animation loop and retain the current pose.",
+        "ja": "アニメーションループを停止し、現在の姿勢を保持します。"
+      },
+      "example": "player.pause();",
+      "related": [
+        "player/play",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion",
+        "player/set-tracking"
+      ]
+    },
+    {
+      "id": "player/pause-animation",
+      "name": "pauseAnimation",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "暫停片段時間軸；與暫停播放器迴圈分開。",
+        "en": "Pause the clip timeline independently of the player loop.",
+        "ja": "プレイヤーループと独立してクリップの時間軸を停止します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "暫停片段時間軸；與暫停播放器迴圈分開。",
+        "en": "Pause the clip timeline independently of the player loop.",
+        "ja": "プレイヤーループと独立してクリップの時間軸を停止します。"
+      },
+      "example": "player.pauseAnimation();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/play",
+      "name": "play",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
+        "en": "Start or resume playback while respecting reducedMotion.",
+        "ja": "reducedMotion に従って再生・再開します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
+        "en": "Start or resume playback while respecting reducedMotion.",
+        "ja": "reducedMotion に従って再生・再開します。"
+      },
+      "example": "player.play();",
+      "related": [
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion",
+        "player/set-tracking"
+      ]
+    },
+    {
+      "id": "player/play-animation",
+      "name": "playAnimation",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "播放已驗證的參數、眼神強度或動態權重動畫。",
+        "en": "Play a validated parameter, gaze-strength or motion-weight clip.",
+        "ja": "検証済みのパラメーター・視線強度・動作重みのクリップを再生します。"
+      },
+      "signature": "(clip: AnimationClip): void",
+      "parameters": [
+        {
+          "name": "clip",
+          "type": "AnimationClip",
+          "optional": false,
+          "description": {
+            "zh-TW": "有限長度、合法動畫軌與依序排列的關鍵影格。",
+            "en": "AnimationClip with finite duration, valid tracks and ordered keyframes.",
+            "ja": "有限の長さ・有効なトラック・順序付きキーフレーム。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "片段會複製並完整驗證，無效片段拋錯。時間與 duration 為毫秒，loop 預設 false；播放器會開始迴圈。減少動態保留中立原畫。",
+        "en": "Clones and validates the clip, throwing for invalid tracks/keys. Time/duration use milliseconds; loop defaults to false. Resumes the player loop. Reduced motion preserves neutral artwork.",
+        "ja": "クリップを検証・コピー。不正なトラック・キーは例外。時間はミリ秒、loop は false。プレイヤーを再開し、動作軽減時は中立原画を保持します。"
+      },
+      "example": "player.playAnimation(clip);",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/reset",
+      "name": "reset",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
+        "en": "Restore neutral state while retaining edited model settings.",
+        "ja": "編集したモデル設定を保持し、中立状態に戻します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器停止時間軸、重設眼神與參數，但保留模型動態設定。與原畫比較時將 motion.weight 及眼神強度設為 0。",
+        "en": "The v1 player stops its timeline and resets gaze/parameters. It preserves model motion values; zero motion.weight and gaze strength when comparing against unchanged artwork.",
+        "ja": "v1 プレイヤーは時間軸・視線・パラメーターをリセット、動作設定を保持。原画比較時は motion.weight と視線強度を0にします。"
+      },
+      "example": "player.reset();",
+      "related": [
+        "simulation-parts/reset",
+        "simulation-pointer-groups/reset",
+        "simulation/reset",
+        "layered-simulation/reset",
+        "player/play",
+        "player/pause"
+      ]
+    },
+    {
+      "id": "player/seek-animation",
+      "name": "seekAnimation",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "以毫秒定位目前片段，取樣後更新姿態。",
+        "en": "Seek the current clip in milliseconds and apply its sampled pose.",
+        "ja": "現在のクリップをミリ秒で移動し、評価した姿勢を適用します。"
+      },
+      "signature": "(time: number): void",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "毫秒時間必須為有限數值，且須有活動片段，否則拋錯。時間限制於 0…duration；定位不會自動恢復暫停的片段。",
+        "en": "Time must be finite and a clip must be active, otherwise throws. Clamps milliseconds to 0…duration. Seeking does not resume a paused clip.",
+        "ja": "有限のミリ秒と有効なクリップが必要。なければ例外。0…duration に制限し、停止中のクリップは再開しません。"
+      },
+      "example": "player.seekAnimation(500);",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/set-gaze",
+      "name": "setGaze",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
+        "en": "Set independent eye direction in −1…1 per axis; requires measured eyes and does not move the head/body.",
+        "ja": "各軸 −1…1 の独立視線を設定。測定済みの目が必要で、頭・体は動かしません。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "需 face.eyes；缺少量測或輸入非有限數值會拋錯。有限值限制於每軸 −1…1；X 右、Y 下。減少動態時保留原畫瞳孔。",
+        "en": "Requires face.eyes; missing measurements or non-finite coordinates throw. Finite input is clamped to −1…1 per axis, positive X right and Y down. Reduced motion preserves source pupils.",
+        "ja": "face.eyes が必要。測定不足・非有限座標は例外。各軸 −1…1 に制限し、X は右、Y は下。動作軽減時は原画の瞳孔を保持します。"
+      },
+      "example": "player.setGaze(.6, -.2);",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-parameter",
+        "player/set-motion",
+        "player/set-tracking"
+      ]
+    },
+    {
+      "id": "player/set-gaze-strength",
+      "name": "setGazeStrength",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "設定眼神強度 0–1，預設 1；沒有 face 時不可使用。",
+        "en": "Set gaze strength in 0…1, default 1; unavailable without face features.",
+        "ja": "視線強度を 0…1 に設定。初期値は 1、face が必要です。"
+      },
+      "signature": "(value: number): void",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "依簽名使用有限數值或待驗證的 unknown 資料。",
+            "en": "Finite numeric input or unknown data to validate, according to the signature.",
+            "ja": "型に応じて有限数値または検証対象の unknown を渡します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "必須為有限的 0–1。只控制瞳孔平移；0.2.0 不支援眨眼、嘴型或表情軌。",
+        "en": "Finite 0…1 is required. This changes only pupil translation; blinking, mouth expressions and expression tracks are not supported in 0.2.0.",
+        "ja": "有限な0–1が必要。瞳孔移動のみで、0.2.0 は瞬き・口・表情トラックに未対応。"
+      },
+      "example": "player.setGazeStrength(.8);",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/set-motion",
+      "name": "setMotion",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "合併更新動態設定；省略欄位保留原值，驗證失敗不部分更新。",
+        "en": "Merge motion settings; omitted fields retain their values and validation failures do not partially commit.",
+        "ja": "動作設定をマージ。省略値を保持し、検証失敗時は一部だけ変更しません。"
+      },
+      "signature": "(settings: Partial<MotionSettings>): void",
+      "parameters": [
+        {
+          "name": "settings",
+          "type": "Partial<MotionSettings>",
+          "optional": false,
+          "description": {
+            "zh-TW": "合併到目前模型的部分設定，仍需符合数值範圍。",
+            "en": "Partial settings merged with the current model; validation bounds still apply.",
+            "ja": "現在のモデルにマージする設定。値の範囲は維持します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "sway／hair／accessories／follow／parts：0–2；speed：0.25–2；weight／layers：0–1。初始值來自模型，省略的 weight／parts／layers 預設 1。layers 是共同游標變換倍率。",
+        "en": "sway/hair/accessories/follow/parts: 0…2; speed: 0.25…2; weight/layers: 0…1. Defaults come from the loaded model, with optional weight/parts/layers defaulting to 1. layers scales pointer groups, not independent image layers.",
+        "ja": "sway/hair/accessories/follow/parts：0–2、speed：0.25–2、weight/layers：0–1。初期値はモデル由来、省略 weight/parts/layers は1。layers は共有ポインター変換の倍率です。"
+      },
+      "example": "player.setMotion({ sway: .6, speed: .8 });",
+      "related": [
+        "simulation/set-motion",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "player/set-parameter",
+      "name": "setParameter",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "設定 lookX／lookY（−30…30）、bodyX（−10…10）或 wave（0…1）。",
+        "en": "Set lookX/lookY (−30…30), bodyX (−10…10) or wave (0…1).",
+        "ja": "lookX/lookY（−30…30）、bodyX（−10…10）、wave（0…1）を設定します。"
+      },
+      "signature": "(name: ParameterName, value: number): void",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "ParameterName",
+          "optional": false,
+          "description": {
+            "zh-TW": "現有控制點名稱或支援的 ParameterName，依簽名指定。",
+            "en": "An existing pin name or supported ParameterName, according to the signature.",
+            "ja": "型に応じた既存制御点名または ParameterName。"
+          }
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "依簽名使用有限數值或待驗證的 unknown 資料。",
+            "en": "Finite numeric input or unknown data to validate, according to the signature.",
+            "ja": "型に応じて有限数値または検証対象の unknown を渡します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "播放器拒絕非有限或未知參數；模擬器回傳成功布林值。lookX／lookY 的 setter 或參數動畫會恢復眼神跟隨頭部。",
+        "en": "The player rejects non-finite or unknown parameter inputs. The simulation returns a success boolean. lookX/lookY setters and parameter animation tracks restore gaze following the head.",
+        "ja": "プレイヤーは非有限・未知の値を拒否。シミュレーターは成功の真偽値を返します。lookX/lookY の設定・トラックは視線を頭部追従に戻します。"
+      },
+      "example": "player.setParameter(\"bodyX\", 4);",
+      "related": [
+        "simulation/set-parameter",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/set-part",
+      "name": "setPart",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "修改既有柔性部件；播放器會在幾何欄位修改後重新計算綁定。",
+        "en": "Patch an existing flexible part; the player rebinds when geometry fields change.",
+        "ja": "既存の柔軟パーツを変更。形状変更時にプレイヤーがバインドを再計算します。"
+      },
+      "signature": "(id: string, patch: Partial<Omit<DeformationPart, \"id\">>): void",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "既有部件的 ID。",
+            "en": "The ID of an existing authored part.",
+            "ja": "既存パーツの ID。"
+          }
+        },
+        {
+          "name": "patch",
+          "type": "Partial<Omit<DeformationPart, \"id\">>",
+          "optional": false,
+          "description": {
+            "zh-TW": "部分更新；省略欄位保留原值，仍需符合驗證範圍。",
+            "en": "Partial update; omitted fields retain their current values. External model data must be validated.",
+            "ja": "部分更新。省略項目を保持し、検証範囲に従います。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "多邊形含 3–32 個正規化頂點；根與末端不同。未知 ID 或無效更新會拋錯。純模擬器修改幾何後需重建綁定；播放器會自行處理。",
+        "en": "Polygons contain 3…32 normalized vertices. Root/tip must differ. Geometry changes in a manually rendered simulation require rebuilding the mesh bindings; the player handles this for you. Unknown IDs or invalid patches throw without committing the patch.",
+        "ja": "多角形は正規化頂点3–32個、根と先端は別。未知の ID・不正な更新は例外。シミュレーターは再バインド、プレイヤーは自動処理。"
+      },
+      "example": "if (model.parts?.[0]) player.setPart(model.parts[0].id, { rotation: .05 });",
+      "related": [
+        "simulation/set-part",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "player/set-pin",
+      "name": "setPin",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "修改現有控制點座標與動態欄位；不能透過此方法改名、改父節點或新增。",
+        "en": "Patch an existing pin’s position/dynamics; this setter does not rename, reparent or add pins.",
+        "ja": "既存制御点の位置・動作を変更。名前変更・親変更・追加は行いません。"
+      },
+      "signature": "(name: string, patch: Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>): void",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "現有控制點名稱或支援的 ParameterName，依簽名指定。",
+            "en": "An existing pin name or supported ParameterName, according to the signature.",
+            "ja": "型に応じた既存制御点名または ParameterName。"
+          }
+        },
+        {
+          "name": "patch",
+          "type": "Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>",
+          "optional": false,
+          "description": {
+            "zh-TW": "部分更新；省略欄位保留原值，仍需符合驗證範圍。",
+            "en": "Partial update; omitted fields retain their current values. External model data must be validated.",
+            "ja": "部分更新。省略項目を保持し、検証範囲に従います。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "座標包含原圖留白，每軸 0–1；radius：0.005–0.5。未知名稱或無效更新會拋錯，保留舊設定。更改 parent／type 需驗證新模型並重建播放器。純模擬器 setter 不會重綁既有網格，需呼叫 rebindPin。",
+        "en": "Model coordinates include all source margins, x/y in 0…1. Radius 0.005…0.5. Parent/type edits require validating a new model and recreating the player. The simulation setter does not automatically rebind an already-built mesh; call rebindPin. Unknown names or invalid patches throw without committing the patch.",
+        "ja": "余白を含む原画座標で各軸0–1、radius：0.005–0.5。未知の名前・不正な更新は例外で旧設定を保持。parent/type は新モデル検証後に再生成。シミュレーターでは rebindPin が必要。"
+      },
+      "example": "player.setPin(model.pins[0].name, { x: .5, radius: .08 });",
+      "related": [
+        "simulation/set-pin",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "player/set-pointer",
+      "name": "setPointer",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
+        "en": "Set centered pointer coordinates, normally −0.5…0.5 per axis; positive X is right and Y is down.",
+        "ja": "中央基準のポインターを設定。通常各軸 −0.5…0.5、X は右、Y は下です。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+      },
+      "example": "player.setPointer(.2, -.1);",
+      "related": [
+        "simulation/set-pointer",
+        "layered-simulation/set-pointer",
+        "player/play",
+        "player/pause",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "player/set-tracking",
+      "name": "setTracking",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "合併追蹤慣性設定；設定需符合 TrackingSettings 數值範圍。",
+        "en": "Merge pointer inertia settings within the TrackingSettings bounds.",
+        "ja": "TrackingSettings の範囲内で追従の慣性を更新します。"
+      },
+      "signature": "(settings: Partial<TrackingSettings>): void",
+      "parameters": [
+        {
+          "name": "settings",
+          "type": "Partial<TrackingSettings>",
+          "optional": false,
+          "description": {
+            "zh-TW": "合併到目前模型的部分設定，仍需符合数值範圍。",
+            "en": "Partial settings merged with the current model; validation bounds still apply.",
+            "ja": "現在のモデルにマージする設定。値の範囲は維持します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "response：0.001–0.2；damping：0.1–0.98；maxVelocity：0.1–5；bodyFollow：0–1；translation 各軸：0–0.08。無效更新拋錯且不部分修改。",
+        "en": "response: 0.001…0.2; damping: 0.1…0.98; maxVelocity: 0.1…5; bodyFollow: 0…1; translation per axis: 0…0.08. Invalid patches throw without partial mutation.",
+        "ja": "response：0.001–0.2、damping：0.1–0.98、maxVelocity：0.1–5、bodyFollow：0–1、translation：各軸0–0.08。不正な更新は例外で、部分変更しません。"
+      },
+      "example": "player.setTracking({ response: .024, damping: .65, maxVelocity: 1.8 });",
+      "related": [
+        "simulation/set-tracking",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "player/stop-animation",
+      "name": "stopAnimation",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "停止並清除片段；不自動還原片段已修改的數值。",
+        "en": "Stop and clear the clip without restoring values it already changed.",
+        "ja": "クリップを停止・解除。変更済みの値は自動復元しません。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "停止並清除片段；不自動還原片段已修改的數值。",
+        "en": "Stop and clear the clip without restoring values it already changed.",
+        "ja": "クリップを停止・解除。変更済みの値は自動復元しません。"
+      },
+      "example": "player.stopAnimation();",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
+      "id": "player/wave",
+      "name": "wave",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "觸發共享網格的揮手進度；需符合可見自由手臂的素材與綁定。",
+        "en": "Trigger shared-surface wave progress; requires suitable visible free-arm artwork and bindings.",
+        "ja": "共有メッシュの手振りを開始。見える自由な腕と適切なバインドが必要です。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "播放器在暫停時恢復迴圈；純模擬器只在指定時間觸發。不可用於持物手臂，不是通用肢體動畫。",
+        "en": "The player resumes its loop when paused; the simulation only sets progress at the supplied time. Do not use for a holding arm or claim universal limb animation.",
+        "ja": "プレイヤーは停止中に再開。シミュレーターは指定時刻で進捗のみ設定。持ち物の腕や汎用肢体アニメには使用しません。"
+      },
+      "example": "player.wave();",
+      "related": [
+        "simulation/wave",
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter"
+      ]
+    },
+    {
+      "id": "react/yuragi-character",
+      "name": "YuragiCharacter",
+      "group": "react",
+      "module": "@yuragi/rig/react",
+      "summary": {
+        "zh-TW": "Vue／React 共享網格元件；提供原畫備援、減少動態與卸載清理。",
+        "en": "Shared-surface component with artwork fallback, reduced motion and unmount cleanup.",
+        "ja": "原画表示・動作軽減・終了処理を備えた共有メッシュコンポーネントです。"
+      },
+      "signature": "<YuragiCharacter model={model} autoplay reducedMotion=\"respect\" alt=\"Character\" onReady={ready} onError={onError} onFrame={onFrame} />",
+      "parameters": [],
+      "returns": "React component with an optional imperative ref",
+      "notes": {
+        "zh-TW": "model 為必要 prop；autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue 事件為 ready(player)、error(Error)、frame(snapshot)，ref 暴露 getPlayer()。React 使用 onReady／onError／onFrame，ref.current?.getPlayer()；另支援 className、style。載入可取消，model／reducedMotion 更新會重建播放器，卸載會清理。載入中或 WebGL 失敗時顯示原畫。",
+        "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
+        "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
+      },
+      "example": "import { YuragiCharacter } from '@yuragi/rig/react'\nimport type { RigModel } from '@yuragi/rig'\nexport function Example({ model }: { model: RigModel }) {\n  return <YuragiCharacter model={model} alt=\"Character\" />\n}",
+      "related": [
+        "vue/yuragi-character",
+        "react/yuragi-character-get-player",
+        "react/yuragi-layered-character",
+        "react/yuragi-layered-character-get-player"
+      ]
+    },
+    {
+      "id": "react/yuragi-character-get-player",
+      "name": "getPlayer",
+      "group": "react",
+      "module": "@yuragi/rig/react",
+      "owner": "reactHandle",
+      "summary": {
+        "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
+        "en": "Get the ready player; undefined before loading or after cleanup.",
+        "ja": "準備済みプレイヤーを取得。読み込み前・終了後は undefined です。"
+      },
+      "signature": "getPlayer(): RigPlayer | undefined",
+      "parameters": [],
+      "returns": "RigPlayer | undefined",
+      "notes": {
+        "zh-TW": "Vue 在掛載後透過元件 ref 呼叫；React 使用型別化的 forwarded ref。替換模型載入期間 player 可能尚未就緒。",
+        "en": "Vue: call through a component template ref after mount. React: use the typed forwarded ref. Readiness may change while loading a replacement model.",
+        "ja": "Vue はマウント後のコンポーネント ref、React は型付き forwarded ref。モデル置換の読み込み中は未準備の場合があります。"
+      },
+      "example": "const player = handle.getPlayer();\nplayer?.pause();",
+      "related": [
+        "vue/yuragi-character-get-player",
+        "vue/yuragi-layered-character-get-player",
+        "react/yuragi-character",
+        "react/yuragi-layered-character",
+        "react/yuragi-layered-character-get-player"
+      ]
+    },
+    {
+      "id": "react/yuragi-layered-character",
+      "name": "YuragiLayeredCharacter",
+      "group": "react",
+      "module": "@yuragi/rig/react",
+      "summary": {
+        "zh-TW": "Vue／React v2 分層元件；支援取消載入、原畫備援與資源清理。",
+        "en": "Layered v2 component with cancellable loading, artwork fallback and cleanup.",
+        "ja": "読み込み取消・原画表示・終了処理を備えた v2 コンポーネントです。"
+      },
+      "signature": "<YuragiLayeredCharacter model={model} autoplay reducedMotion=\"respect\" alt=\"Character\" onReady={ready} onError={onError} onFrame={onFrame} />",
+      "parameters": [],
+      "returns": "React component with an optional imperative ref",
+      "notes": {
+        "zh-TW": "model 為必要 prop；autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue 事件為 ready(player)、error(Error)、frame(snapshot)，ref 暴露 getPlayer()。React 使用 onReady／onError／onFrame，ref.current?.getPlayer()；另支援 className、style。載入可取消，model／reducedMotion 更新會重建播放器，卸載會清理。載入中或 WebGL 失敗時顯示原畫。",
+        "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
+        "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
+      },
+      "example": "import { YuragiLayeredCharacter } from '@yuragi/rig/react'\nimport type { LayeredModel } from '@yuragi/rig'\nexport function Example({ model }: { model: LayeredModel }) {\n  return <YuragiLayeredCharacter model={model} alt=\"Character\" />\n}",
+      "related": [
+        "vue/yuragi-layered-character",
+        "react/yuragi-character",
+        "react/yuragi-character-get-player",
+        "react/yuragi-layered-character-get-player"
+      ]
+    },
+    {
+      "id": "react/yuragi-layered-character-get-player",
+      "name": "getPlayer",
+      "group": "react",
+      "module": "@yuragi/rig/react",
+      "owner": "reactHandle",
+      "summary": {
+        "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
+        "en": "Get the ready player; undefined before loading or after cleanup.",
+        "ja": "準備済みプレイヤーを取得。読み込み前・終了後は undefined です。"
+      },
+      "signature": "getPlayer(): LayeredPlayer | undefined",
+      "parameters": [],
+      "returns": "LayeredPlayer | undefined",
+      "notes": {
+        "zh-TW": "Vue 在掛載後透過元件 ref 呼叫；React 使用型別化的 forwarded ref。替換模型載入期間 player 可能尚未就緒。",
+        "en": "Vue: call through a component template ref after mount. React: use the typed forwarded ref. Readiness may change while loading a replacement model.",
+        "ja": "Vue はマウント後のコンポーネント ref、React は型付き forwarded ref。モデル置換の読み込み中は未準備の場合があります。"
+      },
+      "example": "const player = handle.getPlayer();\nplayer?.pause();",
+      "related": [
+        "vue/yuragi-character-get-player",
+        "vue/yuragi-layered-character-get-player",
+        "react/yuragi-character",
+        "react/yuragi-character-get-player",
+        "react/yuragi-layered-character"
+      ]
+    },
+    {
+      "id": "simulation-accessories/bind",
+      "name": "bind",
+      "group": "simulation-accessories",
+      "module": "@yuragi/rig",
+      "owner": "simulation.accessories",
+      "summary": {
+        "zh-TW": "計算配件的稀疏網格綁定。",
+        "en": "Compute sparse mesh bindings for accessories.",
+        "ja": "アクセサリの疎メッシュバインドを計算します。"
+      },
+      "signature": "(rest: Float32Array): Binding",
+      "parameters": [
+        {
+          "name": "rest",
+          "type": "Float32Array<ArrayBufferLike>",
+          "optional": false,
+          "description": {
+            "zh-TW": "完整原圖正規化 x/y 交錯頂點緩衝區。",
+            "en": "Interleaved full-source normalized x/y vertex buffer.",
+            "ja": "全原画の正規化 x/y 頂点バッファ。"
+          }
+        }
+      ],
+      "returns": "Binding",
+      "notes": {
+        "zh-TW": "計算配件的稀疏網格綁定。 rest 是完整原圖正規化 x/y 交錯緩衝區。髮絲 columns 預設 0；規則網格請提供模型欄數。回傳綁定供同一網格的取樣方法使用。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Compute sparse mesh bindings for accessories. rest is interleaved full-source normalized x/y. Hair columns defaults to 0; pass model columns for a regular grid. Use the returned binding only with its original mesh. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "アクセサリの疎メッシュバインドを計算します。 rest は全原画の正規化 x/y バッファ。髪の columns は0、規則メッシュにはモデルの列数を渡します。同じメッシュの評価に使います。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.accessories.bind(mesh.rest);",
+      "related": [
+        "simulation-hair/bind",
+        "simulation-accessories/update",
+        "simulation-accessories/displacement",
+        "simulation-parts/bind",
+        "simulation-pointer-groups/bind"
+      ]
+    },
+    {
+      "id": "simulation-accessories/displacement",
+      "name": "displacement",
+      "group": "simulation-accessories",
+      "module": "@yuragi/rig",
+      "owner": "simulation.accessories",
+      "summary": {
+        "zh-TW": "取樣指定頂點的配件位移。",
+        "en": "Sample accessories displacement at a vertex.",
+        "ja": "アクセサリによる指定頂点の変位を評価します。"
+      },
+      "signature": "(binding: Binding, vertex: number, x: number, y: number): { x: number; y: number; }",
+      "parameters": [
+        {
+          "name": "binding",
+          "type": "Binding",
+          "optional": false,
+          "description": {
+            "zh-TW": "同一網格由此子系統回傳的稀疏綁定。",
+            "en": "Sparse binding returned by this subsystem for the same rest mesh.",
+            "ja": "同じメッシュに対してこのサブシステムが返したバインド。"
+          }
+        },
+        {
+          "name": "vertex",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "零起算的網格頂點索引。",
+            "en": "Zero-based vertex index into the bound mesh.",
+            "ja": "0始まりのメッシュ頂点番号。"
+          }
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "{ x: number; y: number; }",
+      "notes": {
+        "zh-TW": "取樣指定頂點的配件位移。 vertex 是零起算網格頂點索引；x/y 與回傳位移均使用完整原圖正規化座標。apply 回傳變換後的絕對座標；displacement 回傳位移量。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Sample accessories displacement at a vertex. vertex is a zero-based mesh index. x/y and displacement use full-source normalized coordinates. apply returns transformed absolute coordinates; displacement returns an offset. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "アクセサリによる指定頂点の変位を評価します。 vertex は0始まりの頂点番号。x/y と変位は全原画の正規化座標。apply は変換後の絶対座標、displacement は変位を返します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.accessories.bind(mesh.rest);\nconst result = simulation.accessories.displacement(binding, 0, mesh.rest[0], mesh.rest[1]);",
+      "related": [
+        "simulation-hair/displacement",
+        "simulation-accessories/update",
+        "simulation-accessories/bind",
+        "simulation-parts/displacement"
+      ]
+    },
+    {
+      "id": "simulation-accessories/update",
+      "name": "update",
+      "group": "simulation-accessories",
+      "module": "@yuragi/rig",
+      "owner": "simulation.accessories",
+      "summary": {
+        "zh-TW": "更新配件引擎狀態。",
+        "en": "Update accessories engine state.",
+        "ja": "アクセサリのエンジン状態を更新します。"
+      },
+      "signature": "(time: number, deltaTime: number, lookVelocity: number, wave: number): void",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "deltaTime",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        },
+        {
+          "name": "lookVelocity",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "simulation.velocity.lookX 的值。",
+            "en": "The simulation.velocity.lookX value.",
+            "ja": "simulation.velocity.lookX の値。"
+          }
+        },
+        {
+          "name": "wave",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "揮手進度 0…1。",
+            "en": "Wave progress in 0…1.",
+            "ja": "手振りの進捗0…1。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "更新配件引擎狀態。 time／delta／deltaTime 為毫秒；lookX／lookY 為引擎角度，lookVelocity／verticalVelocity 使用 simulation.velocity。wave 為 0–1。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Update accessories engine state. time/delta/deltaTime use milliseconds; lookX/lookY are engine angles; lookVelocity/verticalVelocity use simulation.velocity. wave is 0…1. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "アクセサリのエンジン状態を更新します。 time/delta/deltaTime はミリ秒。lookX/lookY はエンジン角度、速度は simulation.velocity、wave は0–1。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.accessories.update(16.67, 16.67, simulation.velocity.lookX, simulation.parameters.wave);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-accessories/bind",
+        "simulation-accessories/displacement",
+        "simulation-parts/update",
+        "simulation-pointer-groups/update",
+        "layered-simulation/update"
+      ]
+    },
+    {
+      "id": "simulation-hair/bind",
+      "name": "bind",
+      "group": "simulation-hair",
+      "module": "@yuragi/rig",
+      "owner": "simulation.hair",
+      "summary": {
+        "zh-TW": "計算髮絲的稀疏網格綁定。",
+        "en": "Compute sparse mesh bindings for hair.",
+        "ja": "髪の疎メッシュバインドを計算します。"
+      },
+      "signature": "(rest: Float32Array, columns?: number): Binding",
+      "parameters": [
+        {
+          "name": "rest",
+          "type": "Float32Array<ArrayBufferLike>",
+          "optional": false,
+          "description": {
+            "zh-TW": "完整原圖正規化 x/y 交錯頂點緩衝區。",
+            "en": "Interleaved full-source normalized x/y vertex buffer.",
+            "ja": "全原画の正規化 x/y 頂点バッファ。"
+          }
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "optional": true,
+          "default": "0",
+          "description": {
+            "zh-TW": "水平網格格數，預設值見此方法的簽名。",
+            "en": "Horizontal mesh cell count; use the default shown in this signature.",
+            "ja": "横方向のセル数。既定値はこのメソッドの型を参照。"
+          }
+        }
+      ],
+      "returns": "Binding",
+      "notes": {
+        "zh-TW": "計算髮絲的稀疏網格綁定。 rest 是完整原圖正規化 x/y 交錯緩衝區。髮絲 columns 預設 0；規則網格請提供模型欄數。回傳綁定供同一網格的取樣方法使用。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Compute sparse mesh bindings for hair. rest is interleaved full-source normalized x/y. Hair columns defaults to 0; pass model columns for a regular grid. Use the returned binding only with its original mesh. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "髪の疎メッシュバインドを計算します。 rest は全原画の正規化 x/y バッファ。髪の columns は0、規則メッシュにはモデルの列数を渡します。同じメッシュの評価に使います。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.hair.bind(mesh.rest, model.mesh.columns);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-hair/displacement",
+        "simulation-accessories/bind",
+        "simulation-parts/bind",
+        "simulation-pointer-groups/bind"
+      ]
+    },
+    {
+      "id": "simulation-hair/displacement",
+      "name": "displacement",
+      "group": "simulation-hair",
+      "module": "@yuragi/rig",
+      "owner": "simulation.hair",
+      "summary": {
+        "zh-TW": "取樣指定頂點的髮絲位移。",
+        "en": "Sample hair displacement at a vertex.",
+        "ja": "髪による指定頂点の変位を評価します。"
+      },
+      "signature": "(binding: Binding, vertex: number): { x: number; y: number; }",
+      "parameters": [
+        {
+          "name": "binding",
+          "type": "Binding",
+          "optional": false,
+          "description": {
+            "zh-TW": "同一網格由此子系統回傳的稀疏綁定。",
+            "en": "Sparse binding returned by this subsystem for the same rest mesh.",
+            "ja": "同じメッシュに対してこのサブシステムが返したバインド。"
+          }
+        },
+        {
+          "name": "vertex",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "零起算的網格頂點索引。",
+            "en": "Zero-based vertex index into the bound mesh.",
+            "ja": "0始まりのメッシュ頂点番号。"
+          }
+        }
+      ],
+      "returns": "{ x: number; y: number; }",
+      "notes": {
+        "zh-TW": "取樣指定頂點的髮絲位移。 vertex 是零起算網格頂點索引；x/y 與回傳位移均使用完整原圖正規化座標。apply 回傳變換後的絕對座標；displacement 回傳位移量。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Sample hair displacement at a vertex. vertex is a zero-based mesh index. x/y and displacement use full-source normalized coordinates. apply returns transformed absolute coordinates; displacement returns an offset. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "髪による指定頂点の変位を評価します。 vertex は0始まりの頂点番号。x/y と変位は全原画の正規化座標。apply は変換後の絶対座標、displacement は変位を返します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.hair.bind(mesh.rest, model.mesh.columns);\nconst result = simulation.hair.displacement(binding, 0);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-hair/bind",
+        "simulation-accessories/displacement",
+        "simulation-parts/displacement"
+      ]
+    },
+    {
+      "id": "simulation-hair/update",
+      "name": "update",
+      "group": "simulation-hair",
+      "module": "@yuragi/rig",
+      "owner": "simulation.hair",
+      "summary": {
+        "zh-TW": "更新髮絲引擎狀態。",
+        "en": "Update hair engine state.",
+        "ja": "髪のエンジン状態を更新します。"
+      },
+      "signature": "(time: number, deltaTime: number, lookX: number, lookVelocity: number): void",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "deltaTime",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        },
+        {
+          "name": "lookX",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "引擎水平角度，通常 −30…30。",
+            "en": "Engine lookX parameter in degrees (normally −30…30).",
+            "ja": "エンジンの水平角度、通常 −30…30。"
+          }
+        },
+        {
+          "name": "lookVelocity",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "simulation.velocity.lookX 的值。",
+            "en": "The simulation.velocity.lookX value.",
+            "ja": "simulation.velocity.lookX の値。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "更新髮絲引擎狀態。 time／delta／deltaTime 為毫秒；lookX／lookY 為引擎角度，lookVelocity／verticalVelocity 使用 simulation.velocity。wave 為 0–1。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Update hair engine state. time/delta/deltaTime use milliseconds; lookX/lookY are engine angles; lookVelocity/verticalVelocity use simulation.velocity. wave is 0…1. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "髪のエンジン状態を更新します。 time/delta/deltaTime はミリ秒。lookX/lookY はエンジン角度、速度は simulation.velocity、wave は0–1。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.hair.update(16.67, 16.67, simulation.parameters.lookX, simulation.velocity.lookX);",
+      "related": [
+        "simulation-hair/bind",
+        "simulation-hair/displacement",
+        "simulation-accessories/update",
+        "simulation-parts/update",
+        "simulation-pointer-groups/update",
+        "layered-simulation/update"
+      ]
+    },
+    {
+      "id": "simulation-parts/bind",
+      "name": "bind",
+      "group": "simulation-parts",
+      "module": "@yuragi/rig",
+      "owner": "simulation.parts",
+      "summary": {
+        "zh-TW": "計算柔性部件的稀疏網格綁定。",
+        "en": "Compute sparse mesh bindings for parts.",
+        "ja": "柔軟パーツの疎メッシュバインドを計算します。"
+      },
+      "signature": "(rest: Float32Array): Binding",
+      "parameters": [
+        {
+          "name": "rest",
+          "type": "Float32Array<ArrayBufferLike>",
+          "optional": false,
+          "description": {
+            "zh-TW": "完整原圖正規化 x/y 交錯頂點緩衝區。",
+            "en": "Interleaved full-source normalized x/y vertex buffer.",
+            "ja": "全原画の正規化 x/y 頂点バッファ。"
+          }
+        }
+      ],
+      "returns": "Binding",
+      "notes": {
+        "zh-TW": "計算柔性部件的稀疏網格綁定。 rest 是完整原圖正規化 x/y 交錯緩衝區。髮絲 columns 預設 0；規則網格請提供模型欄數。回傳綁定供同一網格的取樣方法使用。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Compute sparse mesh bindings for parts. rest is interleaved full-source normalized x/y. Hair columns defaults to 0; pass model columns for a regular grid. Use the returned binding only with its original mesh. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "柔軟パーツの疎メッシュバインドを計算します。 rest は全原画の正規化 x/y バッファ。髪の columns は0、規則メッシュにはモデルの列数を渡します。同じメッシュの評価に使います。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.parts.bind(mesh.rest);",
+      "related": [
+        "simulation-hair/bind",
+        "simulation-accessories/bind",
+        "simulation-parts/update",
+        "simulation-parts/displacement",
+        "simulation-parts/reset",
+        "simulation-pointer-groups/bind"
+      ]
+    },
+    {
+      "id": "simulation-parts/displacement",
+      "name": "displacement",
+      "group": "simulation-parts",
+      "module": "@yuragi/rig",
+      "owner": "simulation.parts",
+      "summary": {
+        "zh-TW": "取樣指定頂點的柔性部件位移。",
+        "en": "Sample parts displacement at a vertex.",
+        "ja": "柔軟パーツによる指定頂点の変位を評価します。"
+      },
+      "signature": "(binding: Binding | undefined, vertex: number, x: number, y: number): { x: number; y: number; }",
+      "parameters": [
+        {
+          "name": "binding",
+          "type": "Binding | undefined",
+          "optional": false,
+          "description": {
+            "zh-TW": "同一網格由此子系統回傳的稀疏綁定。",
+            "en": "Sparse binding returned by this subsystem for the same rest mesh.",
+            "ja": "同じメッシュに対してこのサブシステムが返したバインド。"
+          }
+        },
+        {
+          "name": "vertex",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "零起算的網格頂點索引。",
+            "en": "Zero-based vertex index into the bound mesh.",
+            "ja": "0始まりのメッシュ頂点番号。"
+          }
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "{ x: number; y: number; }",
+      "notes": {
+        "zh-TW": "取樣指定頂點的柔性部件位移。 vertex 是零起算網格頂點索引；x/y 與回傳位移均使用完整原圖正規化座標。apply 回傳變換後的絕對座標；displacement 回傳位移量。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Sample parts displacement at a vertex. vertex is a zero-based mesh index. x/y and displacement use full-source normalized coordinates. apply returns transformed absolute coordinates; displacement returns an offset. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "柔軟パーツによる指定頂点の変位を評価します。 vertex は0始まりの頂点番号。x/y と変位は全原画の正規化座標。apply は変換後の絶対座標、displacement は変位を返します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.parts.bind(mesh.rest);\nconst result = simulation.parts.displacement(binding, 0, mesh.rest[0], mesh.rest[1]);",
+      "related": [
+        "simulation-hair/displacement",
+        "simulation-accessories/displacement",
+        "simulation-parts/update",
+        "simulation-parts/bind",
+        "simulation-parts/reset"
+      ]
+    },
+    {
+      "id": "simulation-parts/reset",
+      "name": "reset",
+      "group": "simulation-parts",
+      "module": "@yuragi/rig",
+      "owner": "simulation.parts",
+      "summary": {
+        "zh-TW": "清除柔性部件的彈簧或追蹤狀態。",
+        "en": "Reset parts spring or following state.",
+        "ja": "柔軟パーツのばね・追従状態をリセットします。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "清除柔性部件的彈簧或追蹤狀態。 無位置參數，保留部件規格與網格綁定。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Reset parts spring or following state. No positional arguments; retains authored specs and mesh bindings. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "柔軟パーツのばね・追従状態をリセットします。 引数なし。パーツ定義とバインドを保持します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.parts.reset();",
+      "related": [
+        "simulation-parts/update",
+        "simulation-parts/bind",
+        "simulation-parts/displacement",
+        "simulation-pointer-groups/reset",
+        "simulation/reset",
+        "layered-simulation/reset"
+      ]
+    },
+    {
+      "id": "simulation-parts/update",
+      "name": "update",
+      "group": "simulation-parts",
+      "module": "@yuragi/rig",
+      "owner": "simulation.parts",
+      "summary": {
+        "zh-TW": "更新柔性部件引擎狀態。",
+        "en": "Update parts engine state.",
+        "ja": "柔軟パーツのエンジン状態を更新します。"
+      },
+      "signature": "(time: number, delta: number, lookX: number, lookVelocity: number, lookY?: number, verticalVelocity?: number): void",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "delta",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        },
+        {
+          "name": "lookX",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "引擎水平角度，通常 −30…30。",
+            "en": "Engine lookX parameter in degrees (normally −30…30).",
+            "ja": "エンジンの水平角度、通常 −30…30。"
+          }
+        },
+        {
+          "name": "lookVelocity",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "simulation.velocity.lookX 的值。",
+            "en": "The simulation.velocity.lookX value.",
+            "ja": "simulation.velocity.lookX の値。"
+          }
+        },
+        {
+          "name": "lookY",
+          "type": "number",
+          "optional": true,
+          "default": "0",
+          "description": {
+            "zh-TW": "引擎垂直角度，通常 −30…30。",
+            "en": "Engine lookY parameter in degrees (normally −30…30).",
+            "ja": "エンジンの垂直角度、通常 −30…30。"
+          }
+        },
+        {
+          "name": "verticalVelocity",
+          "type": "number",
+          "optional": true,
+          "default": "0",
+          "description": {
+            "zh-TW": "simulation.velocity.lookY 的值。",
+            "en": "The simulation.velocity.lookY value.",
+            "ja": "simulation.velocity.lookY の値。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "更新柔性部件引擎狀態。 time／delta／deltaTime 為毫秒；lookX／lookY 為引擎角度，lookVelocity／verticalVelocity 使用 simulation.velocity。wave 為 0–1。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Update parts engine state. time/delta/deltaTime use milliseconds; lookX/lookY are engine angles; lookVelocity/verticalVelocity use simulation.velocity. wave is 0…1. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "柔軟パーツのエンジン状態を更新します。 time/delta/deltaTime はミリ秒。lookX/lookY はエンジン角度、速度は simulation.velocity、wave は0–1。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.parts.update(16.67, 16.67, simulation.parameters.lookX, simulation.velocity.lookX);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-accessories/update",
+        "simulation-parts/bind",
+        "simulation-parts/displacement",
+        "simulation-parts/reset",
+        "simulation-pointer-groups/update"
+      ]
+    },
+    {
+      "id": "simulation-pointer-groups/apply",
+      "name": "apply",
+      "group": "simulation-pointer-groups",
+      "module": "@yuragi/rig",
+      "owner": "simulation.pointerGroups",
+      "summary": {
+        "zh-TW": "對原圖頂點套用共同變換。",
+        "en": "Apply shared transforms to a source vertex.",
+        "ja": "原画の頂点に共有変換を適用します。"
+      },
+      "signature": "(binding: Binding | undefined, vertex: number, x: number, y: number): { x: number; y: number; }",
+      "parameters": [
+        {
+          "name": "binding",
+          "type": "Binding | undefined",
+          "optional": false,
+          "description": {
+            "zh-TW": "同一網格由此子系統回傳的稀疏綁定。",
+            "en": "Sparse binding returned by this subsystem for the same rest mesh.",
+            "ja": "同じメッシュに対してこのサブシステムが返したバインド。"
+          }
+        },
+        {
+          "name": "vertex",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "零起算的網格頂點索引。",
+            "en": "Zero-based vertex index into the bound mesh.",
+            "ja": "0始まりのメッシュ頂点番号。"
+          }
+        },
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "{ x: number; y: number; }",
+      "notes": {
+        "zh-TW": "對原圖頂點套用共同變換。 vertex 是零起算網格頂點索引；x/y 與回傳位移均使用完整原圖正規化座標。apply 回傳變換後的絕對座標；displacement 回傳位移量。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Apply shared transforms to a source vertex. vertex is a zero-based mesh index. x/y and displacement use full-source normalized coordinates. apply returns transformed absolute coordinates; displacement returns an offset. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "原画の頂点に共有変換を適用します。 vertex は0始まりの頂点番号。x/y と変位は全原画の正規化座標。apply は変換後の絶対座標、displacement は変位を返します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.pointerGroups.bind(mesh.rest);\nconst result = simulation.pointerGroups.apply(binding, 0, mesh.rest[0], mesh.rest[1]);",
+      "related": [
+        "simulation-pointer-groups/update",
+        "simulation-pointer-groups/bind",
+        "simulation-pointer-groups/reset"
+      ]
+    },
+    {
+      "id": "simulation-pointer-groups/bind",
+      "name": "bind",
+      "group": "simulation-pointer-groups",
+      "module": "@yuragi/rig",
+      "owner": "simulation.pointerGroups",
+      "summary": {
+        "zh-TW": "計算共同變換的稀疏網格綁定。",
+        "en": "Compute sparse mesh bindings for pointer groups.",
+        "ja": "ポインターグループの疎メッシュバインドを計算します。"
+      },
+      "signature": "(rest: Float32Array): Binding",
+      "parameters": [
+        {
+          "name": "rest",
+          "type": "Float32Array<ArrayBufferLike>",
+          "optional": false,
+          "description": {
+            "zh-TW": "完整原圖正規化 x/y 交錯頂點緩衝區。",
+            "en": "Interleaved full-source normalized x/y vertex buffer.",
+            "ja": "全原画の正規化 x/y 頂点バッファ。"
+          }
+        }
+      ],
+      "returns": "Binding",
+      "notes": {
+        "zh-TW": "計算共同變換的稀疏網格綁定。 rest 是完整原圖正規化 x/y 交錯緩衝區。髮絲 columns 預設 0；規則網格請提供模型欄數。回傳綁定供同一網格的取樣方法使用。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Compute sparse mesh bindings for pointer groups. rest is interleaved full-source normalized x/y. Hair columns defaults to 0; pass model columns for a regular grid. Use the returned binding only with its original mesh. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "ポインターグループの疎メッシュバインドを計算します。 rest は全原画の正規化 x/y バッファ。髪の columns は0、規則メッシュにはモデルの列数を渡します。同じメッシュの評価に使います。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();\nconst binding = simulation.pointerGroups.bind(mesh.rest);",
+      "related": [
+        "simulation-hair/bind",
+        "simulation-accessories/bind",
+        "simulation-parts/bind",
+        "simulation-pointer-groups/update",
+        "simulation-pointer-groups/apply",
+        "simulation-pointer-groups/reset"
+      ]
+    },
+    {
+      "id": "simulation-pointer-groups/reset",
+      "name": "reset",
+      "group": "simulation-pointer-groups",
+      "module": "@yuragi/rig",
+      "owner": "simulation.pointerGroups",
+      "summary": {
+        "zh-TW": "清除共同變換的彈簧或追蹤狀態。",
+        "en": "Reset pointer groups spring or following state.",
+        "ja": "ポインターグループのばね・追従状態をリセットします。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "清除共同變換的彈簧或追蹤狀態。 無位置參數，保留部件規格與網格綁定。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Reset pointer groups spring or following state. No positional arguments; retains authored specs and mesh bindings. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "ポインターグループのばね・追従状態をリセットします。 引数なし。パーツ定義とバインドを保持します。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.pointerGroups.reset();",
+      "related": [
+        "simulation-parts/reset",
+        "simulation-pointer-groups/update",
+        "simulation-pointer-groups/bind",
+        "simulation-pointer-groups/apply",
+        "simulation/reset",
+        "layered-simulation/reset"
+      ]
+    },
+    {
+      "id": "simulation-pointer-groups/update",
+      "name": "update",
+      "group": "simulation-pointer-groups",
+      "module": "@yuragi/rig",
+      "owner": "simulation.pointerGroups",
+      "summary": {
+        "zh-TW": "更新共同變換引擎狀態。",
+        "en": "Update pointer groups engine state.",
+        "ja": "ポインターグループのエンジン状態を更新します。"
+      },
+      "signature": "(delta: number, lookX: number, lookY: number): void",
+      "parameters": [
+        {
+          "name": "delta",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        },
+        {
+          "name": "lookX",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "引擎水平角度，通常 −30…30。",
+            "en": "Engine lookX parameter in degrees (normally −30…30).",
+            "ja": "エンジンの水平角度、通常 −30…30。"
+          }
+        },
+        {
+          "name": "lookY",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "引擎垂直角度，通常 −30…30。",
+            "en": "Engine lookY parameter in degrees (normally −30…30).",
+            "ja": "エンジンの垂直角度、通常 −30…30。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "更新共同變換引擎狀態。 time／delta／deltaTime 為毫秒；lookX／lookY 為引擎角度，lookVelocity／verticalVelocity 使用 simulation.velocity。wave 為 0–1。 低階方法不另驗證外部缓衝區與索引；請使用已驗證模型與本模擬器建立的綁定。updatePins／updateVertices 已呼叫這些方法，勿在同一幀重複更新。綁定型別由回傳值推導，不需匯入內部工廠。",
+        "en": "Update pointer groups engine state. time/delta/deltaTime use milliseconds; lookX/lookY are engine angles; lookVelocity/verticalVelocity use simulation.velocity. wave is 0…1. Low-level methods do not separately validate external buffers/indices. Use validated models and bindings from this simulation. updatePins/updateVertices already call these methods; do not update twice in a frame. Infer binding types from return values instead of importing internal factories.",
+        "ja": "ポインターグループのエンジン状態を更新します。 time/delta/deltaTime はミリ秒。lookX/lookY はエンジン角度、速度は simulation.velocity、wave は0–1。 低レベル API は外部バッファ・番号を別途検証しません。検証済みモデルとこのシミュレーターのバインドを使用。updatePins/updateVertices が呼び出すので同じフレームで二重更新しません。型は戻り値から推論します。"
+      },
+      "example": "simulation.pointerGroups.update(16.67, simulation.parameters.lookX, simulation.parameters.lookY);",
+      "related": [
+        "simulation-hair/update",
+        "simulation-accessories/update",
+        "simulation-parts/update",
+        "simulation-pointer-groups/bind",
+        "simulation-pointer-groups/apply",
+        "simulation-pointer-groups/reset"
+      ]
+    },
+    {
+      "id": "simulation/build-continuous-mesh",
+      "name": "buildContinuousMesh",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "建立原圖像素區域的連續三角網格與初始綁定。",
+        "en": "Build a continuous triangle mesh and bindings for a source-pixel rectangle.",
+        "ja": "原画のピクセル矩形に連続三角メッシュと初期バインドを構築します。"
+      },
+      "signature": "(spec?: MeshSpec, columns?: number, rowCount?: number): RigMesh",
+      "parameters": [
+        {
+          "name": "spec",
+          "type": "MeshSpec",
+          "optional": true,
+          "default": "{ x: 0, y: 0, width: textureSize.width, height: textureSize.height }",
+          "description": {
+            "zh-TW": "原圖像素矩形；省略時使用完整原圖。",
+            "en": "Source-pixel mesh rectangle. Omit for the full artwork.",
+            "ja": "原画のピクセル矩形。省略時は全画像。"
+          }
+        },
+        {
+          "name": "columns",
+          "type": "number",
+          "optional": true,
+          "default": "model.mesh.columns",
+          "description": {
+            "zh-TW": "水平網格格數，預設值見此方法的簽名。",
+            "en": "Horizontal mesh cell count; use the default shown in this signature.",
+            "ja": "横方向のセル数。既定値はこのメソッドの型を参照。"
+          }
+        },
+        {
+          "name": "rowCount",
+          "type": "number",
+          "optional": true,
+          "default": "model.mesh.rows",
+          "description": {
+            "zh-TW": "垂直網格格數，預設使用模型設定。",
+            "en": "Vertical mesh cell count; defaults to the model value.",
+            "ja": "縦方向のセル数。既定はモデル設定。"
+          }
+        }
+      ],
+      "returns": "RigMesh",
+      "notes": {
+        "zh-TW": "spec 使用原圖像素矩形，預設完整原圖；columns／rowCount 預設模型數值。回傳 rest／positions 使用原圖正規化座標。",
+        "en": "spec is a pixel-space MeshSpec; default is the full source texture. columns/rowCount default to the model mesh dimensions. The returned rest/positions use normalized full-source coordinates.",
+        "ja": "spec は原画ピクセル矩形、既定は全画像。columns/rowCount はモデル値。rest/positions は原画正規化座標。"
+      },
+      "example": "const mesh = simulation.buildContinuousMesh();",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "simulation/rebind-pin",
+      "name": "rebindPin",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "重新計算指定網格的控制點權重；低階操作需與模型設定一致。",
+        "en": "Recompute pin weights for a mesh; keep this low-level operation consistent with model settings.",
+        "ja": "指定メッシュの制御点重みを再計算。モデル設定と整合させてください。"
+      },
+      "signature": "(mesh: RigMesh, name: string, patch: Partial<PinSpec>): void",
+      "parameters": [
+        {
+          "name": "mesh",
+          "type": "RigMesh",
+          "optional": false,
+          "description": {
+            "zh-TW": "已建立的連續網格，需與模型設定及綁定一致。",
+            "en": "An already-built continuous mesh; keep model settings and bindings consistent.",
+            "ja": "構築済みの連続メッシュ。モデル設定・バインドと整合させます。"
+          }
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "現有控制點名稱或支援的 ParameterName，依簽名指定。",
+            "en": "An existing pin name or supported ParameterName, according to the signature.",
+            "ja": "型に応じた既存制御点名または ParameterName。"
+          }
+        },
+        {
+          "name": "patch",
+          "type": "Partial<PinSpec>",
+          "optional": false,
+          "description": {
+            "zh-TW": "部分更新；省略欄位保留原值，仍需符合驗證範圍。",
+            "en": "Partial update; omitted fields retain their current values. External model data must be validated.",
+            "ja": "部分更新。省略項目を保持し、検証範囲に従います。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "重新計算指定網格的控制點權重；低階操作需與模型設定一致。",
+        "en": "Recompute pin weights for a mesh; keep this low-level operation consistent with model settings.",
+        "ja": "指定メッシュの制御点重みを再計算。モデル設定と整合させてください。"
+      },
+      "example": "simulation.setPin(model.pins[0].name, { radius: .08 });\nsimulation.rebindPin(mesh, model.pins[0].name, { radius: .08 });",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/set-pointer",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/reset",
+      "name": "reset",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
+        "en": "Restore neutral state while retaining edited model settings.",
+        "ja": "編集したモデル設定を保持し、中立状態に戻します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器停止時間軸、重設眼神與參數，但保留模型動態設定。與原畫比較時將 motion.weight 及眼神強度設為 0。",
+        "en": "The v1 player stops its timeline and resets gaze/parameters. It preserves model motion values; zero motion.weight and gaze strength when comparing against unchanged artwork.",
+        "ja": "v1 プレイヤーは時間軸・視線・パラメーターをリセット、動作設定を保持。原画比較時は motion.weight と視線強度を0にします。"
+      },
+      "example": "simulation.reset();",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation-parts/reset"
+      ]
+    },
+    {
+      "id": "simulation/set-motion",
+      "name": "setMotion",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "合併更新動態設定；省略欄位保留原值，驗證失敗不部分更新。",
+        "en": "Merge motion settings; omitted fields retain their values and validation failures do not partially commit.",
+        "ja": "動作設定をマージ。省略値を保持し、検証失敗時は一部だけ変更しません。"
+      },
+      "signature": "(settings: Partial<MotionSettings>): void",
+      "parameters": [
+        {
+          "name": "settings",
+          "type": "Partial<MotionSettings>",
+          "optional": false,
+          "description": {
+            "zh-TW": "合併到目前模型的部分設定，仍需符合数值範圍。",
+            "en": "Partial settings merged with the current model; validation bounds still apply.",
+            "ja": "現在のモデルにマージする設定。値の範囲は維持します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "sway／hair／accessories／follow／parts：0–2；speed：0.25–2；weight／layers：0–1。初始值來自模型，省略的 weight／parts／layers 預設 1。layers 是共同游標變換倍率。",
+        "en": "sway/hair/accessories/follow/parts: 0…2; speed: 0.25…2; weight/layers: 0…1. Defaults come from the loaded model, with optional weight/parts/layers defaulting to 1. layers scales pointer groups, not independent image layers.",
+        "ja": "sway/hair/accessories/follow/parts：0–2、speed：0.25–2、weight/layers：0–1。初期値はモデル由来、省略 weight/parts/layers は1。layers は共有ポインター変換の倍率です。"
+      },
+      "example": "simulation.setMotion({ sway: .6, speed: .8 });",
+      "related": [
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/set-parameter",
+      "name": "setParameter",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "設定 lookX／lookY（−30…30）、bodyX（−10…10）或 wave（0…1）。",
+        "en": "Set lookX/lookY (−30…30), bodyX (−10…10) or wave (0…1).",
+        "ja": "lookX/lookY（−30…30）、bodyX（−10…10）、wave（0…1）を設定します。"
+      },
+      "signature": "(name: ParameterName, value: number): boolean",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "ParameterName",
+          "optional": false,
+          "description": {
+            "zh-TW": "現有控制點名稱或支援的 ParameterName，依簽名指定。",
+            "en": "An existing pin name or supported ParameterName, according to the signature.",
+            "ja": "型に応じた既存制御点名または ParameterName。"
+          }
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "依簽名使用有限數值或待驗證的 unknown 資料。",
+            "en": "Finite numeric input or unknown data to validate, according to the signature.",
+            "ja": "型に応じて有限数値または検証対象の unknown を渡します。"
+          }
+        }
+      ],
+      "returns": "boolean",
+      "notes": {
+        "zh-TW": "播放器拒絕非有限或未知參數；模擬器回傳成功布林值。lookX／lookY 的 setter 或參數動畫會恢復眼神跟隨頭部。",
+        "en": "The player rejects non-finite or unknown parameter inputs. The simulation returns a success boolean. lookX/lookY setters and parameter animation tracks restore gaze following the head.",
+        "ja": "プレイヤーは非有限・未知の値を拒否。シミュレーターは成功の真偽値を返します。lookX/lookY の設定・トラックは視線を頭部追従に戻します。"
+      },
+      "example": "simulation.setParameter(\"bodyX\", 4);",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "simulation/set-part",
+      "name": "setPart",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "修改既有柔性部件；播放器會在幾何欄位修改後重新計算綁定。",
+        "en": "Patch an existing flexible part; the player rebinds when geometry fields change.",
+        "ja": "既存の柔軟パーツを変更。形状変更時にプレイヤーがバインドを再計算します。"
+      },
+      "signature": "(id: string, patch: Partial<Omit<DeformationPart, \"id\">>): void",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "既有部件的 ID。",
+            "en": "The ID of an existing authored part.",
+            "ja": "既存パーツの ID。"
+          }
+        },
+        {
+          "name": "patch",
+          "type": "Partial<Omit<DeformationPart, \"id\">>",
+          "optional": false,
+          "description": {
+            "zh-TW": "部分更新；省略欄位保留原值，仍需符合驗證範圍。",
+            "en": "Partial update; omitted fields retain their current values. External model data must be validated.",
+            "ja": "部分更新。省略項目を保持し、検証範囲に従います。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "多邊形含 3–32 個正規化頂點；根與末端不同。未知 ID 或無效更新會拋錯。純模擬器修改幾何後需重建綁定；播放器會自行處理。",
+        "en": "Polygons contain 3…32 normalized vertices. Root/tip must differ. Geometry changes in a manually rendered simulation require rebuilding the mesh bindings; the player handles this for you. Unknown IDs or invalid patches throw without committing the patch.",
+        "ja": "多角形は正規化頂点3–32個、根と先端は別。未知の ID・不正な更新は例外。シミュレーターは再バインド、プレイヤーは自動処理。"
+      },
+      "example": "if (model.parts?.[0]) simulation.setPart(model.parts[0].id, { rotation: .05 });",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/rebind-pin",
+        "simulation/set-pointer",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/set-pin",
+      "name": "setPin",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "修改現有控制點座標與動態欄位；不能透過此方法改名、改父節點或新增。",
+        "en": "Patch an existing pin’s position/dynamics; this setter does not rename, reparent or add pins.",
+        "ja": "既存制御点の位置・動作を変更。名前変更・親変更・追加は行いません。"
+      },
+      "signature": "(name: string, patch: Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>): void",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "現有控制點名稱或支援的 ParameterName，依簽名指定。",
+            "en": "An existing pin name or supported ParameterName, according to the signature.",
+            "ja": "型に応じた既存制御点名または ParameterName。"
+          }
+        },
+        {
+          "name": "patch",
+          "type": "Partial<Omit<PinSpec, \"name\" | \"parent\" | \"type\">>",
+          "optional": false,
+          "description": {
+            "zh-TW": "部分更新；省略欄位保留原值，仍需符合驗證範圍。",
+            "en": "Partial update; omitted fields retain their current values. External model data must be validated.",
+            "ja": "部分更新。省略項目を保持し、検証範囲に従います。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "座標包含原圖留白，每軸 0–1；radius：0.005–0.5。未知名稱或無效更新會拋錯，保留舊設定。更改 parent／type 需驗證新模型並重建播放器。純模擬器 setter 不會重綁既有網格，需呼叫 rebindPin。",
+        "en": "Model coordinates include all source margins, x/y in 0…1. Radius 0.005…0.5. Parent/type edits require validating a new model and recreating the player. The simulation setter does not automatically rebind an already-built mesh; call rebindPin. Unknown names or invalid patches throw without committing the patch.",
+        "ja": "余白を含む原画座標で各軸0–1、radius：0.005–0.5。未知の名前・不正な更新は例外で旧設定を保持。parent/type は新モデル検証後に再生成。シミュレーターでは rebindPin が必要。"
+      },
+      "example": "simulation.setPin(model.pins[0].name, { x: .5, radius: .08 });",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/set-pointer",
+      "name": "setPointer",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
+        "en": "Set centered pointer coordinates, normally −0.5…0.5 per axis; positive X is right and Y is down.",
+        "ja": "中央基準のポインターを設定。通常各軸 −0.5…0.5、X は右、Y は下です。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+      },
+      "example": "simulation.setPointer(.2, -.1);",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/set-tracking",
+      "name": "setTracking",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "合併追蹤慣性設定；設定需符合 TrackingSettings 數值範圍。",
+        "en": "Merge pointer inertia settings within the TrackingSettings bounds.",
+        "ja": "TrackingSettings の範囲内で追従の慣性を更新します。"
+      },
+      "signature": "(settings: Partial<TrackingSettings>): void",
+      "parameters": [
+        {
+          "name": "settings",
+          "type": "Partial<TrackingSettings>",
+          "optional": false,
+          "description": {
+            "zh-TW": "合併到目前模型的部分設定，仍需符合数值範圍。",
+            "en": "Partial settings merged with the current model; validation bounds still apply.",
+            "ja": "現在のモデルにマージする設定。値の範囲は維持します。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "response：0.001–0.2；damping：0.1–0.98；maxVelocity：0.1–5；bodyFollow：0–1；translation 各軸：0–0.08。無效更新拋錯且不部分修改。",
+        "en": "response: 0.001…0.2; damping: 0.1…0.98; maxVelocity: 0.1…5; bodyFollow: 0…1; translation per axis: 0…0.08. Invalid patches throw without partial mutation.",
+        "ja": "response：0.001–0.2、damping：0.1–0.98、maxVelocity：0.1–5、bodyFollow：0–1、translation：各軸0–0.08。不正な更新は例外で、部分変更しません。"
+      },
+      "example": "simulation.setTracking({ response: .024, damping: .65, maxVelocity: 1.8 });",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer",
+        "simulation/set-parameter"
+      ]
+    },
+    {
+      "id": "simulation/update-pins",
+      "name": "updatePins",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "依經過時間與時間差更新參數、控制點及彈簧狀態；單位為毫秒。",
+        "en": "Update parameters, pins and spring state using elapsed time and delta in milliseconds.",
+        "ja": "経過時間と差分（ミリ秒）でパラメーター・制御点・ばねを更新します。"
+      },
+      "signature": "(time: number, deltaTime: number): void",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "deltaTime",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "距離上一次模擬更新的毫秒時間。",
+            "en": "Milliseconds since the previous simulation update.",
+            "ja": "前回のシミュレーション更新からのミリ秒。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "先 updatePins(time, deltaTime)，再 updateVertices(mesh, time)。時間均為毫秒，狀態維持在引擎內。",
+        "en": "Call updatePins(time, deltaTime) before updateVertices(mesh, time). Time and deltaTime are milliseconds. Keep this state outside Vue/React render cycles.",
+        "ja": "updatePins(time, deltaTime) の後に updateVertices(mesh, time)。時間はミリ秒、状態はエンジン内で管理。"
+      },
+      "example": "simulation.updatePins(16.67, 16.67);",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "simulation/update-vertices",
+      "name": "updateVertices",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "將目前模擬狀態寫入網格 positions，並回傳變形保護診斷。",
+        "en": "Write the simulated pose into mesh positions and return deformation diagnostics.",
+        "ja": "シミュレーションの姿勢を positions に書き、変形保護の診断を返します。"
+      },
+      "signature": "(surface: RigMesh, time: number, neutral?: boolean): { motionScale: number; maxDisplacementGradient: number; }",
+      "parameters": [
+        {
+          "name": "surface",
+          "type": "RigMesh",
+          "optional": false,
+          "description": {
+            "zh-TW": "包含可變 positions、基礎 rest 與三角形 indices 的網格。",
+            "en": "The mutable mesh positions with immutable rest positions and triangle indices.",
+            "ja": "可変 positions・基準 rest・三角形 indices を持つメッシュ。"
+          }
+        },
+        {
+          "name": "time",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        },
+        {
+          "name": "neutral",
+          "type": "boolean",
+          "optional": true,
+          "default": "false",
+          "description": {
+            "zh-TW": "是否取樣中立幾何，預設 false。",
+            "en": "Whether to evaluate neutral geometry; defaults to false.",
+            "ja": "中立形状を評価するか。既定は false。"
+          }
+        }
+      ],
+      "returns": "{ motionScale: number; maxDisplacementGradient: number; }",
+      "notes": {
+        "zh-TW": "直接更新網格緩衝區；neutral=true 使用中立幾何。診斷回報 motionScale 與最大位移梯度，不評估素材品質。",
+        "en": "Updates buffers in place; neutral=true requests neutral geometry. Diagnostics report motionScale and maximum displacement gradient, not material or artwork quality.",
+        "ja": "バッファを直接更新。neutral=true は中立形状。motionScale と最大変位勾配を診断し、素材品質は評価しません。"
+      },
+      "example": "const diagnostics = simulation.updateVertices(mesh, 16.67);",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "simulation/wave",
+      "name": "wave",
+      "group": "simulation",
+      "module": "@yuragi/rig",
+      "owner": "simulation",
+      "summary": {
+        "zh-TW": "觸發共享網格的揮手進度；需符合可見自由手臂的素材與綁定。",
+        "en": "Trigger shared-surface wave progress; requires suitable visible free-arm artwork and bindings.",
+        "ja": "共有メッシュの手振りを開始。見える自由な腕と適切なバインドが必要です。"
+      },
+      "signature": "(time?: number): boolean",
+      "parameters": [
+        {
+          "name": "time",
+          "type": "number",
+          "optional": true,
+          "default": "performance.now()",
+          "description": {
+            "zh-TW": "片段或模擬開始後的毫秒時間，依方法指定。",
+            "en": "Milliseconds from the start of the simulation or clip, according to the method.",
+            "ja": "メソッドに応じたクリップ・シミュレーション開始後のミリ秒。"
+          }
+        }
+      ],
+      "returns": "boolean",
+      "notes": {
+        "zh-TW": "播放器在暫停時恢復迴圈；純模擬器只在指定時間觸發。不可用於持物手臂，不是通用肢體動畫。",
+        "en": "The player resumes its loop when paused; the simulation only sets progress at the supplied time. Do not use for a holding arm or claim universal limb animation.",
+        "ja": "プレイヤーは停止中に再開。シミュレーターは指定時刻で進捗のみ設定。持ち物の腕や汎用肢体アニメには使用しません。"
+      },
+      "example": "simulation.wave();",
+      "related": [
+        "simulation/set-motion",
+        "simulation/set-tracking",
+        "simulation/set-pin",
+        "simulation/set-part",
+        "simulation/rebind-pin",
+        "simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "vue/yuragi-character",
+      "name": "YuragiCharacter",
+      "group": "vue",
+      "module": "@yuragi/rig/vue",
+      "summary": {
+        "zh-TW": "Vue／React 共享網格元件；提供原畫備援、減少動態與卸載清理。",
+        "en": "Shared-surface component with artwork fallback, reduced motion and unmount cleanup.",
+        "ja": "原画表示・動作軽減・終了処理を備えた共有メッシュコンポーネントです。"
+      },
+      "signature": "<YuragiCharacter :model=\"model\" :autoplay=\"true\" reduced-motion=\"respect\" alt=\"Character\" @ready=\"ready\" @error=\"onError\" @frame=\"onFrame\" />",
+      "parameters": [],
+      "returns": "Vue component instance with getPlayer()",
+      "notes": {
+        "zh-TW": "model 為必要 prop；autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue 事件為 ready(player)、error(Error)、frame(snapshot)，ref 暴露 getPlayer()。React 使用 onReady／onError／onFrame，ref.current?.getPlayer()；另支援 className、style。載入可取消，model／reducedMotion 更新會重建播放器，卸載會清理。載入中或 WebGL 失敗時顯示原畫。",
+        "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
+        "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
+      },
+      "example": "<script setup lang=\"ts\">\nimport { YuragiCharacter } from '@yuragi/rig/vue'\nimport type { RigModel } from '@yuragi/rig'\ndefineProps<{ model: RigModel }>()\n</script>\n<template>\n  <YuragiCharacter :model=\"model\" alt=\"Character\" />\n</template>",
+      "related": [
+        "vue/yuragi-character-get-player",
+        "vue/yuragi-layered-character",
+        "vue/yuragi-layered-character-get-player",
+        "react/yuragi-character"
+      ]
+    },
+    {
+      "id": "vue/yuragi-character-get-player",
+      "name": "getPlayer",
+      "group": "vue",
+      "module": "@yuragi/rig/vue",
+      "owner": "vueHandle",
+      "summary": {
+        "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
+        "en": "Get the ready player; undefined before loading or after cleanup.",
+        "ja": "準備済みプレイヤーを取得。読み込み前・終了後は undefined です。"
+      },
+      "signature": "getPlayer(): RigPlayer | undefined",
+      "parameters": [],
+      "returns": "RigPlayer | undefined",
+      "notes": {
+        "zh-TW": "Vue 在掛載後透過元件 ref 呼叫；React 使用型別化的 forwarded ref。替換模型載入期間 player 可能尚未就緒。",
+        "en": "Vue: call through a component template ref after mount. React: use the typed forwarded ref. Readiness may change while loading a replacement model.",
+        "ja": "Vue はマウント後のコンポーネント ref、React は型付き forwarded ref。モデル置換の読み込み中は未準備の場合があります。"
+      },
+      "example": "const player = handle.getPlayer();\nplayer?.pause();",
+      "related": [
+        "vue/yuragi-character",
+        "vue/yuragi-layered-character",
+        "vue/yuragi-layered-character-get-player",
+        "react/yuragi-character-get-player",
+        "react/yuragi-layered-character-get-player"
+      ]
+    },
+    {
+      "id": "vue/yuragi-layered-character",
+      "name": "YuragiLayeredCharacter",
+      "group": "vue",
+      "module": "@yuragi/rig/vue",
+      "summary": {
+        "zh-TW": "Vue／React v2 分層元件；支援取消載入、原畫備援與資源清理。",
+        "en": "Layered v2 component with cancellable loading, artwork fallback and cleanup.",
+        "ja": "読み込み取消・原画表示・終了処理を備えた v2 コンポーネントです。"
+      },
+      "signature": "<YuragiLayeredCharacter :model=\"model\" :autoplay=\"true\" reduced-motion=\"respect\" alt=\"Character\" @ready=\"ready\" @error=\"onError\" @frame=\"onFrame\" />",
+      "parameters": [],
+      "returns": "Vue component instance with getPlayer()",
+      "notes": {
+        "zh-TW": "model 為必要 prop；autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue 事件為 ready(player)、error(Error)、frame(snapshot)，ref 暴露 getPlayer()。React 使用 onReady／onError／onFrame，ref.current?.getPlayer()；另支援 className、style。載入可取消，model／reducedMotion 更新會重建播放器，卸載會清理。載入中或 WebGL 失敗時顯示原畫。",
+        "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
+        "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
+      },
+      "example": "<script setup lang=\"ts\">\nimport { YuragiLayeredCharacter } from '@yuragi/rig/vue'\nimport type { LayeredModel } from '@yuragi/rig'\ndefineProps<{ model: LayeredModel }>()\n</script>\n<template>\n  <YuragiLayeredCharacter :model=\"model\" alt=\"Character\" />\n</template>",
+      "related": [
+        "vue/yuragi-character",
+        "vue/yuragi-character-get-player",
+        "vue/yuragi-layered-character-get-player",
+        "react/yuragi-layered-character"
+      ]
+    },
+    {
+      "id": "vue/yuragi-layered-character-get-player",
+      "name": "getPlayer",
+      "group": "vue",
+      "module": "@yuragi/rig/vue",
+      "owner": "vueHandle",
+      "summary": {
+        "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
+        "en": "Get the ready player; undefined before loading or after cleanup.",
+        "ja": "準備済みプレイヤーを取得。読み込み前・終了後は undefined です。"
+      },
+      "signature": "getPlayer(): LayeredPlayer | undefined",
+      "parameters": [],
+      "returns": "LayeredPlayer | undefined",
+      "notes": {
+        "zh-TW": "Vue 在掛載後透過元件 ref 呼叫；React 使用型別化的 forwarded ref。替換模型載入期間 player 可能尚未就緒。",
+        "en": "Vue: call through a component template ref after mount. React: use the typed forwarded ref. Readiness may change while loading a replacement model.",
+        "ja": "Vue はマウント後のコンポーネント ref、React は型付き forwarded ref。モデル置換の読み込み中は未準備の場合があります。"
+      },
+      "example": "const player = handle.getPlayer();\nplayer?.pause();",
+      "related": [
+        "vue/yuragi-character",
+        "vue/yuragi-character-get-player",
+        "vue/yuragi-layered-character",
+        "react/yuragi-character-get-player",
+        "react/yuragi-layered-character-get-player"
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "CANVAS_PADDING",
+      "module": "@yuragi/rig",
+      "definition": "export const CANVAS_PADDING: 0.12",
+      "description": "Canvas overscan on each edge: 0.12 (12%)."
+    },
+    {
+      "name": "Vec2",
+      "module": "@yuragi/rig",
+      "definition": "export type Vec2 = [number, number]",
+      "description": ""
+    },
+    {
+      "name": "ParameterName",
+      "module": "@yuragi/rig",
+      "definition": "export type ParameterName = 'lookX' | 'lookY' | 'bodyX' | 'wave'",
+      "description": ""
+    },
+    {
+      "name": "EyeFeature",
+      "module": "@yuragi/rig",
+      "definition": "export interface EyeFeature {\n  id: 'left' | 'right'\n  center: Vec2\n  radius: Vec2\n  iris: Vec2\n  irisRadius: Vec2\n  travel: Vec2\n  angle: number\n  sclera: [number, number, number]\n}",
+      "description": "Reviewed source-image geometry for bounded pupil translation."
+    },
+    {
+      "name": "FaceFeatures",
+      "module": "@yuragi/rig",
+      "definition": "export interface FaceFeatures { eyes: [EyeFeature, EyeFeature] }",
+      "description": ""
+    },
+    {
+      "name": "AnimationCurve",
+      "module": "@yuragi/rig",
+      "definition": "export type AnimationCurve = 'linear' | 'step' | [number, number, number, number]",
+      "description": ""
+    },
+    {
+      "name": "Keyframe",
+      "module": "@yuragi/rig",
+      "definition": "export interface Keyframe { time: number; value: number; curve?: AnimationCurve }",
+      "description": ""
+    },
+    {
+      "name": "AnimationTrack",
+      "module": "@yuragi/rig",
+      "definition": "export type AnimationTrack = { target: 'parameter'; name: ParameterName; keys: Keyframe[] }\n  | { target: 'gaze'; name: 'strength'; keys: Keyframe[] }\n  | { target: 'motion'; name: 'weight'; keys: Keyframe[] }",
+      "description": ""
+    },
+    {
+      "name": "AnimationClip",
+      "module": "@yuragi/rig",
+      "definition": "export interface AnimationClip { id: string; duration: number; loop?: boolean; tracks: AnimationTrack[] }",
+      "description": ""
+    },
+    {
+      "name": "AnimationSnapshot",
+      "module": "@yuragi/rig",
+      "definition": "export interface AnimationSnapshot { id: string; time: number; duration: number; playing: boolean }",
+      "description": ""
+    },
+    {
+      "name": "PinSpec",
+      "module": "@yuragi/rig",
+      "definition": "export interface PinSpec {\n  name: string\n  type: 'fixed' | 'joint' | 'spring'\n  parent?: string\n  x: number\n  y: number\n  radius: number\n  stiffness?: number\n  damping?: number\n  wind?: number\n}",
+      "description": ""
+    },
+    {
+      "name": "RigPin",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigPin extends PinSpec { px: number; py: number; vx: number; vy: number }",
+      "description": ""
+    },
+    {
+      "name": "HairChain",
+      "module": "@yuragi/rig",
+      "definition": "export interface HairChain { id: string; points: [Vec2, Vec2, Vec2]; phase: number; radius: number; gain: number }",
+      "description": ""
+    },
+    {
+      "name": "AccessoryChain",
+      "module": "@yuragi/rig",
+      "definition": "export interface AccessoryChain {\n  id: string; root: Vec2; tip: Vec2; radius: number; angle: number\n  stiffness: number; damping: number; phase: number\n}",
+      "description": ""
+    },
+    {
+      "name": "MotionSettings",
+      "module": "@yuragi/rig",
+      "definition": "export interface MotionSettings {\n  /** Blend the complete geometry from the original artwork (0) to full motion (1). Defaults to 1. */\n  weight?: number\n  sway: number\n  speed: number\n  hair: number\n  accessories: number\n  follow: number\n  /** Optional strength for polygon-bound parts; defaults to 1. */\n  parts?: number\n  /** Gain for authored pointer motion groups; defaults to 1. Applied before rotation. */\n  layers?: number\n}",
+      "description": ""
+    },
+    {
+      "name": "DeformationPart",
+      "module": "@yuragi/rig",
+      "definition": "export interface DeformationPart {\n  id: string\n  name?: string\n  kind: 'hair' | 'cloth' | 'ribbon' | 'accessory'\n  /** Optional additional motion gain, for migrating legacy hair/accessory controls. */\n  channel?: 'hair' | 'accessories'\n  polygon: Vec2[]\n  /** Protected source areas such as visible skin or a held prop. */\n  exclusions?: Vec2[][]\n  root: Vec2\n  tip: Vec2\n  /** Feather distance in units of source image width, aspect corrected. */\n  feather: number\n  /** Maximum spring rotation, in radians. */\n  rotation: number\n  stiffness: number\n  damping: number\n  phase: number\n  wind: number\n  follow: number\n  /** Signed response to vertical gaze/inertia; omitted keeps the original X-only flow. */\n  followY?: number\n}",
+      "description": "A local deformation region on the shared artwork, not an independent image layer."
+    },
+    {
+      "name": "SurfaceRegion",
+      "module": "@yuragi/rig",
+      "definition": "export interface SurfaceRegion {\n  id: string\n  polygon: Vec2[]\n  /** Blend OUTSIDE the polygon; its interior is fully protected. */\n  feather: number\n  mode: 'weighted' | 'rigid'\n  /** Weighted regions receive displacement only from these pins. */\n  pins?: string[]\n  /** Rigid regions translate with this pin; omit for a stationary local object. */\n  anchor?: string\n  /** Rigid rotation about the anchor, before whole-character sway. */\n  rotation?: 'none' | 'head' | 'body'\n  /** Weighted regions can opt out of hair, accessory and part flow. */\n  secondary?: boolean\n}",
+      "description": "Ownership on the shared source texture. Later regions take precedence at overlaps."
+    },
+    {
+      "name": "TrackingSettings",
+      "module": "@yuragi/rig",
+      "definition": "export interface TrackingSettings {\n  response: number\n  damping: number\n  maxVelocity: number\n  bodyFollow?: number\n  /** Equal X/Y travel for the complete artwork at look ±30; never local stretching. */\n  translation?: Vec2\n}",
+      "description": ""
+    },
+    {
+      "name": "PointerMotionGroup",
+      "module": "@yuragi/rig",
+      "definition": "export interface PointerMotionGroup {\n  id: string\n  name?: string\n  pivot: Vec2\n  regions: { polygon: Vec2[]; feather: number }[]\n  /** Source-normalized travel at look ±30, before whole-character translation. */\n  translation: Vec2\n  /** Signed horizontal follow rotation, in radians. */\n  rotation: number\n  /** Exponential settling time in milliseconds; independent of frame rate. */\n  response: number\n}",
+      "description": "Several visible source regions share one rigid pointer-driven transform."
+    },
+    {
+      "name": "RigModel",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigModel {\n  version: 1\n  id: string\n  name: string\n  texture: { src: string; width: number; height: number }\n  mesh: { columns: number; rows: number }\n  pins: PinSpec[]\n  hair: HairChain[]\n  accessories: AccessoryChain[]\n  parts?: DeformationPart[]\n  surfaceRegions?: SurfaceRegion[]\n  /** Shared transforms applied after local detail. Later interiors own overlaps. */\n  pointerGroups?: PointerMotionGroup[]\n  /** Opt-in bounded pointer spring. Omit to preserve the original legacy response. */\n  tracking?: TrackingSettings\n  /** Opt-in face compositing; neutral and reduced motion preserve original pixels. */\n  face?: FaceFeatures\n  faceClearance: [number, number, number, number][]\n  motion: MotionSettings\n  pose: {\n    headCenter: number\n    headBounds: [number, number]\n    headHorizontal: [number, number]\n    /** Optional original-image Y bounds for custom head warping; absent preserves legacy. */\n    headWarpBounds?: [number, number]\n    /** Optional aspect-correct head pose; absence preserves the legacy original warp. */\n    headFollow?: {\n      rotation: number; translation: Vec2\n      /** Reviewed skull/bangs ownership; replaces Gaussian head-pin warping. */\n      region?: Vec2[]\n      feather?: number\n      /** Body-attached base blending to head-root; no separate neck spring. */\n      neck?: { polygon: Vec2[]; base: Vec2; feather: number }\n    }\n    bodyBounds: [number, number]\n    bodyPivot: Vec2\n    swayPivot: Vec2\n  }\n}",
+      "description": ""
+    },
+    {
+      "name": "Binding",
+      "module": "@yuragi/rig",
+      "definition": "export interface Binding { offsets: Uint32Array; indices: Uint16Array; weights: Float32Array }",
+      "description": ""
+    },
+    {
+      "name": "MeshSpec",
+      "module": "@yuragi/rig",
+      "definition": "export interface MeshSpec { x: number; y: number; width: number; height: number }",
+      "description": ""
+    },
+    {
+      "name": "RigMesh",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigMesh extends MeshSpec {\n  rest: Float32Array; positions: Float32Array; uvs: Float32Array\n  indices: Uint16Array; weights: Float32Array\n  hairBinding: Binding; accessoryBinding: Binding\n  partBinding?: Binding\n  regionBinding?: Binding\n  pointerBinding?: Binding\n  headBinding?: { head: Float32Array; neck: Float32Array; neckProgress: Float32Array }\n}",
+      "description": ""
+    },
+    {
+      "name": "SwayPose",
+      "module": "@yuragi/rig",
+      "definition": "export interface SwayPose { rotation: number; sin: number; cos: number; x: number; y: number; followVelocity: number }",
+      "description": ""
+    },
+    {
+      "name": "RigMeshSnapshot",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigMeshSnapshot {\n  rest: Float32Array\n  positions: Float32Array\n  indices: Uint16Array\n  /** Base pin weights, vertex-major. Region/head/part ownership can override their effect. */\n  weights: Float32Array\n  pinNames: string[]\n}",
+      "description": "On-demand copy of the mesh last submitted to the renderer; full-source 0–1 coordinates."
+    },
+    {
+      "name": "Diagnostics",
+      "module": "@yuragi/rig",
+      "definition": "export interface Diagnostics { motionScale: number; maxDisplacementGradient: number }",
+      "description": ""
+    },
+    {
+      "name": "RigSnapshot",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigSnapshot {\n  /** Effective overall geometry weight; independent from gaze strength. */\n  motionWeight?: number\n  parameters: Record<ParameterName, number>\n  pins: { name: string; parent?: string; type: PinSpec['type']; x: number; y: number }[]\n  diagnostics: Diagnostics\n  sway: SwayPose\n  playing: boolean\n  /** Full-source normalized travel; zero in reduced motion. */\n  trackingOffset?: Vec2\n  parts?: { id: string; rotation: number }[]\n  pointerGroups?: { id: string; offset: Vec2; rotation: number }[]\n  face?: { gaze: Vec2; strength: number }\n  animation?: AnimationSnapshot\n}",
+      "description": ""
+    },
+    {
+      "name": "PlayerOptions",
+      "module": "@yuragi/rig",
+      "definition": "export interface PlayerOptions {\n  canvas: HTMLCanvasElement\n  model: RigModel\n  autoplay?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  pixelRatio?: number\n  onFrame?: (snapshot: RigSnapshot) => void\n  onError?: (error: Error) => void\n}",
+      "description": ""
+    },
+    {
+      "name": "RigPlayer",
+      "module": "@yuragi/rig",
+      "definition": "export interface RigPlayer {\n  play(): void\n  pause(): void\n  setPointer(x: number, y: number): void\n  /** Eye-only direction in -1…1; does not deform the head or body. */\n  setGaze(x: number, y: number): void\n  setParameter(name: ParameterName, value: number): void\n  setMotion(settings: Partial<MotionSettings>): void\n  setTracking(settings: Partial<TrackingSettings>): void\n  /** Reviewed eyes required; finite 0…1, defaults to 1. */\n  setGazeStrength(value: number): void\n  playAnimation(clip: AnimationClip): void\n  pauseAnimation(): void\n  seekAnimation(time: number): void\n  stopAnimation(): void\n  setPin(name: string, patch: Partial<Omit<PinSpec, 'name' | 'parent' | 'type'>>): void\n  setPart(id: string, patch: Partial<Omit<DeformationPart, 'id'>>): void\n  wave(): void\n  reset(): void\n  getModel(): RigModel\n  getSnapshot(): RigSnapshot\n  /** Copies only when requested; inspect at UI frequency, never as an animation clock. */\n  getMeshSnapshot(): RigMeshSnapshot\n  destroy(): void\n}",
+      "description": ""
+    },
+    {
+      "name": "LayeredModel",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredModel {\n    version: 2;\n    renderer: 'layered';\n    id: string;\n    name: string;\n    source: {\n        width: number;\n        height: number;\n        fallback: string;\n        sha256: string;\n    };\n    atlases: {\n        id: string;\n        src: string;\n        width: number;\n        height: number;\n    }[];\n    /** Parent precedes child. Pivots and translations use full-source coordinates. */\n    nodes: LayerNode[];\n    /** Authoritative seam vertices, reused by any number of attachments. */\n    joints: {\n        id: string;\n        position: Vec2;\n        weights: LayerWeight[];\n    }[];\n    /** Array order IS draw order. Only consecutive compatible attachments batch. */\n    attachments: LayerAttachment[];\n}",
+      "description": "Separate from RigModel v1; extracted PNGs are never implicitly playable."
+    },
+    {
+      "name": "LayerWeight",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayerWeight {\n    node: string;\n    weight: number;\n}",
+      "description": ""
+    },
+    {
+      "name": "LayerNode",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayerNode {\n    id: string;\n    parent?: string;\n    pivot: Vec2;\n    rotation: number;\n    translation: Vec2;\n    response: number;\n    /** Bounded local secondary rotation; root vertices bind to the parent. */\n    spring?: {\n        rotation: number;\n        stiffness: number;\n        damping: number;\n        wind: number;\n        phase: number;\n    };\n}",
+      "description": ""
+    },
+    {
+      "name": "LayerVertex",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayerVertex {\n    position: Vec2;\n    weights: LayerWeight[];\n    joint?: string;\n}",
+      "description": ""
+    },
+    {
+      "name": "LayerAttachment",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayerAttachment {\n    id: string;\n    atlas: string;\n    /** Atlas pixel rectangle, excluding extruded gutters. */\n    rect: [\n        number,\n        number,\n        number,\n        number\n    ];\n    /** Source-normalized rectangle corresponding to the cropped image. */\n    bounds: [\n        number,\n        number,\n        number,\n        number\n    ];\n    vertices: LayerVertex[];\n    triangles: number[];\n    opacity?: number;\n    /** Optional static alpha mask in the SAME atlas, aligned to attachment bounds. */\n    mask?: [\n        number,\n        number,\n        number,\n        number\n    ];\n    coverage: 'complete' | 'visible-only';\n    provenance: string;\n}",
+      "description": ""
+    },
+    {
+      "name": "LayeredSnapshot",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredSnapshot {\n    playing: boolean;\n    reducedMotion: boolean;\n    pointer: Vec2;\n    nodes: {\n        id: string;\n        rotation: number;\n    }[];\n    diagnostics: {\n        drawCalls: number;\n        vertices: number;\n        triangles: number;\n        atlasBytes: number;\n        cpuMilliseconds: number;\n    };\n}",
+      "description": ""
+    },
+    {
+      "name": "LayeredPlayerOptions",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredPlayerOptions {\n    canvas: HTMLCanvasElement;\n    model: LayeredModel;\n    autoplay?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    pixelRatio?: number;\n    signal?: AbortSignal;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n    onError?: (error: Error) => void;\n}",
+      "description": ""
+    },
+    {
+      "name": "LayeredPlayer",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredPlayer {\n    play(): void;\n    pause(): void;\n    setPointer(x: number, y: number): void;\n    reset(): void;\n    getModel(): LayeredModel;\n    getSnapshot(): LayeredSnapshot;\n    getMeshSnapshot(): {\n        rest: Float32Array;\n        positions: Float32Array;\n        indices: Uint16Array;\n    };\n    destroy(): void;\n}",
+      "description": ""
+    },
+    {
+      "name": "YuragiCharacterProps",
+      "module": "@yuragi/rig/react",
+      "definition": "export interface YuragiCharacterProps {\n  model: RigModel\n  autoplay?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  alt?: string\n  className?: string\n  style?: CSSProperties\n  onReady?: (player: RigPlayer) => void\n  onError?: (error: Error) => void\n  onFrame?: (snapshot: RigSnapshot) => void\n}",
+      "description": ""
+    },
+    {
+      "name": "YuragiCharacterHandle",
+      "module": "@yuragi/rig/react",
+      "definition": "export interface YuragiCharacterHandle { getPlayer(): RigPlayer | undefined }",
+      "description": ""
+    },
+    {
+      "name": "YuragiLayeredCharacterProps",
+      "module": "@yuragi/rig/react",
+      "definition": "export interface YuragiLayeredCharacterProps {\n    model: LayeredModel;\n    autoplay?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    alt?: string;\n    className?: string;\n    style?: CSSProperties;\n    onReady?: (player: LayeredPlayer) => void;\n    onError?: (error: Error) => void;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n}",
+      "description": ""
+    },
+    {
+      "name": "YuragiLayeredCharacterHandle",
+      "module": "@yuragi/rig/react",
+      "definition": "export interface YuragiLayeredCharacterHandle {\n    getPlayer(): LayeredPlayer | undefined;\n}",
+      "description": ""
+    }
+  ]
+}

@@ -52,6 +52,15 @@
 .guide-dimension-notes { font-size: 13px; color: #547080; margin: 8px 0 28px; }
 .guide-dimension-notes summary { cursor: pointer; }
 .reading-workspace .table-scroll { max-width: 100%; }
+/* Blue explanation links; black sidebar navigation in every state. */
+.docs-shell.reading-workspace .docs-content a:any-link { color: #1d4ed8; }
+.docs-shell.reading-workspace .docs-content a:any-link:is(:hover, :focus-visible) { color: #1e40af; }
+.docs-shell.reading-workspace .docs-content a:any-link :is(span, strong, code, svg) { color: inherit; }
+.docs-shell.reading-workspace .docs-sidebar a:any-link { color: #171717; }
+.docs-shell.reading-workspace .docs-sidebar a:any-link svg { color: inherit; }
+.docs-shell.reading-workspace .docs-content :is(p, li) a:any-link { text-decoration: underline; text-underline-offset: .18em; }
+.docs-shell.reading-workspace a.button.primary { background: #eff6ff; border-color: #bfdbfe; }
+.docs-shell.reading-workspace .guide-steps a[aria-current=step] > span { background: #dbeafe; }
 .studio-main { min-height: calc(100dvh - 69px); }
 .studio-page { height: calc(100dvh - 69px); min-height: 450px; display: flex; flex-direction: column; }
 .studio-workspace { display: grid; grid-template-columns: minmax(0,1fr) clamp(310px,28%,400px); flex: 1; min-height: 0; }

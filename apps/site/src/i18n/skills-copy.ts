@@ -153,5 +153,25 @@ export const skillsCopy: [string, string, string][] = [
     "只要 spec 時，在 Prompt 加上「這次只完成 spec，不建立播放器」。",
     "For a spec only, add “Deliver the spec only; do not implement the player.”",
     "仕様のみなら「今回は仕様のみで、プレイヤーは作成しない」と指定してください。"
+  ],
+  [
+    "MIT 授權與 AI 圖片商用提醒",
+    "MIT license and commercial use of AI images",
+    "MIT ライセンスと AI 画像の商用利用について"
+  ],
+  [
+    "程式碼與 Skills 採 MIT 授權；角色素材與生成圖片的權利另行確認。",
+    "Code and Skills use the MIT license; rights to character assets and generated images must be checked separately.",
+    "コードと Skills には MIT ライセンスを適用します。キャラクター素材と生成画像の権利は別途確認してください。"
+  ],
+  [
+    "透過 Skill 與 AI 工具生成或修改的圖片，可能涉及第三方權利，不保證可合法商用。商用前請自行確認素材授權與工具條款。",
+    "Images generated or edited with a Skill and AI tools may involve third-party rights and are not guaranteed lawful for commercial use. Check source permissions and tool terms before commercial use.",
+    "Skill と AI ツールで生成・編集した画像は第三者の権利に関わる可能性があり、適法な商用利用は保証されません。商用利用前に素材の許諾とツールの規約を確認してください。"
+  ],
+  [
+    "使用者須自行處理生成圖片的授權與使用爭議；Yuragi 不提供權利審查或法律爭議處理服務。雙方責任仍依適用法律判斷。",
+    "Users must address permissions and disputes over their use of generated images. Yuragi does not provide rights review or legal dispute handling. Both parties’ responsibilities remain subject to applicable law.",
+    "生成画像の許諾と利用上の紛争には利用者自身で対応してください。Yuragi は権利審査や法的紛争の処理サービスを提供しません。双方の責任は適用法令に従います。"
   ]
 ]

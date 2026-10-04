@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Yuragi preview QA</title><style>body{font:16px system-ui;margin:20px}button{padding:10px;margin:4px}iframe{width:100%;height:850px;border:1px solid #b4d6e7}pre{white-space:pre-wrap}</style>
+<h1>Generated-preview QA</h1><p>Isolated browser test harness; does not change the site or OS preferences.</p><button id="touch">Simulate touch drag and cancellation</button><button id="reduced">Load reduced motion fixture</button><button id="fallback">Load WebGL fallback fixture</button><button id="normal">Load normal preview</button><pre id="result">Ready</pre><iframe title="Generated Mirea preview" src="mirea-preview/preview.html"></iframe>
+<script>
+const frame=document.querySelector('iframe'),result=document.querySelector('#result');
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const state=()=>JSON.parse(frame.contentDocument.querySelector('#diagnostics').textContent);
+document.querySelector('#touch').onclick=async()=>{try{
+ const d=frame.contentDocument,w=frame.contentWindow,stage=d.querySelector('#stage');d.querySelector('#reset').click();await delay(250);
+ const r=stage.getBoundingClientRect();const send=(type,x,y,buttons)=>stage.dispatchEvent(new w.PointerEvent(type,{bubbles:true,pointerType:'touch',pointerId:9,buttons,clientX:r.left+r.width*x,clientY:r.top+r.height*y}));
+ send('pointermove',1,1,0);await delay(250);const hover=state();
+ send('pointermove',1,1,1);await delay(350);const drag=state();
+ send('pointermove',0,0,1);await delay(350);const reverse=state();
+ send('pointercancel',0,0,0);await delay(600);const cancel=state();
+ const passed=Math.abs(hover.face.gaze[0])<.01&&drag.face.gaze[0]>.8&&reverse.face.gaze[0]<-.8&&Math.abs(cancel.face.gaze[0])<.01;
+ result.textContent=JSON.stringify({touchSimulation:passed?'passed':'failed',hover,drag,reverse,cancel},null,2);
+}catch(error){result.textContent=error.stack}};
+for(const [id,url] of [['reduced','qa/reduced-motion.html'],['fallback','qa/no-webgl.html'],['normal','mirea-preview/preview.html']])document.querySelector('#'+id).onclick=()=>{frame.src=url;result.textContent='Fixture: '+id};
+</script></html>

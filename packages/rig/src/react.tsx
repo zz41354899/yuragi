@@ -51,3 +51,6 @@ export const YuragiCharacter = forwardRef<YuragiCharacterHandle, YuragiCharacter
     <canvas ref={canvas} aria-hidden="true" style={{ position: 'absolute', left: '-12%', top: '-12%', width: '124%', height: '124%', display: ready ? 'block' : 'none', pointerEvents: 'none' }} />
   </div>
 })
+
+export { YuragiLayeredCharacter } from './react-layered.js'
+export type { YuragiLayeredCharacterProps, YuragiLayeredCharacterHandle } from './react-layered.js'

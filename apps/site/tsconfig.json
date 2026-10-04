@@ -1,15 +1,42 @@
 {
   "compilerOptions": {
-    "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"], "strict": true,
-    "skipLibCheck": true, "noEmit": true, "jsx": "react-jsx",
-    "allowImportingTsExtensions": true, "resolveJsonModule": true,
-    "types": ["vite/client", "node"],
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
     "paths": {
-      "@yuragi/rig": ["../../packages/rig/src/index.ts"],
-      "@yuragi/rig/vue": ["../../packages/rig/src/vue.ts"],
-      "@yuragi/rig/react": ["../../packages/rig/src/react.tsx"]
+      "@yuragi/rig": [
+        "../../packages/rig/src/index.ts"
+      ],
+      "@yuragi/rig/vue": [
+        "../../packages/rig/src/vue.ts"
+      ],
+      "@yuragi/rig/react": [
+        "../../packages/rig/src/react.tsx"
+      ],
+      "@yuragi/rig/mirea": [
+        "../../packages/rig/src/mirea.ts"
+      ]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts"
+  ]
 }

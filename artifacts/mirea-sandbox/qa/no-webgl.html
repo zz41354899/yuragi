@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><base href="../"><script>
+const nativeContext=HTMLCanvasElement.prototype.getContext;
+HTMLCanvasElement.prototype.getContext=function(kind,...args){return kind==='webgl'?null:nativeContext.call(this,kind,...args);};
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091526">
+  <title>海月みれあ · Yuragi 動態沙盒</title>
+  <link rel="icon" href="data:,">
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: #091526; color: #e9f1fb; font: 15px/1.65 system-ui, sans-serif; }
+    button, select, input { font: inherit; }
+    button, select { color: inherit; background: #17263c; border: 1px solid #455878; border-radius: 10px; padding: 9px 13px; }
+    button { cursor: pointer; }
+    button:disabled { opacity: .4; cursor: default; }
+    button[aria-pressed="true"] { background: #bfdaf5; color: #14243d; border-color: #bfdaf5; }
+    :focus-visible { outline: 3px solid #9ee6ef; outline-offset: 4px; }
+    header { max-width: 1240px; margin: auto; padding: 25px 28px 14px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+    .eyebrow { margin: 0; color: #9ad8e5; font-size: 11px; letter-spacing: .17em; }
+    h1 { font-size: 24px; font-weight: 550; margin: 2px 0; }
+    .badge { border: 1px solid #41516b; padding: 5px 12px; border-radius: 30px; color: #c3d2e6; font-size: 12px; white-space: nowrap; }
+    main { max-width: 1240px; margin: auto; padding: 8px 28px 28px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; }
+    .stage { position: relative; min-width: 0; align-self: start; border: 1px solid #314459; border-radius: 22px; overflow: hidden; background: radial-gradient(ellipse at 49% 40%, #355575 0%, #172b46 50%, #0a172b 90%); display: grid; place-items: center; }
+    .stage { position: sticky; top: 16px; touch-action: none; }
+    .stage.is-panning { cursor: grab; touch-action: none; }
+    .stage.is-dragging { cursor: grabbing; }
+    .art { transform-origin: 50% 50%; }
+    .view-buttons { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+    .view-buttons button { padding: 7px 11px; font-size: 12px; }
+    #zoom-value { min-width: 48px; text-align: center; }
+    #zoom { width: 170px; }
+    .stage-label, .hint { pointer-events: none; }
+    .mode-note { min-height: 3.3em; margin-top: 10px; }
+    .modes { display: grid; grid-template-columns: 1fr; gap: 7px; }
+    .modes button { text-align: left; }
+    .mode-tag { position:absolute; top:16px; right:16px; z-index:4; background:#102438d9; color:#b4f1e4; border:1px solid #638d99; border-radius:20px; padding:4px 10px; font-size:11px; pointer-events:none; }
+    .target-dot { position:absolute; z-index:4; width:18px; height:18px; border:1px solid #aef4e1; border-radius:50%; transform:translate(-50%,-50%); pointer-events:none; box-shadow:0 0 16px #9cf0dc45; }
+    .response-dot { width:5px; height:5px; background:#f2d4ff; border:0; }
+    .motion-meter { height:4px; background:#24394e; border-radius:4px; margin:7px 0 11px; overflow:hidden; }
+    .motion-meter span { display:block; width:50%; height:100%; background:#a3e7d5; transition:width .1s linear; }
+    .curve-preview { width:100%; height:100px; background:#17263c; border-radius:8px; }
+    .stage[data-background="light"] { background: #edf5fa; }
+    .stage[data-background="checker"] { background-color: #eff3f6; background-image: conic-gradient(#d3dce4 25%, transparent 0 50%, #d3dce4 0 75%, transparent 0); background-size: 24px 24px; }
+    .stage-label { position: absolute; z-index: 2; top: 18px; left: 20px; color: #c8e5f5; font-size: 11px; letter-spacing: .15em; }
+    .stage[data-background="light"] .stage-label, .stage[data-background="checker"] .stage-label { color: #354b69; }
+    .art { position: relative; width: min(100%, calc(70vh * 2 / 3), 490px); aspect-ratio: 2 / 3; margin: 36px 0 30px; touch-action: none; }
+    #fallback { position: absolute; width: 100%; height: 100%; object-fit: contain; }
+    #canvas, #bindings { position: absolute; left: -12%; top: -12%; width: 124%; height: 124%; pointer-events: none; }
+    #canvas { visibility: hidden; }
+    #bindings { z-index: 3; overflow: visible; }
+    .hint { position: absolute; bottom: 12px; left: 16px; right: 16px; text-align: center; color: #a8c6dd; font-size: 11px; }
+    .stage[data-background="light"] .hint, .stage[data-background="checker"] .hint { color: #354b69; }
+    aside { display: flex; flex-direction: column; gap: 14px; }
+    .panel { padding: 20px; border: 1px solid #2d405b; border-radius: 17px; background: #101e32; }
+    h2 { font-size: 14px; margin: 0 0 12px; font-weight: 600; }
+    p { margin: 0 0 12px; }
+    .muted { color: #a9bbd2; font-size: 12px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; }
+    .presets { display: grid; gap: 8px; margin-bottom: 16px; }
+    .presets button { text-align: left; }
+    label { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 13px; }
+    input[type="checkbox"] { width: 18px; height: 18px; accent-color: #96d8e5; }
+    input[type="range"] { width: 135px; accent-color: #96d8e5; } output { font-size: 12px; color: #9ad8e5; }
+    select { max-width: 155px; }
+    #status { color: #ade3dc; font-size: 12px; min-height: 2em; }
+    dl { display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; margin: 12px 0 0; font-size: 12px; }
+    dt { color: #a9bbd2; } dd { margin: 0; font-variant-numeric: tabular-nums; }
+    details { font-size: 12px; color: #a9bbd2; } summary { cursor: pointer; color: #d5e3f6; }
+    details p { margin-top: 12px; }
+    a { color: #a8dcea; }
+    @media (max-width: 760px) { header { padding: 20px 16px 10px; } .stage { position: relative; top: auto; } main { padding: 8px 16px 24px; grid-template-columns: 1fr; gap: 16px; } h1 { font-size: 21px; } .badge { font-size: 10px; } .art { width: min(89%, 380px); margin: 36px 0 34px; } aside { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .panel:last-child { grid-column: 1 / -1; } }
+    @media (max-width: 520px) { aside { display: flex; } }
+  </style>
+</head>
+<body>
+  <header><div><p class="eyebrow">YURAGI · CHARACTER LAB</p><h1>海月みれあ / 水母公主</h1></div><span class="badge">全身互動沙盒</span></header>
+  <main>
+    <section class="stage" id="stage" data-background="night" aria-label="水母公主動態預覽">
+      <span class="stage-label">MIREA · MOONLIT TIDE</span><span id="mode-tag" class="mode-tag">游標跟隨</span><span id="pointer-target" class="target-dot" hidden></span><span id="pointer-response" class="target-dot response-dot" hidden></span>
+      <div class="art" id="art" tabindex="0" role="group" aria-label="角色互動區；方向鍵調整視線，離開時回正">
+        <img id="fallback" src="./texture.png" alt="海月みれあ，握著水母傘的銀紫髮偶像">
+        <canvas id="canvas" aria-hidden="true"></canvas>
+        <svg id="bindings" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true" hidden></svg>
+      </div>
+      <span class="hint">移動游標感受跟隨與回擺 · 空心圈是目標，亮點是跟隨方向 · 滾輪縮放</span>
+    </section>
+    <aside>
+      <section class="panel">
+        <h2>動態體驗模式</h2>
+        <div class="modes"><button data-mode="pointer" aria-pressed="true" disabled>01　游標跟隨</button><button data-mode="showcase" aria-pressed="false" disabled>02　流動展示</button><button data-mode="contact" aria-pressed="false" disabled>03　持傘與雙腿接點測試</button></div>
+        <p id="mode-note" class="muted mode-note">在舞台內畫圈或快速換方向。頭部先回應，上半身跟進，骨盆稍慢收住；瀏海與飄帶延遲回擺。</p>
+        <div class="controls"><button id="play" disabled>暫停</button><button id="reset" disabled>回到初始狀態</button></div>
+      </section>
+      <section class="panel">
+        <h2>檢視與縮放</h2>
+        <div class="view-buttons"><button id="zoom-out" aria-label="縮小">−</button><output id="zoom-value" aria-label="縮放比例">100%</output><button id="zoom-in" aria-label="放大">＋</button><button id="view-home">全身</button><button id="view-face">臉部</button><button id="view-legs">雙腿</button><button id="view-prop">持傘</button></div>
+        <label for="zoom">縮放<input id="zoom" type="range" min="50" max="400" step="1" value="100"></label>
+        <label for="pan-view">拖曳平移<input id="pan-view" type="checkbox"></label>
+        <p class="muted">滾輪縮放；放大後可開啟平移。觸控可用雙指縮放，檢視操作不會拉動角色。</p>
+      </section>
+      <section class="panel">
+        <h2>眼睛互動</h2><p class="muted">只讓瞳孔跟隨游標，保留原畫的眼皮與嘴巴。頭部、肩膀與骨盆有不同跟進節奏；可切換特寫檢查。</p>
+        <label for="eye-gaze">眼神跟隨<input id="eye-gaze" type="checkbox" checked disabled></label>
+        <p id="face-state" class="muted">等待載入眼神…</p>
+      </section>
+      <section class="panel">
+        <h2>動作質感</h2>
+        <p class="muted">身體、肩膀、持傘手與傘共用位移；骨盆和雙腳稍慢跟進。調低「部位層次」可比較全身移動與部位反應的差異。</p>
+        <div class="presets"><button data-preset="gentle" aria-pressed="true" disabled>貼近游標 · 俐落跟隨</button><button data-preset="breeze" aria-pressed="false" disabled>海風浮動 · 柔和收尾</button><button data-preset="test" aria-pressed="false" disabled>快速反轉 · 動態壓力測試</button></div>
+        <label for="follow">啟用追蹤<input id="follow" type="checkbox" checked disabled></label>
+        <label for="follow-strength">追蹤強度 <output id="follow-value">1.00×</output><input id="follow-strength" type="range" min="0.3" max="1.3" step="0.05" value="1" disabled></label>
+        <label for="float-range">漂移幅度 <output id="float-value">7.0%</output><input id="float-range" type="range" min="0" max="0.08" step="0.005" value="0.07" disabled></label>
+        <label for="flow-inertia">飄逸慣性 <output id="inertia-value">30%</output><input id="flow-inertia" type="range" min="0" max="1" step="0.05" value="0.3" disabled></label>
+        <label for="layer-strength">部位層次 <output id="layer-value">100%</output><input id="layer-strength" type="range" min="0" max="1" step="0.05" value="1" disabled></label>
+        <label for="detail-strength">髮束與衣料回擺 <output id="detail-value">1.00×</output><input id="detail-strength" type="range" min="0" max="1.3" step="0.05" value="1" disabled></label>
+        <label for="original">原圖對照<input id="original" type="checkbox" disabled></label>
+        <label for="show-bindings">顯示部位邊界<input id="show-bindings" type="checkbox" disabled></label>
+        <label for="part-select">檢視部位<select id="part-select" disabled><option value="all">全部部位</option></select></label>
+        <label for="background">舞台背景<select id="background"><option value="night">月夜藍</option><option value="light">淺色</option><option value="checker">透明棋盤</option></select></label>
+      </section>
+      <section class="panel">
+        <h2>跟隨節奏</h2><p class="muted">上半身 <output id="upper-motion">—</output></p><div class="motion-meter"><span id="upper-meter"></span></div><p class="muted">骨盆與雙腿 <output id="pelvis-motion">—</output></p><div class="motion-meter"><span id="pelvis-meter"></span></div><p id="status" role="status" aria-live="polite">正在載入本機模型…</p>
+        <button id="retry" hidden>重新載入</button>
+        <dl><dt>播放狀態</dt><dd id="playing">等待載入</dd><dt>部件／保護區域</dt><dd id="part-count">—</dd><dt>網格頂點</dt><dd id="vertices">—</dd><dt>動態保留率</dt><dd id="scale">—</dd><dt>變形梯度</dt><dd id="gradient">—</dd><dt>視線 X / Y</dt><dd id="look">—</dd><dt>漂移 X / Y</dt><dd id="travel">—</dd></dl>
+      </section>
+      <section class="panel"><details><summary>部位區域與分層的差別</summary><p>25 個局部區域各有遮罩邊界與彈簧設定，另有上半身／持傘與骨盆／雙腿兩個位移群組，仍共用連續原畫網格。疊圖顯示原圖座標的區域；它們並非可獨立抽出的完整圖層。</p><p>真正分層需要頭髮後面的皮膚、裙片後面的衣料等補全素材，才能移動得更大而不露洞。此版本保留原畫表情，只提供眼神、全身移動與受保護的腿部動作；不是 Spine 檔案播放器，尚無獨立圖層、IK 或大轉身。</p><p>尊重系統「減少動態效果」設定；載入或 WebGL 失敗時保留原圖。<a href="./model.json">檢視模型 JSON</a> · <a href="./prepared/parts-manifest.json">拆圖索引</a> · <a href="./prepared/parts-contact-sheet.png">拆件總覽</a> · <a href="./prepared/binding-overlay.png">拆件綁定圖</a></p></details></section>
+    </aside>
+  </main>
+  <script type="module" src="./sandbox.js"></script>
+</body>
+</html>

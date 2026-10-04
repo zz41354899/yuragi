@@ -1,0 +1,23 @@
+{
+  "node": "v25.9.0",
+  "runs": {
+    "before": [
+      1.602062950833333,
+      2.2734825691666676,
+      2.1444245483333333
+    ],
+    "after": [
+      1.5392778816666661,
+      1.5840903816666665,
+      1.8890660416666651
+    ]
+  },
+  "medians": {
+    "before": 2.1444245483333333,
+    "after": 1.5840903816666665
+  },
+  "relativeChange": -0.2612981497074186,
+  "maxDifference": 0,
+  "coreGzipBytes": 18939,
+  "scope": "Interleaved three-run CPU simulation/mesh/gaze comparison on the same device. Before removes this change’s four fixed-pin parent links. Debug overlays disabled; no browser/GPU/copy/overlay costs. 300 warm-up + 1200 measured frames per run. Simulation source is unchanged by the mesh snapshot API."
+}

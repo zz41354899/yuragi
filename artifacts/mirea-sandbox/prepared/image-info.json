@@ -1,0 +1,27 @@
+{
+  "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "width": 1024,
+  "height": 1536,
+  "hasTransparency": true,
+  "alphaRange": [
+    0,
+    254
+  ],
+  "visibleBoundsPixels": [
+    11,
+    5,
+    1008,
+    1526
+  ],
+  "visibleBounds": [
+    0.0107421875,
+    0.0032552083333333335,
+    0.984375,
+    0.9934895833333334
+  ],
+  "silhouetteCenter": [
+    0.5011051739581784,
+    0.43645325919360634
+  ],
+  "warnings": []
+}

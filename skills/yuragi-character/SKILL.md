@@ -1,11 +1,20 @@
 ---
 name: yuragi-character
+license: MIT
 description: "Create or extend an original virtual idol and reusable character artwork: establish a consistent baseline, then produce requested expressions, poses, scenes and asset packs. Use for character design and visual assets; use yuragi-rig-spec to animate an existing illustration with Yuragi."
 ---
 
 # Yuragi Character
 
 Turn an idea or existing illustration into reusable original character assets. These instructions are in English; communicate in the user's language and accept prompts in any language. Preserve the latest approved design. Complete the requested scope, prioritizing consistency and inspected assets over quantity.
+
+## License and AI disclosure
+
+These instructions and helper resources are MIT-licensed; see [LICENSE](LICENSE) and [license scope / output notice](LICENSE-SCOPE.md). Bundled or referenced character artwork has separate rights. The MIT license does not automatically license user inputs or generated results.
+
+When starting work, briefly tell the user in their language that the workflow uses AI assistance and, when requested, AI image generation or editing. Installing the Skill alone generates nothing. Continue within the user's authorized request; this notice does not require a separate confirmation. At delivery, identify the actual AI-generated or AI-edited files, original inputs and human edits in the handoff or asset manifest. Label prompts/specifications as such if no artwork was generated. Record known source permissions and unknowns; do not promise copyright ownership or unrestricted commercial use. This is workflow guidance, not an additional condition on MIT reuse.
+
+For AI image generation/editing, give one short commercial-use notice and include it in the delivered brief/manifest: images may involve third-party rights; lawful commercial use is not guaranteed. Users must check source permissions and tool terms and handle usage disputes themselves. Yuragi provides no rights-review or legal dispute-handling service; both parties' responsibilities remain subject to law. Keep the notice concise, avoid repeating it within the workflow and do not add an approval step solely for it.
 
 ## Route the work
 
@@ -15,7 +24,7 @@ Turn an idea or existing illustration into reusable original character assets. T
 | Baseline, expressions or poses | [Illustration workflow](references/illustration-and-imagegen-guide.md) and [quality gates](references/quality-and-delivery-guide.md) |
 | Backgrounds or composites | [Scene design](references/theme-and-scene-guide.md) and quality gates |
 | Asset pack or interaction assets | [Asset and motion guide](references/asset-and-motion-guide.md) |
-| Design references | [Reference library](references/reference-library.md); [Momo case study](references/momo-case-study.md) when relevant |
+| Design references | [Reference library](references/reference-library.md) |
 | Existing artwork to animate | Hand off the actual image and brief to `$yuragi-rig-spec` |
 
 Only create the backgrounds, variants, packages or code actually requested. A request for a character illustration does not imply a full asset library.
@@ -40,6 +49,6 @@ Character boards use already completed assets; they do not regenerate the charac
 
 Deliver `character-brief.md` with identity, fixed features, permitted changes, actual baseline path/version, measured pixel dimensions, alpha/quality status, desired moving parts, intended interactions and occlusions. Do not invent measurements.
 
-When the user wants an animated character, continue through `$yuragi-rig-spec`: AI inspects anatomy and writes annotations; its Python helper prepares visible-region extracts, a model, spec and local player preview. If that skill is not installed, provide the handoff and its name. Do not redesign an approved character or imply that replacing a texture automatically binds it.
+When the user wants an animated character, continue through `$yuragi-rig-spec`: The agent must read yuragi-rig-spec and its API contract first, inspect the actual art, annotate it, run Python inspect/extract/build --prepared, then open the built character folder in Yuragi Studio for editing and visual review. Read the rig Skill’s Studio reference and individual API documents. Studio preserves the original annotations as source records and exports the edited model, artwork, acceptance report and integration examples. Python does not launch Skills. If that skill is not installed, provide the handoff and its name. Do not redesign an approved character or imply that replacing a texture automatically binds it.
 
 Report actual files, references used, inspected outputs, completed checks and remaining work. Read linked references relative to this installed skill, not a developer's machine paths. Case-study links are optional evidence, not dependencies required to create a new character.

@@ -1,165 +1,241 @@
 # Yuragi · ゆらぎ
 
-讓插畫輕輕動起來。從 Kirameki Catch 的 Momo 系統抽出的 TypeScript library，附帶 Vue 文件網站、React／Vue 包裝與骨架遊樂場。
+**讓插畫輕輕動起來。**
 
-## 開啟專案
+Yuragi 是為網頁角色製作的 TypeScript 2D 動態工具。從待機搖擺、髮梢與衣料跟隨，到游標互動與眼神控制，把量測過的角色模型接到 Vue、React 或原生 JavaScript，保留插畫的原有風格。
 
-需要 Node.js 22.12 以上版本與 npm。
+專案包含動態引擎、以海月みれあ（Mirea）為主角的展示與文件網站、本機 Yuragi Studio，以及協助 AI 整理角色設計和模型製作流程的 Agent Skills。
+
+目前套件版本為 `0.2.0`，以本機建置與安裝為主，尚未發布至 npm。
+
+## 從哪裡開始
+
+| 你的目標 | 入口 |
+| --- | --- |
+| 看海月動起來、調整互動效果 | 啟動網站，開啟 `/playground` |
+| 把海月接到自己的網站 | [安裝套件](#安裝套件)與 [Vue 範例](#vue) |
+| 製作自己的角色模型 | [自訂角色流程](#製作自己的角色) |
+| 預覽、調整與驗收本機模型 | [Yuragi Studio](#yuragi-studio) |
+| 查閱模型欄位與播放器方法 | 網站 `/docs/api` 或 [API 參考](skills/yuragi-rig-spec/references/api/index.md) |
+
+## 啟動展示與文件網站
+
+需要 Node.js 22.12 以上版本與 npm。在專案根目錄執行：
 
 ```sh
 npm install
 npm run dev
 ```
 
-網站預設位址：<http://127.0.0.1:4310>
+預設網址為 `http://127.0.0.1:4310`，實際位址以終端機輸出為準。
 
-- `/`：首頁與 Momo 即時展示。
-- `/docs`：安裝、自製角色完整流程、Vue 主指南、React、原生 JavaScript 與完整播放器 API。
-- `/docs?section=custom-character`：準備圖片 → 建立模型 → 綁定控制點 → 預覽驗證 → Vue／React 載入，以及完整欄位規格與錯誤說明。
-- `/docs?section=skills`：Yuragi Skills 的安裝、角色設計與動態 spec 流程。
-- `/playground`：大畫布、浮動工具、右側參數面板，支援拖曳圖釘、方向鍵微調、50–300% 縮放與模型 JSON 匯入；不提供模型下載／匯出。
-- `/docs?section=component&framework=vue`：完整 Vue 整合、props、事件、ref、SSR 與清理說明。
-- `/docs?section=component&framework=react`：對應 React API 與實際掛載的 Strict Mode 範例。
-- `/docs?section=api&framework=react`：可用頁首選單切換 Vue／React；兩者共用 RigPlayer 方法。
+| 路徑 | 內容 |
+| --- | --- |
+| `/` | Yuragi 介紹與海月互動展示 |
+| `/playground` | 海月即時預覽、部件與動態調整 |
+| `/docs` | 安裝、模型製作與框架整合指南 |
+| `/docs?section=custom-character` | 自訂角色的圖片準備、綁定與驗證 |
+| `/docs?section=eyes` | 眼神控制、前置條件與素材製作流程 |
+| `/docs?section=skills` | Agent Skills 安裝與使用 |
+| `/docs?section=component&framework=vue` | Vue 元件、事件與生命週期 |
+| `/docs?section=component&framework=react` | React 元件與整合範例 |
+| `/docs/api` | 公開 API 索引與個別方法說明 |
 
-遊樂場的縮放／平移只改變視圖，不會改寫模型座標。選取「編輯圖釘」後拖曳，或用方向鍵每次移動 0.001（Shift 為 0.01）；拖曳時暫停動畫，放開後恢復原本的播放狀態。「重設視圖」保留骨架修改，「還原預設」則還原 Momo 模型。此編輯器仍只支援既有 Momo 圖片，不會替任意新圖片自動綁定。
+網站提供繁體中文、英文與日文，預設為繁體中文。可透過語言選單切換，或在網址加入 `?lang=zh-TW`、`?lang=en`、`?lang=ja`。
 
-網站字體採本機提供的 Adobe Source Han Sans TW（思源黑體繁中）；日文使用 Source Han Sans JP。字體來源與 OFL 授權在 `apps/site/public/fonts/`。
+遊樂場以海月的既有模型為展示對象，可調整眼神強度、待機節奏與部件彈性，並查看骨架、綁定區域及網格。介面的「圖層」是 v1 共用表面的部件分組；獨立附件使用另一套 v2 模型。自訂角色請使用本機 Studio，網站不提供模型 JSON 匯入、模型匯出或套件下載。
 
-## 專案結構
+## 安裝套件
 
-```text
-packages/rig/
-  src/
-    types.ts          公開模型與播放器型別
-    momo.ts           Momo 的原圖尺寸、骨架與局部動態設定
-    simulation.ts     框架無關的控制點與網格計算
-    hair.ts           頭髮彈性與網格綁定
-    accessories.ts    耳朵、緞帶與配件跟隨
-    sway.ts           待機搖擺
-    validation.ts     外部模型資料驗證
-    player.ts         WebGL、時間與資源管理
-    vue.ts            Vue 3 包裝
-    react.tsx         React 18／19 包裝
-  test/               原始 Momo 動作比對、網格與框架 SSR 測試
-apps/site/
-  src/pages/          首頁、文件、遊樂場
-  public/models/momo/ 網站展示用 Momo 原畫，不提供模型 JSON
-artifacts/
-  yuragi-rig-0.1.0.tgz 獨立套件安裝包
-  momo-model.zip      圖片與模型包
-  qa/                瀏覽器驗證截圖與交付記錄
-```
-
-## 在另一個專案安裝
-
-目前尚未發布到 npm。先在 Yuragi 執行 `npm run build:lib`，再從本機套件目錄安裝：
+先在 Yuragi 專案根目錄建置並打包：
 
 ```sh
-npm install /path/to/yuragi/packages/rig
+npm run pack:lib
 ```
 
-模型與圖片隨套件的 `assets/` 目錄提供。把 `node_modules/@yuragi/rig/assets/momo` 複製到目標網站的 `public/models/momo`。人形起始模型位於 `assets/starter/model.json`；網站不再提供獨立 JSON、模型包或套件包下載。未來正式發布後才可執行 `npm install @yuragi/rig`，目前不能宣稱 npm 已可安裝。
+此指令會建置引擎與 Studio，並在 `artifacts/` 產生本機安裝包。接著在你的目標專案執行，將路徑換成實際檔案位置：
 
-### Vue（主要使用方式）
+```sh
+npm install /path/to/yuragi/artifacts/yuragi-rig-0.2.0.tgz
+```
+
+也可在執行 `npm run build:lib` 後，安裝本機的 `packages/rig` 目錄。打包不會發布 npm；目前請使用實際的本機路徑。
+
+### 準備海月素材
+
+套件內含 `assets/mirea/model.json` 與 `assets/mirea/texture.png`。把目標專案中 `node_modules/@yuragi/rig/assets/mirea/` 的內容複製到網站的 `public/models/mirea/`。
+
+`createMireaModel()` 預設使用 `/models/mirea/texture.png`，也接受自訂圖片 URL。安裝套件不會自動把素材複製到網站；調整路徑時須同步更新模型的圖片來源。角色素材的使用範圍見 [授權說明](#授權與-ai-產出)。
+
+### Vue
+
+Vue 是主要文件與網站使用的框架。目標專案需安裝 Vue 3.5 以上版本。
 
 ```vue
 <script setup lang="ts">
-import { createMomoModel, type RigPlayer } from '@yuragi/rig'
+import { createMireaModel } from '@yuragi/rig/mirea'
 import { YuragiCharacter } from '@yuragi/rig/vue'
 
-const model = createMomoModel('/models/momo/texture.webp')
-let player: RigPlayer | undefined
+const model = createMireaModel('/models/mirea/texture.png')
 </script>
 
 <template>
   <div style="width: 320px">
-    <YuragiCharacter :model="model" @ready="instance => player = instance" />
+    <YuragiCharacter :model="model" alt="海月みれあ" />
   </div>
-  <button @click="player?.wave()">打個招呼</button>
 </template>
 ```
 
+元件處理畫布比例、動態留白、備援原畫、載入取消與卸載清理。透過 `ready` 事件取得播放器後，可呼叫 `setPointer()`、`setMotion()` 等方法加入自己的互動。
+
 ### React
 
+React 18.3／19 使用獨立入口：
+
 ```tsx
-import { useMemo, useRef } from 'react'
-import { createMomoModel, type RigPlayer } from '@yuragi/rig'
+import { useMemo } from 'react'
+import { createMireaModel } from '@yuragi/rig/mirea'
 import { YuragiCharacter } from '@yuragi/rig/react'
 
 export function Character() {
-  const model = useMemo(() => createMomoModel('/models/momo/texture.webp'), [])
-  const player = useRef<RigPlayer | null>(null)
+  const model = useMemo(() => createMireaModel('/models/mirea/texture.png'), [])
 
-  return <>
+  return (
     <div style={{ width: 320 }}>
-      <YuragiCharacter model={model} onReady={instance => { player.current = instance }} />
+      <YuragiCharacter model={model} alt="海月みれあ" />
     </div>
-    <button onClick={() => player.current?.wave()}>打個招呼</button>
-  </>
+  )
 }
 ```
+
+使用 `onReady` 取得播放器。Vue 與 React 是選配依賴，主入口不會載入任一框架。
 
 ### 原生 TypeScript
 
 ```ts
-import { createPlayer, createMomoModel } from '@yuragi/rig'
+import { createPlayer } from '@yuragi/rig'
+import { createMireaModel } from '@yuragi/rig/mirea'
+
+const canvas = document.querySelector<HTMLCanvasElement>('#mirea')
+if (!canvas) throw new Error('找不到角色畫布')
 
 const player = await createPlayer({
-  canvas: document.querySelector<HTMLCanvasElement>('#momo')!,
-  model: createMomoModel('/models/momo/texture.webp'),
+  canvas,
+  model: createMireaModel('/models/mirea/texture.png'),
 })
-player.setMotion({ sway: .8, hair: 1.2 })
-player.setPin('head-root', { radius: .2 })
-player.wave()
-// 離開畫面時
+
+player.setMotion({ sway: 0.8, hair: 1.2 })
+player.setPointer(0.3, -0.2)
+player.setGaze(0.6, -0.2)
+
+// 頁面或角色移除時呼叫。
 player.destroy()
 ```
 
-原生 Canvas 的容器保持圖片比例，canvas 放大至 124%，left 與 top 設為 -12%，提供動態 overscan 空間。Vue 與 React 包裝已經處理。
+原生整合需自行設定容器比例、備援圖片與生命週期。畫布四側各預留 12% 動態空間：容器保持原圖比例，canvas 的寬高設為 `124%`，`left`／`top` 設為 `-12%`。播放器支援 `AbortSignal`；`destroy()` 可重複呼叫。
 
-## 調整與模型資產
+## 兩種模型與引擎
 
-第一次製作自己的角色，請從 [完整繁體中文指南](docs/custom-character.zh-TW.md) 開始。安裝套件後，從 `node_modules/@yuragi/rig/assets/starter/model.json` 複製起始模型。起始模型不含圖片，座標是示意值，必須依原圖重新綁定。目前網站遊樂場專門編輯 Momo，不適合驗證其他圖片的模型綁定。
+套件版本與模型版本各自管理。`@yuragi/rig@0.2.0` 同時提供 v1 和 v2，兩種模型使用各自的播放器與驗證器。
 
-「可以擴充」不等於「任何圖片都能自動套用」。類似 Momo 的人形角色最容易延伸；動物、四足、翅膀或不同結構需要擴充引擎動作綁定。
+| | v1：共用表面 | v2：獨立分層 |
+| --- | --- | --- |
+| 模型型別 | `RigModel`，`version: 1` | `LayeredModel`，`version: 2`、`renderer: 'layered'` |
+| 播放與驗證 | `createPlayer`、`validateModel` | `createLayeredPlayer`、`validateLayeredModel` |
+| 框架元件 | `YuragiCharacter` | `YuragiLayeredCharacter` |
+| 素材結構 | 原圖共用網格、控制點與局部變形區域 | 圖集、獨立附件、父子節點與稀疏頂點權重 |
+| 動態能力 | 待機、頭部與游標跟隨、髮束／配件彈性、眼神及動畫曲線 | 階層變換、局部彈簧、共享接點、附件繪製順序與靜態 alpha 遮罩 |
+| 臉部控制 | 經標註的眼睛可用 `setGaze`／`setGazeStrength`；眼皮與嘴巴保留原畫 | 配備對應附件與 face 綁定時，可用 `setGaze`／`setFace` 控制眼神、眼睛開合與嘴形 |
+| Studio | 可編輯與驗收 | 預覽與檢查，模型編輯受限 |
 
-遊樂場可調整待機幅度、速度、頭髮、配件與游標影響。選取骨架控制點後，可修改位置、半徑與彈性參數並即時預覽。網站不提供 JSON 匯出／下載；在自己安裝的套件中，仍可使用 `player.getModel()` 處理自己的模型資料。
+海月內建主範例使用 v1。持傘手與道具需要保護，不適合直接套用揮手。替換圖片也不會自動重建控制點、網格或臉部綁定。
 
-`reset()` 恢復中立姿態，保留模型編輯；遊樂場的「還原預設」則恢復完整 Momo 預設。
+v2 需要作者準備完整分層素材。只抽出原圖中看得到的像素，仍會缺少被頭髮、衣服或道具遮住的部分；大幅移動前須補齊並驗收。詳細資料見 [分層引擎指南](docs/layered-engine.zh-TW.md)與 [v2 型別契約](packages/rig/src/layered-types.ts)。
 
-`model.json` 的 texture.src 預設為 `/models/momo/texture.webp`。搬到其他路徑時，請同步更新來源。跨來源圖片需要圖片服務提供 CORS。
+每幀動態由引擎管理，UI 使用低頻快照更新。框架元件支援 SSR 安全匯入、減少動態偏好與失敗時的原畫顯示。原生整合則需接好對應的載入、錯誤與清理流程。
 
-## Yuragi Skills
+## Yuragi Studio
 
-同一個 Yuragi 專案提供兩個可一起安裝、也可分開使用的 skill：
+Studio 隨本機套件預先建置，安裝後即可啟動：
 
-- [`yuragi-character`](skills/yuragi-character/SKILL.md)：由 Kirameki Catch 的 Idol Bloom 搬入並以 Yuragi 重新命名，從零設計角色或延伸素材，交付角色基準與 `character-brief.md`。
-- [`yuragi-rig-spec`](skills/yuragi-rig-spec/SKILL.md)：AI 判讀既有原畫，使用本機 Python 輔助工具產出可見部位、綁定、`model.json`、`rig-spec.md` 與實際 API 播放預覽；也支援只寫 spec。
+```sh
+npx yuragi studio --project ./my-character --out ./yuragi-output
+```
 
-在要使用 AI 的目標專案目錄安裝（把路徑換成取得的 Yuragi checkout）：
+`my-character/` 可包含 `model.json` 與其引用的本機相對路徑圖片；也支援透過 `project.json` 管理已編譯的模型版本。Studio 只監聽 `127.0.0.1`，啟動時會印出本機網址。
+
+- v1 可調整控制點、區域與模型參數，儲存草稿並即時預覽。
+- v2 可檢查節點、附件、圖集、網格與診斷資料。
+- 版本專案可載入 `project.json` 指定的模型版本；交付紀錄保留模型與素材指紋，供後續修正比對。
+- 交付前須通過模型驗證，並完成目前版本的視覺檢查。格式通過或已儲存草稿，都不代表動態已驗收。
+
+交付會建立新的資料夾，包含 `model.json`、素材、`acceptance.json` 與 Vue／React／原生 JavaScript 整合範例。原始圖片和標註保留；模型或素材變更後需重新檢查。
+
+使用 `--port 4321` 指定埠號，`--no-open` 只輸出網址。省略 `--project` 可開啟起始畫面與內建海月範例。安裝套件不會自動啟動 Studio，使用者也不需另行安裝 Vite。
+
+需要離線瀏覽器檢查圖時，可在裝有 Playwright 與 Chromium 的目標專案執行：
+
+```sh
+npx yuragi review --project ./my-character --out ./review-output
+```
+
+輸出路徑須為新的資料夾。檢查圖仍需實際觀看，不能代替視覺驗收。完整流程見 [Studio 使用指南](skills/yuragi-rig-spec/references/studio.md)。
+
+## 製作自己的角色
+
+從 [完整繁體中文指南](docs/custom-character.zh-TW.md)開始，或把製作工作交給 Yuragi Skills 協助。
+
+1. **確認原畫與動作範圍。** 保留來源，標出可動部位、固定道具及遮擋限制。
+2. **量測並標註。** 依實際圖片設定控制點、區域、材質反應與必要的臉部資料。
+3. **建置模型。** v1 可參考套件的 `assets/starter/model.json`；v2 使用獨立作者 manifest 與分層素材。
+4. **在實際播放器中檢查。** 查看中立姿態、各方向、快速反轉、接縫、道具接觸及減少動態模式。
+5. **修正、驗收與整合。** 使用 Studio 記錄觀察，再把模型和素材接到自己的網站。
+
+Starter 是示意範本，未附圖片，座標必須依原畫重新設定。動物、四足、翅膀或不同角色結構需要適合的動作綁定。模型內的相對圖片路徑須由載入端解析；Studio 交付範例提供以模型 URL 為基準的載入方式。
+
+### Agent Skills
+
+| Skill | 用途 |
+| --- | --- |
+| [`yuragi-character`](skills/yuragi-character/SKILL.md) | 設計或延伸角色，整理角色基準、素材與 `character-brief.md` |
+| [`yuragi-rig-spec`](skills/yuragi-rig-spec/SKILL.md) | 判讀原畫、制定動作、協助標註與建置模型，產出規格和播放器預覽 |
+
+在使用 AI 的目標專案安裝，將路徑換成你的 Yuragi checkout：
 
 ```sh
 npx skills add /path/to/yuragi --skill yuragi-character yuragi-rig-spec
 ```
 
-已有角色時可只安裝 `--skill yuragi-rig-spec`。使用 `$yuragi-character` 建立角色基準，再把摘要與實際原畫交給 `$yuragi-rig-spec`；已完成角色可直接從第二步開始。兩份 skill 與所有隨附指南均以英文撰寫，接受各種語言 Prompt 並以使用者的語言回答。安裝 skill 不會安裝播放器 library 或生成圖片。
+已有角色時，可只安裝 `yuragi-rig-spec`。安裝後以 `$yuragi-character` 或 `$yuragi-rig-spec` 提出需求。Skill 工作文件以英文撰寫，可接受不同語言的需求並以使用者語言回覆。
 
-轉換流程是 AI 看圖與選動作 → Python 量測與依註記抽取可見部位 → 綁定模型 → 本機 Yuragi API 播放 → 視覺檢查與修正。工具不會自己識別人體或補回被遮住的像素；非人形／不確定造型使用保守整體微動，不適合或持道具的手臂不啟用揮手。
+v1 製作流程為 **inspect → AI 標註 → extract → build → 播放與視覺修正**。AI 負責看圖與決定綁定；本機 Python／Pillow 工具依標註量測、抽取可見像素，並透過實際 runtime 驗證模型。Python 不會自行辨識角色或補回遮住的圖像。v2 另用 `build_layers.py` 建置分層模型。
 
-Python 3.10+ 與 Pillow 安裝及操作見 [preparation workflow](skills/yuragi-rig-spec/references/character-preparation.md)。使用 `--rig-package` 指向已建置／安裝的本機 library，產生可透過 HTTP 開啟的 `preview.html`。產出資料仍需呼叫 validateModel 並檢查實際動態。新增的可選 `pose.headWarpBounds` 對應不同角色的頭部位置，省略時保留 Momo 原始變形。
+安裝 Skill、runtime 與 Python 工具是不同步驟，安裝本身不會生成圖片。操作與環境需求見 [角色準備流程](skills/yuragi-rig-spec/references/character-preparation.md)。
 
-網站提供 `/.well-known/skills/index.json` 與完整 skill 資源供官方 [Skills CLI](https://github.com/vercel-labs/skills) 發現。本機伺服器開啟時也可測試：
+`skills/` 是 Skill 的編輯來源。`npm run sync:skills` 同步必要的型別與指南，並產生網站 `/.well-known/skills/` 分發資源；網站 dev、test、build 會先執行同步。分發不包含角色原畫或 runtime 套件。
 
-```sh
-npx skills add http://127.0.0.1:4310 --skill yuragi-character yuragi-rig-spec
+## 專案結構
+
+```text
+packages/rig/       TypeScript 引擎、框架包裝、CLI 與內建模型
+apps/site/          Vue 展示網站、遊樂場與三語文件
+apps/studio/        本機 Studio 的 Vue 介面
+skills/             角色設計與模型製作 Skills、Python 工具
+scripts/            素材同步、API 產生、打包驗證與輔助工具
+docs/              模型指南、引擎契約與版本說明
+artifacts/          本機安裝包、預覽素材與驗證紀錄
 ```
 
-網址 port 以 dev server 實際輸出為準。公開網站後，在安裝指令換成該網站的 origin；文件頁會依目前網址顯示指令。現在沒有設定 Git remote，也尚未公開網站，不能宣稱其他人已可從公開網址安裝。
+Vue／React 與海月資料各有獨立匯入入口：
 
-`skills/` 是唯一編輯來源。`npm run sync:skills` 同步 rig 型別、完整角色指南與 starter，並建立網站的 skill 分發目錄；網站 dev、test、build 都會先執行。分發包含英文工作文件、Python 工具與示意模型，不包含 Momo 原畫或 runtime 套件。變更 API 時也須更新 `skills/yuragi-rig-spec/references/api-reference.md` 的行為說明。
+```text
+@yuragi/rig         核心播放器、模擬、驗證器與型別
+@yuragi/rig/vue     Vue 元件
+@yuragi/rig/react   React 元件
+@yuragi/rig/mirea   createMireaModel()
+```
 
-## 驗證與打包
+## 開發與驗證
 
 ```sh
 npm run typecheck
@@ -169,29 +245,24 @@ npm run pack:lib
 npm run preview
 ```
 
-核心測試使用原始 Momo 系統產生的資料比對：游標反轉、揮手與預設變形；Python 工具測試：安裝 Pillow 後執行 `python3 -m unittest discover -s scripts/tests -v`。
+測試涵蓋數值變形基準、模型驗證、框架 SSR、載入取消、資源清理、分層綁定與 Studio 流程。UI 變更也需要在實際瀏覽器檢查。
 
-另外檢查待機幅度、三角形方向、設定上限與不合法資料。Vue／React 包裝也有 SSR 測試。
+Python 工具需 Python 3.10 以上版本與 Pillow，測試指令為：
 
-`npm run pack:lib` 產生獨立 ESM 套件，含 TypeScript declarations、`assets/momo` 與 `assets/starter`。安裝包只留在本機 `artifacts/`，不要放回網站的 public 目錄；這個指令不會發布 npm。
+```sh
+python3 -m unittest discover -s scripts/tests -v
+```
 
-## 目前範圍
+變更公開 API 後，執行 `npm run sync:api` 與 `npm run sync:skills`，並更新行為說明。0.2.0 的 API 遷移見 [版本說明](docs/releases-0.2.0.md)。
 
-- 角色模型已抽成資料，動態核心可以與自訂渲染器配合。
-- v0.1 仍使用 Momo 的人形控制點語意名稱來驅動轉頭與揮手。新角色需要調整自己的圖片尺寸、座標、姿態區域與頭髮／配件綁定。
-- 單張圖片的網格變形適合小幅姿態與局部跟隨。眨眼、嘴型、大角度轉身與遮擋切換尚未實作。
-- 本版沒有 MCP server、Plugin 或外部 AI API；由使用 skill 的 AI 看圖判讀，本機 Python 工具不內建語意辨識模型。
-- 未部署網站、未發布 npm 套件；原 Kirameki Catch 專案保留。
+## 目前邊界
 
-## 設計參考
+Yuragi 適合已綁定角色的網頁動態與預覽。分層渲染和臉部控制都依賴對應素材；目前未提供通用自動綁定、遮擋補圖、IK、Spine 匯入、多動畫混合或語音口型同步。
 
-- [hololive 官方網站](https://hololive.hololivepro.com/)：清亮青藍色與白底的配色方向。Yuragi 使用原創英文字標、Y 形搖擺線條標記與 Momo 原素材。
+Studio 和 Python 工具在本機執行。專案目前沒有 MCP server、Plugin 或內建外部 AI API，也未部署公開網站。Agent Skills 由使用者選用的 AI 助手載入與執行。
 
-- [CLIP STUDIO PAINT 日本官網](https://www.clipstudio.net/ja/)：角色主視覺、明確的試用入口與創作導向介紹。
-- [ibisPaint](https://ibispaint.com/)：作品與創作者內容優先的呈現。
+## 授權與 AI 產出
 
-Yuragi 採用自己的排版、色彩與 Momo 原素材，沒有搬用參考網站的圖片或程式碼。
+Yuragi 自有程式碼、文件、Skills、輔助工具、通用範本與模型綁定資料採 [MIT 授權](LICENSE)。角色插畫、貼圖、角色形象及品牌素材不包含在此授權中；第三方素材依各自條款使用。詳見 [授權範圍與 AI 產出說明](LICENSE-SCOPE.md)。
 
-## 網站語系
-
-網站使用 Vue I18n 11，提供完整繁體中文、英文、日文文案，首次開啟預設為繁體中文。右上角語言選單會保留選擇；頁面標題、HTML lang、替代文字與程式碼註解同步更新。也可透過 `?lang=zh-TW`、`?lang=en`、`?lang=ja` 分享指定語系。語系資源位於 `apps/site/src/i18n/`。
+Skill 交付應說明實際 AI 參與、來源素材與本機處理範圍。原畫和抽取的可見像素不應標為新生成圖片。AI 生成或修改的圖片不保證可合法商用；商用前須確認素材授權與工具條款。Yuragi 不提供權利審查或法律爭議處理服務。

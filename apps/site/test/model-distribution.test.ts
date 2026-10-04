@@ -11,5 +11,5 @@ test('website offers no model or package download endpoints or export controls',
     assert.doesNotMatch(code, /href=["']\/downloads\//)
     assert.doesNotMatch(code, /@click=["']exportModel["']/)
   }
-  assert.ok(existsSync(new URL('../../../packages/rig/assets/momo/model.json', import.meta.url)))
+  assert.ok(existsSync(new URL('../../../packages/rig/assets/mirea/model.json', import.meta.url)))
 })

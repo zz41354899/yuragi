@@ -1,0 +1,27 @@
+- heading "Generated-preview QA" [level=1]
+- paragraph: Isolated browser test harness; does not change the site or OS preferences.
+- button "Simulate touch drag and cancellation"
+- button "Load reduced motion fixture"
+- button "Load WebGL fallback fixture" [active]
+- button "Load normal preview"
+- generic: "Fixture: fallback"
+- iframe:
+  - main:
+    - heading "海月みれあ · 水母公主" [level=1]
+    - paragraph: Small motion on your original artwork. Review the binding before increasing intensity.
+    - group "Character pointer and arrow-key controls":
+      - img "海月みれあ · 水母公主"
+    - button "Play" [disabled]
+    - button "Pause" [disabled]
+    - button "Wave" [disabled]
+    - button "Reset" [disabled]
+    - text: Motion strength
+    - slider "Motion strength"
+    - status: WebGL is unavailable. Original artwork remains available; check browser WebGL support and local runtime files.
+    - paragraph:
+      - link "Binding overlay":
+        - /url: ./binding-overlay.png
+      - text: ·
+      - link "Rig spec":
+        - /url: ./rig-spec.md
+    - generic: Waiting for player

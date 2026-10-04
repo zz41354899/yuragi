@@ -179,7 +179,6 @@ h1, h2, h3 { font-weight: 700; }
 .home-invite > p { color: #82cce6; font-size: 11px; font-weight: 600; }
 .home-invite h2 { font-size: 36px; font-weight: 800; letter-spacing: -.04em; }
 .home-invite .button.light { background: #bceeff; color: #10364d; }
-.site-footer { max-width: 1280px; padding: 0 48px 32px; }
 .docs-content h1 { font-weight: 650; letter-spacing: -.018em; line-height: 1.45; }
 .docs-content h2 { font-weight: 700; }
 .playground-heading h1 { font-weight: 650; letter-spacing: -.015em; line-height: 1.5; }
@@ -190,7 +189,7 @@ h1, h2, h3 { font-weight: 700; }
 :lang(en) .section-heading h2, :lang(en) .home-start h2 { font-size: 36px; }
 @media (max-width: 1100px) {
   .home-hero { gap: 30px; padding-left: 32px; padding-right: 32px; }
-  .site-header, .section-shell, .site-footer { padding-left: 32px; padding-right: 32px; }
+  .site-header, .section-shell { padding-left: 32px; padding-right: 32px; }
   .hero-copy h1 { font-size: 52px; }
   .hero-preview-stage { min-height: 420px; }
   .hero-art .character-stage { width: 270px; }
@@ -276,7 +275,6 @@ h1, h2, h3 { font-weight: 700; }
   .workflow-note { font-size: 11px; }
   .home-invite { margin: 0 22px 35px; padding: 35px 18px; border-radius: 16px; }
   .home-invite h2 { font-size: 27px; }
-  .site-footer { padding: 0 22px 25px; }
   :lang(en) .hero-copy h1 { font-size: clamp(38px, 10.7vw, 48px); }
   :lang(ja) .hero-copy h1 { font-size: clamp(22px, 7.1vw, 34px); }
   :lang(en) .hero-motion-control button, :lang(ja) .hero-motion-control button { font-size: 10px; padding: 9px 5px; }

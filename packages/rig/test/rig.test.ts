@@ -1,11 +1,12 @@
+import { createTestModel } from './fixtures/model.js'
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { createSimulation, createMomoModel, validateModel, toCanvas } from '../src/index.js'
+import { createSimulation,  validateModel, toCanvas } from '../src/index.js'
 const baseline = JSON.parse(readFileSync(new URL('./baseline.json', import.meta.url), 'utf8')) as { frame: number; diagnostics: { motionScale: number }; positions: number[]; parameters: Record<string, number> }[]
 
-test('extracted default preserves original Momo deformation under pointer reversal and wave', () => {
-  const rig = createSimulation(createMomoModel())
+test('extracted default preserves original legacy fixture deformation under pointer reversal and wave', () => {
+  const rig = createSimulation(createTestModel())
   const mesh = rig.buildContinuousMesh()
   for (let frame = 1; frame <= 180; frame++) {
     if (frame === 30) rig.setPointer(.3, -.2)
@@ -23,7 +24,7 @@ test('extracted default preserves original Momo deformation under pointer revers
 })
 
 test('idle remains visible and its triangles preserve orientation', () => {
-  const rig = createSimulation(createMomoModel())
+  const rig = createSimulation(createTestModel())
   const mesh = rig.buildContinuousMesh()
   let minimum = Infinity, left = Infinity, right = -Infinity
   for (let frame = 1; frame <= 720; frame++) {
@@ -44,7 +45,7 @@ test('idle remains visible and its triangles preserve orientation', () => {
 })
 
 test('models and simulations have isolated mutable state', () => {
-  const original = createMomoModel()
+  const original = createTestModel()
   const first = createSimulation(original), second = createSimulation(original)
   first.setPin('head-root', { x: .6, stiffness: .09 })
   first.setMotion({ sway: 1.5 })
@@ -57,7 +58,7 @@ test('models and simulations have isolated mutable state', () => {
 })
 
 test('turning off local motion removes hair and accessory displacement', () => {
-  const model = createMomoModel()
+  const model = createTestModel()
   model.motion = { sway: 0, speed: 1, hair: 0, accessories: 0, follow: 1 }
   const rig = createSimulation(model), mesh = rig.buildContinuousMesh()
   for (let i = 0; i < 120; i++) rig.updatePins(i * 16.67, 16.67)
@@ -69,7 +70,7 @@ test('turning off local motion removes hair and accessory displacement', () => {
 })
 
 test('edited geometry changes skinning while remaining finite at maximum settings', () => {
-  const rig = createSimulation(createMomoModel())
+  const rig = createSimulation(createTestModel())
   rig.setPin('head-root', { x: .58, radius: .12 })
   rig.setMotion({ sway: 2, speed: 2, hair: 2, accessories: 2, follow: 2 })
   const mesh = rig.buildContinuousMesh()
@@ -83,21 +84,21 @@ test('edited geometry changes skinning while remaining finite at maximum setting
 })
 
 test('invalid input is rejected before changing live settings', () => {
-  const rig = createSimulation(createMomoModel())
+  const rig = createSimulation(createTestModel())
   assert.throws(() => rig.setMotion({ speed: 0 }))
   assert.throws(() => rig.setPin('head-root', { x: Infinity }))
   assert.equal(rig.model.motion.speed, 1)
   assert.equal(rig.model.pins.find(p => p.name === 'head-root')!.x, .52)
-  const model = createMomoModel()
+  const model = createTestModel()
   model.pins[0].parent = 'head-root'
   assert.throws(() => validateModel(model), /cyclic/)
-  const wrong = createMomoModel()
+  const wrong = createTestModel()
   wrong.mesh.rows = 1.5
   assert.throws(() => validateModel(wrong))
 })
 
 test('custom head warping follows measured vertical bounds without changing the legacy preset', () => {
-  const input = createMomoModel()
+  const input = createTestModel()
   const custom = structuredClone(input)
   custom.pose.headWarpBounds = [.28, .55]
   const original = createSimulation(input), adapted = createSimulation(custom)

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, shallowRef } from 'vue'
 import { RouterLink } from 'vue-router'
-import { createMomoModel, type RigPlayer } from '@yuragi/rig'
+import { type RigPlayer } from '@yuragi/rig'
+import { createMireaDemoModel } from '../models/mirea'
 import CharacterStage from './CharacterStage.vue'
 import Icon from './Icon.vue'
 import { useText } from '../i18n'
 import { clamp, imagePoint, movePin, zoomAtPoint, type Point } from '../editor/viewport'
 const { tr } = useText()
-const model = createMomoModel()
+const model = createMireaDemoModel()
 const pins = ref(structuredClone(model.pins).filter(pin => /^(head|ear|hair)/.test(pin.name)))
 const player = shallowRef<RigPlayer>()
 const selectedName = ref('head-root')
@@ -61,7 +62,7 @@ function reset() { finish(); zoom.value = 1.2; pan.value = { x: 0, y: 0 } }
 onBeforeUnmount(() => { finish(); cancelAnimationFrame(frame) })
 </script>
 <template>
-  <div class="stage-mini-editor">
+  <div class="stage-mini-editor mirea-mini-editor">
     <div class="stage-editor-toolbar"><div class="stage-editor-tools"><button :class="{ selected: tool === 'pins' }" :aria-pressed="tool === 'pins'" @click="tool = 'pins'"><Icon name="pin" />{{ tr('圖釘') }}</button><button :class="{ selected: tool === 'pan' }" :aria-pressed="tool === 'pan'" @click="tool = 'pan'"><Icon name="move" />{{ tr('平移') }}</button></div><div class="stage-editor-zoom"><button :aria-label="tr('縮小')" :disabled="zoom <= .5" @click="changeZoom(zoom - .2)">−</button><output>{{ Math.round(zoom * 100) }}%</output><button :aria-label="tr('放大')" :disabled="zoom >= 3" @click="changeZoom(zoom + .2)">+</button><button :aria-label="tr('重設視圖')" @click="reset"><Icon name="reset" :size="17" /></button></div></div>
     <div class="stage-editor-canvas" :class="{ 'pan-tool': tool === 'pan' }" @pointerdown="start($event)" @pointermove="move" @pointerup="finish" @pointercancel="finish" @lostpointercapture="finish">
       <div ref="artwork" class="stage-editor-artwork" :style="viewStyle"><CharacterStage :model="model" :autoplay="false" :interactive="false" @ready="next => player = next" /><button v-for="pin in pins" :key="pin.name" class="stage-editor-pin" :class="{ selected: selectedName === pin.name }" :style="{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%` }" :aria-label="tr('控制點') + ' ' + pin.name" :aria-pressed="selectedName === pin.name" :disabled="!player" :tabindex="tool === 'pins' ? 0 : -1" @pointerdown.stop="tool === 'pins' ? start($event, pin.name) : undefined" @keydown="keyboard($event, pin.name)" @click="selectedName = pin.name"></button></div>

@@ -1,0 +1,123 @@
+const strand = (id, points, phase, radius = .042, gain = 1) => ({ id, points, phase, radius, gain });
+/** Original Momo illustration and pin layout from Kirameki Catch. Each call returns independent state. */
+export function createMomoModel(textureSrc = '/models/momo/texture.webp') {
+    return {
+        version: 1, id: 'momo', name: '月兔 Momo',
+        texture: { src: textureSrc, width: 1024, height: 1536 },
+        mesh: { columns: 64, rows: 96 },
+        pins: [
+            { name: 'waist', type: 'fixed', x: .51, y: .52, radius: .24 },
+            { name: 'head-root', type: 'fixed', parent: 'waist', x: .52, y: .28, radius: .20 },
+            { name: 'head-top', type: 'joint', parent: 'head-root', x: .52, y: .13, radius: .19 },
+            { name: 'ear-left', type: 'spring', parent: 'head-top', x: .31, y: .105, radius: .14, stiffness: .045, damping: .91, wind: .007 },
+            { name: 'ear-right', type: 'spring', parent: 'head-top', x: .69, y: .10, radius: .14, stiffness: .042, damping: .915, wind: .0075 },
+            { name: 'hair-left-root', type: 'spring', parent: 'head-root', x: .31, y: .30, radius: .19, stiffness: .048, damping: .90, wind: .0035 },
+            { name: 'hair-left-mid', type: 'spring', parent: 'hair-left-root', x: .24, y: .46, radius: .18, stiffness: .032, damping: .925, wind: .008 },
+            { name: 'hair-left-tip', type: 'spring', parent: 'hair-left-mid', x: .14, y: .58, radius: .18, stiffness: .021, damping: .946, wind: .014 },
+            { name: 'hair-left-inner', type: 'spring', parent: 'hair-left-root', x: .36, y: .43, radius: .13, stiffness: .036, damping: .92, wind: .006 },
+            { name: 'hair-left-inner-tip', type: 'spring', parent: 'hair-left-inner', x: .29, y: .59, radius: .13, stiffness: .023, damping: .945, wind: .012 },
+            { name: 'hair-right-root', type: 'spring', parent: 'head-root', x: .72, y: .30, radius: .19, stiffness: .046, damping: .902, wind: .0038 },
+            { name: 'hair-right-mid', type: 'spring', parent: 'hair-right-root', x: .79, y: .46, radius: .18, stiffness: .030, damping: .93, wind: .0085 },
+            { name: 'hair-right-tip', type: 'spring', parent: 'hair-right-mid', x: .88, y: .58, radius: .18, stiffness: .020, damping: .948, wind: .0145 },
+            { name: 'hair-right-inner', type: 'spring', parent: 'hair-right-root', x: .67, y: .43, radius: .13, stiffness: .035, damping: .923, wind: .0065 },
+            { name: 'hair-right-inner-tip', type: 'spring', parent: 'hair-right-inner', x: .74, y: .59, radius: .13, stiffness: .022, damping: .947, wind: .0125 },
+            { name: 'shoulder-left', type: 'fixed', parent: 'waist', x: .43, y: .37, radius: .17 },
+            { name: 'elbow-left', type: 'joint', parent: 'shoulder-left', x: .30, y: .35, radius: .15 },
+            { name: 'wrist-left', type: 'joint', parent: 'elbow-left', x: .19, y: .30, radius: .14 },
+            { name: 'shoulder-right', type: 'fixed', parent: 'waist', x: .67, y: .35, radius: .17 },
+            { name: 'elbow-right', type: 'joint', parent: 'shoulder-right', x: .77, y: .39, radius: .15 },
+            { name: 'wrist-right', type: 'joint', parent: 'elbow-right', x: .88, y: .39, radius: .14 },
+            { name: 'hip-raised', type: 'fixed', parent: 'waist', x: .45, y: .58, radius: .17 },
+            { name: 'knee-raised', type: 'joint', parent: 'hip-raised', x: .36, y: .67, radius: .15 },
+            { name: 'ankle-raised', type: 'joint', parent: 'knee-raised', x: .27, y: .75, radius: .14 },
+            { name: 'hip-standing', type: 'fixed', parent: 'waist', x: .54, y: .58, radius: .17 },
+            { name: 'knee-standing', type: 'joint', parent: 'hip-standing', x: .52, y: .73, radius: .15 },
+            { name: 'ankle-standing', type: 'joint', parent: 'knee-standing', x: .49, y: .91, radius: .14 },
+            { name: 'bow-center', type: 'spring', parent: 'waist', x: .56, y: .44, radius: .15, stiffness: .05, damping: .89, wind: .002 },
+            { name: 'bell-center', type: 'spring', parent: 'bow-center', x: .56, y: .52, radius: .11, stiffness: .026, damping: .935, wind: .008 },
+            { name: 'ribbon-left', type: 'spring', parent: 'shoulder-left', x: .17, y: .51, radius: .15, stiffness: .027, damping: .934, wind: .010 },
+            { name: 'pom-left', type: 'spring', parent: 'ribbon-left', x: .16, y: .69, radius: .15, stiffness: .018, damping: .952, wind: .016 },
+            { name: 'ribbon-right', type: 'spring', parent: 'shoulder-right', x: .83, y: .51, radius: .15, stiffness: .026, damping: .936, wind: .0105 },
+            { name: 'pom-right', type: 'spring', parent: 'ribbon-right', x: .85, y: .70, radius: .15, stiffness: .017, damping: .954, wind: .0165 },
+        ],
+        hair: [
+            strand('ahoge', [[.465, .069], [.456, .044], [.491, .047]], .3, .023, .22),
+            strand('pony-left-outer', [[.34, .17], [.12, .285], [.040, .353]], .2),
+            strand('pony-left-outer-curl', [[.34, .18], [.075, .327], [.096, .425]], .7),
+            strand('pony-left-middle-a', [[.35, .18], [.16, .295], [.144, .421]], 1.2),
+            strand('pony-left-middle-b', [[.35, .19], [.205, .298], [.186, .407]], 1.7),
+            strand('pony-left-inner', [[.35, .19], [.253, .264], [.230, .334]], 2.2, .033, .65),
+            strand('pony-left-tip-a', [[.165, .365], [.077, .423], [.109, .460]], 2.7, .035),
+            strand('pony-left-tip-b', [[.133, .429], [.065, .463], [.089, .505]], 3.2, .033),
+            strand('pony-left-tip-c', [[.099, .455], [.045, .485], [.080, .521]], 3.7, .028, .8),
+            strand('pony-right-outer', [[.69, .17], [.89, .280], [.980, .363]], .8),
+            strand('pony-right-outer-curl', [[.70, .18], [.948, .310], [.940, .405]], 1.3),
+            strand('pony-right-middle-a', [[.69, .18], [.865, .295], [.903, .366]], 1.8),
+            strand('pony-right-middle-b', [[.69, .19], [.810, .290], [.849, .343]], 2.3),
+            strand('pony-right-inner', [[.68, .19], [.737, .277], [.777, .324]], 2.8, .033, .65),
+            strand('pony-right-tip-a', [[.953, .410], [.955, .450], [.921, .476]], 3.3, .035),
+            strand('pony-right-tip-b', [[.906, .423], [.960, .478], [.936, .501]], 3.8, .033),
+            strand('pony-right-tip-c', [[.924, .460], [.970, .502], [.918, .527]], 4.3, .030, .8),
+            strand('bang-left-side', [[.438, .09], [.405, .133], [.416, .191]], .4, .040, .8),
+            strand('bang-left-outer', [[.459, .088], [.430, .127], [.447, .177]], .85, .036, .8),
+            strand('bang-left-inner', [[.475, .092], [.462, .128], [.480, .165]], 1.3, .034, .8),
+            strand('bang-center', [[.500, .095], [.503, .126], [.516, .161]], 1.75, .034, .8),
+            strand('bang-right-inner', [[.522, .094], [.537, .123], [.553, .157]], 2.2, .034, .8),
+            strand('bang-right-outer', [[.547, .096], [.567, .123], [.585, .151]], 2.65, .036, .8),
+            strand('bang-right-side', [[.575, .103], [.607, .146], [.617, .206]], 3.1, .040, .8),
+        ],
+        accessories: [
+            { id: 'ear-left', root: [.44, .084], tip: [.25, .125], radius: .10, angle: .070, stiffness: .033, damping: .93, phase: .2 },
+            { id: 'ear-right', root: [.57, .066], tip: [.73, .061], radius: .10, angle: .075, stiffness: .030, damping: .94, phase: 1.1 },
+            { id: 'ribbon-left', root: [.19, .481], tip: [.175, .711], radius: .12, angle: .060, stiffness: .021, damping: .95, phase: .7 },
+            { id: 'ribbon-right', root: [.872, .569], tip: [.854, .767], radius: .12, angle: .065, stiffness: .019, damping: .95, phase: 1.7 },
+            { id: 'bow-left-tail', root: [.595, .356], tip: [.494, .414], radius: .075, angle: .050, stiffness: .035, damping: .92, phase: 1.4 },
+            { id: 'bow-right-tail', root: [.609, .356], tip: [.685, .419], radius: .075, angle: .055, stiffness: .032, damping: .93, phase: 2.4 },
+            { id: 'bell', root: [.605, .402], tip: [.614, .450], radius: .047, angle: .13, stiffness: .080, damping: .86, phase: 2.0 },
+            { id: 'sleeve-left', root: [.405, .282], tip: [.223, .440], radius: .09, angle: .023, stiffness: .042, damping: .91, phase: .9 },
+            { id: 'sleeve-right', root: [.711, .342], tip: [.855, .521], radius: .10, angle: .026, stiffness: .038, damping: .92, phase: 2.2 },
+        ],
+        faceClearance: [[.478, .193, .047, .023], [.578, .175, .043, .020], [.535, .235, .095, .041]],
+        motion: { sway: 1, speed: 1, hair: 1, accessories: 1, follow: 1 },
+        pose: { headCenter: .52, headBounds: [.30, .43], headHorizontal: [.22, .48], bodyBounds: [.54, .90], bodyPivot: [.51, .58], swayPivot: [.51, .83] },
+    };
+}
+/** Opt-in region ownership and aspect-correct tracking. The original factory stays unchanged. */
+export function createMomoInteractiveModel(textureSrc = '/models/momo/texture.webp') {
+    const model = createMomoModel(textureSrc);
+    // Convex envelopes of the reviewed original centre lines; never infer anatomy from pixels.
+    const envelope = (points, width) => {
+        const candidates = points.flatMap(([x, y]) => [[x - width, y], [x + width, y], [x, y - width / 1.5], [x, y + width / 1.5]])
+            .map(([x, y]) => [Math.max(0, Math.min(1, x)), Math.max(0, Math.min(1, y))])
+            .sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+        const cross = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+        const half = (list) => { const result = []; for (const p of list) {
+            while (result.length > 1 && cross(result.at(-2), result.at(-1), p) <= 0)
+                result.pop();
+            result.push(p);
+        } return result.slice(0, -1); };
+        return [...half(candidates), ...half([...candidates].reverse())];
+    };
+    model.parts = [
+        ...model.hair.map(h => ({ id: h.id, kind: 'hair', channel: 'hair', polygon: envelope(h.points, h.radius * .65),
+            root: h.points[0], tip: h.points[2], feather: Math.max(.008, h.radius * .45), rotation: .012 * h.gain,
+            stiffness: .034, damping: .94, phase: h.phase, wind: .8, follow: 1 })),
+        ...model.accessories.map(a => ({ id: a.id, kind: 'accessory', channel: 'accessories', polygon: envelope([a.root, a.tip], a.radius * .65),
+            root: a.root, tip: a.tip, feather: Math.max(.008, a.radius * .45), rotation: a.angle * .25,
+            stiffness: a.stiffness, damping: a.damping, phase: a.phase, wind: .8, follow: .8 })),
+    ];
+    model.hair = [];
+    model.accessories = [];
+    // Each visible strand has one local spring system, rather than overlapping chains and wind pins.
+    model.pins = model.pins.map(p => p.type === 'spring' ? { ...p, type: 'fixed', wind: 0 } : p);
+    model.pose.headFollow = { rotation: .085, translation: [.012, .008] };
+    model.tracking = { response: .024, damping: .65, maxVelocity: 1.8 };
+    model.surfaceRegions = [
+        { id: 'left-arm', mode: 'weighted', polygon: [[.13, .27], [.43, .27], [.45, .47], [.18, .47]], feather: .055, pins: ['shoulder-left', 'elbow-left', 'wrist-left'] },
+        { id: 'right-arm', mode: 'weighted', polygon: [[.7, .33], [.92, .33], [.92, .52], [.72, .52]], feather: .055, pins: ['shoulder-right', 'elbow-right', 'wrist-right'] },
+        { id: 'face', mode: 'rigid', polygon: [[.455, .177], [.60, .16], [.625, .245], [.545, .279], [.454, .251]], feather: .10, anchor: 'head-root', rotation: 'head' },
+    ];
+    model.motion = { ...model.motion, parts: 1 };
+    return model;
+}
+//# sourceMappingURL=momo.js.map
