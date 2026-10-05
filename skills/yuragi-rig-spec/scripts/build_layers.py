@@ -107,6 +107,10 @@ def compile_layers(manifest_path, output, rig_package, allow_visible_only=False,
         cursor_x+=w+4;row_height=max(row_height,h+4)
         return len(pages)-1,[x,y,w,h]
     composite=Image.new('RGBA',(width,height))
+    hidden_neutral=set()
+    for eye in manifest.get('face',{}).get('eyes',[]): hidden_neutral.update([eye['half'],eye['closed']])
+    mouth=manifest.get('face',{}).get('mouth',{}).get('shapes',{})
+    hidden_neutral.update(value for key,value in mouth.items() if key!='closed')
     for entry in manifest['attachments']:
         if entry.get('coverage') not in ['complete','visible-only'] or not entry.get('provenance'):
             raise ValueError('Coverage and provenance required')
@@ -176,7 +180,7 @@ def compile_layers(manifest_path, output, rig_package, allow_visible_only=False,
             else:
                 vertex['weights'],bound=sparse(vertex['weights'],nodes,width,height,error_pixels);max_error=max(max_error,bound)
         preview.putalpha(preview.getchannel('A').point(lambda a:round(a*finite(layer['opacity'],0,1))))
-        if entry.get('neutralVisible',True): composite.alpha_composite(preview,(box[0],box[1]))
+        if entry['id'] not in hidden_neutral and entry.get('neutralVisible',True): composite.alpha_composite(preview,(box[0],box[1]))
         model['attachments'].append(layer)
     if len(pages)>8: raise ValueError('Atlas page budget exceeded')
     output.parent.mkdir(parents=True,exist_ok=True)
@@ -221,6 +225,8 @@ console.log(JSON.stringify({pointerSamples:9,framesPerSample:frames,minimumAreaR
                 'neutralMaxChannelError':max(channel.getextrema()[1] for channel in diff.split()),'prunedWeightErrorBoundPixels':max_error,
                 'atlasBytes':len(pages)*atlas_size*atlas_size*4,'attachments':len(model['attachments']),
                 'sampledGeometry':geometry,
+                'manifestSha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                'maskFingerprints':{a['id']:hashlib.sha256(resource(a['mask']).read_bytes()).hexdigest() for a in manifest['attachments'] if a.get('mask')},
                 'attachmentFingerprints':{a['id']:hashlib.sha256(resource(a['image']).read_bytes()).hexdigest() for a in manifest['attachments']}}
         (staging/'report.json').write_text(json.dumps(report,indent=2)+'\n')
         if output.exists(): output.rmdir()

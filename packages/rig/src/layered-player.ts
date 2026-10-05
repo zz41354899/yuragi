@@ -48,14 +48,16 @@ export async function createLayeredPlayer(options: LayeredPlayerOptions): Promis
     }
     let position = 0, uv = 0, maskUV = 0;
     let maskUniform: WebGLUniformLocation | null = null, opacityUniform: WebGLUniformLocation | null = null;
+    const faceUniforms: Record<string,WebGLUniformLocation|null> = {};
+    const curves = new Float32Array(96);
     try {
         program = gl.createProgram();
         if (!program)
             throw new Error('Cannot allocate program');
         gl.attachShader(program, shader(gl.VERTEX_SHADER, `attribute vec2 a_position;attribute vec2 a_uv;attribute vec2 a_mask;varying vec2 v_uv;varying vec2 v_mask;
     void main(){vec2 p=(a_position+vec2(.12))/1.24;gl_Position=vec4(p.x*2.-1.,1.-p.y*2.,0.,1.);v_uv=a_uv;v_mask=a_mask;}`));
-        gl.attachShader(program, shader(gl.FRAGMENT_SHADER, `precision mediump float;uniform sampler2D u_image;uniform float u_mask;uniform float u_opacity;uniform float u_clip;uniform float u_open;uniform vec4 u_curve[24];uniform int u_samples;uniform vec4 u_rect;uniform vec4 u_bounds;uniform vec2 u_shift;varying vec2 v_uv;varying vec2 v_mask;
-    void main(){vec2 q=(v_uv-u_rect.xy)/u_rect.zw;vec2 source=u_bounds.xy+q*u_bounds.zw;vec2 shifted=v_uv-u_shift;vec2 local=(shifted-u_rect.xy)/u_rect.zw;vec4 color=texture2D(u_image,shifted);if(u_clip>.5){float top=0.;float bottom=0.;for(int i=0;i<23;i++){if(i<u_samples-1 && source.x>=u_curve[i].x && source.x<=u_curve[i+1].x){float t=(source.x-u_curve[i].x)/(u_curve[i+1].x-u_curve[i].x);top=mix(u_curve[i].y,u_curve[i+1].y,t);bottom=mix(u_curve[i].w,u_curve[i+1].w,t);}}float lid=mix(bottom,top,u_open);color*=step(lid,source.y)*step(source.y,bottom)*step(u_curve[0].x,source.x);color*=step(0.,local.x)*step(local.x,1.)*step(0.,local.y)*step(local.y,1.);}float alpha=1.;if(u_mask>.5)alpha=texture2D(u_image,v_mask).a;gl_FragColor=color*(alpha*u_opacity);}`));
+        gl.attachShader(program, shader(gl.FRAGMENT_SHADER, model.face ? `precision mediump float;uniform sampler2D u_image;uniform float u_mask;uniform float u_opacity;uniform float u_clip;uniform float u_open;uniform vec4 u_curve[24];uniform int u_samples;uniform vec4 u_rect;uniform vec4 u_bounds;uniform vec2 u_shift;varying vec2 v_uv;varying vec2 v_mask;
+    void main(){vec2 q=(v_uv-u_rect.xy)/u_rect.zw;vec2 source=u_bounds.xy+q*u_bounds.zw;vec2 shifted=v_uv;if(u_clip>.5)shifted-=u_shift;vec2 local=(shifted-u_rect.xy)/u_rect.zw;vec4 color=texture2D(u_image,shifted);if(u_clip>.5){float top=0.;float bottom=0.;for(int i=0;i<23;i++){if(i<u_samples-1 && source.x>=u_curve[i].x && source.x<=u_curve[i+1].x){float t=(source.x-u_curve[i].x)/(u_curve[i+1].x-u_curve[i].x);top=mix(u_curve[i].y,u_curve[i+1].y,t);bottom=mix(u_curve[i].w,u_curve[i+1].w,t);}}float lid=mix(bottom,top,u_open);color*=step(lid,source.y)*step(source.y,bottom)*step(u_curve[0].x,source.x);color*=step(0.,local.x)*step(local.x,1.)*step(0.,local.y)*step(local.y,1.);}float alpha=1.;if(u_mask>.5)alpha=texture2D(u_image,v_mask).a;gl_FragColor=color*(alpha*u_opacity);}` : `precision mediump float;uniform sampler2D u_image;uniform float u_mask;uniform float u_opacity;varying vec2 v_uv;varying vec2 v_mask;void main(){float alpha=1.;if(u_mask>.5)alpha=texture2D(u_image,v_mask).a;gl_FragColor=texture2D(u_image,v_uv)*(alpha*u_opacity);}`));
         gl.linkProgram(program);
         if (!gl.getProgramParameter(program, gl.LINK_STATUS))
             throw new Error(gl.getProgramInfoLog(program) || 'Program link failed');
@@ -66,6 +68,7 @@ export async function createLayeredPlayer(options: LayeredPlayerOptions): Promis
         gl.uniform1i(gl.getUniformLocation(program, 'u_image'), 0);
         maskUniform = gl.getUniformLocation(program, 'u_mask');
         opacityUniform = gl.getUniformLocation(program, 'u_opacity');
+        if(model.face)for(const name of ['u_clip','u_open','u_curve[0]','u_samples','u_rect','u_bounds','u_shift'])faceUniforms[name]=gl.getUniformLocation(program,name);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
         for (const [data, target, usage] of [[mesh.positions, gl.ARRAY_BUFFER, gl.DYNAMIC_DRAW], [mesh.uvs, gl.ARRAY_BUFFER, gl.STATIC_DRAW], [mesh.maskUVs, gl.ARRAY_BUFFER, gl.STATIC_DRAW], [mesh.indices, gl.ELEMENT_ARRAY_BUFFER, gl.STATIC_DRAW]] as const) {
@@ -134,18 +137,18 @@ export async function createLayeredPlayer(options: LayeredPlayerOptions): Promis
             if (model.face) {
                 const state = batch.attachment ? simulation.face.layer(batch.attachment, reduced()) : undefined;
                 opacity *= state?.opacity ?? 1;
-                gl!.uniform1f(gl!.getUniformLocation(program!, 'u_clip'), state?.clip ? 1 : 0);
+                gl!.uniform1f(faceUniforms['u_clip'], state?.clip ? 1 : 0);
                 if (state?.eye && state.clip) {
                     const attachment = model.attachments.find(a => a.id === batch.attachment)!;
                     const atlas = model.atlases[batch.atlas], r = attachment.rect, b = attachment.bounds;
-                    gl!.uniform4f(gl!.getUniformLocation(program!, 'u_rect'), r[0]/atlas.width,r[1]/atlas.height,r[2]/atlas.width,r[3]/atlas.height);
-                    gl!.uniform4f(gl!.getUniformLocation(program!, 'u_bounds'), b[0],b[1],b[2]-b[0],b[3]-b[1]);
-                    gl!.uniform2f(gl!.getUniformLocation(program!, 'u_shift'), state.shift[0]/(b[2]-b[0])*r[2]/atlas.width,state.shift[1]/(b[3]-b[1])*r[3]/atlas.height);
-                    gl!.uniform1f(gl!.getUniformLocation(program!, 'u_open'), state.open);
-                    gl!.uniform1i(gl!.getUniformLocation(program!, 'u_samples'), state.eye.top.length);
-                    const curves = new Float32Array(96);
+                    gl!.uniform4f(faceUniforms['u_rect'], r[0]/atlas.width,r[1]/atlas.height,r[2]/atlas.width,r[3]/atlas.height);
+                    gl!.uniform4f(faceUniforms['u_bounds'], b[0],b[1],b[2]-b[0],b[3]-b[1]);
+                    gl!.uniform2f(faceUniforms['u_shift'], state.shift[0]/(b[2]-b[0])*r[2]/atlas.width,state.shift[1]/(b[3]-b[1])*r[3]/atlas.height);
+                    gl!.uniform1f(faceUniforms['u_open'], state.open);
+                    gl!.uniform1i(faceUniforms['u_samples'], state.eye.top.length);
+                    curves.fill(0);
                     state.eye.top.forEach((p,i) => curves.set([p[0],p[1],state.eye!.bottom[i][0],state.eye!.bottom[i][1]],i*4));
-                    gl!.uniform4fv(gl!.getUniformLocation(program!, 'u_curve[0]'),curves);
+                    gl!.uniform4fv(faceUniforms['u_curve[0]'],curves);
                 }
             }
             gl!.uniform1f(opacityUniform, opacity);
@@ -184,16 +187,16 @@ export async function createLayeredPlayer(options: LayeredPlayerOptions): Promis
         play(); draw(); };
     const contextLost = (event: Event) => { event.preventDefault(); pause(); options.onError?.(new Error('WebGL context lost. Remount the player to restore it.')); };
     const player: LayeredPlayer = { play, pause,
-        advance(milliseconds) { if (destroyed) return; fixedSteps(milliseconds, dt => { elapsed += dt; simulation.update(elapsed, dt, reduced()); }); forceUpload = true; draw(); },
+        advance(milliseconds) { if (destroyed) return; fixedSteps(milliseconds, dt => { elapsed += dt; simulation.update(elapsed, dt, reduced()); }); forceUpload = true; const report = elapsed-lastReport >= 100; draw(report); if(report)lastReport=elapsed; },
         setGaze(x, y) { if (!destroyed) { simulation.face.setGaze(x, y); draw(); } },
-        setFace(pose) { if (!destroyed) { simulation.face.setFace(pose); draw(); } }, setPointer(x, y) { if (destroyed)
+        setFace(pose) { if (!destroyed) { simulation.setFace(pose); draw(); } }, setPointer(x, y) { if (destroyed)
             return; simulation.setPointer(x, y); if (!playing && !options.manual) {
             for (let i = 0; i < 120; i++)
                 simulation.update(elapsed, 16.67, reduced());
             forceUpload = true;
             draw();
         } }, reset() { if (destroyed)
-            return; simulation.reset(); elapsed = 0; draw(); }, getModel: () => structuredClone(model), getSnapshot: snapshot, getMeshSnapshot: () => ({ rest: mesh.rest.slice(), positions: mesh.positions.slice(), indices: mesh.indices.slice() }), destroy() { if (destroyed)
+            return; simulation.reset(); elapsed = 0; lastReport = -100; draw(); }, getModel: () => structuredClone(model), getSnapshot: snapshot, getMeshSnapshot: () => ({ rest: mesh.rest.slice(), positions: mesh.positions.slice(), indices: mesh.indices.slice() }), destroy() { if (destroyed)
             return; playing = false; cancelAnimationFrame(frame); destroyed = true; resize?.disconnect(); intersection?.disconnect(); document.removeEventListener('visibilitychange', visibility); media.removeEventListener('change', motionChange); canvas.removeEventListener('webglcontextlost', contextLost); options.signal?.removeEventListener('abort', player.destroy); release(); } };
     try {
         resize = new ResizeObserver(() => draw());

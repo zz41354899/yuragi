@@ -5,7 +5,7 @@ export const REVIEW_STEP = 1000 / 60
 /** Fixed steps are shared by manual playback, Studio and exported pose reviews. */
 export function fixedSteps(milliseconds: number, step: (delta: number) => void) {
   if (!Number.isFinite(milliseconds) || milliseconds < 0 || milliseconds > 60000) throw new Error('Advance must be finite, 0…60000 ms')
-  const count = Math.floor(milliseconds / REVIEW_STEP)
+  const count = Math.floor(milliseconds / REVIEW_STEP + 1e-10)
   for (let i = 0; i < count; i++) step(REVIEW_STEP)
   const remainder = milliseconds - count * REVIEW_STEP
   if (remainder > 1e-8) step(remainder)

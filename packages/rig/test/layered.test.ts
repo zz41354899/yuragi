@@ -116,3 +116,14 @@ test('hierarchical pointer transforms settle equally at 30, 60 and 120Hz and sea
   const sim=createLayeredSimulation(model);sim.setPointer(.5,.5);sim.update(1000,50)
   assert.equal(sim.mesh.positions[2],sim.mesh.positions[6]);assert.equal(sim.mesh.positions[3],sim.mesh.positions[7])
 })
+
+test('manual review player advances without RAF, throttles callbacks and resets its clock',async()=>{
+ const env=environment();try{
+  let reports=0;const player=await createLayeredPlayer({canvas:env.canvas,model:layeredModel(),manual:true,autoplay:false,onFrame:()=>reports++})
+  player.play();assert.equal(env.stats().frames,0);player.setPointer(.5,0)
+  for(let i=0;i<60;i++)player.advance(1000/60)
+  assert.ok(reports<15);assert.notDeepEqual(player.getMeshSnapshot().positions,player.getMeshSnapshot().rest)
+  player.reset();const before=reports;player.advance(100);assert.ok(reports>before)
+  assert.throws(()=>player.advance(NaN));player.destroy();assert.equal(env.stats().created,env.stats().deleted)
+ }finally{env.restore()}
+})

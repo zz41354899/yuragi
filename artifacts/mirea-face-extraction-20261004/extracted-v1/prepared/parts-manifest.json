@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "analysisSha256": "55f3c8e1ef77c25455ea774c9e1f4eaa9bf68a08c61cb9e27bbbef7fdafdc94d",
+  "image": {
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+    "width": 1024,
+    "height": 1536
+  },
+  "canvas": [
+    1024,
+    1536
+  ],
+  "coordinateSpace": "full-source-normalized",
+  "renderer": "shared-surface",
+  "parts": [
+    {
+      "id": "eye-left-open",
+      "role": "eye",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left-open.png",
+      "cropped": "parts/cropped/eye-left-open.png",
+      "mask": "parts/masks/eye-left-open.png",
+      "boundsPixels": [
+        519,
+        251,
+        554,
+        270
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right-open",
+      "role": "eye",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right-open.png",
+      "cropped": "parts/cropped/eye-right-open.png",
+      "mask": "parts/masks/eye-right-open.png",
+      "boundsPixels": [
+        581,
+        229,
+        614,
+        250
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-left-iris-visible",
+      "role": "iris",
+      "parent": "eye-left-open",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left-iris-visible.png",
+      "cropped": "parts/cropped/eye-left-iris-visible.png",
+      "mask": "parts/masks/eye-left-iris-visible.png",
+      "boundsPixels": [
+        527,
+        251,
+        548,
+        268
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right-iris-visible",
+      "role": "iris",
+      "parent": "eye-right-open",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right-iris-visible.png",
+      "cropped": "parts/cropped/eye-right-iris-visible.png",
+      "mask": "parts/masks/eye-right-iris-visible.png",
+      "boundsPixels": [
+        589,
+        231,
+        608,
+        249
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-left-eyelid-line",
+      "role": "eyelid",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left-eyelid-line.png",
+      "cropped": "parts/cropped/eye-left-eyelid-line.png",
+      "mask": "parts/masks/eye-left-eyelid-line.png",
+      "boundsPixels": [
+        515,
+        246,
+        557,
+        264
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right-eyelid-line",
+      "role": "eyelid",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right-eyelid-line.png",
+      "cropped": "parts/cropped/eye-right-eyelid-line.png",
+      "mask": "parts/masks/eye-right-eyelid-line.png",
+      "boundsPixels": [
+        578,
+        225,
+        619,
+        240
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-left-skin-visible",
+      "role": "face",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left-skin-visible.png",
+      "cropped": "parts/cropped/eye-left-skin-visible.png",
+      "mask": "parts/masks/eye-left-skin-visible.png",
+      "boundsPixels": [
+        523,
+        267,
+        556,
+        283
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right-skin-visible",
+      "role": "face",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right-skin-visible.png",
+      "cropped": "parts/cropped/eye-right-skin-visible.png",
+      "mask": "parts/masks/eye-right-skin-visible.png",
+      "boundsPixels": [
+        584,
+        247,
+        614,
+        262
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "mouth-closed",
+      "role": "mouth",
+      "parent": null,
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/mouth-closed.png",
+      "cropped": "parts/cropped/mouth-closed.png",
+      "mask": "parts/masks/mouth-closed.png",
+      "boundsPixels": [
+        566,
+        281,
+        594,
+        294
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-left-sclera-visible",
+      "role": "eye",
+      "parent": "eye-left-open",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-left-sclera-visible.png",
+      "cropped": "parts/cropped/eye-left-sclera-visible.png",
+      "mask": "parts/masks/eye-left-sclera-visible.png",
+      "boundsPixels": [
+        520,
+        251,
+        554,
+        270
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "eye-left-iris-visible",
+        "eye-left-eyelid-line"
+      ],
+      "binding": null,
+      "deformation": null
+    },
+    {
+      "id": "eye-right-sclera-visible",
+      "role": "eye",
+      "parent": "eye-right-open",
+      "coverage": "visible-only",
+      "needsCompletion": true,
+      "fullCanvas": "parts/eye-right-sclera-visible.png",
+      "cropped": "parts/cropped/eye-right-sclera-visible.png",
+      "mask": "parts/masks/eye-right-sclera-visible.png",
+      "boundsPixels": [
+        582,
+        232,
+        614,
+        250
+      ],
+      "empty": false,
+      "anchors": [],
+      "subtract": [
+        "eye-right-iris-visible",
+        "eye-right-eyelid-line"
+      ],
+      "binding": null,
+      "deformation": null
+    }
+  ],
+  "originalTexture": "texture.png",
+  "note": "Visible-pixel authoring exports; cropped images and authoring anchors are not automatically loaded as runtime layers.",
+  "assets": {
+    "binding-overlay.png": "2932ef83b8b5b38a44991141d53500d3be0f447d5f9787abb32d9e9cd9d91c1a",
+    "parts/cropped/eye-left-eyelid-line.png": "681a7af1a5954b9945e746628a8a079676264385c4a41909d8042c5b19a041f9",
+    "parts/cropped/eye-left-iris-visible.png": "6a9d70d250aa35296fdf14248332e1977f2c4611e122ea87d0a3f81dc9efa109",
+    "parts/cropped/eye-left-open.png": "bd4fb6c90d5d426fc328b1db3ea0d292f2fe1075b5a973a45f208d821a42f222",
+    "parts/cropped/eye-left-sclera-visible.png": "9bc2055e84108051b36291d489a66a8af473692c8765c9f2698c6a4bc7116183",
+    "parts/cropped/eye-left-skin-visible.png": "26baf899a387f9968bbc51f08014c9cf4f076ac0189db51e539869c251c72955",
+    "parts/cropped/eye-right-eyelid-line.png": "6a3bff9c78688f97dfdeb91a7566e6dd919d540d890bc8a39ac9bfdeeb3436ae",
+    "parts/cropped/eye-right-iris-visible.png": "c4675a2eed2429bd1dd260f060f519755d26e9954f2a468824721edcf462ea17",
+    "parts/cropped/eye-right-open.png": "9a1540e7f2d7a50033c88b8b85760b69241ebf1981e44eae0414c2f6c8f088bc",
+    "parts/cropped/eye-right-sclera-visible.png": "632143da1b99689edff33d2c02bf5dcd7f58893c7df6d0c32ddf995e300a5c82",
+    "parts/cropped/eye-right-skin-visible.png": "5423bcd1d1271ab0a8b9ac3eb28091c4000521eaa50e3afb95245f50da9c51df",
+    "parts/cropped/mouth-closed.png": "81f9e9c573750049caac69018c028d087845bc66d77f6374479daa5fb7816731",
+    "parts/eye-left-eyelid-line.png": "19258da2619add033142b7be07ce854a937113c60863f0621a4ebd869556f54a",
+    "parts/eye-left-iris-visible.png": "82262ce3d4935ee817c545afdbf4d21b27ec51d47d0239ef5e89dee35948135f",
+    "parts/eye-left-open.png": "d09546dc562555574534f0b222e0c97bad3decec27f632a2bfe5620c6b279072",
+    "parts/eye-left-sclera-visible.png": "c9848cc183fc1fda22326539f774a33c84b429cfa2d31d53ed43edf11c76ce68",
+    "parts/eye-left-skin-visible.png": "1ca33b4f4128740668cc392e0b51b3816baa760e6bd1694a9cd6118958a62ce1",
+    "parts/eye-right-eyelid-line.png": "ba07086662fd4f04ab228065d49e45863676cfd4bac3ee89e3651abcb43d9fed",
+    "parts/eye-right-iris-visible.png": "e73ae564d5b45a13fa03a1bb2e3f76a44c72d3b7d0d866e09c61480a67277d5c",
+    "parts/eye-right-open.png": "7816566d88356cc062b9aafa2965f21c5a5ae5aa8024ee2e112d08d5afa53d38",
+    "parts/eye-right-sclera-visible.png": "fb101a7818042ee2b53279bfd649e23c7862ba500a6765fef6c2cbb30a9df5f5",
+    "parts/eye-right-skin-visible.png": "d10fb69da17532f5eeedf46b2afc4d1481f683bf2908428b383851aeda25ff01",
+    "parts/masks/eye-left-eyelid-line.png": "097d58e2293c83bac1561688c4f6e408ced74e116cb59e8e5edd4e006e153618",
+    "parts/masks/eye-left-iris-visible.png": "79af5b697c0e23fa7880142383a6e29ad8bd58a51603d9c9cf18afdbf82815bb",
+    "parts/masks/eye-left-open.png": "8584f3d9ad831721c496c663dd4ff71253ac5353790df4ba304dfe022024d622",
+    "parts/masks/eye-left-sclera-visible.png": "c22c31a38c238839d23d4f18c4e70e9407c46155dd843416e768799b031bbb68",
+    "parts/masks/eye-left-skin-visible.png": "710793261ee03b8c7ba7662f45b447ab52e44aeb8b3daa028b37315374fb5787",
+    "parts/masks/eye-right-eyelid-line.png": "bdaee67fd63249bd4ce8c4c5a26bfdb1956020f488250958d3157ff9bee8be1e",
+    "parts/masks/eye-right-iris-visible.png": "e8389d259919eae45332695ee8e4deb875b6142f2eef5239374b14cc5628ec72",
+    "parts/masks/eye-right-open.png": "dc15eb3f8238cf2db0c86be67160455b178ae8d774470eb35ddd7a9f79ff289f",
+    "parts/masks/eye-right-sclera-visible.png": "6c067b91fde5a9b6799e8b34992a4abdc8a8a1208ce20985b89fea8570f2b61d",
+    "parts/masks/eye-right-skin-visible.png": "8f6147ecfa23a7319a15b2bf3e6f7a287184e6e181e19814397f41b2d6f302d4",
+    "parts/masks/mouth-closed.png": "c2004864c1fcd85592aa5929ba6407558bc749f4425d68d955d76fab6cca0889",
+    "parts/mouth-closed.png": "a8a27f9c3cb57c49a3f9a1d53f217811a26fdae65614b5cf92bb70b7013f0a34",
+    "parts-contact-sheet.png": "47e684745cc61d5b864ae137e80d3b4d0fb648b08f0bbf114a431c6106b22317",
+    "texture.png": "7a2b452447da950aafa4f089c340d8bc0496f1c704a63fadefb4936e6eb05605"
+  }
+}

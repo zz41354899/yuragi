@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "issues": [
+    {
+      "id": "e8a07422273dd4eed7f92a7d",
+      "at": "2026-10-04T09:38:38.599Z",
+      "fingerprint": "d3c58dd1ef71c581710cb6cc53fb3af304a29d1094528ac5a1b017011054e18e",
+      "assetFingerprint": "28239cc82b9a02374d542027b4b5e7459e289436effb9a5a1bce9428f9d4352f",
+      "versionId": "v1",
+      "pose": "right",
+      "milliseconds": 1500,
+      "pointer": [
+        0.5,
+        0
+      ],
+      "sourcePoint": [
+        0.5,
+        0.5
+      ],
+      "snapshot": {
+        "playing": false,
+        "face": {
+          "eyeOpenLeft": 1,
+          "eyeOpenRight": 1,
+          "mouthOpen": 0,
+          "mouthShape": "closed",
+          "gaze": [
+            0,
+            0
+          ]
+        },
+        "reducedMotion": false,
+        "pointer": [
+          0.5,
+          0
+        ],
+        "nodes": [
+          {
+            "id": "head",
+            "rotation": 0.09999996940976796
+          }
+        ],
+        "diagnostics": {
+          "drawCalls": 17,
+          "vertices": 153,
+          "triangles": 136,
+          "atlasBytes": 262144,
+          "cpuMilliseconds": 0.20000000298023224
+        }
+      },
+      "observation": "流程驗證：右看時頭部傾斜希望減少，請把 head rotation 從 0.1 降到 0.06，另建版本，保留眼嘴素材與舊版。",
+      "screenshot": "e8a07422273dd4eed7f92a7d.png"
+    }
+  ]
+}

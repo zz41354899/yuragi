@@ -1,0 +1,21 @@
+{
+  "reduced": true,
+  "face": {
+    "eyeOpenLeft": 1,
+    "eyeOpenRight": 1,
+    "mouthOpen": 0,
+    "mouthShape": "closed",
+    "gaze": [
+      0,
+      0
+    ]
+  },
+  "staticMesh": true,
+  "rendered": true,
+  "loss": "WebGL context lost. Remount the player to restore it.",
+  "lostFallback": true,
+  "cleaned": true,
+  "invalid": "Atlas dimensions do not match: atlas-0",
+  "invalidFallback": true,
+  "unmounted": true
+}

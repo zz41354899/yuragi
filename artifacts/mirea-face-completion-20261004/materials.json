@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "mode": "natural-open-close",
+  "coordinateSpace": "full-source-pixels",
+  "assets": [
+    {
+      "id": "eye-left-eyelid-skin",
+      "image": "parts/eye-left-eyelid-skin.png",
+      "boundsPixels": [
+        511,
+        239,
+        563,
+        282
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed clean skin from original face reference; measured local feathered patch",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/face-clean-bed.png",
+      "sha256": "9ba057e1cbe1f0c472646c35c98b1115488f518bb4e375e896ff3099071729de"
+    },
+    {
+      "id": "eye-right-eyelid-skin",
+      "image": "parts/eye-right-eyelid-skin.png",
+      "boundsPixels": [
+        573,
+        219,
+        625,
+        262
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed clean skin from original face reference; measured local feathered patch",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/face-clean-bed.png",
+      "sha256": "74a552adea7266cc879a09ce9e7bd61f81af1e1ea432d02399778e4e4d1c68f1"
+    },
+    {
+      "id": "mouth-skin",
+      "image": "parts/mouth-skin.png",
+      "boundsPixels": [
+        561,
+        275,
+        601,
+        302
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed clean skin from original face reference; measured local feathered patch",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/face-clean-bed.png",
+      "sha256": "471bb1a4de9d5aa2e211c6756237e866ef78c8b1fe0407c9743334c3defaa8a2"
+    },
+    {
+      "id": "eye-left-eyeball",
+      "image": "parts/eye-left-eyeball.png",
+      "boundsPixels": [
+        519,
+        251,
+        554,
+        270
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-eyeball.png",
+      "sha256": "2f8b9522d0485ec10324ac8b1d475d123c6e97d6c03c5b1e8ffd46d58fe0e6eb"
+    },
+    {
+      "id": "eye-right-eyeball",
+      "image": "parts/eye-right-eyeball.png",
+      "boundsPixels": [
+        581,
+        229,
+        614,
+        250
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-eyeball.png",
+      "sha256": "16a624aa74068b8f488d7fe5a997cdd9ea9b6d069aa69d9ec523d0f0e714dbbf"
+    },
+    {
+      "id": "eye-left-iris",
+      "image": "parts/eye-left-iris.png",
+      "boundsPixels": [
+        527,
+        247,
+        548,
+        269
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-iris.png",
+      "sha256": "e41b87585abf51a9663176cfeb58b3070ee530f2c9743fc6729baca5ec4f8ae3"
+    },
+    {
+      "id": "eye-right-iris",
+      "image": "parts/eye-right-iris.png",
+      "boundsPixels": [
+        589,
+        226,
+        608,
+        250
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-iris.png",
+      "sha256": "23a808e1b07137a217e44a9a93a294be202cae61faef0e1b7d2957f842200085"
+    },
+    {
+      "id": "eye-left-half",
+      "image": "parts/eye-left-half.png",
+      "boundsPixels": [
+        511,
+        240,
+        560,
+        280
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-half.png",
+      "sha256": "7a2a8c12a9f32cea48bca0e156099def58a7b0e7cddf905132d15b31a81ff231"
+    },
+    {
+      "id": "eye-right-half",
+      "image": "parts/eye-right-half.png",
+      "boundsPixels": [
+        574,
+        219,
+        623,
+        259
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-half.png",
+      "sha256": "cd295bcfccb34b081585e2dce601da92c04ebb0516fedcad9a6fc51244fe36f4"
+    },
+    {
+      "id": "eye-left-closed",
+      "image": "parts/eye-left-closed.png",
+      "boundsPixels": [
+        511,
+        245,
+        560,
+        276
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-closed.png",
+      "sha256": "e0a80c67246ea363c5b18c3dc478f482375daad48429ab9de7a8351d946f7a4b"
+    },
+    {
+      "id": "eye-right-closed",
+      "image": "parts/eye-right-closed.png",
+      "boundsPixels": [
+        574,
+        224,
+        623,
+        255
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-closed.png",
+      "sha256": "2e236fc6b59baf05a6bfb7747229ebc070843cc7b207ac7283a8019b891d0157"
+    },
+    {
+      "id": "mouth-open",
+      "image": "parts/mouth-open.png",
+      "boundsPixels": [
+        564,
+        279,
+        596,
+        296
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/mouth-open.png",
+      "sha256": "c22f71c029f067442d1eca0ef6a035a031f9867c18d226e89fdb122bc4645835"
+    },
+    {
+      "id": "eye-left-eyelid-line",
+      "image": "parts/eye-left-eyelid-line.png",
+      "boundsPixels": [
+        515,
+        246,
+        557,
+        264
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ],
+      "sha256": "681a7af1a5954b9945e746628a8a079676264385c4a41909d8042c5b19a041f9"
+    },
+    {
+      "id": "eye-right-eyelid-line",
+      "image": "parts/eye-right-eyelid-line.png",
+      "boundsPixels": [
+        578,
+        225,
+        619,
+        240
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ],
+      "sha256": "6a3bff9c78688f97dfdeb91a7566e6dd919d540d890bc8a39ac9bfdeeb3436ae"
+    },
+    {
+      "id": "mouth-closed",
+      "image": "parts/mouth-closed.png",
+      "boundsPixels": [
+        566,
+        281,
+        594,
+        294
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ],
+      "sha256": "81f9e9c573750049caac69018c028d087845bc66d77f6374479daa5fb7816731"
+    },
+    {
+      "id": "clean-base",
+      "image": "clean-base.png",
+      "boundsPixels": [
+        0,
+        0,
+        1024,
+        1536
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Original Mirea with AI-completed local eye/mouth skin patches; source retained separately",
+      "mesh": [
+        1,
+        1
+      ],
+      "sha256": "c821f42f7cff093e73bbba7a17655f602780d7586e0afefba2a7bd6cede84c59"
+    }
+  ],
+  "notRequested": [
+    "mouth-a",
+    "mouth-i",
+    "mouth-u",
+    "mouth-e",
+    "mouth-o"
+  ],
+  "visualAcceptance": "pending",
+  "scope": "Face artwork preview; existing full-character rig retained separately"
+}

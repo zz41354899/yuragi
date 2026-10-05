@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "issues": [
+    {
+      "id": "a1d036d99f9df5058d154dc9",
+      "at": "2026-10-04T09:28:54.083Z",
+      "fingerprint": "ada878edbf4264af7d96c8879847390263ec8a57861fec9aa8ad16f368ac1de2",
+      "assetFingerprint": "255d2797bf13e3e577633e435f72e0185dd384cc36614f16e3cba5edabd780c2",
+      "versionId": "legacy",
+      "partId": "head-root",
+      "pose": "right",
+      "milliseconds": 1500,
+      "pointer": [
+        0.5,
+        0
+      ],
+      "sourcePoint": [
+        0.57,
+        0.213
+      ],
+      "snapshot": {
+        "motionWeight": 1,
+        "parameters": {
+          "lookX": 30,
+          "lookY": 0,
+          "bodyX": 2.497668555460944,
+          "wave": 0
+        },
+        "pins": [
+          {
+            "name": "waist",
+            "type": "fixed",
+            "x": 0.5930513119759622,
+            "y": 0.3586032821633921
+          },
+          {
+            "name": "head-root",
+            "parent": "waist",
+            "type": "fixed",
+            "x": 0.5880836691337753,
+            "y": 0.2165652469092155
+          },
+          {
+            "name": "head-top",
+            "parent": "head-root",
+            "type": "joint",
+            "x": 0.5761193045263756,
+            "y": 0.10919886444628656
+          },
+          {
+            "name": "umbrella-grip",
+            "parent": "waist",
+            "type": "fixed",
+            "x": 0.45622523554234806,
+            "y": 0.27623869291053416
+          },
+          {
+            "name": "umbrella-canopy",
+            "parent": "umbrella-grip",
+            "type": "fixed",
+            "x": 0.3550905069480418,
+            "y": 0.07558668162714498
+          },
+          {
+            "name": "feet-anchor",
+            "parent": "waist",
+            "type": "fixed",
+            "x": 0.5329960731148579,
+            "y": 0.921756052518199
+          },
+          {
+            "name": "resting-hand",
+            "parent": "waist",
+            "type": "fixed",
+            "x": 0.7586356452321701,
+            "y": 0.5281724973656234
+          }
+        ],
+        "diagnostics": {
+          "motionScale": 1,
+          "maxDisplacementGradient": 0.4389024242655857
+        },
+        "sway": {
+          "rotation": 0.009535289529216008,
+          "sin": 0.00953514503567681,
+          "cos": 0.9999545394712445,
+          "x": 0.0019961964601818835,
+          "y": 0.001569192709793147,
+          "followVelocity": 0.20141432828233335
+        },
+        "playing": false,
+        "face": {
+          "gaze": [
+            0.9999999999985691,
+            0
+          ],
+          "strength": 1
+        },
+        "trackingOffset": [
+          0.07,
+          0
+        ],
+        "parts": [
+          {
+            "id": "bang-left-outer",
+            "rotation": 0.008240799473141684
+          },
+          {
+            "id": "bang-left-middle",
+            "rotation": 0.004792761935284599
+          },
+          {
+            "id": "bang-left-inner",
+            "rotation": 0.0012963825366554456
+          },
+          {
+            "id": "bang-center",
+            "rotation": -0.0007094713300518998
+          },
+          {
+            "id": "bang-right-middle",
+            "rotation": -0.0012088715255083888
+          },
+          {
+            "id": "bang-right-outer",
+            "rotation": -0.0006567768530030987
+          },
+          {
+            "id": "lock-left",
+            "rotation": 0.004151240454763282
+          },
+          {
+            "id": "lock-right",
+            "rotation": 0.01479804966373226
+          },
+          {
+            "id": "hair-left-upper",
+            "rotation": 0.01892082391378961
+          },
+          {
+            "id": "hair-left-curl",
+            "rotation": 0.016726313587045766
+          },
+          {
+            "id": "hair-right-upper",
+            "rotation": 0.007504009827750261
+          },
+          {
+            "id": "hair-right-curl",
+            "rotation": -0.0047534869872500225
+          },
+          {
+            "id": "sleeve-left",
+            "rotation": -0.02359138068828455
+          },
+          {
+            "id": "sleeve-right",
+            "rotation": -0.01125815246565064
+          },
+          {
+            "id": "skirt-left-upper",
+            "rotation": 0.005390874038540906
+          },
+          {
+            "id": "skirt-right-upper",
+            "rotation": 0.011933667554302115
+          },
+          {
+            "id": "hem-left",
+            "rotation": 0.01649690259753783
+          },
+          {
+            "id": "hem-right",
+            "rotation": 0.01023156446566483
+          },
+          {
+            "id": "umbrella-tail-left",
+            "rotation": 0.004736647957895551
+          },
+          {
+            "id": "umbrella-tail-middle",
+            "rotation": -0.0013368110159448195
+          },
+          {
+            "id": "umbrella-tail-right",
+            "rotation": -0.007576055988516489
+          },
+          {
+            "id": "dress-tail-left",
+            "rotation": -0.006891542539849502
+          },
+          {
+            "id": "dress-tail-right",
+            "rotation": -0.0006759201887948372
+          },
+          {
+            "id": "neck-pendant",
+            "rotation": 0.02367973910774503
+          },
+          {
+            "id": "arm-right-follow",
+            "rotation": 0.005125572684380248
+          }
+        ],
+        "pointerGroups": [
+          {
+            "id": "upper-follow",
+            "offset": [
+              0.007999985405030876,
+              0
+            ],
+            "rotation": 0.013999974458804035
+          },
+          {
+            "id": "pelvis-follow",
+            "offset": [
+              0.003992957020801216,
+              0
+            ],
+            "rotation": 0.005989435531201824
+          }
+        ]
+      },
+      "observation": "驗證用問題：確認 head-root 在右看姿勢的接縫，請保留原圖並以新版本回覆。",
+      "screenshot": "a1d036d99f9df5058d154dc9.png",
+      "resolved": false
+    }
+  ]
+}

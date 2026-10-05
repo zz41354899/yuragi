@@ -12,7 +12,7 @@ test('API catalogue matches public exports and standalone skill references',()=>
   execFileSync(process.execPath,['scripts/generate-api.mjs','--check'],{cwd:root})
   assert.equal(new Set(catalogue.entries.map(e=>e.id)).size,catalogue.entries.length)
   for(const entry of catalogue.entries){
-    assert.ok(entry.signature);assert.ok(entry.example);assert.ok(entry.returns)
+    assert.ok(entry.signature);assert.ok(entry.example);assert.ok(entry.returns);assert.ok(entry.group in catalogue.groups, 'Missing API category: '+entry.group)
     for(const lang of ['zh-TW','en','ja'] as const){assert.ok(entry.summary[lang]);assert.ok(entry.notes[lang])}
     for(const id of entry.related)assert.ok(catalogue.entries.some(e=>e.id===id))
     const delivered=readFileSync(resolve(root,'skills/yuragi-rig-spec/references/api',entry.id.replaceAll('/','-')+'.md'),'utf8')

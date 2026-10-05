@@ -4,8 +4,9 @@ import { validateLayeredModel } from './layered-validation.js';
 /** DOM-free runtime. Affine matrices use image-width units, correcting source aspect. */
 export function createLayeredSimulation(input: LayeredModel) {
     validateLayeredModel(input);
-    const face = createLayeredFace(input);
     const model = structuredClone(input), aspect = model.source.height / model.source.width;
+    const face = createLayeredFace(model);
+    const mouthLayers = new Map(model.attachments.filter(a => a.id !== model.face?.mouth?.shapes.closed && Object.values(model.face?.mouth?.shapes ?? {}).includes(a.id)).map(a => [a.id, (a.bounds[1]+a.bounds[3])/2]));
     const nodeIndex = new Map(model.nodes.map((node, index) => [node.id, index]));
     const joints = new Map(model.joints.map(joint => [joint.id, joint]));
     const parents = new Int16Array(model.nodes.map(node => node.parent ? nodeIndex.get(node.parent)! : -1));
@@ -23,6 +24,7 @@ export function createLayeredSimulation(input: LayeredModel) {
         count: number;
         attachment?: string;
     }[] = [];
+    const vertexLayers: string[] = [];
     let vertexOffset = 0;
     for (const layer of model.attachments) {
         const atlasIndex = model.atlases.findIndex(a => a.id === layer.atlas), atlas = model.atlases[atlasIndex];
@@ -36,6 +38,7 @@ export function createLayeredSimulation(input: LayeredModel) {
         for (let i = 0; i < layer.vertices.length; i++) {
             const authored = layer.vertices[i];
             const vertex = authored.joint ? joints.get(authored.joint)! : authored, v = vertexOffset + i;
+            vertexLayers[v] = layer.id;
             rest.set(vertex.position, v * 2);
             const x = (vertex.position[0] - layer.bounds[0]) / (layer.bounds[2] - layer.bounds[0]);
             const y = (vertex.position[1] - layer.bounds[1]) / (layer.bounds[3] - layer.bounds[1]);
@@ -90,7 +93,7 @@ export function createLayeredSimulation(input: LayeredModel) {
         if (!reduced) for (const group of model.hairGroups ?? []) {
             const ids = group.nodes.map(id => nodeIndex.get(id)!);
             const average = ids.reduce((sum, id) => sum + rotations[id], 0) / ids.length;
-            for (const id of ids) { const limit = model.nodes[id].spring!.rotation; rotations[id] = Math.max(-limit, Math.min(limit, rotations[id] + (average - rotations[id]) * group.coupling)); changed = true; }
+            for (const id of ids) { const limit = model.nodes[id].spring!.rotation; rotations[id] = Math.max(-limit, Math.min(limit, rotations[id] + (average - rotations[id]) * (1 - Math.pow(1-group.coupling,dt/16.67)))); changed ||= dt > 0; }
         }
         for (let i = 0; i < model.nodes.length; i++) {
             const node = model.nodes[i];
@@ -119,8 +122,14 @@ export function createLayeredSimulation(input: LayeredModel) {
             }
         }
         if (changed) {
+            const mouthOpen = Math.max(.16, face.snapshot().mouthOpen);
             for (let v = 0; v < count; v++) {
-                const x = rest[v * 2], y = rest[v * 2 + 1] * aspect;
+                const x = rest[v * 2]; let sourceY = rest[v * 2 + 1];
+                if (!reduced && mouthLayers.has(vertexLayers[v])) {
+                    const center = mouthLayers.get(vertexLayers[v])!;
+                    sourceY = center + (sourceY-center) * mouthOpen;
+                }
+                const y = sourceY * aspect;
                 // Sum displacement so neutral positions are bit-identical even with Float32 weights.
                 let dx = 0, dy = 0;
                 for (let j = offsets[v]; j < offsets[v + 1]; j++) {
@@ -129,14 +138,15 @@ export function createLayeredSimulation(input: LayeredModel) {
                     dy += (matrices[k + 1] * x + (matrices[k + 3] - 1) * y + matrices[k + 5]) * w;
                 }
                 positions[v * 2] = x + dx;
-                positions[v * 2 + 1] = rest[v * 2 + 1] + dy / aspect;
+                positions[v * 2 + 1] = sourceY + dy / aspect;
             }
         }
         dirty = false;
         return changed;
     }
     update(0, 0);
-    return { model, mesh, batches, face, matrices, rotations, angles, setPointer, reset, update,
+    return { model, mesh, batches, face: { ...face, setFace(pose: import('./layered-types.js').LayeredFacePose) { face.setFace(pose); dirty = true; }, reset() { face.reset(); dirty = true; } },
+        setFace(pose: import('./layered-types.js').LayeredFacePose) { face.setFace(pose); dirty = true; }, matrices, rotations, angles, setPointer, reset, update,
         getPointer: (): [
             number,
             number

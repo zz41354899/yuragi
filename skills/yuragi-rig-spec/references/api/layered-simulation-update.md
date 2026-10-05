@@ -36,8 +36,8 @@ simulation.update(16.67, 16.67);
 - [simulation-accessories/update](simulation-accessories-update.md)
 - [simulation-parts/update](simulation-parts-update.md)
 - [simulation-pointer-groups/update](simulation-pointer-groups-update.md)
+- [layered-simulation/set-face](layered-simulation-set-face.md)
 - [layered-simulation/set-pointer](layered-simulation-set-pointer.md)
-- [layered-simulation/reset](layered-simulation-reset.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

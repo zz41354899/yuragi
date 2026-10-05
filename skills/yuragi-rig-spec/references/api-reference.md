@@ -1,6 +1,6 @@
 # Yuragi v0.2 API and capability boundaries
 
-See [all public APIs](api/index.md) for an individual reference for every public function/method, plus types and constants. Signatures come from the real package. Read [Studio workflow](studio.md) to edit and review an agent-prepared character locally.
+See [all public APIs](api/index.md) for an individual reference for every public function/method, plus types and constants. Signatures come from the real package. Read [Studio workflow](studio.md) to preview, compare and record issues for an agent-prepared character locally.
 
 This reference follows the actual exports, types, player and simulation in Yuragi. Read [custom-character.md](custom-character.md) for full model ranges and framework integration, [api-types.ts](api-types.ts) for the contract, and [character-preparation.md](character-preparation.md) for assisted conversion.
 
@@ -162,3 +162,7 @@ Use `import { createMireaModel } from "@yuragi/rig/mirea"`. This optional entry 
 ## Independent layered v2
 
 Use `validateLayeredModel`, `createLayeredSimulation` or `createLayeredPlayer` with `LayeredModel` (version:2, renderer:layered). Vue and React expose a separate `YuragiLayeredCharacter`. See [the complete v2 contract](layered-engine.md) and [types](layered-api-types.ts). v1 extracts do not implicitly become v2 attachments.
+
+## Optional v2 review and face controls
+
+Read [layered authoring](layered-authoring.md) for hairGroups, refinement, eye clipping and supplied mouth sprites. setFace belongs to v2; the v1 gaze and animation contracts above remain unchanged. Both players support opt-in manual:true and advance(milliseconds) using shared fixed steps; manual callbacks remain low frequency.

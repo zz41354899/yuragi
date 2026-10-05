@@ -27,6 +27,8 @@ export interface LayeredModel {
     }[];
     /** Array order IS draw order. Only consecutive compatible attachments batch. */
     attachments: LayerAttachment[];
+    hairGroups?: { id: string; nodes: string[]; coupling: number }[];
+    face?: LayeredFace;
 }
 export interface LayerWeight {
     node: string;
@@ -87,6 +89,7 @@ export interface LayeredSnapshot {
     playing: boolean;
     reducedMotion: boolean;
     pointer: Vec2;
+    face?: LayeredFacePose & { gaze: Vec2 };
     nodes: {
         id: string;
         rotation: number;
@@ -103,6 +106,7 @@ export interface LayeredPlayerOptions {
     canvas: HTMLCanvasElement;
     model: LayeredModel;
     autoplay?: boolean;
+    manual?: boolean;
     reducedMotion?: 'respect' | 'ignore';
     pixelRatio?: number;
     signal?: AbortSignal;
@@ -112,6 +116,9 @@ export interface LayeredPlayerOptions {
 export interface LayeredPlayer {
     play(): void;
     pause(): void;
+    advance(milliseconds: number): void;
+    setGaze(x: number, y: number): void;
+    setFace(pose: LayeredFacePose): void;
     setPointer(x: number, y: number): void;
     reset(): void;
     getModel(): LayeredModel;
@@ -122,4 +129,25 @@ export interface LayeredPlayer {
         indices: Uint16Array;
     };
     destroy(): void;
+}
+
+export type MouthShape = 'closed' | 'a' | 'i' | 'u' | 'e' | 'o';
+export interface LayeredFacePose { eyeOpenLeft?: number; eyeOpenRight?: number; mouthOpen?: number; mouthShape?: MouthShape }
+export interface LayeredEye {
+    side: 'left' | 'right';
+    /** All layers use the same head node. Skin under lids must be supplied. */
+    node: string;
+    ball: string;
+    iris?: string;
+    lines: string[];
+    half: string;
+    closed: string;
+    /** Sampled source-normalized eye edges, increasing X. */
+    top: [number, number][];
+    bottom: [number, number][];
+    travel: Vec2;
+}
+export interface LayeredFace {
+    eyes?: LayeredEye[];
+    mouth?: { node: string; shapes: Partial<Record<MouthShape, string>> };
 }

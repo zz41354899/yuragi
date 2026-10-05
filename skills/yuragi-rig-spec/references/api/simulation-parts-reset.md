@@ -35,7 +35,7 @@ simulation.parts.reset();
 - [simulation-parts/displacement](simulation-parts-displacement.md)
 - [simulation-pointer-groups/reset](simulation-pointer-groups-reset.md)
 - [simulation/reset](simulation-reset.md)
-- [layered-simulation/reset](layered-simulation-reset.md)
+- [layered-simulation-face/reset](layered-simulation-face-reset.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

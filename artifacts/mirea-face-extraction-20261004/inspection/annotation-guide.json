@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "coordinateSpace": "full-source-normalized",
+  "roles": [
+    "unclassified",
+    "head",
+    "face",
+    "eye",
+    "iris",
+    "eyelid",
+    "mouth",
+    "neck",
+    "body",
+    "shoulder",
+    "arm",
+    "upper-arm",
+    "forearm",
+    "hand",
+    "finger",
+    "leg",
+    "thigh",
+    "knee",
+    "shin",
+    "ankle",
+    "foot",
+    "toe",
+    "heel",
+    "bangs",
+    "hair",
+    "cloth",
+    "ribbon",
+    "accessory",
+    "prop"
+  ],
+  "reviewGroups": [
+    "skull / face / headpiece",
+    "both eyes / irises / radii / travel / sclera colors",
+    "neck top and body-attached base",
+    "each visible bang / side-lock / rear strand",
+    "torso / shoulders / upper arms / forearms / visible fingers",
+    "left and right thigh / knee / shin / ankle / heel / toe",
+    "cloth panels / rigid prop canopy and shaft / flexible ribbons"
+  ],
+  "rules": [
+    "AI must inspect and annotate visible contours; this script does not infer segmentation.",
+    "Use raw skull/neck polygons for headMotion, separate from subtract masks used for exported child images.",
+    "Do not subtract a whole head protection polygon from bangs. Exclude only reviewed adjacent visible skin/props.",
+    "Record missing or merged anatomy rather than inventing hidden parts."
+  ]
+}

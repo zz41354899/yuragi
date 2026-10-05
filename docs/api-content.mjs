@@ -46,11 +46,11 @@ export const descriptions = {
 export const extra = {
   createPlayer: 'autoplay=true; reducedMotion="respect"; pixelRatio defaults to devicePixelRatio, clamped to 1…2. signal is part of the callable options intersection. Initialization errors reject the Promise; onError reports later rendering errors. onFrame reports about every 100 ms plus explicit operations.',
   createLayeredPlayer: 'autoplay=true; reducedMotion="respect"; pixelRatio is clamped to 1…2. AbortSignal cancels loading and destroys an initialized player. Missing images/dimension mismatches reject; callbacks and cleanup are not framework render state.',
-  setPointer: 'The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.',
+  setPointer: 'The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.',
   setParameter: 'The player rejects non-finite or unknown parameter inputs. The simulation returns a success boolean. lookX/lookY setters and parameter animation tracks restore gaze following the head.',
   setMotion: 'sway/hair/accessories/follow/parts: 0…2; speed: 0.25…2; weight/layers: 0…1. Defaults come from the loaded model, with optional weight/parts/layers defaulting to 1. layers scales pointer groups, not independent image layers.',
   setTracking: 'response: 0.001…0.2; damping: 0.1…0.98; maxVelocity: 0.1…5; bodyFollow: 0…1; translation per axis: 0…0.08. Invalid patches throw without partial mutation.',
-  setGazeStrength: 'Finite 0…1 is required. This changes only pupil translation; blinking, mouth expressions and expression tracks are not supported in 0.2.0.',
+  setGazeStrength: 'Finite 0…1 is required. This changes only pupil translation; v1 does not support blink/mouth/expression tracks; v2 attachment-based setFace is separate.',
   setPin: 'Model coordinates include all source margins, x/y in 0…1. Radius 0.005…0.5. Parent/type edits require validating a new model and recreating the player. The simulation setter does not automatically rebind an already-built mesh; call rebindPin.',
   setPart: 'Polygons contain 3…32 normalized vertices. Root/tip must differ. Geometry changes in a manually rendered simulation require rebuilding the mesh bindings; the player handles this for you.',
   wave: 'The player resumes its loop when paused; the simulation only sets progress at the supplied time. Do not use for a holding arm or claim universal limb animation.',
@@ -78,11 +78,11 @@ export const localizedNotes = {
   getPointer: text('回傳 v2 的正規化游標目標（每軸 −1…1），是 setPointer 輸入的兩倍後限制範圍，不是節點目前姿態。沒有位置參數。','Returns the v2 normalized target in −1…1 per axis: twice the setPointer input, clamped. This is a target, not the current node pose. No positional arguments.','v2 の目標を各軸 −1…1 で返します。setPointer 入力の2倍を制限した値で、現在の姿勢ではありません。引数なし。'),
   createPlayer: text('autoplay 預設 true；reducedMotion 預設 respect；pixelRatio 預設裝置倍率並限制 1–2。signal 在函式選項交集型別中。初始化失敗會 reject，onError 回報之後的渲染錯誤。onFrame 約每 100ms 與手動操作時回報。',extra.createPlayer,'autoplay は true、reducedMotion は respect、pixelRatio は装置値を 1–2 に制限。signal は実際の交差型に含まれます。初期化失敗は reject、その後は onError。onFrame は約100msごとと手動操作時。'),
   createLayeredPlayer: text('autoplay 預設 true，reducedMotion 預設 respect，pixelRatio 限制 1–2。AbortSignal 可取消載入並清理播放器。缺圖或尺寸不符會 reject。快照不應作為框架每幀渲染狀態。',extra.createLayeredPlayer,'autoplay は true、reducedMotion は respect、pixelRatio は 1–2。AbortSignal で読み込み取消・解放。画像不足・寸法不一致は reject。フレーム状態を UI レンダーに保存しません。'),
-  setPointer: text('v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。',extra.setPointer,'v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。'),
+  setPointer: text('v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應；選用的分層 setGaze／setFace 與 v1 眼睛 API 分開。',extra.setPointer,'v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 はノード反応と、専用の分層 setGaze/setFace を使用。'),
   setParameter: text('播放器拒絕非有限或未知參數；模擬器回傳成功布林值。lookX／lookY 的 setter 或參數動畫會恢復眼神跟隨頭部。',extra.setParameter,'プレイヤーは非有限・未知の値を拒否。シミュレーターは成功の真偽値を返します。lookX/lookY の設定・トラックは視線を頭部追従に戻します。'),
   setMotion: text('sway／hair／accessories／follow／parts：0–2；speed：0.25–2；weight／layers：0–1。初始值來自模型，省略的 weight／parts／layers 預設 1。layers 是共同游標變換倍率。',extra.setMotion,'sway/hair/accessories/follow/parts：0–2、speed：0.25–2、weight/layers：0–1。初期値はモデル由来、省略 weight/parts/layers は1。layers は共有ポインター変換の倍率です。'),
   setTracking: text('response：0.001–0.2；damping：0.1–0.98；maxVelocity：0.1–5；bodyFollow：0–1；translation 各軸：0–0.08。無效更新拋錯且不部分修改。',extra.setTracking,'response：0.001–0.2、damping：0.1–0.98、maxVelocity：0.1–5、bodyFollow：0–1、translation：各軸0–0.08。不正な更新は例外で、部分変更しません。'),
-  setGazeStrength: text('必須為有限的 0–1。只控制瞳孔平移；0.2.0 不支援眨眼、嘴型或表情軌。',extra.setGazeStrength,'有限な0–1が必要。瞳孔移動のみで、0.2.0 は瞬き・口・表情トラックに未対応。'),
+  setGazeStrength: text('必須為有限的 0–1。只控制瞳孔平移；v1 不支援眨眼、嘴型或表情軌；v2 分層附件另有 setFace。',extra.setGazeStrength,'有限な0–1が必要。瞳孔移動のみで、v1 は瞬き・口・表情トラックに未対応。v2 の setFace は専用です。'),
   setPin: text('座標包含原圖留白，每軸 0–1；radius：0.005–0.5。未知名稱或無效更新會拋錯，保留舊設定。更改 parent／type 需驗證新模型並重建播放器。純模擬器 setter 不會重綁既有網格，需呼叫 rebindPin。',extra.setPin+' Unknown names or invalid patches throw without committing the patch.','余白を含む原画座標で各軸0–1、radius：0.005–0.5。未知の名前・不正な更新は例外で旧設定を保持。parent/type は新モデル検証後に再生成。シミュレーターでは rebindPin が必要。'),
   setPart: text('多邊形含 3–32 個正規化頂點；根與末端不同。未知 ID 或無效更新會拋錯。純模擬器修改幾何後需重建綁定；播放器會自行處理。',extra.setPart+' Unknown IDs or invalid patches throw without committing the patch.','多角形は正規化頂点3–32個、根と先端は別。未知の ID・不正な更新は例外。シミュレーターは再バインド、プレイヤーは自動処理。'),
   wave: text('播放器在暫停時恢復迴圈；純模擬器只在指定時間觸發。不可用於持物手臂，不是通用肢體動畫。',extra.wave,'プレイヤーは停止中に再開。シミュレーターは指定時刻で進捗のみ設定。持ち物の腕や汎用肢体アニメには使用しません。'),
@@ -225,3 +225,25 @@ Object.assign(parameterNotes,{
 Object.assign(parameterTranslations,{
   rest:['完整原圖正規化 x/y 交錯頂點緩衝區。','全原画の正規化 x/y 頂点バッファ。'],binding:['同一網格由此子系統回傳的稀疏綁定。','同じメッシュに対してこのサブシステムが返したバインド。'],vertex:['零起算的網格頂點索引。','0始まりのメッシュ頂点番号。'],lookX:['引擎水平角度，通常 −30…30。','エンジンの水平角度、通常 −30…30。'],lookY:['引擎垂直角度，通常 −30…30。','エンジンの垂直角度、通常 −30…30。'],lookVelocity:['simulation.velocity.lookX 的值。','simulation.velocity.lookX の値。'],verticalVelocity:['simulation.velocity.lookY 的值。','simulation.velocity.lookY の値。'],wave:['揮手進度 0…1。','手振りの進捗0…1。'],
 })
+
+Object.assign(descriptions, {
+  advance: text('以共用固定步進更新手動播放器並繪製。', 'Advance a manual player using shared fixed steps and render the result.', '共通の固定ステップで手動プレイヤーを更新・描画します。'),
+  fixedSteps: text('將 0–60000 毫秒拆成固定步進與最後餘數。', 'Split 0–60000 milliseconds into fixed steps and a final remainder.', '0–60000 ミリ秒を固定ステップと最後の余りに分割します。'),
+  faceReviewPoses: text('取得分層眼嘴的固定測試定義；需依模型素材篩選。', 'Return fixed face review definitions; filter by available authored assets.', '顔の固定テスト定義を返します。利用可能な素材で絞り込みます。'),
+  setFace: text('設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。', 'Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.', 'v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。'),
+  eyeFor: text('查詢附件所屬的眼睛設定。', 'Find the authored eye owning an attachment.', 'アタッチメントに対応する目の設定を取得します。'),
+  layer: text('取得眼嘴附件的可見度、裁切與虹膜位移。', 'Read face attachment visibility, clipping and iris translation.', '顔の表示・クリップ・虹膜移動を取得します。'),
+  snapshot: text('取得目前眼嘴與眼神狀態；減少動態時回傳中立值。', 'Read face and gaze state; reduced motion returns neutral values.', '顔・視線の状態を取得。動作軽減時は中立値を返します。'),
+})
+Object.assign(examples, {
+  advance: 'player.advance(1000);', fixedSteps: 'fixedSteps(1000, delta => console.log(delta));',
+  faceReviewPoses: 'const poses = faceReviewPoses().filter(pose => pose.id === "eyes-closed");',
+  setFace: 'player.setFace({ eyeOpenLeft: 0, eyeOpenRight: 0 });',
+  eyeFor: 'const eye = simulation.face.eyeFor("left-iris");',
+  layer: 'const state = simulation.face.layer("left-iris");',
+  snapshot: 'const pose = simulation.face.snapshot();',
+})
+Object.assign(parameterNotes, { milliseconds: 'Finite elapsed milliseconds, 0…60000.', step: 'Callback receiving each fixed delta in milliseconds.', next: 'Authored face pose patch; openness values in 0…1.', pose: 'Authored face pose patch; openness values in 0…1.' })
+// Manual rendering is opt-in; normal autoplay and legacy models retain their behavior.
+extra.advance = 'Use manual:true at creation. advance does not schedule requestAnimationFrame; it runs the shared fixed-step engine and draws. Fixed review definitions are shared by Studio and the CLI.'
+localizedNotes.advance = text('建立時設 manual:true；advance 不啟動 RAF。共用固定步進及姿勢定義供 Studio 和 CLI 使用。', extra.advance, '生成時に manual:true。advance は RAF を開始せず、Studio と CLI が同じ固定ステップを使用します。')

@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "tool": "built-in image_gen",
+  "mode": "natural-open-close",
+  "images": [
+    {
+      "id": "face-clean-bed",
+      "prompt": "Use case: precise-object-edit. Edit target is the attached enlarged Mirea face crop. Remove BOTH eyes completely (irises, sclera, eyelash lines, eyelids) and remove the mouth completely, restoring seamless pale peach skin, natural cheek blush, tiny nose and original light/shadow. This is a clean facial base for a layered 2D rig. Preserve ALL hair, hair strand outlines, eyebrows, nose, facial contour, composition, head tilt, framing and exact positions. Do not smooth or beautify the entire illustration. Preserve soft lavender/peach anime painterly style. Same full crop framing as reference, no margins or re-centering, no labels. Transparent background where applicable; face skin must be fully opaque. Keep original image aspect ratio.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-3a12c5ad-e617-4d2b-b4e2-235d3f594829.png"
+    },
+    {
+      "id": "eye-left-eyeball",
+      "prompt": "Use case: illustration-story. Reference image: enlarged original Mirea face. Create ONE isolated complete white sclera asset for her viewer-left lower-position eye. NO iris, NO pupil, NO lashes, NO eyeliner, NO skin. The full softly rounded almond/oval eyeball white is uninterrupted, including the pixels formerly hidden beneath the iris and upper eyelid. Match this eye's original perspective/head tilt and soft creamy-white shading with pale lavender upper shadow, no sharp outline, transparent background. Single asset centered with generous transparent margin. Soft painterly anime style exactly like reference, no text, grid, labels or other objects.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-eeafc9e2-da48-4d49-9428-bf1b447be646.png"
+    },
+    {
+      "id": "eye-right-eyeball",
+      "prompt": "Use case: illustration-story. Reference image: enlarged original Mirea face. Create ONE isolated complete white sclera asset for her viewer-right higher-position eye. NO iris, NO pupil, NO lashes, NO eyeliner, NO skin. The full softly rounded almond/oval eyeball white is uninterrupted, including the pixels formerly hidden beneath the iris and upper eyelid. Match this eye's original perspective/head tilt and soft creamy-white shading with pale lavender upper shadow, no sharp outline, transparent background. Single asset centered with generous transparent margin. Soft painterly anime style exactly like reference, no text, grid, labels or other objects.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-309ea4c2-3f33-472c-8642-c3478daccd4c.png"
+    },
+    {
+      "id": "eye-left-iris",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated complete circular iris sprite matching her viewer-left lower-position eye: luminous violet-lavender iris, small deep purple central pupil, pale lilac lower glow, original upper-right white highlight and painterly anime detail. Reconstruct the whole iris including upper pixels hidden behind eyelid. NO sclera, eyelid, eyelashes, skin or face. Transparent background, single centered iris with generous transparent margin, no text. Preserve original iris color and subtle style.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-100a37dc-785b-483c-8c91-2548f9b2fc52.png"
+    },
+    {
+      "id": "eye-left-half",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated half-closed sleepy eye expression with violet iris visible only below lowered upper lid sprite for her viewer-left lower-position eye. Match the exact original eye tilt, contour, long delicate lashes, pale pink skin shading and painterly anime style. Full half-closed eye artwork containing skin of lowered upper lid, eyeliner and the visible iris/sclera underneath. Only a small local eye patch; NO eyebrow, hair, nose, mouth or entire face. Genuine transparent background outside sprite, centered with generous transparent margin. No text, no labels.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-3f926904-3108-4e22-b508-9e9cb15bc876.png"
+    },
+    {
+      "id": "eye-left-closed",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated fully closed relaxed eye expression, ONLY graceful dark mauve eyelash curve with slight skin-toned eyelid shading, no iris or eye white visible sprite for her viewer-left lower-position eye. Match the exact original eye tilt, contour, long delicate lashes, pale pink skin shading and painterly anime style. Relaxed closed-eye curved lash line follows the same tilted perspective; not a black open almond, not angry. Only a small local eye patch; NO eyebrow, hair, nose, mouth or entire face. Genuine transparent background outside sprite, centered with generous transparent margin. No text, no labels.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-4f390e7f-8cdf-46bf-aeea-27d1937c9000.png"
+    },
+    {
+      "id": "eye-right-iris",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated complete circular iris sprite matching her viewer-right higher-position eye: luminous violet-lavender iris, small deep purple central pupil, pale lilac lower glow, original upper-right white highlight and painterly anime detail. Reconstruct the whole iris including upper pixels hidden behind eyelid. NO sclera, eyelid, eyelashes, skin or face. Transparent background, single centered iris with generous transparent margin, no text. Preserve original iris color and subtle style.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-9b2de28b-d470-48f4-baa8-24c0509a7c2e.png"
+    },
+    {
+      "id": "eye-right-half",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated half-closed sleepy eye expression with violet iris visible only below lowered upper lid sprite for her viewer-right higher-position eye. Match the exact original eye tilt, contour, long delicate lashes, pale pink skin shading and painterly anime style. Full half-closed eye artwork containing skin of lowered upper lid, eyeliner and the visible iris/sclera underneath. Only a small local eye patch; NO eyebrow, hair, nose, mouth or entire face. Genuine transparent background outside sprite, centered with generous transparent margin. No text, no labels.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-9679b981-a030-4769-ba59-5b89e37faefd.png"
+    },
+    {
+      "id": "eye-right-closed",
+      "prompt": "Use case: illustration-story. Reference image is Mirea's original enlarged face. ONE isolated fully closed relaxed eye expression, ONLY graceful dark mauve eyelash curve with slight skin-toned eyelid shading, no iris or eye white visible sprite for her viewer-right higher-position eye. Match the exact original eye tilt, contour, long delicate lashes, pale pink skin shading and painterly anime style. Relaxed closed-eye curved lash line follows the same tilted perspective; not a black open almond, not angry. Only a small local eye patch; NO eyebrow, hair, nose, mouth or entire face. Genuine transparent background outside sprite, centered with generous transparent margin. No text, no labels.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-7373572b-804d-4277-929d-f3fdbdb05d32.png"
+    },
+    {
+      "id": "mouth-open",
+      "refs": [
+        "/Users/zz41354899/Desktop/yuragi/artifacts/mirea-face-extraction-20261004/inspection/face-detail.png"
+      ],
+      "prompt": "Use case: illustration-story. Reference is Mirea's original enlarged face. Create ONE isolated NATURALLY SLIGHTLY OPEN mouth sprite for this same character. Preserve her delicate small closed-mouth smile's diagonal upward-right tilt and subtle expression. Lips gently part for a quiet breath or soft speech, with a narrow small dark dusty-rose opening, very slight tongue hint if needed. NO wide laugh, NO broad toothy grin, NO big glossy lips, NO vowel/phoneme pose, NO exaggerated O shape. Opening height only about one quarter of width; same discreet mouth corner shape and width as the original smile. Painterly anime illustration in pale pink/rose, fine understated lines and minimal pale skin feather at edges. Only the small mouth, not nose/chin/face. Genuine transparent background, single centered asset with margin, no text.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-62f1cc9e-85d0-409c-9f56-4366fb63f6f7.png"
+    },
+    {
+      "id": "eye-left-half",
+      "refs": [
+        "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-4b710b52-2a0a-4094-84fe-d39f687961ae.png",
+        "/Users/zz41354899/Desktop/yuragi/artifacts/mirea-face-extraction-20261004/inspection/face-detail.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, image 2 is Mirea's original enlarged face reference. Correct this viewer-LEFT half-closed eye sprite so OUTER corner/longest delicate lashes are on the LEFT, extending down-left. INNER corner is RIGHT (nose side) with very short lashes. Overall eye rises gently toward right by 15 degrees, as in reference viewer-left lower-position eye. Reduce thick/exaggerated mascara to original delicate lash weight. Preserve purple iris in half-closed state, pale peach skin, soft painterly style, isolated centered sprite and transparent background. No eyebrow, nose, hair, text or extra eye.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-3f926904-3108-4e22-b508-9e9cb15bc876.png"
+    },
+    {
+      "id": "eye-left-closed",
+      "refs": [
+        "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-37f3da3c-0fea-44c6-8d65-cb9d5adb6bfd.png",
+        "/Users/zz41354899/Desktop/yuragi/artifacts/mirea-face-extraction-20261004/inspection/face-detail.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, image 2 is Mirea's original enlarged face reference. Correct this viewer-LEFT fully closed eye sprite so OUTER corner/longest delicate lashes are on the LEFT, extending down-left. INNER corner is RIGHT (nose side) with very short lashes. Overall eye rises gently toward right by 15 degrees, as in reference viewer-left lower-position eye. Reduce thick/exaggerated mascara to original delicate lash weight. Preserve purple iris ABSENT in fully closed state, pale peach skin, soft painterly style, isolated centered sprite and transparent background. No eyebrow, nose, hair, text or extra eye.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-4f390e7f-8cdf-46bf-aeea-27d1937c9000.png"
+    },
+    {
+      "id": "eye-right-half",
+      "refs": [
+        "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-1f08124f-821d-47c5-8326-30d17e40d0cd.png",
+        "/Users/zz41354899/Desktop/yuragi/artifacts/mirea-face-extraction-20261004/inspection/face-detail.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is half-closed eye edit target; image 2 Mirea face reference. Make this viewer-RIGHT higher-position eye rise toward RIGHT about 18 degrees, following reference. Outer corner/longest lashes on RIGHT. Reduce heavy mascara to original delicate lash weight. Preserve half-closed state, violet iris, pale peach feather, soft painterly style, isolated centered sprite and transparent background. No eyebrow, nose, hair, text or extra eye.",
+      "path": "/Users/zz41354899/.codex/generated_images/01a1056b-4788-7540-b5a4-87ef90bb93fc/exec-9679b981-a030-4769-ba59-5b89e37faefd.png"
+    }
+  ]
+}

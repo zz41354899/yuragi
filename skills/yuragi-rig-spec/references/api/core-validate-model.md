@@ -36,6 +36,8 @@ console.log(input.pins);
 - [core/to-canvas](core-to-canvas.md)
 - [core/create-simulation](core-create-simulation.md)
 - [core/constrain-shared-surface](core-constrain-shared-surface.md)
+- [core/fixed-steps](core-fixed-steps.md)
+- [core/face-review-poses](core-face-review-poses.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

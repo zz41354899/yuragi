@@ -179,7 +179,7 @@ export async function createPlayer(options: PlayerOptions & { signal?: AbortSign
   canvas.addEventListener('webglcontextlost', contextLost)
   const player: RigPlayer = {
     play, pause,
-    advance(milliseconds) { if (destroyed) return; fixedSteps(milliseconds, step); draw() },
+    advance(milliseconds) { if (destroyed) return; fixedSteps(milliseconds, step); const report = elapsed-lastReport >= 100; draw(report); if(report)lastReport=elapsed },
     setPointer(x, y) {
       if (destroyed) return
       if (!Number.isFinite(x) || !Number.isFinite(y)) throw new Error('Pointer coordinates must be finite')
@@ -217,7 +217,7 @@ export async function createPlayer(options: PlayerOptions & { signal?: AbortSign
       for (const p of simulation.pins) { p.px = p.x; p.py = p.y; p.vx = 0; p.vy = 0 }
       for (const p of simulation.hair.pins) { p.dx = 0; p.dy = 0; p.vx = 0; p.vy = 0 }
       for (const p of simulation.accessories.pins) { p.rotation = 0; p.velocity = 0 }
-      elapsed = 0; simulation.reset(); simulation.velocity.lookX = 0; simulation.velocity.lookY = 0
+      elapsed = 0; lastReport = -100; simulation.reset(); simulation.velocity.lookX = 0; simulation.velocity.lookY = 0
       timeline.stop(); face.reset()
       Object.assign(simulation.parameters, { lookX: 0, lookY: 0, bodyX: 0, wave: 0 })
       simulation.setMotion(previousMotion); draw()

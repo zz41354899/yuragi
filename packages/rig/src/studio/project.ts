@@ -4,7 +4,7 @@ export interface StudioProject {
   source: { file: string; sha256: string }
   stage: typeof projectStages[number]
   currentVersion: string
-  versions: { id: string; path: string; label?: string; inputs?: Record<string,string> }[]
+  versions: { id: string; path: string; label?: string; runtimeVersion?: string; inputs?: Record<string,string> }[]
 }
 export function validateProject(value: unknown): asserts value is StudioProject {
   const p = value as StudioProject

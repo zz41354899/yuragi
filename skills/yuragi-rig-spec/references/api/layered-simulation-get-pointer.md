@@ -30,6 +30,7 @@ const pointer = simulation.getPointer();
 
 ## Related
 
+- [layered-simulation/set-face](layered-simulation-set-face.md)
 - [layered-simulation/set-pointer](layered-simulation-set-pointer.md)
 - [layered-simulation/reset](layered-simulation-reset.md)
 - [layered-simulation/update](layered-simulation-update.md)

@@ -39,9 +39,9 @@
     "test": "node --import tsx --test test/*.test.ts"
   },
   "peerDependencies": {
-    "vue": "^3.5.0",
+    "playwright": "^1.50.0",
     "react": "^18.3.0 || ^19.0.0",
-    "playwright": "^1.50.0"
+    "vue": "^3.5.0"
   },
   "peerDependenciesMeta": {
     "vue": {
@@ -60,5 +60,8 @@
   },
   "bin": {
     "yuragi": "./dist/studio/cli.js"
+  },
+  "dependencies": {
+    "image-size": "^2.0.4"
   }
 }

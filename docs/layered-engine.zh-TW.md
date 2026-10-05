@@ -83,4 +83,12 @@ Python 需 Pillow；Node 需已建置的本機 `@yuragi/rig`。原图 hash、尺
 
 新增測試涵蓋共享接點、剛性距離、彈簧限幅、權重與圖集驗證、批次顺序、mask／opacity 提交、低頻快照、暫停編輯、減少動態、取消載入與資源釋放。數值 baseline 仍須通過。
 
-仍未實作：IK、骨骼約束求解、Spine 匯入、多動畫混合、blink／mouth 附件參數、動態遮罩／附件交換與大角度轉身。分層渲染提供繪製與綁定基礎，素材完整性仍是作者需求。
+仍未實作：IK、骨骼約束求解、Spine 匯入、多動畫混合、任意動態遮罩與大角度轉身。分層渲染提供繪製與綁定基礎，素材完整性仍是作者需求。
+
+## 選用的瀏海、網格與眼嘴
+
+`hairGroups` 設定兄弟彈簧節點的聯動及限幅；未設定的模型維持舊行為。Python `refine` 在量測區域加入局部網格列／欄，`pruneTransparent` 移除透明格；跨附件接縫仍使用明確共享 joints。
+
+既有 v2 模型的眼嘴附件與 `setFace` 仍保留格式相容性。官網與 Studio 的主要預覽改採原圖眼神滑鼠追蹤，不提供補眼白、眨眼與嘴型切換入口，也不把這些附件列為素材需求。v1 使用 `setGaze`／`setGazeStrength`，保留原本的眼線、眼皮與嘴巴。
+
+Studio 依實際能力顯示測試。完整製作契約見 `skills/yuragi-rig-spec/references/layered-authoring.md`。Mirea 不因引擎新增功能而自動具備閉眼、眼皮底圖或嘴型素材。

@@ -33,9 +33,9 @@ player.reset();
 - [simulation-parts/reset](simulation-parts-reset.md)
 - [simulation-pointer-groups/reset](simulation-pointer-groups-reset.md)
 - [simulation/reset](simulation-reset.md)
+- [layered-simulation-face/reset](layered-simulation-face-reset.md)
 - [layered-simulation/reset](layered-simulation-reset.md)
 - [player/play](player-play.md)
-- [player/pause](player-pause.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

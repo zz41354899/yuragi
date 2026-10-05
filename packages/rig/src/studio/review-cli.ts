@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import { createServer } from 'node:http'
 import { readFile, mkdir, mkdtemp, rename, rm, realpath, lstat } from 'node:fs/promises'
 import { dirname, resolve, join, extname } from 'node:path'
@@ -13,6 +14,7 @@ export async function renderReview(projectPath: string, outputPath: string) {
   let root = await realpath(resolve(projectPath))
   try {
     const project: unknown = JSON.parse(await readFile(await safeFile(root, 'project.json'), 'utf8')); validateProject(project)
+    if (createHash('sha256').update(await readFile(await safeFile(root, project.source.file))).digest('hex') !== project.source.sha256) throw new Error('Project source changed; inspect again')
     root = dirname(await safeFile(root, project.versions.find(v => v.id === project.currentVersion)!.path + '/model.json'))
   } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error }
   const session = await loadProject(root)
@@ -28,7 +30,7 @@ export async function renderReview(projectPath: string, outputPath: string) {
       } catch { res.writeHead(404); res.end() }
     })()
   })
-  await new Promise<void>(done => server.listen(0, '127.0.0.1', done))
+  await new Promise<void>((done,reject) => { server.once('error',reject); server.listen(0, '127.0.0.1', () => {server.off('error',reject);done()}) })
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Review server failed')
   const origin = 'http://127.0.0.1:' + address.port
   let browser: any, temporary: string | undefined
@@ -55,6 +57,7 @@ export async function renderReview(projectPath: string, outputPath: string) {
         const player = m.version === 1 ? await runtime.createPlayer({ canvas, model: m, manual: true, autoplay: false, pixelRatio: 1 }) : await runtime.createLayeredPlayer({ canvas, model: m, manual: true, autoplay: false, pixelRatio: 1 })
         try {
           player.reset()
+          if (pose.id === 'neutral' && 'setMotion' in player) player.setMotion({weight:0})
           for (const step of pose.sequence) { player.setPointer(...step.pointer); if (step.face && 'setFace' in player) player.setFace(step.face); player.advance(step.milliseconds) }
           images.push({ id: pose.id, png: canvas.toDataURL('image/png') })
         } finally { player.destroy() }

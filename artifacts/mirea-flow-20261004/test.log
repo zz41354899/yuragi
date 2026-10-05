@@ -1,0 +1,122 @@
+
+> yuragi-workspace@0.2.0 test
+> npm run test --workspaces --if-present
+
+
+> @yuragi/rig@0.2.0 test
+> node --import tsx --test test/*.test.ts
+
+✔ Vue adapter is safe to render on the server and provides fallback art (47.866541ms)
+✔ React adapter is safe to render on the server and provides fallback art (12.076292ms)
+✔ manual fixed review steps and definitions repeat exactly and reject invalid elapsed time (112.814542ms)
+✔ Mirea complete position buffers retain their pre-change numerical baseline (2870.112542ms)
+✔ face layers reject missing assets, use one head transform, hide variants and restore neutral (3.462625ms)
+✔ sibling bangs couple within their individual limits and preserve legacy opt-in behavior (6.43775ms)
+✔ version catalog, issue capture, explicit resolution, stale inputs and failed switch preserve the active model (935.898167ms)
+✔ image dimensions are verified before a candidate can be offered (33.704667ms)
+✔ preview automatically saves fingerprint-bound missing materials and preserves authoring requests (204.980458ms)
+✔ installable package includes valid Mirea and starter assets (23.092959ms)
+✔ packaged Mirea pairs the reviewed source with isolated model data through its opt-in entry (24.757416ms)
+✔ gaze is independent of geometry, strength is bounded and reduced motion preserves source (10735.690041ms)
+✔ invalid facial geometry cannot move a pupil outside the reviewed eye (2.712375ms)
+✔ Bezier time inversion, step interpolation, loop, pause, seek and invalid clips (1.027458ms)
+✔ overall motion weight blends guarded geometry and translation, without changing baseline dynamics (201.1755ms)
+✔ legacy face fields and expression tracks require explicit migration (2.100292ms)
+✔ owned head keeps pixel distances through pointer reversals without dragging the lower body (6805.774042ms)
+✔ neck endpoints blend body to head and props retain ownership inside a head overlap (1.996916ms)
+✔ layered Vue component renders the complete fallback during SSR without loading WebGL (25.423125ms)
+✔ layered React component renders the complete fallback during SSR without loading WebGL (42.631666ms)
+✔ v2 rejects v1 extracts, missing coverage, invalid topology, atlases, cycles, bindings and seams (6.995875ms)
+✔ neutral and reduced frames reproduce rest exactly; joins stay coincident at all pointer extremes (42.492334ms)
+✔ batching preserves draw order and splits opacity, mask and atlas changes (1.429041ms)
+✔ renderer draws real batches, uploads paused edits, throttles snapshots and cleans aborts (21.1685ms)
+✔ static reduced player, cancelled loads and renderer initialization failure release resources (26.888542ms)
+✔ Mirea prototype validates and measures actual sparse CPU updates with no seam substitution (255.547084ms)
+✔ hierarchical pointer transforms settle equally at 30, 60 and 120Hz and seam bindings are canonical (76.5775ms)
+✔ manual review player advances without RAF, throttles callbacks and resets its clock (3.397625ms)
+✔ Mirea flow preserves both the previous and tuned numerical deformation baselines (10606.7405ms)
+✔ tuned Mirea tracking has the same timing at 30, 60 and 120 Hz (15.069667ms)
+✔ Mirea crossed legs and shoes share a rigid transform through reversals and stalls (5931.938958ms)
+✔ Mirea held arm, grip, shaft and canopy keep one transform during layered motion (3945.24125ms)
+✔ part masks protect face and unrelated source pixels; overlap is normalized (72.736125ms)
+✔ explicit exclusions keep skin and held items outside flexible part binding (3.727417ms)
+✔ part springs stay bounded through reversal and stalls; reduced motion restores original geometry (8184.429208ms)
+✔ malformed part geometry and head profiles are rejected before simulation (3.528125ms)
+✔ player owns one animation loop and releases every resource on idempotent destroy (1104.631792ms)
+✔ reduced motion draws a static frame and responds to preference changes (327.086708ms)
+✔ failed image load rejects without allocating WebGL resources (1.727166ms)
+✔ part snapshots stay low-frequency, reset spring state and respect reduced motion (1908.057292ms)
+✔ aborted load and abort after initialization clean up safely (270.273917ms)
+✔ face and timeline APIs freeze with pause, seek deterministically, stay static in reduced motion and clean up (608.900292ms)
+✔ motion weight timeline works on legacy fixture, seeks exact weights and reports static reduced state (339.393417ms)
+✔ mesh inspection copies the actual GPU submission, including motion and rebuilt pin weights (1217.799333ms)
+✔ repeated Mirea pin and part edits report once, preserve resources and keep rendering (4744.307458ms)
+✔ incremental pin binding matches a full rebuild, including the edited neck transition (962.383125ms)
+✔ minimum influence radii remain normalized and finite through live edits and a fresh load (484.2375ms)
+✔ shared group transforms have consistent timing, slower pelvis response and rigid fractional gains (16.784584ms)
+✔ pointer-group input is validated before allocation and motion patches reject atomically (20.592166ms)
+✔ rigid owned pixels preserve source distances despite unrelated hair and overlapping feathers (183.766125ms)
+✔ weighted ownership excludes unrelated pins and rigid anchors cannot reference missing joints (390.08475ms)
+✔ interactive legacy fixture uses bounded tracking and isolated parts while retaining the original fixture factory (6610.406417ms)
+✔ extracted default preserves original legacy fixture deformation under pointer reversal and wave (3948.184709ms)
+✔ idle remains visible and its triangles preserve orientation (10431.829083ms)
+✔ models and simulations have isolated mutable state (2.30325ms)
+✔ turning off local motion removes hair and accessory displacement (51.91025ms)
+✔ edited geometry changes skinning while remaining finite at maximum settings (1769.551375ms)
+✔ invalid input is rejected before changing live settings (1.513833ms)
+✔ custom head warping follows measured vertical bounds without changing the legacy preset (1360.50325ms)
+✔ Studio edits keep valid preview, undo/redo preserve drafts and invalidate acceptance (14.8905ms)
+✔ Studio supports polygon/parent edits and exposes source geometry, independent from Mirea (5.077125ms)
+✔ transformed source rect converts pointer positions independently of padding and zoom (0.259709ms)
+✔ CLI rejects missing/invalid options and parses explicit local roots (15.716834ms)
+✔ local server enforces session, source paths, draft isolation, review and versioned delivery (558.039792ms)
+✔ local reads and output writes reject escaping symlinks (109.572584ms)
+✔ layered v2 remains inspection-only through document and server (43.051916ms)
+✔ npm bin symlink invokes the CLI instead of silently skipping main (654.615375ms)
+✔ bounded tracking has matching elapsed-time response at 30, 60 and 120 Hz (63.397875ms)
+✔ live tracking edits copy inputs, retarget a stationary pointer and reject invalid patches atomically (22.670042ms)
+✔ whole-artwork following preserves every guarded vertex offset and reduced-motion artwork (1381.080542ms)
+✔ vertical part following is opt-in, delayed, bounded, and settles after a pointer impulse (13.061333ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 71
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20665.762417
+
+> @yuragi/site@0.2.0 pretest
+> node ../../scripts/sync-skills.mjs
+
+API catalogue: 91 callable pages, 48 types/constants
+Prepared Yuragi skills: yuragi-character, yuragi-rig-spec
+
+> @yuragi/site@0.2.0 test
+> node --import tsx --test test/*.test.ts
+
+✔ API catalogue matches public exports and standalone skill references (1642.070917ms)
+✔ all API examples compile against the actual public TypeScript contracts (1637.764209ms)
+✔ pointer gaze follows the same source location after zoom, pan and artwork translation (12.246333ms)
+✔ nearby gaze changes continuously and remains bounded at distant pointer positions (0.665666ms)
+✔ all registered translation keys are unique and provide three nonempty languages (3.457125ms)
+✔ literal homepage and editor interface text has complete translations (4.094666ms)
+✔ overlay samples the rendered triangle, not bilinear coordinates or undeformed pins (4.525458ms)
+✔ website offers no model or package download endpoints or export controls (3.890167ms)
+✔ tapered bones follow the submitted triangles and retain exact joint endpoints (18.2045ms)
+✔ coincident edited joints do not produce invalid bone coordinates (1.191375ms)
+✔ website discovery includes complete, current skill resources and resolving local references (74.515542ms)
+✔ installed rig skill carries the current model contract and a valid starter (2.192375ms)
+✔ pin coordinates use the transformed artwork, not the viewport (3.530917ms)
+✔ pins are clamped to the full image and zero-size artwork is ignored (4.444292ms)
+✔ zoom preserves the artwork position below the cursor (0.3375ms)
+✔ zoom limits apply before recalculating pan (0.177ms)
+✔ keyboard editing supports fine steps, Shift and image boundaries (0.299125ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4682.640875

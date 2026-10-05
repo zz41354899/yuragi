@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "reviewer": "agent",
+  "scope": "visible-source-extraction",
+  "inspected": [
+    "contact-sheet.png",
+    "../inspection/face-detail.png",
+    "../inspection/left-eye-detail.png",
+    "../inspection/right-eye-detail.png",
+    "../inspection/mouth-detail.png"
+  ],
+  "result": "visible-extracts-reviewed",
+  "observations": [
+    "張眼、虹膜、眼線及閉嘴裁片保留原圖可見外觀。",
+    "眼旁皮膚只涵蓋可見局部，不能當成完整眼皮底圖。",
+    "眼白裁片缺少虹膜後方像素，邊緣保留原圖線條及抗鋸齒，不能直接當成完整眼球。",
+    "原圖沒有半閉眼、閉眼或 A/I/U/E/O 嘴型，這九項未產生。"
+  ],
+  "layeredPlaybackAccepted": false,
+  "modelBindingPerformed": false
+}

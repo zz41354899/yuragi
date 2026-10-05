@@ -4,6 +4,7 @@ import type { RigPlayer, RigSnapshot } from '@yuragi/rig'
 import CharacterStage from './CharacterStage.vue'
 import { createMireaDemoModel } from '../models/mirea'
 import { useText } from '../i18n'
+import { pointerGaze } from '../editor/gaze'
 
 const { tr } = useText()
 const model = createMireaDemoModel()
@@ -17,13 +18,11 @@ function move(event: PointerEvent) {
   const stage = (event.currentTarget as HTMLElement).getBoundingClientRect()
   if (!stage.width || !stage.height) return
   player.value.setPointer(bounded((event.clientX - stage.left) / stage.width - .5), bounded((event.clientY - stage.top) / stage.height - .5))
-  const box = artwork.value?.getBoundingClientRect(), eyes = model.face!.eyes
+  const box = artwork.value?.getBoundingClientRect()
   if (!box?.width || !box.height) return
-  const travel = snapshot?.trackingOffset ?? [0,0]
-  const cx = (eyes[0].center[0] + eyes[1].center[0]) / 2 + travel[0]
-  const cy = (eyes[0].center[1] + eyes[1].center[1]) / 2 + travel[1]
-  player.value.setGaze((event.clientX - box.left - box.width * cx) / (box.width * .18), (event.clientY - box.top - box.height * cy) / (box.height * .11))
+  player.value.setGaze(...pointerGaze([event.clientX,event.clientY],box,model.face!,snapshot?.trackingOffset))
 }
+function ready(next:RigPlayer){player.value=next;next.setGazeStrength(.75)}
 function resetPointer() { player.value?.setPointer(0,0); player.value?.setGaze(0,0) }
 function keyboard(event: KeyboardEvent) {
   const directions: Record<string,[number,number]> = { ArrowLeft:[-.5,0], ArrowRight:[.5,0], ArrowUp:[0,-.5], ArrowDown:[0,.5], Home:[0,0], Escape:[0,0] }
@@ -35,6 +34,6 @@ defineExpose({ move, resetPointer })
 
 <template>
   <div ref="artwork" class="stage-hero-character" role="group" tabindex="0" :aria-label="tr('海月互動；移動游標或使用方向鍵，離開時回正。')" @keydown="keyboard" @blur="resetPointer">
-    <CharacterStage :model="model" :interactive="false" @ready="next => player = next" @frame="next => snapshot = next" @error="player = undefined" />
+    <CharacterStage :model="model" :interactive="false" @ready="ready" @frame="next => snapshot = next" @error="player = undefined" />
   </div>
 </template>

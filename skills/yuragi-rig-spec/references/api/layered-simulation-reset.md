@@ -33,9 +33,9 @@ simulation.reset();
 - [simulation-parts/reset](simulation-parts-reset.md)
 - [simulation-pointer-groups/reset](simulation-pointer-groups-reset.md)
 - [simulation/reset](simulation-reset.md)
+- [layered-simulation-face/reset](layered-simulation-face-reset.md)
+- [layered-simulation/set-face](layered-simulation-set-face.md)
 - [layered-simulation/set-pointer](layered-simulation-set-pointer.md)
-- [layered-simulation/update](layered-simulation-update.md)
-- [layered-simulation/get-pointer](layered-simulation-get-pointer.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

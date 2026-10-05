@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "analysisSha256": "611e4782dd75953bbb43b1fd3c02c60e195b4e66062751fbc97865d8d124d380",
+  "producer": "python",
+  "items": [
+    {
+      "id": "eye-left-eyelid-skin",
+      "partId": "eye-left",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-left-eyeball",
+      "partId": "eye-left",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-left-half",
+      "partId": "eye-left",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-left-closed",
+      "partId": "eye-left",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-right-eyelid-skin",
+      "partId": "eye-right",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-right-eyeball",
+      "partId": "eye-right",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-right-half",
+      "partId": "eye-right",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "eye-right-closed",
+      "partId": "eye-right",
+      "reason": "Layered eye artwork is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-closed",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-a",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-i",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-u",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-e",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    },
+    {
+      "id": "mouth-o",
+      "partId": "mouth",
+      "reason": "Mouth sprite is not bound. Existing motion remains available.",
+      "nextAction": "provide-artwork",
+      "required": false
+    }
+  ]
+}

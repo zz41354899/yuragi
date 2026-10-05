@@ -1,0 +1,2758 @@
+{
+  "version": 2,
+  "renderer": "layered",
+  "id": "face-fixture",
+  "name": "Geometric face fixture",
+  "source": {
+    "width": 64,
+    "height": 64,
+    "fallback": "fallback.png",
+    "sha256": "7f75a25e25147d434c17268954483d282c1f8268d5df7292c0ef202714494612"
+  },
+  "atlases": [
+    {
+      "id": "atlas-0",
+      "src": "atlas-0.png",
+      "width": 256,
+      "height": 256
+    }
+  ],
+  "nodes": [
+    {
+      "id": "head",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "rotation": 0.1,
+      "translation": [
+        0.02,
+        0.01
+      ],
+      "response": 100
+    }
+  ],
+  "joints": [],
+  "attachments": [
+    {
+      "id": "skin",
+      "atlas": "atlas-0",
+      "rect": [
+        2,
+        2,
+        64,
+        64
+      ],
+      "bounds": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.0,
+            0.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            1.0,
+            0.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.0,
+            0.5
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.5
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            1.0,
+            0.5
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.0,
+            1.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            1.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            1.0,
+            1.0
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "left-ball",
+      "atlas": "atlas-0",
+      "rect": [
+        70,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.1875,
+        0.28125,
+        0.40625,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.1875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "left-iris",
+      "atlas": "atlas-0",
+      "rect": [
+        88,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.1875,
+        0.28125,
+        0.40625,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.1875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "left-line",
+      "atlas": "atlas-0",
+      "rect": [
+        106,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.1875,
+        0.28125,
+        0.40625,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.1875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "left-half",
+      "atlas": "atlas-0",
+      "rect": [
+        124,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.1875,
+        0.28125,
+        0.40625,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.1875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "left-closed",
+      "atlas": "atlas-0",
+      "rect": [
+        142,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.1875,
+        0.28125,
+        0.40625,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.1875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.1875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.296875,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.40625,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "right-ball",
+      "atlas": "atlas-0",
+      "rect": [
+        160,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.59375,
+        0.28125,
+        0.8125,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.59375,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "right-iris",
+      "atlas": "atlas-0",
+      "rect": [
+        178,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.59375,
+        0.28125,
+        0.8125,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.59375,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "right-line",
+      "atlas": "atlas-0",
+      "rect": [
+        196,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.59375,
+        0.28125,
+        0.8125,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.59375,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "right-half",
+      "atlas": "atlas-0",
+      "rect": [
+        214,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.59375,
+        0.28125,
+        0.8125,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.59375,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "right-closed",
+      "atlas": "atlas-0",
+      "rect": [
+        232,
+        2,
+        14,
+        12
+      ],
+      "bounds": [
+        0.59375,
+        0.28125,
+        0.8125,
+        0.46875
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.59375,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.28125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.375
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.59375,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.703125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.8125,
+            0.46875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-closed",
+      "atlas": "atlas-0",
+      "rect": [
+        2,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-a",
+      "atlas": "atlas-0",
+      "rect": [
+        22,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-i",
+      "atlas": "atlas-0",
+      "rect": [
+        42,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-u",
+      "atlas": "atlas-0",
+      "rect": [
+        62,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-e",
+      "atlas": "atlas-0",
+      "rect": [
+        82,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    },
+    {
+      "id": "mouth-o",
+      "atlas": "atlas-0",
+      "rect": [
+        102,
+        70,
+        16,
+        12
+      ],
+      "bounds": [
+        0.375,
+        0.625,
+        0.625,
+        0.8125
+      ],
+      "coverage": "complete",
+      "provenance": "geometric regression fixture",
+      "vertices": [
+        {
+          "position": [
+            0.375,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.625
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.71875
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.375,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.5,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        },
+        {
+          "position": [
+            0.625,
+            0.8125
+          ],
+          "weights": [
+            {
+              "node": "head",
+              "weight": 1.0
+            }
+          ]
+        }
+      ],
+      "triangles": [
+        0,
+        3,
+        1,
+        1,
+        3,
+        4,
+        1,
+        4,
+        2,
+        2,
+        4,
+        5,
+        3,
+        6,
+        4,
+        4,
+        6,
+        7,
+        4,
+        7,
+        5,
+        5,
+        7,
+        8
+      ],
+      "opacity": 1
+    }
+  ],
+  "face": {
+    "eyes": [
+      {
+        "side": "left",
+        "node": "head",
+        "ball": "left-ball",
+        "iris": "left-iris",
+        "lines": [
+          "left-line"
+        ],
+        "half": "left-half",
+        "closed": "left-closed",
+        "top": [
+          [
+            0.1875,
+            0.28125
+          ],
+          [
+            0.40625,
+            0.28125
+          ]
+        ],
+        "bottom": [
+          [
+            0.1875,
+            0.46875
+          ],
+          [
+            0.40625,
+            0.46875
+          ]
+        ],
+        "travel": [
+          0.03,
+          0.02
+        ]
+      },
+      {
+        "side": "right",
+        "node": "head",
+        "ball": "right-ball",
+        "iris": "right-iris",
+        "lines": [
+          "right-line"
+        ],
+        "half": "right-half",
+        "closed": "right-closed",
+        "top": [
+          [
+            0.59375,
+            0.28125
+          ],
+          [
+            0.8125,
+            0.28125
+          ]
+        ],
+        "bottom": [
+          [
+            0.59375,
+            0.46875
+          ],
+          [
+            0.8125,
+            0.46875
+          ]
+        ],
+        "travel": [
+          0.03,
+          0.02
+        ]
+      }
+    ],
+    "mouth": {
+      "node": "head",
+      "shapes": {
+        "closed": "mouth-closed",
+        "a": "mouth-a",
+        "i": "mouth-i",
+        "u": "mouth-u",
+        "e": "mouth-e",
+        "o": "mouth-o"
+      }
+    }
+  }
+}

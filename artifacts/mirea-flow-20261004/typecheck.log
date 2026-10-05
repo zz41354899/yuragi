@@ -1,0 +1,16 @@
+
+> yuragi-workspace@0.2.0 typecheck
+> npm run typecheck --workspaces
+
+
+> @yuragi/rig@0.2.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+> @yuragi/site@0.2.0 typecheck
+> vue-tsc --noEmit
+
+
+> @yuragi/studio-app@0.2.0 typecheck
+> vue-tsc --noEmit
+

@@ -68,6 +68,11 @@
       "en": "Types / constants",
       "ja": "型・定数"
     },
+    "layered-simulation-face": {
+      "zh-TW": "分層模擬器・眼嘴",
+      "en": "Layered simulation / face",
+      "ja": "分層シミュレーション・顔"
+    },
     "simulation-hair": {
       "zh-TW": "模擬器・髮絲",
       "en": "Simulation / hair",
@@ -305,7 +310,9 @@
         "core/create-player",
         "core/to-canvas",
         "core/create-simulation",
-        "core/validate-model"
+        "core/validate-model",
+        "core/fixed-steps",
+        "core/face-review-poses"
       ]
     },
     {
@@ -342,7 +349,9 @@
         "core/to-canvas",
         "core/create-simulation",
         "core/constrain-shared-surface",
-        "core/validate-model"
+        "core/validate-model",
+        "core/fixed-steps",
+        "core/face-review-poses"
       ]
     },
     {
@@ -379,7 +388,86 @@
         "core/create-player",
         "core/to-canvas",
         "core/constrain-shared-surface",
-        "core/validate-model"
+        "core/validate-model",
+        "core/fixed-steps",
+        "core/face-review-poses"
+      ]
+    },
+    {
+      "id": "core/face-review-poses",
+      "name": "faceReviewPoses",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "取得分層眼嘴的固定測試定義；需依模型素材篩選。",
+        "en": "Return fixed face review definitions; filter by available authored assets.",
+        "ja": "顔の固定テスト定義を返します。利用可能な素材で絞り込みます。"
+      },
+      "signature": "(): ReviewPose[]",
+      "parameters": [],
+      "returns": "ReviewPose[]",
+      "notes": {
+        "zh-TW": "取得分層眼嘴的固定測試定義；需依模型素材篩選。",
+        "en": "Return fixed face review definitions; filter by available authored assets.",
+        "ja": "顔の固定テスト定義を返します。利用可能な素材で絞り込みます。"
+      },
+      "example": "const poses = faceReviewPoses().filter(pose => pose.id === \"eyes-closed\");",
+      "related": [
+        "core/create-player",
+        "core/to-canvas",
+        "core/create-simulation",
+        "core/constrain-shared-surface",
+        "core/validate-model",
+        "core/fixed-steps"
+      ]
+    },
+    {
+      "id": "core/fixed-steps",
+      "name": "fixedSteps",
+      "group": "core",
+      "module": "@yuragi/rig",
+      "summary": {
+        "zh-TW": "將 0–60000 毫秒拆成固定步進與最後餘數。",
+        "en": "Split 0–60000 milliseconds into fixed steps and a final remainder.",
+        "ja": "0–60000 ミリ秒を固定ステップと最後の余りに分割します。"
+      },
+      "signature": "(milliseconds: number, step: (delta: number) => void): void",
+      "parameters": [
+        {
+          "name": "milliseconds",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Finite elapsed milliseconds, 0…60000.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        },
+        {
+          "name": "step",
+          "type": "(delta: number) => void",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Callback receiving each fixed delta in milliseconds.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "將 0–60000 毫秒拆成固定步進與最後餘數。",
+        "en": "Split 0–60000 milliseconds into fixed steps and a final remainder.",
+        "ja": "0–60000 ミリ秒を固定ステップと最後の余りに分割します。"
+      },
+      "example": "fixedSteps(1000, delta => console.log(delta));",
+      "related": [
+        "core/create-player",
+        "core/to-canvas",
+        "core/create-simulation",
+        "core/constrain-shared-surface",
+        "core/validate-model",
+        "core/face-review-poses"
       ]
     },
     {
@@ -416,7 +504,9 @@
         "core/create-player",
         "core/create-simulation",
         "core/constrain-shared-surface",
-        "core/validate-model"
+        "core/validate-model",
+        "core/fixed-steps",
+        "core/face-review-poses"
       ]
     },
     {
@@ -453,7 +543,49 @@
         "core/create-player",
         "core/to-canvas",
         "core/create-simulation",
-        "core/constrain-shared-surface"
+        "core/constrain-shared-surface",
+        "core/fixed-steps",
+        "core/face-review-poses"
+      ]
+    },
+    {
+      "id": "layered-player/advance",
+      "name": "advance",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "以共用固定步進更新手動播放器並繪製。",
+        "en": "Advance a manual player using shared fixed steps and render the result.",
+        "ja": "共通の固定ステップで手動プレイヤーを更新・描画します。"
+      },
+      "signature": "(milliseconds: number): void",
+      "parameters": [
+        {
+          "name": "milliseconds",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Finite elapsed milliseconds, 0…60000.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "建立時設 manual:true；advance 不啟動 RAF。共用固定步進及姿勢定義供 Studio 和 CLI 使用。",
+        "en": "Use manual:true at creation. advance does not schedule requestAnimationFrame; it runs the shared fixed-step engine and draws. Fixed review definitions are shared by Studio and the CLI.",
+        "ja": "生成時に manual:true。advance は RAF を開始せず、Studio と CLI が同じ固定ステップを使用します。"
+      },
+      "example": "player.advance(1000);",
+      "related": [
+        "player/advance",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/set-gaze",
+        "layered-player/set-face",
+        "layered-player/set-pointer"
       ]
     },
     {
@@ -480,9 +612,9 @@
         "player/destroy",
         "layered-player/play",
         "layered-player/pause",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-model"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face"
       ]
     },
     {
@@ -509,9 +641,9 @@
         "player/get-mesh-snapshot",
         "layered-player/play",
         "layered-player/pause",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-model"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face"
       ]
     },
     {
@@ -538,9 +670,9 @@
         "player/get-model",
         "layered-player/play",
         "layered-player/pause",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-snapshot"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face"
       ]
     },
     {
@@ -567,9 +699,9 @@
         "player/get-snapshot",
         "layered-player/play",
         "layered-player/pause",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-model"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face"
       ]
     },
     {
@@ -595,10 +727,10 @@
       "related": [
         "player/pause",
         "layered-player/play",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-model",
-        "layered-player/get-snapshot"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face",
+        "layered-player/set-pointer"
       ]
     },
     {
@@ -624,10 +756,10 @@
       "related": [
         "player/play",
         "layered-player/pause",
-        "layered-player/set-pointer",
-        "layered-player/reset",
-        "layered-player/get-model",
-        "layered-player/get-snapshot"
+        "layered-player/advance",
+        "layered-player/set-gaze",
+        "layered-player/set-face",
+        "layered-player/set-pointer"
       ]
     },
     {
@@ -654,9 +786,99 @@
         "simulation-parts/reset",
         "simulation-pointer-groups/reset",
         "simulation/reset",
+        "layered-simulation-face/reset",
         "layered-simulation/reset",
-        "player/reset",
-        "layered-player/play"
+        "player/reset"
+      ]
+    },
+    {
+      "id": "layered-player/set-face",
+      "name": "setFace",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "signature": "(pose: LayeredFacePose): void",
+      "parameters": [
+        {
+          "name": "pose",
+          "type": "LayeredFacePose",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Authored face pose patch; openness values in 0…1.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "example": "player.setFace({ eyeOpenLeft: 0, eyeOpenRight: 0 });",
+      "related": [
+        "layered-simulation-face/set-face",
+        "layered-simulation/set-face",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/advance",
+        "layered-player/set-gaze"
+      ]
+    },
+    {
+      "id": "layered-player/set-gaze",
+      "name": "setGaze",
+      "group": "layered-player",
+      "module": "@yuragi/rig",
+      "owner": "layeredPlayer",
+      "summary": {
+        "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
+        "en": "Set independent eye direction in −1…1 per axis; requires measured eyes and does not move the head/body.",
+        "ja": "各軸 −1…1 の独立視線を設定。測定済みの目が必要で、頭・体は動かしません。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "需 face.eyes；缺少量測或輸入非有限數值會拋錯。有限值限制於每軸 −1…1；X 右、Y 下。減少動態時保留原畫瞳孔。",
+        "en": "Requires face.eyes; missing measurements or non-finite coordinates throw. Finite input is clamped to −1…1 per axis, positive X right and Y down. Reduced motion preserves source pupils.",
+        "ja": "face.eyes が必要。測定不足・非有限座標は例外。各軸 −1…1 に制限し、X は右、Y は下。動作軽減時は原画の瞳孔を保持します。"
+      },
+      "example": "player.setGaze(.6, -.2);",
+      "related": [
+        "layered-simulation-face/set-gaze",
+        "player/set-gaze",
+        "layered-player/play",
+        "layered-player/pause",
+        "layered-player/advance",
+        "layered-player/set-face"
       ]
     },
     {
@@ -695,9 +917,9 @@
       ],
       "returns": "void",
       "notes": {
-        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
-        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
-        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應；選用的分層 setGaze／setFace 與 v1 眼睛 API 分開。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 はノード反応と、専用の分層 setGaze/setFace を使用。"
       },
       "example": "player.setPointer(.2, -.1);",
       "related": [
@@ -706,7 +928,255 @@
         "player/set-pointer",
         "layered-player/play",
         "layered-player/pause",
-        "layered-player/reset"
+        "layered-player/advance"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/eye-for",
+      "name": "eyeFor",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "查詢附件所屬的眼睛設定。",
+        "en": "Find the authored eye owning an attachment.",
+        "ja": "アタッチメントに対応する目の設定を取得します。"
+      },
+      "signature": "(id: string): LayeredEye | undefined",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "既有部件的 ID。",
+            "en": "The ID of an existing authored part.",
+            "ja": "既存パーツの ID。"
+          }
+        }
+      ],
+      "returns": "LayeredEye | undefined",
+      "notes": {
+        "zh-TW": "查詢附件所屬的眼睛設定。",
+        "en": "Find the authored eye owning an attachment.",
+        "ja": "アタッチメントに対応する目の設定を取得します。"
+      },
+      "example": "const eye = simulation.face.eyeFor(\"left-iris\");",
+      "related": [
+        "layered-simulation-face/set-face",
+        "layered-simulation-face/reset",
+        "layered-simulation-face/layer",
+        "layered-simulation-face/set-gaze",
+        "layered-simulation-face/snapshot"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/layer",
+      "name": "layer",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "取得眼嘴附件的可見度、裁切與虹膜位移。",
+        "en": "Read face attachment visibility, clipping and iris translation.",
+        "ja": "顔の表示・クリップ・虹膜移動を取得します。"
+      },
+      "signature": "(id: string, reduced?: boolean): { opacity: number; eye: LayeredEye | undefined; open: number; clip: boolean | undefined; shift: Vec2; }",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "optional": false,
+          "description": {
+            "zh-TW": "既有部件的 ID。",
+            "en": "The ID of an existing authored part.",
+            "ja": "既存パーツの ID。"
+          }
+        },
+        {
+          "name": "reduced",
+          "type": "boolean",
+          "optional": true,
+          "default": "false",
+          "description": {
+            "zh-TW": "是否使用減少動態的靜態中立幾何，預設 false。",
+            "en": "Whether to evaluate reduced-motion neutral geometry; defaults to false.",
+            "ja": "動作軽減の静的中立形状を評価するか。既定は false。"
+          }
+        }
+      ],
+      "returns": "{ opacity: number; eye: LayeredEye | undefined; open: number; clip: boolean | undefined; shift: Vec2; }",
+      "notes": {
+        "zh-TW": "取得眼嘴附件的可見度、裁切與虹膜位移。",
+        "en": "Read face attachment visibility, clipping and iris translation.",
+        "ja": "顔の表示・クリップ・虹膜移動を取得します。"
+      },
+      "example": "const state = simulation.face.layer(\"left-iris\");",
+      "related": [
+        "layered-simulation-face/set-face",
+        "layered-simulation-face/reset",
+        "layered-simulation-face/eye-for",
+        "layered-simulation-face/set-gaze",
+        "layered-simulation-face/snapshot"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/reset",
+      "name": "reset",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
+        "en": "Restore neutral state while retaining edited model settings.",
+        "ja": "編集したモデル設定を保持し、中立状態に戻します。"
+      },
+      "signature": "(): void",
+      "parameters": [],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "v1 播放器停止時間軸、重設眼神與參數，但保留模型動態設定。與原畫比較時將 motion.weight 及眼神強度設為 0。",
+        "en": "The v1 player stops its timeline and resets gaze/parameters. It preserves model motion values; zero motion.weight and gaze strength when comparing against unchanged artwork.",
+        "ja": "v1 プレイヤーは時間軸・視線・パラメーターをリセット、動作設定を保持。原画比較時は motion.weight と視線強度を0にします。"
+      },
+      "example": "player.reset();",
+      "related": [
+        "simulation-parts/reset",
+        "simulation-pointer-groups/reset",
+        "simulation/reset",
+        "layered-simulation-face/set-face",
+        "layered-simulation-face/layer",
+        "layered-simulation-face/eye-for"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/set-face",
+      "name": "setFace",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "signature": "(pose: LayeredFacePose): void",
+      "parameters": [
+        {
+          "name": "pose",
+          "type": "LayeredFacePose",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Authored face pose patch; openness values in 0…1.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "example": "player.setFace({ eyeOpenLeft: 0, eyeOpenRight: 0 });",
+      "related": [
+        "layered-simulation-face/reset",
+        "layered-simulation-face/layer",
+        "layered-simulation-face/eye-for",
+        "layered-simulation-face/set-gaze",
+        "layered-simulation-face/snapshot",
+        "layered-simulation/set-face"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/set-gaze",
+      "name": "setGaze",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
+        "en": "Set independent eye direction in −1…1 per axis; requires measured eyes and does not move the head/body.",
+        "ja": "各軸 −1…1 の独立視線を設定。測定済みの目が必要で、頭・体は動かしません。"
+      },
+      "signature": "(x: number, y: number): void",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "X 座標；單位與範圍見行為說明。",
+            "en": "X coordinate; units and accepted ranges are described above.",
+            "ja": "X 座標。単位・範囲は動作説明を参照。"
+          }
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "Y 正方向向下；單位與範圍見行為說明。",
+            "en": "Y coordinate; positive is down. Units and ranges are described above.",
+            "ja": "Y は下向き。単位・範囲は動作説明を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "需 face.eyes；缺少量測或輸入非有限數值會拋錯。有限值限制於每軸 −1…1；X 右、Y 下。減少動態時保留原畫瞳孔。",
+        "en": "Requires face.eyes; missing measurements or non-finite coordinates throw. Finite input is clamped to −1…1 per axis, positive X right and Y down. Reduced motion preserves source pupils.",
+        "ja": "face.eyes が必要。測定不足・非有限座標は例外。各軸 −1…1 に制限し、X は右、Y は下。動作軽減時は原画の瞳孔を保持します。"
+      },
+      "example": "player.setGaze(.6, -.2);",
+      "related": [
+        "layered-simulation-face/set-face",
+        "layered-simulation-face/reset",
+        "layered-simulation-face/layer",
+        "layered-simulation-face/eye-for",
+        "layered-simulation-face/snapshot",
+        "player/set-gaze"
+      ]
+    },
+    {
+      "id": "layered-simulation-face/snapshot",
+      "name": "snapshot",
+      "group": "layered-simulation-face",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation.face",
+      "summary": {
+        "zh-TW": "取得目前眼嘴與眼神狀態；減少動態時回傳中立值。",
+        "en": "Read face and gaze state; reduced motion returns neutral values.",
+        "ja": "顔・視線の状態を取得。動作軽減時は中立値を返します。"
+      },
+      "signature": "(reduced?: boolean): { gaze: Vec2; eyeOpenLeft: number; eyeOpenRight: number; mouthOpen: number; mouthShape: MouthShape; }",
+      "parameters": [
+        {
+          "name": "reduced",
+          "type": "boolean",
+          "optional": true,
+          "default": "false",
+          "description": {
+            "zh-TW": "是否使用減少動態的靜態中立幾何，預設 false。",
+            "en": "Whether to evaluate reduced-motion neutral geometry; defaults to false.",
+            "ja": "動作軽減の静的中立形状を評価するか。既定は false。"
+          }
+        }
+      ],
+      "returns": "{ gaze: Vec2; eyeOpenLeft: number; eyeOpenRight: number; mouthOpen: number; mouthShape: MouthShape; }",
+      "notes": {
+        "zh-TW": "取得目前眼嘴與眼神狀態；減少動態時回傳中立值。",
+        "en": "Read face and gaze state; reduced motion returns neutral values.",
+        "ja": "顔・視線の状態を取得。動作軽減時は中立値を返します。"
+      },
+      "example": "const pose = simulation.face.snapshot();",
+      "related": [
+        "layered-simulation-face/set-face",
+        "layered-simulation-face/reset",
+        "layered-simulation-face/layer",
+        "layered-simulation-face/eye-for",
+        "layered-simulation-face/set-gaze"
       ]
     },
     {
@@ -730,6 +1200,7 @@
       },
       "example": "const pointer = simulation.getPointer();",
       "related": [
+        "layered-simulation/set-face",
         "layered-simulation/set-pointer",
         "layered-simulation/reset",
         "layered-simulation/update"
@@ -759,9 +1230,49 @@
         "simulation-parts/reset",
         "simulation-pointer-groups/reset",
         "simulation/reset",
+        "layered-simulation-face/reset",
+        "layered-simulation/set-face",
+        "layered-simulation/set-pointer"
+      ]
+    },
+    {
+      "id": "layered-simulation/set-face",
+      "name": "setFace",
+      "group": "layered-simulation",
+      "module": "@yuragi/rig",
+      "owner": "layeredSimulation",
+      "summary": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "signature": "(pose: LayeredFacePose): void",
+      "parameters": [
+        {
+          "name": "pose",
+          "type": "LayeredFacePose",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Authored face pose patch; openness values in 0…1.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
+        "en": "Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.",
+        "ja": "v2 の目・口の開閉と口形を設定。素材不足・不正値は例外になります。"
+      },
+      "example": "simulation.setFace({ eyeOpenLeft: 0, eyeOpenRight: 0 });",
+      "related": [
+        "layered-simulation-face/set-face",
         "layered-simulation/set-pointer",
+        "layered-simulation/reset",
         "layered-simulation/update",
-        "layered-simulation/get-pointer"
+        "layered-simulation/get-pointer",
+        "layered-player/set-face"
       ]
     },
     {
@@ -800,18 +1311,18 @@
       ],
       "returns": "void",
       "notes": {
-        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
-        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
-        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應；選用的分層 setGaze／setFace 與 v1 眼睛 API 分開。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 はノード反応と、専用の分層 setGaze/setFace を使用。"
       },
       "example": "simulation.setPointer(.2, -.1);",
       "related": [
         "simulation/set-pointer",
+        "layered-simulation/set-face",
         "layered-simulation/reset",
         "layered-simulation/update",
         "layered-simulation/get-pointer",
-        "player/set-pointer",
-        "layered-player/set-pointer"
+        "player/set-pointer"
       ]
     },
     {
@@ -871,8 +1382,8 @@
         "simulation-accessories/update",
         "simulation-parts/update",
         "simulation-pointer-groups/update",
-        "layered-simulation/set-pointer",
-        "layered-simulation/reset"
+        "layered-simulation/set-face",
+        "layered-simulation/set-pointer"
       ]
     },
     {
@@ -920,7 +1431,7 @@
         "en": "Compile v2 nodes, sparse weights and consecutive draw batches; call update yourself.",
         "ja": "v2 のノード・重み・連続描画バッチを構築し、update で更新します。"
       },
-      "signature": "(input: LayeredModel): { model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; }[]; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
+      "signature": "(input: LayeredModel): { model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; attachment?: string; }[]; face: { setFace(pose: LayeredFacePose): void; reset(): void; layer: (id: string, reduced?: boolean) => { opacity: number; eye: LayeredEye | undefined; open: number; clip: boolean | undefined; shift: Vec2; }; eyeFor: (id: string) => LayeredEye | undefined; setGaze(x: number, y: number): void; snapshot(reduced?: boolean): { gaze: Vec2; eyeOpenLeft: number; eyeOpenRight: number; mouthOpen: number; mouthShape: MouthShape; }; }; setFace(pose: LayeredFacePose): void; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
       "parameters": [
         {
           "name": "input",
@@ -933,7 +1444,7 @@
           }
         }
       ],
-      "returns": "{ model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; }[]; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
+      "returns": "{ model: LayeredModel; mesh: { rest: Float32Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer>; maskUVs: Float32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; binding: { offsets: Uint32Array<ArrayBuffer>; indices: Uint16Array<ArrayBuffer>; weights: Float32Array<ArrayBuffer>; }; }; batches: { atlas: number; mask: boolean; opacity: number; start: number; count: number; attachment?: string; }[]; face: { setFace(pose: LayeredFacePose): void; reset(): void; layer: (id: string, reduced?: boolean) => { opacity: number; eye: LayeredEye | undefined; open: number; clip: boolean | undefined; shift: Vec2; }; eyeFor: (id: string) => LayeredEye | undefined; setGaze(x: number, y: number): void; snapshot(reduced?: boolean): { gaze: Vec2; eyeOpenLeft: number; eyeOpenRight: number; mouthOpen: number; mouthShape: MouthShape; }; }; setFace(pose: LayeredFacePose): void; matrices: Float64Array<ArrayBuffer>; rotations: Float64Array<ArrayBuffer>; angles: Float64Array<ArrayBuffer>; setPointer: (x: number, y: number) => void; reset: () => void; update: (time: number, delta: number, reduced?: boolean) => boolean; getPointer: () => [number, number]; }",
       "notes": {
         "zh-TW": "建立時驗證 v2，無效節點、權重、附件與共享接點會拋錯。矩陣、稀疏綁定與批次為引擎狀態，不能每幀複製到框架 UI。",
         "en": "Validates v2 and throws for invalid nodes, weights, attachments or joints. Matrices, sparse bindings and batches are engine state; do not copy them into framework UI on every frame.",
@@ -981,6 +1492,46 @@
       ]
     },
     {
+      "id": "player/advance",
+      "name": "advance",
+      "group": "player",
+      "module": "@yuragi/rig",
+      "owner": "player",
+      "summary": {
+        "zh-TW": "以共用固定步進更新手動播放器並繪製。",
+        "en": "Advance a manual player using shared fixed steps and render the result.",
+        "ja": "共通の固定ステップで手動プレイヤーを更新・描画します。"
+      },
+      "signature": "(milliseconds: number): void",
+      "parameters": [
+        {
+          "name": "milliseconds",
+          "type": "number",
+          "optional": false,
+          "description": {
+            "zh-TW": "參考簽名與關聯型別的參數契約。",
+            "en": "Finite elapsed milliseconds, 0…60000.",
+            "ja": "型シグネチャと関連型の引数契約を参照。"
+          }
+        }
+      ],
+      "returns": "void",
+      "notes": {
+        "zh-TW": "建立時設 manual:true；advance 不啟動 RAF。共用固定步進及姿勢定義供 Studio 和 CLI 使用。",
+        "en": "Use manual:true at creation. advance does not schedule requestAnimationFrame; it runs the shared fixed-step engine and draws. Fixed review definitions are shared by Studio and the CLI.",
+        "ja": "生成時に manual:true。advance は RAF を開始せず、Studio と CLI が同じ固定ステップを使用します。"
+      },
+      "example": "player.advance(1000);",
+      "related": [
+        "player/play",
+        "player/pause",
+        "player/set-pointer",
+        "player/set-gaze",
+        "player/set-parameter",
+        "player/set-motion"
+      ]
+    },
+    {
       "id": "player/destroy",
       "name": "destroy",
       "group": "player",
@@ -1003,10 +1554,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1032,10 +1583,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1061,10 +1612,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1090,10 +1641,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1118,11 +1669,11 @@
       "example": "player.pause();",
       "related": [
         "player/play",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
         "player/set-parameter",
-        "player/set-motion",
-        "player/set-tracking"
+        "player/set-motion"
       ]
     },
     {
@@ -1148,10 +1699,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1176,11 +1727,11 @@
       "example": "player.play();",
       "related": [
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
         "player/set-parameter",
-        "player/set-motion",
-        "player/set-tracking"
+        "player/set-motion"
       ]
     },
     {
@@ -1217,10 +1768,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1247,9 +1798,9 @@
         "simulation-parts/reset",
         "simulation-pointer-groups/reset",
         "simulation/reset",
+        "layered-simulation-face/reset",
         "layered-simulation/reset",
-        "player/play",
-        "player/pause"
+        "player/play"
       ]
     },
     {
@@ -1286,10 +1837,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1334,12 +1885,12 @@
       },
       "example": "player.setGaze(.6, -.2);",
       "related": [
+        "layered-simulation-face/set-gaze",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-parameter",
-        "player/set-motion",
-        "player/set-tracking"
+        "player/set-parameter"
       ]
     },
     {
@@ -1368,18 +1919,18 @@
       ],
       "returns": "void",
       "notes": {
-        "zh-TW": "必須為有限的 0–1。只控制瞳孔平移；0.2.0 不支援眨眼、嘴型或表情軌。",
-        "en": "Finite 0…1 is required. This changes only pupil translation; blinking, mouth expressions and expression tracks are not supported in 0.2.0.",
-        "ja": "有限な0–1が必要。瞳孔移動のみで、0.2.0 は瞬き・口・表情トラックに未対応。"
+        "zh-TW": "必須為有限的 0–1。只控制瞳孔平移；v1 不支援眨眼、嘴型或表情軌；v2 分層附件另有 setFace。",
+        "en": "Finite 0…1 is required. This changes only pupil translation; v1 does not support blink/mouth/expression tracks; v2 attachment-based setFace is separate.",
+        "ja": "有限な0–1が必要。瞳孔移動のみで、v1 は瞬き・口・表情トラックに未対応。v2 の setFace は専用です。"
       },
       "example": "player.setGazeStrength(.8);",
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1417,9 +1968,9 @@
         "simulation/set-motion",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/set-gaze"
       ]
     },
     {
@@ -1467,9 +2018,9 @@
         "simulation/set-parameter",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-motion"
+        "player/set-gaze"
       ]
     },
     {
@@ -1517,9 +2068,9 @@
         "simulation/set-part",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/set-gaze"
       ]
     },
     {
@@ -1567,9 +2118,9 @@
         "simulation/set-pin",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/set-gaze"
       ]
     },
     {
@@ -1608,9 +2159,9 @@
       ],
       "returns": "void",
       "notes": {
-        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
-        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
-        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應；選用的分層 setGaze／setFace 與 v1 眼睛 API 分開。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 はノード反応と、専用の分層 setGaze/setFace を使用。"
       },
       "example": "player.setPointer(.2, -.1);",
       "related": [
@@ -1618,8 +2169,8 @@
         "layered-simulation/set-pointer",
         "player/play",
         "player/pause",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/advance",
+        "player/set-gaze"
       ]
     },
     {
@@ -1657,9 +2208,9 @@
         "simulation/set-tracking",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/set-gaze"
       ]
     },
     {
@@ -1685,10 +2236,10 @@
       "related": [
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
         "player/set-gaze",
-        "player/set-parameter",
-        "player/set-motion"
+        "player/set-parameter"
       ]
     },
     {
@@ -1715,9 +2266,9 @@
         "simulation/wave",
         "player/play",
         "player/pause",
+        "player/advance",
         "player/set-pointer",
-        "player/set-gaze",
-        "player/set-parameter"
+        "player/set-gaze"
       ]
     },
     {
@@ -2308,7 +2859,7 @@
         "simulation-parts/displacement",
         "simulation-pointer-groups/reset",
         "simulation/reset",
-        "layered-simulation/reset"
+        "layered-simulation-face/reset"
       ]
     },
     {
@@ -2536,7 +3087,7 @@
         "simulation-pointer-groups/bind",
         "simulation-pointer-groups/apply",
         "simulation/reset",
-        "layered-simulation/reset"
+        "layered-simulation-face/reset"
       ]
     },
     {
@@ -2977,9 +3528,9 @@
       ],
       "returns": "void",
       "notes": {
-        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應，不提供 v1 face API。",
-        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.",
-        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 は作者のノード反応を使用。"
+        "zh-TW": "v1 播放器同時設定眼神；需要分開目標時先 setPointer，再 setGaze。純模擬器沒有眼睛合成器；v2 依作者節點反應；選用的分層 setGaze／setFace 與 v1 眼睛 API 分開。",
+        "en": "The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.",
+        "ja": "v1 プレイヤーは視線も変更。独立目標には setPointer の後に setGaze。シミュレーターに目の合成はなく、v2 はノード反応と、専用の分層 setGaze/setFace を使用。"
       },
       "example": "simulation.setPointer(.2, -.1);",
       "related": [
@@ -3300,6 +3851,24 @@
       "description": "Canvas overscan on each edge: 0.12 (12%)."
     },
     {
+      "name": "REVIEW_STEP",
+      "module": "@yuragi/rig",
+      "definition": "export const REVIEW_STEP: number",
+      "description": "Shared fixed step: 1000 / 60 milliseconds."
+    },
+    {
+      "name": "reviewPoses",
+      "module": "@yuragi/rig",
+      "definition": "export const reviewPoses: ReviewPose[]",
+      "description": "Shared pose definitions: source-centered pointer values and millisecond sequences; generating images does not establish visual acceptance."
+    },
+    {
+      "name": "ReviewPose",
+      "module": "@yuragi/rig",
+      "definition": "export interface ReviewPose { id: string; sequence: { pointer: Vec2; milliseconds: number; face?: LayeredFacePose; gaze?: Vec2 }[] }",
+      "description": ""
+    },
+    {
       "name": "Vec2",
       "module": "@yuragi/rig",
       "definition": "export type Vec2 = [number, number]",
@@ -3458,19 +4027,19 @@
     {
       "name": "PlayerOptions",
       "module": "@yuragi/rig",
-      "definition": "export interface PlayerOptions {\n  canvas: HTMLCanvasElement\n  model: RigModel\n  autoplay?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  pixelRatio?: number\n  onFrame?: (snapshot: RigSnapshot) => void\n  onError?: (error: Error) => void\n}",
+      "definition": "export interface PlayerOptions {\n  canvas: HTMLCanvasElement\n  model: RigModel\n  autoplay?: boolean\n  /** Disable animation-frame scheduling; drive with advance(). */\n  manual?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  pixelRatio?: number\n  onFrame?: (snapshot: RigSnapshot) => void\n  onError?: (error: Error) => void\n}",
       "description": ""
     },
     {
       "name": "RigPlayer",
       "module": "@yuragi/rig",
-      "definition": "export interface RigPlayer {\n  play(): void\n  pause(): void\n  setPointer(x: number, y: number): void\n  /** Eye-only direction in -1…1; does not deform the head or body. */\n  setGaze(x: number, y: number): void\n  setParameter(name: ParameterName, value: number): void\n  setMotion(settings: Partial<MotionSettings>): void\n  setTracking(settings: Partial<TrackingSettings>): void\n  /** Reviewed eyes required; finite 0…1, defaults to 1. */\n  setGazeStrength(value: number): void\n  playAnimation(clip: AnimationClip): void\n  pauseAnimation(): void\n  seekAnimation(time: number): void\n  stopAnimation(): void\n  setPin(name: string, patch: Partial<Omit<PinSpec, 'name' | 'parent' | 'type'>>): void\n  setPart(id: string, patch: Partial<Omit<DeformationPart, 'id'>>): void\n  wave(): void\n  reset(): void\n  getModel(): RigModel\n  getSnapshot(): RigSnapshot\n  /** Copies only when requested; inspect at UI frequency, never as an animation clock. */\n  getMeshSnapshot(): RigMeshSnapshot\n  destroy(): void\n}",
+      "definition": "export interface RigPlayer {\n  play(): void\n  pause(): void\n  /** Fixed 60Hz time stepping, milliseconds, at most 60000 per call. */\n  advance(milliseconds: number): void\n  setPointer(x: number, y: number): void\n  /** Eye-only direction in -1…1; does not deform the head or body. */\n  setGaze(x: number, y: number): void\n  setParameter(name: ParameterName, value: number): void\n  setMotion(settings: Partial<MotionSettings>): void\n  setTracking(settings: Partial<TrackingSettings>): void\n  /** Reviewed eyes required; finite 0…1, defaults to 1. */\n  setGazeStrength(value: number): void\n  playAnimation(clip: AnimationClip): void\n  pauseAnimation(): void\n  seekAnimation(time: number): void\n  stopAnimation(): void\n  setPin(name: string, patch: Partial<Omit<PinSpec, 'name' | 'parent' | 'type'>>): void\n  setPart(id: string, patch: Partial<Omit<DeformationPart, 'id'>>): void\n  wave(): void\n  reset(): void\n  getModel(): RigModel\n  getSnapshot(): RigSnapshot\n  /** Copies only when requested; inspect at UI frequency, never as an animation clock. */\n  getMeshSnapshot(): RigMeshSnapshot\n  destroy(): void\n}",
       "description": ""
     },
     {
       "name": "LayeredModel",
       "module": "@yuragi/rig",
-      "definition": "export interface LayeredModel {\n    version: 2;\n    renderer: 'layered';\n    id: string;\n    name: string;\n    source: {\n        width: number;\n        height: number;\n        fallback: string;\n        sha256: string;\n    };\n    atlases: {\n        id: string;\n        src: string;\n        width: number;\n        height: number;\n    }[];\n    /** Parent precedes child. Pivots and translations use full-source coordinates. */\n    nodes: LayerNode[];\n    /** Authoritative seam vertices, reused by any number of attachments. */\n    joints: {\n        id: string;\n        position: Vec2;\n        weights: LayerWeight[];\n    }[];\n    /** Array order IS draw order. Only consecutive compatible attachments batch. */\n    attachments: LayerAttachment[];\n}",
+      "definition": "export interface LayeredModel {\n    version: 2;\n    renderer: 'layered';\n    id: string;\n    name: string;\n    source: {\n        width: number;\n        height: number;\n        fallback: string;\n        sha256: string;\n    };\n    atlases: {\n        id: string;\n        src: string;\n        width: number;\n        height: number;\n    }[];\n    /** Parent precedes child. Pivots and translations use full-source coordinates. */\n    nodes: LayerNode[];\n    /** Authoritative seam vertices, reused by any number of attachments. */\n    joints: {\n        id: string;\n        position: Vec2;\n        weights: LayerWeight[];\n    }[];\n    /** Array order IS draw order. Only consecutive compatible attachments batch. */\n    attachments: LayerAttachment[];\n    hairGroups?: { id: string; nodes: string[]; coupling: number }[];\n    face?: LayeredFace;\n}",
       "description": "Separate from RigModel v1; extracted PNGs are never implicitly playable."
     },
     {
@@ -3500,19 +4069,43 @@
     {
       "name": "LayeredSnapshot",
       "module": "@yuragi/rig",
-      "definition": "export interface LayeredSnapshot {\n    playing: boolean;\n    reducedMotion: boolean;\n    pointer: Vec2;\n    nodes: {\n        id: string;\n        rotation: number;\n    }[];\n    diagnostics: {\n        drawCalls: number;\n        vertices: number;\n        triangles: number;\n        atlasBytes: number;\n        cpuMilliseconds: number;\n    };\n}",
+      "definition": "export interface LayeredSnapshot {\n    playing: boolean;\n    reducedMotion: boolean;\n    pointer: Vec2;\n    face?: LayeredFacePose & { gaze: Vec2 };\n    nodes: {\n        id: string;\n        rotation: number;\n    }[];\n    diagnostics: {\n        drawCalls: number;\n        vertices: number;\n        triangles: number;\n        atlasBytes: number;\n        cpuMilliseconds: number;\n    };\n}",
       "description": ""
     },
     {
       "name": "LayeredPlayerOptions",
       "module": "@yuragi/rig",
-      "definition": "export interface LayeredPlayerOptions {\n    canvas: HTMLCanvasElement;\n    model: LayeredModel;\n    autoplay?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    pixelRatio?: number;\n    signal?: AbortSignal;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n    onError?: (error: Error) => void;\n}",
+      "definition": "export interface LayeredPlayerOptions {\n    canvas: HTMLCanvasElement;\n    model: LayeredModel;\n    autoplay?: boolean;\n    manual?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    pixelRatio?: number;\n    signal?: AbortSignal;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n    onError?: (error: Error) => void;\n}",
       "description": ""
     },
     {
       "name": "LayeredPlayer",
       "module": "@yuragi/rig",
-      "definition": "export interface LayeredPlayer {\n    play(): void;\n    pause(): void;\n    setPointer(x: number, y: number): void;\n    reset(): void;\n    getModel(): LayeredModel;\n    getSnapshot(): LayeredSnapshot;\n    getMeshSnapshot(): {\n        rest: Float32Array;\n        positions: Float32Array;\n        indices: Uint16Array;\n    };\n    destroy(): void;\n}",
+      "definition": "export interface LayeredPlayer {\n    play(): void;\n    pause(): void;\n    advance(milliseconds: number): void;\n    setGaze(x: number, y: number): void;\n    setFace(pose: LayeredFacePose): void;\n    setPointer(x: number, y: number): void;\n    reset(): void;\n    getModel(): LayeredModel;\n    getSnapshot(): LayeredSnapshot;\n    getMeshSnapshot(): {\n        rest: Float32Array;\n        positions: Float32Array;\n        indices: Uint16Array;\n    };\n    destroy(): void;\n}",
+      "description": ""
+    },
+    {
+      "name": "MouthShape",
+      "module": "@yuragi/rig",
+      "definition": "export type MouthShape = 'closed' | 'a' | 'i' | 'u' | 'e' | 'o';",
+      "description": ""
+    },
+    {
+      "name": "LayeredFacePose",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredFacePose { eyeOpenLeft?: number; eyeOpenRight?: number; mouthOpen?: number; mouthShape?: MouthShape }",
+      "description": ""
+    },
+    {
+      "name": "LayeredEye",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredEye {\n    side: 'left' | 'right';\n    /** All layers use the same head node. Skin under lids must be supplied. */\n    node: string;\n    ball: string;\n    iris?: string;\n    lines: string[];\n    half: string;\n    closed: string;\n    /** Sampled source-normalized eye edges, increasing X. */\n    top: [number, number][];\n    bottom: [number, number][];\n    travel: Vec2;\n}",
+      "description": ""
+    },
+    {
+      "name": "LayeredFace",
+      "module": "@yuragi/rig",
+      "definition": "export interface LayeredFace {\n    eyes?: LayeredEye[];\n    mouth?: { node: string; shapes: Partial<Record<MouthShape, string>> };\n}",
       "description": ""
     },
     {

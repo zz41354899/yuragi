@@ -63,3 +63,17 @@ class LayerCompilerTests(unittest.TestCase):
         self.assertGreater(self.build()['neutralMaxChannelError'],0)
 
 if __name__=='__main__': unittest.main()
+
+class RefinementTests(LayerCompilerTests):
+    def test_refines_local_grid_without_t_junctions(self):
+        self.manifest['attachments'][0].update(mesh=[2,2],refine=[{'boundsPixels':[4,8,12,24],'cellPixels':4}],pruneTransparent=True)
+        report=self.build();self.assertEqual(report['neutralMaxChannelError'],0)
+        model=json.loads((self.root/'output/model.json').read_text());self.assertGreater(len(model['attachments'][0]['vertices']),9)
+        self.assertGreater(report['sampledGeometry']['minimumAreaRatio'],0)
+    def test_refinement_outside_material_is_rejected(self):
+        self.manifest['attachments'][0]['refine']=[{'boundsPixels':[0,0,32,32],'cellPixels':4}]
+        with self.assertRaises(ValueError): self.build()
+    def test_transparent_pruning_removes_empty_cells(self):
+        image=Image.open(self.root/'left.png').convert('RGBA');image.paste((0,0,0,0),(0,0,8,32));image.save(self.root/'left.png')
+        self.manifest['attachments'][0].update(mesh=[2,2],pruneTransparent=True)
+        self.build();model=json.loads((self.root/'output/model.json').read_text());self.assertEqual(len(model['attachments'][0]['vertices']),6)

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "analysisSha256": "611e4782dd75953bbb43b1fd3c02c60e195b4e66062751fbc97865d8d124d380",
+  "stage": "compiled",
+  "canBuild": true,
+  "blockingAssets": [],
+  "partCount": 61,
+  "sourceSize": [
+    1024,
+    1536
+  ],
+  "partsExtracted": true,
+  "modelValidation": "passed",
+  "visualAcceptance": "not-run",
+  "runtimeVersion": "0.2.0"
+}

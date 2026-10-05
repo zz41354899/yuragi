@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "fingerprint": "d3c58dd1ef71c581710cb6cc53fb3af304a29d1094528ac5a1b017011054e18e",
+  "assetFingerprint": "28239cc82b9a02374d542027b4b5e7459e289436effb9a5a1bce9428f9d4352f",
+  "fixedFps": 60,
+  "visualAcceptance": "not-run",
+  "poses": [
+    {
+      "id": "neutral",
+      "sequence": []
+    },
+    {
+      "id": "up",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "top-left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "top-right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "bottom-left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "bottom-right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "reversal",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 180
+        }
+      ]
+    },
+    {
+      "id": "hair-return-50",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 50
+        }
+      ]
+    },
+    {
+      "id": "hair-return-150",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 150
+        }
+      ]
+    },
+    {
+      "id": "hair-return-350",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 350
+        }
+      ]
+    },
+    {
+      "id": "hair-return-700",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 700
+        }
+      ]
+    },
+    {
+      "id": "eyes-half",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "eyeOpenLeft": 0.5,
+            "eyeOpenRight": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "eyes-closed",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "eyeOpenLeft": 0,
+            "eyeOpenRight": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "mouth-a",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "mouthShape": "a",
+            "mouthOpen": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "mouth-i",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "mouthShape": "i",
+            "mouthOpen": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "mouth-u",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "mouthShape": "u",
+            "mouthOpen": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "mouth-e",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "mouthShape": "e",
+            "mouthOpen": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "mouth-o",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 0,
+          "face": {
+            "mouthShape": "o",
+            "mouthOpen": 1
+          }
+        }
+      ]
+    }
+  ]
+}

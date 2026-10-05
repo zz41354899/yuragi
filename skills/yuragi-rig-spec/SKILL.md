@@ -1,7 +1,7 @@
 ---
 name: yuragi-rig-spec
 license: MIT
-description: "Turn existing character artwork into a Yuragi animated character: inspect anatomy, select suitable motions, annotate visible parts, run the local Python helper, map real TypeScript APIs, and verify a model/spec/player preview. Also supports spec-only planning. Use yuragi-character when designing a character from scratch."
+description: "Turn existing character artwork into a Yuragi animated character: inspect anatomy, select suitable motions, annotate visible parts, run the local Python helper, map real TypeScript APIs, and save annotation/decomposition JSON, diagnose missing assets with Python, and open a preview-only Studio. Also supports spec-only planning. Use yuragi-character when designing a character from scratch."
 ---
 
 # Yuragi Rig Spec
@@ -22,17 +22,17 @@ For AI-generated artwork or a requested image-generation/editing handoff, briefl
 
 Read [all public APIs](references/api/index.md) and the relevant individual function/method reference, then [API capabilities](references/api-reference.md) and [Python workflow / annotation contract](references/character-preparation.md). Read [eye tracking and Mirea](references/eye-tracking.md) for gaze. Use [public types](references/api-types.ts), [custom-character guide](references/custom-character.md) and [spec template](assets/rig-spec.template.md) as needed.
 
-View the actual full-resolution source. Run `inspect` for dimensions, alpha, margins, SHA-256, grid, draft and annotation guide. View the grid before annotating. Python measures pixels, not anatomy, and does not call AI or remote services. Do not copy another character's coordinates into another character.
+View the actual full-resolution source. Run `inspect` for dimensions, alpha, margins, SHA-256, grid, draft and annotation guide. View the whole grid and enlarged local crops (scripts/grid_region.py) before annotating. Python measures pixels, not anatomy, and does not call AI or remote services. Do not copy another character's coordinates into another character.
 
 ## Annotate visible structure
 
-Write fingerprint-bound `character-analysis.json` from actual observations. Use full original image coordinates including margins. Record confidence, evidence, uncertain contours, protected pixels, occlusions and required completion assets.
+Persist fingerprint-bound `character-analysis.json` from actual observations before calling Python. Keep measured part polygons, parents, confidence, occlusion and protected areas in this file; do not leave subdivision results only in chat. Use full original image coordinates including margins. Record confidence, evidence, uncertain contours, protected pixels, occlusions and required completion assets.
 
 Reviewed humanoids need waist, head-root/top and head bounds. Other/uncertain anatomy uses silhouette mode. Enable wave only for the supported visibly free right arm, never a holding arm. Do not invent missing limbs.
 
 Separate skull/face/headpiece, neck top/body base, each eye and iris, individual bangs/hair strands, torso/shoulders/upper arms/forearms/fingers, visible thighs/knees/shins/ankles/heels/toes, clothing and props. Flexible regions need reviewed root/tip and material response. Rigid canopy, shaft and holding hand should share attachment transforms; ribbons remain flexible. Record parents, subtraction IDs, contact points and protection polygons. HeadMotion owns one skull transform and neck bridge; never subtract a broad whole-head mask from bangs.
 
-Face has **only measured eyes**. Use setGaze and setGazeStrength; blinking, mouth compositing and expression tracks were removed in 0.2.0. Migrate legacy data using [migrate_gaze.py](scripts/migrate_gaze.py), save a new result and inspect its report. Do not silently strip unsupported fields.
+The v1 face contract has **only measured eyes**: use setGaze and setGazeStrength. Legacy v1 blink/mouth/expression fields remain unsupported. The current website/Studio workflow uses source-pixel gaze tracking only. Do not request clean face beds, sclera completion, blink variants or mouth shapes. Optional v2 attachment-based face controls are a separate contract; read [v2 authoring additions](references/layered-authoring.md). Migrate legacy data using [migrate_gaze.py](scripts/migrate_gaze.py), save a new result and inspect its report. Do not silently strip unsupported fields.
 
 ## Extract, inspect, build
 
@@ -40,17 +40,19 @@ Run `extract` with analysis into a new folder. Inspect full/cropped parts, masks
 
 Accept artist/user-completed parts through `--supplements`; preserve their placement and source records. This bundles authoring assets only, not independently rendered attachments. Never generate missing artwork as an incidental step.
 
-Run `build --prepared ... --rig-package ...` into another new folder. It verifies source/analysis and asset fingerprints, builds the candidate and invokes the actual built `@yuragi/rig` 0.2.0 validateModel via Node.js. The CLI requires both arguments; missing/invalid runtime or altered prepared assets must fail. Python callers may prepare candidates without runtime, but these have no playable preview and modelValidation is not-run.
+Run `build --prepared ... --rig-package ...` into another new folder. It verifies source/analysis and asset fingerprints, builds the candidate and invokes the actual built `@yuragi/rig` validateModel (package identity and required capabilities checked; actual runtime version recorded) via Node.js. The CLI requires both arguments; missing/invalid runtime or altered prepared assets must fail. Python callers may prepare candidates without runtime, but these have no playable preview and modelValidation is not-run.
 
 Runtime playback uses the unchanged full source texture. Parts, supplements and pointerGroups do not imply independent texture layers. No CDN or API key is needed. Skill, Python/Pillow, Node and local Yuragi runtime installations are separate.
 
-## Review and refine
+## Diagnose, build and preview
 
-Open the agent-built folder with `npx yuragi studio --project ./character-v1 --out ./yuragi-output`; read [Studio workflow](references/studio.md). Use the local editable Studio for v1 model refinement and visual review; layered v2 is inspection-only. Keep original analysis/extraction records as historical evidence. If the package is an older version without Studio, open preview.html over local HTTP. Inspect neutral, pointer extremes/corners, rapid reversal, eyes at face zoom, skull/neck seams, hair roots, clipping and held-prop contacts. Refine in a new output version and repeat. Verify reduced motion, fallback, touch/keyboard and navigation cleanup. JSON validation is not visual approval.
+Read [the JSON handoff and Python orchestration](references/agent-workflow.md). Run `scripts/workflow.py diagnose` on the saved analysis; it writes `character-analysis.json`, `decomposition.json`, `diagnosis.json` and `missing-assets.json`. Inspect the measured bounds/masks and correct annotations before proceeding. Python determines extractability from explicit reviewed polygons; it does not recognize anatomy.
 
-Report three separate states: partsExtracted, modelValidation, visualAcceptance. Generated visualAcceptance is not-run. Update acceptance only after actual observations and preserve untested cases. Deliver model, analysis, spec, prepared folder and preview URL with limitations.
+Run `scripts/workflow.py run SOURCE --analysis ANALYSIS --out NEW_VERSION --rig-package ACTUAL_PACKAGE --studio`. This diagnoses, extracts, validates and compiles, then starts the installed local Studio only after success. For v2 add `--manifest` with the separately authored attachment manifest. Read [Studio preview](references/studio.md). Studio provides playback, source comparison, zoom/pan, poses and available face controls; it has no authoring, issue form, acceptance checklist or delivery step.
 
-Before using independent layers, read [layered engine usage notes](references/layered-engine-design.md) for coverage, contacts, draw order and acceptance requirements. Original framework research is retained in [the research record](references/layered-engine-research.md). The separate v2 renderer is implemented locally. Use [the v2 contract](references/layered-engine.md) and `scripts/build_layers.py` for explicitly authored independent attachments. This is separate from v1 prepare_character output; completed occluded artwork is still required for full visual acceptance.
+Studio automatically writes `OUT/missing-assets.json` and displays its path. Read it as the agent, then run `workflow.py diagnose ... --missing OUT/missing-assets.json` into a new directory. For `extract`, use the reviewed source region and Python extraction, then update the authoring manifest/bindings and compile a new version. For `revise-annotation`, inspect full/local artwork again and correct polygons. For `provide-artwork`, list the exact unavailable art; repeated extraction cannot recover hidden pixels. Do not generate artwork incidentally. Remove a required request from annotations only after the real material is supplied or its need is explicitly withdrawn; no automatic clearing from a valid JSON result.
+
+Keep existing valid models and source art. The agent saves observed quality findings/untested cases in a local JSON report alongside diagnosis; Studio remains a viewer. Inspect neutral, directions/corners, reversal, face zoom, neck seams, hair roots, clipping and held props. Optional `yuragi review` produces actual-player sheets for agent inspection. Report partsExtracted, modelValidation and visualAcceptance separately; visualAcceptance stays not-run until real observation. Deliver the saved JSON, prepared parts, model and runnable preview URL with limits. Follow [v2 authoring additions](references/layered-authoring.md) for independent layers; v1 visible cuts are authoring assets, not full v2 attachments.
 
 ## Integrate
 

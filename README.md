@@ -15,7 +15,7 @@ Yuragi 是為網頁角色製作的 TypeScript 2D 動態工具。從待機搖擺�
 | 看海月動起來、調整互動效果 | 啟動網站，開啟 `/playground` |
 | 把海月接到自己的網站 | [安裝套件](#安裝套件)與 [Vue 範例](#vue) |
 | 製作自己的角色模型 | [自訂角色流程](#製作自己的角色) |
-| 預覽、調整與驗收本機模型 | [Yuragi Studio](#yuragi-studio) |
+| 預覽與比較本機模型 | [Yuragi Studio](#yuragi-studio) |
 | 查閱模型欄位與播放器方法 | 網站 `/docs/api` 或 [API 參考](skills/yuragi-rig-spec/references/api/index.md) |
 
 ## 啟動展示與文件網站
@@ -146,7 +146,7 @@ player.destroy()
 | 素材結構 | 原圖共用網格、控制點與局部變形區域 | 圖集、獨立附件、父子節點與稀疏頂點權重 |
 | 動態能力 | 待機、頭部與游標跟隨、髮束／配件彈性、眼神及動畫曲線 | 階層變換、局部彈簧、共享接點、附件繪製順序與靜態 alpha 遮罩 |
 | 臉部控制 | 經標註的眼睛可用 `setGaze`／`setGazeStrength`；眼皮與嘴巴保留原畫 | 配備對應附件與 face 綁定時，可用 `setGaze`／`setFace` 控制眼神、眼睛開合與嘴形 |
-| Studio | 可編輯與驗收 | 預覽與檢查，模型編輯受限 |
+| Studio | 唯讀模型預覽 | 唯讀模型預覽 |
 
 海月內建主範例使用 v1。持傘手與道具需要保護，不適合直接套用揮手。替換圖片也不會自動重建控制點、網格或臉部綁定。
 
@@ -164,12 +164,12 @@ npx yuragi studio --project ./my-character --out ./yuragi-output
 
 `my-character/` 可包含 `model.json` 與其引用的本機相對路徑圖片；也支援透過 `project.json` 管理已編譯的模型版本。Studio 只監聽 `127.0.0.1`，啟動時會印出本機網址。
 
-- v1 可調整控制點、區域與模型參數，儲存草稿並即時預覽。
-- v2 可檢查節點、附件、圖集、網格與診斷資料。
-- 版本專案可載入 `project.json` 指定的模型版本；交付紀錄保留模型與素材指紋，供後續修正比對。
-- 交付前須通過模型驗證，並完成目前版本的視覺檢查。格式通過或已儲存草稿，都不代表動態已驗收。
+- v1 與 v2 均為唯讀預覽，可選取部件、縮放平移、並排比較與測試姿勢。
+- 缺少素材自動保存到 `OUT/missing-assets.json`，請 Agent 讀取後回到 Python 診斷、拆件與編譯。
+- 版本專案可載入 `project.json` 指定的模型版本；JSON 報告保留模型與素材指紋，供 Agent 後續修正比對。
+- Studio 只負責預覽；標註、診斷、品質紀錄與模型交付都由 Agent／Skill 與 Python 處理。
 
-交付會建立新的資料夾，包含 `model.json`、素材、`acceptance.json` 與 Vue／React／原生 JavaScript 整合範例。原始圖片和標註保留；模型或素材變更後需重新檢查。
+Agent 保存 `character-analysis.json`，Python 流程產生 `decomposition.json`、`diagnosis.json` 與 `missing-assets.json`，並將模型編譯到獨立資料夾。品質觀察另外保存為 JSON；原始圖片和標註保留。
 
 使用 `--port 4321` 指定埠號，`--no-open` 只輸出網址。省略 `--project` 可開啟起始畫面與內建海月範例。安裝套件不會自動啟動 Studio，使用者也不需另行安裝 Vite。
 
@@ -179,7 +179,7 @@ npx yuragi studio --project ./my-character --out ./yuragi-output
 npx yuragi review --project ./my-character --out ./review-output
 ```
 
-輸出路徑須為新的資料夾。檢查圖仍需實際觀看，不能代替視覺驗收。完整流程見 [Studio 使用指南](skills/yuragi-rig-spec/references/studio.md)。
+輸出路徑須為新的資料夾。檢查圖仍需實際觀看，不能代替視覺驗收。完整流程見 [Agent JSON／Python 流程](skills/yuragi-rig-spec/references/agent-workflow.md)與 [Studio 使用指南](skills/yuragi-rig-spec/references/studio.md)。
 
 ## 製作自己的角色
 
@@ -189,9 +189,9 @@ npx yuragi review --project ./my-character --out ./review-output
 2. **量測並標註。** 依實際圖片設定控制點、區域、材質反應與必要的臉部資料。
 3. **建置模型。** v1 可參考套件的 `assets/starter/model.json`；v2 使用獨立作者 manifest 與分層素材。
 4. **在實際播放器中檢查。** 查看中立姿態、各方向、快速反轉、接縫、道具接觸及減少動態模式。
-5. **修正、驗收與整合。** 使用 Studio 記錄觀察，再把模型和素材接到自己的網站。
+5. **修正、驗收與整合。** Agent 保存標註、細分與缺少素材 JSON，Python 編譯後啟動 Studio 預覽，再把模型和素材接到自己的網站。
 
-Starter 是示意範本，未附圖片，座標必須依原畫重新設定。動物、四足、翅膀或不同角色結構需要適合的動作綁定。模型內的相對圖片路徑須由載入端解析；Studio 交付範例提供以模型 URL 為基準的載入方式。
+Starter 是示意範本，未附圖片，座標必須依原畫重新設定。動物、四足、翅膀或不同角色結構需要適合的動作綁定。模型內的相對圖片路徑須由載入端解析；整合時使用以模型 URL 為基準的載入方式。
 
 ### Agent Skills
 

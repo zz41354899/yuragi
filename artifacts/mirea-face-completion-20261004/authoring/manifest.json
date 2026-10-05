@@ -1,0 +1,416 @@
+{
+  "version": 2,
+  "renderer": "layered-authoring",
+  "id": "mirea-face-natural",
+  "name": "Mirea · 自然眼嘴素材預覽",
+  "source": {
+    "file": "source.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05"
+  },
+  "nodes": [
+    {
+      "id": "head",
+      "pivot": [
+        0.555,
+        0.175
+      ],
+      "rotation": 0,
+      "translation": [
+        0,
+        0
+      ],
+      "response": 100
+    }
+  ],
+  "attachments": [
+    {
+      "id": "clean-base",
+      "image": "clean-base.png",
+      "boundsPixels": [
+        0,
+        0,
+        1024,
+        1536
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Original Mirea with AI-completed local eye/mouth skin patches; source retained separately",
+      "mesh": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "eye-left-eyeball",
+      "image": "parts/eye-left-eyeball.png",
+      "boundsPixels": [
+        519,
+        251,
+        554,
+        270
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-eyeball.png"
+    },
+    {
+      "id": "eye-right-eyeball",
+      "image": "parts/eye-right-eyeball.png",
+      "boundsPixels": [
+        581,
+        229,
+        614,
+        250
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-eyeball.png"
+    },
+    {
+      "id": "eye-left-iris",
+      "image": "parts/eye-left-iris.png",
+      "boundsPixels": [
+        527,
+        247,
+        548,
+        269
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-iris.png"
+    },
+    {
+      "id": "eye-right-iris",
+      "image": "parts/eye-right-iris.png",
+      "boundsPixels": [
+        589,
+        226,
+        608,
+        250
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-iris.png"
+    },
+    {
+      "id": "eye-left-half",
+      "image": "parts/eye-left-half.png",
+      "boundsPixels": [
+        511,
+        240,
+        560,
+        280
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-half.png"
+    },
+    {
+      "id": "eye-right-half",
+      "image": "parts/eye-right-half.png",
+      "boundsPixels": [
+        574,
+        219,
+        623,
+        259
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-half.png"
+    },
+    {
+      "id": "eye-left-closed",
+      "image": "parts/eye-left-closed.png",
+      "boundsPixels": [
+        511,
+        245,
+        560,
+        276
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-left-closed.png"
+    },
+    {
+      "id": "eye-right-closed",
+      "image": "parts/eye-right-closed.png",
+      "boundsPixels": [
+        574,
+        224,
+        623,
+        255
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/eye-right-closed.png"
+    },
+    {
+      "id": "mouth-open",
+      "image": "parts/mouth-open.png",
+      "boundsPixels": [
+        564,
+        279,
+        596,
+        296
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "AI-completed Mirea facial artwork; normalized to reviewed source slot",
+      "mesh": [
+        4,
+        4
+      ],
+      "generationSource": "generated/mouth-open.png"
+    },
+    {
+      "id": "eye-left-eyelid-line",
+      "image": "parts/eye-left-eyelid-line.png",
+      "boundsPixels": [
+        515,
+        246,
+        557,
+        264
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "eye-right-eyelid-line",
+      "image": "parts/eye-right-eyelid-line.png",
+      "boundsPixels": [
+        578,
+        225,
+        619,
+        240
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "mouth-closed",
+      "image": "parts/mouth-closed.png",
+      "boundsPixels": [
+        566,
+        281,
+        594,
+        294
+      ],
+      "node": "head",
+      "coverage": "complete",
+      "provenance": "Visible original pixels, extracted with reviewed source mask",
+      "mesh": [
+        4,
+        4
+      ]
+    }
+  ],
+  "face": {
+    "eyes": [
+      {
+        "side": "left",
+        "node": "head",
+        "ball": "eye-left-eyeball",
+        "iris": "eye-left-iris",
+        "lines": [
+          "eye-left-eyelid-line"
+        ],
+        "half": "eye-left-half",
+        "closed": "eye-left-closed",
+        "top": [
+          [
+            0.5068359375,
+            0.17057291666666666
+          ],
+          [
+            0.5126953125,
+            0.166015625
+          ],
+          [
+            0.521484375,
+            0.16341145833333334
+          ],
+          [
+            0.529296875,
+            0.1640625
+          ],
+          [
+            0.537109375,
+            0.16536458333333334
+          ],
+          [
+            0.541015625,
+            0.16796875
+          ]
+        ],
+        "bottom": [
+          [
+            0.5068359375,
+            0.17057291666666666
+          ],
+          [
+            0.5126953125,
+            0.173828125
+          ],
+          [
+            0.521484375,
+            0.17578125
+          ],
+          [
+            0.529296875,
+            0.17513020833333334
+          ],
+          [
+            0.537109375,
+            0.171875
+          ],
+          [
+            0.541015625,
+            0.16796875
+          ]
+        ],
+        "travel": [
+          0.002,
+          0.001
+        ]
+      },
+      {
+        "side": "right",
+        "node": "head",
+        "ball": "eye-right-eyeball",
+        "iris": "eye-right-iris",
+        "lines": [
+          "eye-right-eyelid-line"
+        ],
+        "half": "eye-right-half",
+        "closed": "eye-right-closed",
+        "top": [
+          [
+            0.5673828125,
+            0.154296875
+          ],
+          [
+            0.572265625,
+            0.15104166666666666
+          ],
+          [
+            0.5810546875,
+            0.14908854166666666
+          ],
+          [
+            0.5888671875,
+            0.14973958333333334
+          ],
+          [
+            0.595703125,
+            0.15104166666666666
+          ],
+          [
+            0.599609375,
+            0.154296875
+          ]
+        ],
+        "bottom": [
+          [
+            0.5673828125,
+            0.154296875
+          ],
+          [
+            0.572265625,
+            0.16015625
+          ],
+          [
+            0.5810546875,
+            0.162109375
+          ],
+          [
+            0.5888671875,
+            0.16145833333333334
+          ],
+          [
+            0.595703125,
+            0.15885416666666666
+          ],
+          [
+            0.599609375,
+            0.154296875
+          ]
+        ],
+        "travel": [
+          0.002,
+          0.001
+        ]
+      }
+    ],
+    "mouth": {
+      "node": "head",
+      "shapes": {
+        "closed": "mouth-closed",
+        "open": "mouth-open"
+      },
+      "axis": [
+        [
+          0.5537109375,
+          0.18880208333333334
+        ],
+        [
+          0.5791015625,
+          0.18359375
+        ]
+      ]
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { missingAssets, type MissingAssetsReport } from './materials.js'
 import { createServer, type IncomingMessage } from 'node:http'
 import { readFile, realpath, stat, lstat, mkdir, writeFile, rename, rm } from 'node:fs/promises'
 import { resolve, relative, sep, dirname, basename, extname, join } from 'node:path'
@@ -5,6 +6,7 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { validateStudioModel, reviewChecks, type StudioModel, type StudioDraft, type StudioReview } from './document.js'
 import { validateProject, type StudioProject, type StudioIssue } from './project.js'
+import { imageSize } from 'image-size'
 import { integrationExamples } from './examples.js'
 
 const packageRoot = fileURLToPath(new URL('../../', import.meta.url))
@@ -65,10 +67,16 @@ export async function loadProject(root: string, sample = false): Promise<Session
     if (/^(?:[a-z][a-z\d+.-]*:|\/|\\)/i.test(source) || source.includes('?') || source.includes('#')) throw new Error('Studio requires local, model-relative image references: ' + source)
     if (!['.png', '.webp', '.jpg', '.jpeg'].includes(extname(source).toLowerCase())) throw new Error('Unsupported image format')
     const file = await safeFile(root, source)
-    assets.push({ source, relative: relative(root, file), bytes: await readFile(file), hash: sha(await readFile(file)), url: '/project-assets/' + assets.length })
+    const bytes = await readFile(file), dimensions = imageSize(bytes)
+    const width = dimensions.orientation && dimensions.orientation > 4 ? dimensions.height : dimensions.width
+    const height = dimensions.orientation && dimensions.orientation > 4 ? dimensions.width : dimensions.height
+    const expected = model.version === 1 ? [model.texture] : [...(source === model.source.fallback ? [model.source] : []), ...model.atlases.filter(a => a.src === source)]
+    if (expected.some(size => size.width !== width || size.height !== height)) throw new Error('Image dimensions do not match the model: '+source)
+    assets.push({ source, relative: relative(root, file), bytes, hash: sha(bytes), url: '/project-assets/' + assets.length })
   }
+  if (model.version === 2 && assets.find(a => a.source === model.source.fallback)?.hash !== model.source.sha256) throw new Error('Source artwork fingerprint mismatch')
   const records: Record<string, unknown> = {}
-  for (const name of ['analysis.json', 'character-analysis.json', 'report.json', 'build-report.json', 'extract-report.json', 'parts-manifest.json', 'image-info.json']) {
+  for (const name of ['analysis.json', 'character-analysis.json', 'report.json', 'build-report.json', 'extract-report.json', 'parts-manifest.json', 'image-info.json', 'diagnosis.json', 'decomposition.json', 'missing-assets.json']) {
     try { records[name] = await readJson(root, name) } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error }
   }
   const assetFingerprint = sha(JSON.stringify(assets.map(a => [a.source, a.hash])))
@@ -134,16 +142,35 @@ export async function startStudio(options: StudioServerOptions = {}) {
     if (JSON.stringify(storedModel) !== JSON.stringify(current.model)) throw new Error('Model changed. Load a new version and repeat visual review.')
     for (const asset of current.assets) if (sha(await readFile(await safeFile(current.root, asset.relative))) !== asset.hash) throw new Error('Artwork changed. Restart Studio and repeat visual review.')
   }
+  async function materialReport(current: Session) {
+    const annotation = (current.records['analysis.json'] ?? current.records['character-analysis.json']) as { image?: { sha256?: string } } | undefined
+    const sourceSha256 = current.model.version === 2 ? current.model.source.sha256 : annotation?.image?.sha256 ?? current.assets[0].hash
+    const report: MissingAssetsReport = { version: 1, producer: 'studio', sourceSha256, modelFingerprint: current.sourceFingerprint, assetFingerprint: current.assetFingerprint, versionId: current.versionId, items: missingAssets(current.model) }
+    const authored = current.records['missing-assets.json'] as MissingAssetsReport | undefined
+    if (authored?.version === 1 && authored.sourceSha256 === sourceSha256 && Array.isArray(authored.items)) {
+      const valid = authored.items.filter(item => item && !/^eye-(left|right)-(eyelid-skin|eyeball|half|closed)$/.test(item.id) && !/^mouth-(closed|open|a|i|u|e|o)$/.test(item.id) && /^[a-zA-Z0-9_-]+$/.test(item.id) && typeof item.partId === 'string' && typeof item.reason === 'string' && typeof item.required === 'boolean' && ['extract','revise-annotation','provide-artwork'].includes(item.nextAction))
+      report.items = [...new Map([...report.items, ...valid].map(item => [item.id, item])).values()]
+    }
+    const dir = await outputDirectory(out, ''), path = join(dir, 'missing-assets.json')
+    try { if ((await lstat(path)).isSymbolicLink()) throw new Error('Unsafe material report path') } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error }
+    const contents = JSON.stringify(report, null, 2) + '\n'
+    try { if (await readFile(path, 'utf8') === contents) return { path, report } } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error }
+    const temporary = join(dir, '.' + randomBytes(12).toString('hex'))
+    await writeFile(temporary, contents, { flag: 'wx' }); await rename(temporary, path)
+    return { path, report }
+  }
   async function payload(current: Session | undefined) {
     if (!current) return { model: null, output: out }
     let draft: unknown
     try {
       draft = await readJson(out, 'drafts/' + current.sourceFingerprint + '.json')
     } catch (e) { if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e }
-    return { model: current.model, assets: Object.fromEntries(current.assets.map(a => [a.source, a.url])), assetFingerprint: current.assetFingerprint, records: current.records, sourceFingerprint: current.sourceFingerprint, versionId: current.versionId, project: await summary(), issues: issues.filter(issue => issue.fingerprint === current.sourceFingerprint), draft, output: out }
+    return { model: current.model, assets: Object.fromEntries(current.assets.map(a => [a.source, a.url])), assetFingerprint: current.assetFingerprint, records: current.records, sourceFingerprint: current.sourceFingerprint, versionId: current.versionId, project: await summary(), missingAssets: await materialReport(current), issues: issues.filter(issue => issue.fingerprint === current.sourceFingerprint), draft, output: out }
   }
   async function exportProject(current: Session, data: Record<string, unknown>) {
     await stableAssets(current)
+    const state = await summary()
+    if ('error' in state && state.error || state.versions.some(v => v.id === current.versionId && 'stale' in v && v.stale)) throw new Error('Authoring inputs changed; rebuild before delivery')
     const model = data.model; validateStudioModel(model)
     if(model.version !== current.model.version)throw new Error('Model format cannot change during this session')
     if(model.version===1&&current.model.version===1&&(model.texture.width!==current.model.texture.width||model.texture.height!==current.model.texture.height))throw new Error('Image dimensions cannot change without reopening the artwork')
@@ -182,13 +209,20 @@ export async function startStudio(options: StudioServerOptions = {}) {
       response.setHeader('Cache-Control', 'no-store')
       response.setHeader('X-Content-Type-Options', 'nosniff')
       response.setHeader('Referrer-Policy', 'no-referrer')
-      response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'")
+      response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'")
       try {
         if (request.headers.host !== new URL(origin).host || request.headers.origin && request.headers.origin !== origin) { json(403, { error: 'Invalid local origin' }); return }
         const url = new URL(request.url ?? '/', origin)
         if (url.pathname.startsWith('/api/')) {
           const submitted = request.headers['x-yuragi-session']
           if (typeof submitted !== 'string' || submitted.length !== token.length || !timingSafeEqual(Buffer.from(submitted), Buffer.from(token))) { json(403, { error: 'Invalid Studio session' }); return }
+          if (url.pathname === '/api/pose-sheet' && request.method === 'GET') {
+            if (!session) throw new Error('Open a character first')
+            const sheet = await readJson(session.root, 'review/poses.json') as {fingerprint?: string; poses?: {id: string}[]}
+            if (sheet.fingerprint !== session.sourceFingerprint || !Array.isArray(sheet.poses) || sheet.poses.length > 40 || sheet.poses.some(p => !/^[a-z0-9-]+$/.test(p.id))) throw new Error('Pose sheet does not match this model')
+            for (const pose of sheet.poses) { await safeFile(session.root, 'review/'+pose.id+'.png'); await safeFile(session.root, 'review/'+pose.id+'-detail.png') }
+            json(200, { ...sheet, images: sheet.poses.map(p => ({id:p.id, image:'/pose-assets/'+p.id+'.png',detail:'/pose-assets/'+p.id+'-detail.png'})), overview:'/pose-assets/contact-sheet.png' }); return
+          }
           if (url.pathname === '/api/summary' && request.method === 'GET') { json(200, await summary()); return }
           if (url.pathname === '/api/session' && request.method === 'GET') { if(session)await stableAssets(session);json(200, await payload(session)); return }
           if (request.method !== 'POST') { json(405, { error: 'POST required' }); return }
@@ -202,7 +236,7 @@ export async function startStudio(options: StudioServerOptions = {}) {
             }
             if (url.pathname === '/api/version') {
               const project = await readCatalog(); if (!project) throw new Error('This legacy folder has no version catalog')
-              const next = await versionSession(String(body.versionId), project); session = next; catalog = project; return await payload(next)
+              const next = await versionSession(String(body.versionId), project); const result = await payload(next); session = next; catalog = project; return result
             }
             if (!session) throw new Error('Open a character first')
             if (body.sourceFingerprint !== session.sourceFingerprint) throw new Error('Character session changed; reload Studio')
@@ -249,7 +283,8 @@ export async function startStudio(options: StudioServerOptions = {}) {
         }
         if (!['GET', 'HEAD'].includes(request.method ?? '')) { json(405, { error: 'GET required' }); return }
         let file: string
-        if (url.pathname.startsWith('/review-assets/')) { file = await safeFile(out, 'review/' + decodeURIComponent(url.pathname.slice('/review-assets/'.length))) }
+        if (url.pathname.startsWith('/pose-assets/')) { if (!session) throw new Error('Open a character first'); file = await safeFile(session.root, 'review/'+decodeURIComponent(url.pathname.slice('/pose-assets/'.length))) }
+        else if (url.pathname.startsWith('/review-assets/')) { file = await safeFile(out, 'review/' + decodeURIComponent(url.pathname.slice('/review-assets/'.length))) }
         else if (url.pathname.startsWith('/project-assets/')) {
           const asset = session?.assets.find(a => a.url === url.pathname)
           if (!asset || !session) { json(404, { error: 'Asset not found' }); return }

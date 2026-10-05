@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "sourceUnchanged": true,
+  "partsExtracted": true,
+  "modelValidation": "not-run",
+  "visualAcceptance": "visible-extracts-reviewed",
+  "checks": [
+    {
+      "id": "eye-left-open",
+      "visiblePixels": 488,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        519,
+        251,
+        554,
+        270
+      ],
+      "sha256": "d09546dc562555574534f0b222e0c97bad3decec27f632a2bfe5620c6b279072"
+    },
+    {
+      "id": "eye-right-open",
+      "visiblePixels": 490,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        581,
+        229,
+        614,
+        250
+      ],
+      "sha256": "7816566d88356cc062b9aafa2965f21c5a5ae5aa8024ee2e112d08d5afa53d38"
+    },
+    {
+      "id": "eye-left-iris-visible",
+      "visiblePixels": 274,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        527,
+        251,
+        548,
+        268
+      ],
+      "sha256": "82262ce3d4935ee817c545afdbf4d21b27ec51d47d0239ef5e89dee35948135f"
+    },
+    {
+      "id": "eye-right-iris-visible",
+      "visiblePixels": 271,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        589,
+        231,
+        608,
+        249
+      ],
+      "sha256": "e73ae564d5b45a13fa03a1bb2e3f76a44c72d3b7d0d866e09c61480a67277d5c"
+    },
+    {
+      "id": "eye-left-eyelid-line",
+      "visiblePixels": 179,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        515,
+        246,
+        557,
+        264
+      ],
+      "sha256": "19258da2619add033142b7be07ce854a937113c60863f0621a4ebd869556f54a"
+    },
+    {
+      "id": "eye-right-eyelid-line",
+      "visiblePixels": 224,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        578,
+        225,
+        619,
+        240
+      ],
+      "sha256": "ba07086662fd4f04ab228065d49e45863676cfd4bac3ee89e3651abcb43d9fed"
+    },
+    {
+      "id": "eye-left-skin-visible",
+      "visiblePixels": 268,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        523,
+        267,
+        556,
+        283
+      ],
+      "sha256": "1ca33b4f4128740668cc392e0b51b3816baa760e6bd1694a9cd6118958a62ce1"
+    },
+    {
+      "id": "eye-right-skin-visible",
+      "visiblePixels": 226,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        584,
+        247,
+        614,
+        262
+      ],
+      "sha256": "d10fb69da17532f5eeedf46b2afc4d1481f683bf2908428b383851aeda25ff01"
+    },
+    {
+      "id": "mouth-closed",
+      "visiblePixels": 160,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        566,
+        281,
+        594,
+        294
+      ],
+      "sha256": "a8a27f9c3cb57c49a3f9a1d53f217811a26fdae65614b5cf92bb70b7013f0a34"
+    },
+    {
+      "id": "eye-left-sclera-visible",
+      "visiblePixels": 202,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        520,
+        251,
+        554,
+        270
+      ],
+      "sha256": "c9848cc183fc1fda22326539f774a33c84b429cfa2d31d53ed43edf11c76ce68"
+    },
+    {
+      "id": "eye-right-sclera-visible",
+      "visiblePixels": 163,
+      "sourcePixelsPreserved": true,
+      "outsideMaskCleared": true,
+      "boundsPixels": [
+        582,
+        232,
+        614,
+        250
+      ],
+      "sha256": "fb101a7818042ee2b53279bfd649e23c7862ba500a6765fef6c2cbb30a9df5f5"
+    }
+  ],
+  "visualReviewPath": "visual-review.json",
+  "layeredPlaybackAccepted": false
+}

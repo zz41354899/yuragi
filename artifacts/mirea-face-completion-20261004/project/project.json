@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "source": {
+    "file": "source.png",
+    "sha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05"
+  },
+  "stage": "compiled",
+  "currentVersion": "original-motion",
+  "versions": [
+    {
+      "id": "original-motion",
+      "label": "Mirea 原有動態",
+      "path": "original-motion"
+    }
+  ]
+}

@@ -37,7 +37,7 @@ See the accompanying Vue documentation site for options, adapters, editable fiel
 
 For a custom character, follow the complete guide at `/docs?section=custom-character` on the accompanying site: prepare artwork, create a model, bind pins and local chains, verify deformation, then load the validated JSON through the Vue or React adapter. The guide includes all model field ranges and error handling. The repository also provides `docs/custom-character.zh-TW.md`; the humanoid starter comes with the installed package at `assets/starter/model.json`. The website offers no standalone JSON downloads or model exports.
 
-Extensibility does not mean automatic rigging. Humanoids with measured semantic pins are the easiest starting point; animals and other structures need new motion bindings. The website playground demonstrates Mirea; use Studio to author other models.
+Extensibility does not mean automatic rigging. Humanoids with measured semantic pins are the easiest starting point; animals and other structures need new motion bindings. The website playground demonstrates Mirea; use Agent Skills and Python to author other models, then review them in Studio.
 
 For an artwork-specific head position, set optional `pose.headWarpBounds` to the measured increasing `[topY, bottomY]` (0–1). When omitted, the original legacy head-warp behavior is retained. The repository provides English agent skills and a local Python preparation helper at `skills/yuragi-rig-spec`; AI supplies image interpretation, while the helper measures pixels and exports a candidate model and local preview. Visible-region extracts do not reconstruct hidden pixels or create independent runtime layers.
 
@@ -105,6 +105,8 @@ npm install /actual/path/to/yuragi-rig-0.2.0.tgz
 npx yuragi studio --project ./my-character --out ./yuragi-output
 ```
 
-The folder contains model.json and its local relative artwork paths. Shared-surface v1 models are editable; layered v2 models are inspection-only. Save drafts at any time; delivery requires model validation and explicit current visual observations. Original annotations and extracted assets are preserved. Each delivery has model.json, assets, acceptance.json and Vue/React/vanilla integration examples. `--port` chooses the local port and `--no-open` suppresses browser opening; no project opens bundled examples. The website playground is retained.
+The folder contains model.json and local relative artwork paths. Studio is a preview-only viewer for v1/v2: playback, poses, source comparison, zoom/pan and available face controls. It automatically saves `OUT/missing-assets.json` with current model/material fingerprints. Ask the agent to read this file, diagnose/extract through the Skill's Python workflow, and compile into a fresh folder. Annotations, subdivision JSON, diagnosis, quality observations and delivery belong to the agent workflow; Studio has no issue form or acceptance checklist. Optional project.json catalogs retain valid versions and view state when switching. `--port` selects the local port and `--no-open` suppresses browser opening.
+
+Rendered pose sheets use `npx yuragi review --project ./my-character --out ./my-character/review` (legacy folder), or the selected version folder’s review subdirectory. Install the optional Playwright peer and Chromium first. Output must be new; fixed-step full frames, detail crops and fingerprints do not establish visual acceptance.
 
 The website API index is `/docs/api`, with an independent page for each public callable. Installable rig Skills include the same generated API index and per-callable references. The CLI ships with the local package; no npm registry publication is claimed.

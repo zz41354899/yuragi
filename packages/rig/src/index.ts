@@ -9,3 +9,5 @@ export { createLayeredPlayer } from './layered-player.js'
 export type * from './layered-types.js'
 
 export { fixedSteps, REVIEW_STEP, reviewPoses, faceReviewPoses } from './review.js'
+
+export type { ReviewPose } from './review.js'

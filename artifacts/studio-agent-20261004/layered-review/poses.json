@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "fingerprint": "a56b31538c186f0f18d541048189b24d8c8b75acdd3c6d98f7f0bc2c0b6bb205",
+  "assetFingerprint": "17f1a40216e3d3db68bea7f392faa858ed2a342745761666ce1c2acd3764aa1d",
+  "fixedFps": 60,
+  "visualAcceptance": "not-run",
+  "poses": [
+    {
+      "id": "neutral",
+      "sequence": []
+    },
+    {
+      "id": "up",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "sequence": [
+        {
+          "pointer": [
+            0,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "top-left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "top-right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            -0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "bottom-left",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "bottom-right",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0.5
+          ],
+          "milliseconds": 1500
+        }
+      ]
+    },
+    {
+      "id": "reversal",
+      "sequence": [
+        {
+          "pointer": [
+            -0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 180
+        }
+      ]
+    },
+    {
+      "id": "hair-return-50",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 50
+        }
+      ]
+    },
+    {
+      "id": "hair-return-150",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 150
+        }
+      ]
+    },
+    {
+      "id": "hair-return-350",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 350
+        }
+      ]
+    },
+    {
+      "id": "hair-return-700",
+      "sequence": [
+        {
+          "pointer": [
+            0.5,
+            0
+          ],
+          "milliseconds": 900
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "milliseconds": 700
+        }
+      ]
+    }
+  ]
+}

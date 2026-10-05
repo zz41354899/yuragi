@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "producer": "python",
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "modelFingerprint": "19e553095624b07a16ac89f17eb858434962fcb7d54ea41ff897289b3db799ed",
+  "assetFingerprint": "2c6d76fd8644fa4dbdc415f164cc839f0fbc9bbd6857fb77829dc0daf447684a",
+  "versionId": "legacy",
+  "items": [
+    {
+      "id": "eye-left-eyelid-skin",
+      "partId": "eye-left",
+      "reason": "Adjacent visible skin only. This is not a complete eyelid background or an eye-free face bed.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "extracted-partial",
+      "assets": [
+        {
+          "id": "eye-left-skin-visible",
+          "fullCanvas": "prepared/parts/eye-left-skin-visible.png",
+          "cropped": "prepared/parts/cropped/eye-left-skin-visible.png",
+          "mask": "prepared/parts/masks/eye-left-skin-visible.png",
+          "boundsPixels": [
+            523,
+            267,
+            556,
+            283
+          ],
+          "coverage": "visible-only"
+        }
+      ],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-left-eyeball",
+      "partId": "eye-left",
+      "reason": "Visible open eye, iris, line and sclera extracted. Sclera behind the iris and a clean face bed are not in the source.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "extracted-partial",
+      "assets": [
+        {
+          "id": "eye-left-open",
+          "fullCanvas": "prepared/parts/eye-left-open.png",
+          "cropped": "prepared/parts/cropped/eye-left-open.png",
+          "mask": "prepared/parts/masks/eye-left-open.png",
+          "boundsPixels": [
+            519,
+            251,
+            554,
+            270
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-left-sclera-visible",
+          "fullCanvas": "prepared/parts/eye-left-sclera-visible.png",
+          "cropped": "prepared/parts/cropped/eye-left-sclera-visible.png",
+          "mask": "prepared/parts/masks/eye-left-sclera-visible.png",
+          "boundsPixels": [
+            520,
+            251,
+            554,
+            270
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-left-iris-visible",
+          "fullCanvas": "prepared/parts/eye-left-iris-visible.png",
+          "cropped": "prepared/parts/cropped/eye-left-iris-visible.png",
+          "mask": "prepared/parts/masks/eye-left-iris-visible.png",
+          "boundsPixels": [
+            527,
+            251,
+            548,
+            268
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-left-eyelid-line",
+          "fullCanvas": "prepared/parts/eye-left-eyelid-line.png",
+          "cropped": "prepared/parts/cropped/eye-left-eyelid-line.png",
+          "mask": "prepared/parts/masks/eye-left-eyelid-line.png",
+          "boundsPixels": [
+            515,
+            246,
+            557,
+            264
+          ],
+          "coverage": "visible-only"
+        }
+      ],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-left-half",
+      "partId": "eye-left",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-left-closed",
+      "partId": "eye-left",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-right-eyelid-skin",
+      "partId": "eye-right",
+      "reason": "Adjacent visible skin only. This is not a complete eyelid background or an eye-free face bed.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "extracted-partial",
+      "assets": [
+        {
+          "id": "eye-right-skin-visible",
+          "fullCanvas": "prepared/parts/eye-right-skin-visible.png",
+          "cropped": "prepared/parts/cropped/eye-right-skin-visible.png",
+          "mask": "prepared/parts/masks/eye-right-skin-visible.png",
+          "boundsPixels": [
+            584,
+            247,
+            614,
+            262
+          ],
+          "coverage": "visible-only"
+        }
+      ],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-right-eyeball",
+      "partId": "eye-right",
+      "reason": "Visible open eye, iris, line and sclera extracted. Sclera behind the iris and a clean face bed are not in the source.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "extracted-partial",
+      "assets": [
+        {
+          "id": "eye-right-open",
+          "fullCanvas": "prepared/parts/eye-right-open.png",
+          "cropped": "prepared/parts/cropped/eye-right-open.png",
+          "mask": "prepared/parts/masks/eye-right-open.png",
+          "boundsPixels": [
+            581,
+            229,
+            614,
+            250
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-right-sclera-visible",
+          "fullCanvas": "prepared/parts/eye-right-sclera-visible.png",
+          "cropped": "prepared/parts/cropped/eye-right-sclera-visible.png",
+          "mask": "prepared/parts/masks/eye-right-sclera-visible.png",
+          "boundsPixels": [
+            582,
+            232,
+            614,
+            250
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-right-iris-visible",
+          "fullCanvas": "prepared/parts/eye-right-iris-visible.png",
+          "cropped": "prepared/parts/cropped/eye-right-iris-visible.png",
+          "mask": "prepared/parts/masks/eye-right-iris-visible.png",
+          "boundsPixels": [
+            589,
+            231,
+            608,
+            249
+          ],
+          "coverage": "visible-only"
+        },
+        {
+          "id": "eye-right-eyelid-line",
+          "fullCanvas": "prepared/parts/eye-right-eyelid-line.png",
+          "cropped": "prepared/parts/cropped/eye-right-eyelid-line.png",
+          "mask": "prepared/parts/masks/eye-right-eyelid-line.png",
+          "boundsPixels": [
+            578,
+            225,
+            619,
+            240
+          ],
+          "coverage": "visible-only"
+        }
+      ],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-right-half",
+      "partId": "eye-right",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "eye-right-closed",
+      "partId": "eye-right",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "mouth-a",
+      "partId": "mouth",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "mouth-i",
+      "partId": "mouth",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "mouth-u",
+      "partId": "mouth",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "mouth-e",
+      "partId": "mouth",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    },
+    {
+      "id": "mouth-o",
+      "partId": "mouth",
+      "reason": "Requested expression is not present in the inspected original image; extraction cannot create it.",
+      "nextAction": "provide-artwork",
+      "required": false,
+      "status": "absent-in-source",
+      "assets": [],
+      "bound": false,
+      "readyForLayeredPlayback": false
+    }
+  ]
+}

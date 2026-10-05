@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "source": {
+    "file": "source.png",
+    "sha256": "7f75a25e25147d434c17268954483d282c1f8268d5df7292c0ef202714494612"
+  },
+  "versions": [
+    {
+      "id": "v1",
+      "path": "compiled",
+      "inputs": {
+        "manifest.json": "570e6fb8b20238e2f9c22fe9643667ab8f79770e4f31d50c6721e33c78c765a9"
+      }
+    },
+    {
+      "id": "v2",
+      "path": "compiled-v2",
+      "inputs": {
+        "source.png": "7f75a25e25147d434c17268954483d282c1f8268d5df7292c0ef202714494612",
+        "compiled-v2/model.json": "77ffaec977cc2e69d363ca2e65ff82fd6fca2b08f078acaa7a966ea828f669cb",
+        "compiled-v2/fallback.png": "7f75a25e25147d434c17268954483d282c1f8268d5df7292c0ef202714494612",
+        "compiled-v2/atlas-0.png": "2571cef9b8a5de444a9127dac1b9ee1f6108339ed6d6957e9e5c04f48aae06eb",
+        "manifest-v2.json": "07094bf936cbcba148d0048e5f297941f9e476d37521b3d4dc4536f6126cda50",
+        "skin.png": "9b425289436a611ec6751bb195c9ab7fa3e52fd347876c40b4952c6ce82ec2f5",
+        "left-ball.png": "902d037e8f33b9039d02142bc68bed29922eef70e3e96494ac84150ebfe30c48",
+        "left-iris.png": "890c79b5bc3a85229a7ed4ebc624a1a5ec7acd4bc3a0c4cd654f934bc6fae2f9",
+        "left-line.png": "024fe4b78ac0557d4bec2e714c31506f6fbcd68adc398ebcb6e57916874aa087",
+        "left-half.png": "834a16b3e8d172a1f444cbf696435809bdf8fc9525029ce7ab03ce5b25560934",
+        "left-closed.png": "e7d690faadaab79270f8f6f71cc33b5a9fef6803f957bb50ee0b749524acbe22",
+        "right-ball.png": "902d037e8f33b9039d02142bc68bed29922eef70e3e96494ac84150ebfe30c48",
+        "right-iris.png": "890c79b5bc3a85229a7ed4ebc624a1a5ec7acd4bc3a0c4cd654f934bc6fae2f9",
+        "right-line.png": "024fe4b78ac0557d4bec2e714c31506f6fbcd68adc398ebcb6e57916874aa087",
+        "right-half.png": "834a16b3e8d172a1f444cbf696435809bdf8fc9525029ce7ab03ce5b25560934",
+        "right-closed.png": "e7d690faadaab79270f8f6f71cc33b5a9fef6803f957bb50ee0b749524acbe22",
+        "mouth-closed.png": "c7e01e55f5790db0b9784a633692cc4e7ee2eb2c6b770a9976dd3908c8c0fd95",
+        "mouth-a.png": "0db7dcae0ec7337b5bb6b0acc7aa30a61e98d7ba294630991c08413dec92ca48",
+        "mouth-i.png": "cdaaa9ed9baf3c636abd2ef0dcc80e22c0ec448da594bdb4aec9218d2adfd510",
+        "mouth-u.png": "93532d07e827eac285be7b4acf09adf4b5b609da8b2e7cf065dce02650d4fb06",
+        "mouth-e.png": "4da20f249a5dc424cf11b1ce51a2612c86d8ed19567ea6833167864df425684a",
+        "mouth-o.png": "e0c39d706bb4dedc915f064eaf9f4b8474ebebb8f4975ad0bce4b4e454d6766c"
+      },
+      "runtimeVersion": "0.2.0"
+    }
+  ],
+  "currentVersion": "v2",
+  "stage": "compiled"
+}

@@ -14,6 +14,7 @@ import MotionControls from '../components/MotionControls.vue'
 import { createMireaDemoModel } from '../models/mirea'
 import Icon from '../components/Icon.vue'
 import MobileEditorNotice from '../components/MobileEditorNotice.vue'
+import { pointerGaze } from '../editor/gaze'
 import { clamp, zoomAtPoint, MIN_ZOOM, MAX_ZOOM, type Point } from '../editor/viewport'
 const model = shallowRef(createMireaDemoModel())
 const player = shallowRef<RigPlayer>()
@@ -41,7 +42,7 @@ const showGrid = ref(false)
 const playing = ref(true)
 const following = ref(true)
 const bg = ref('dark')
-const gazeStrength = ref(1)
+const gazeStrength = ref(.75)
 const activePreset = ref('default')
 const backgrounds = [{value:'paper',label:'紙白背景'},{value:'lilac',label:'淺藍背景'},{value:'dark',label:'深色背景'}]
 const layerGroups = computed(() => [
@@ -57,20 +58,24 @@ const message = ref('')
 const reducedMotion = ref(false)
 const changingModel = ref(false)
 const artwork = ref<HTMLElement>()
+const canvasArea = ref<HTMLElement>()
+const pointerWithin = ref(false)
 const zoom = ref(1)
 const pan = ref<Point>({ x: 0, y: 0 })
 const tool = ref<'select' | 'pan'>('select')
 const dragging = ref(false)
+const spacePan = ref(false)
+const panActive = computed(() => tool.value === 'pan' || spacePan.value || dragging.value)
 const viewStyle = computed(() => ({ transform: `translate(${pan.value.x}px, ${pan.value.y}px) scale(${zoom.value})` }))
 let gesture: { id: number; target: HTMLElement; start: Point; pan: Point } | undefined
-watch(tool, next => { if(next === 'pan') player.value?.setPointer(0,0) })
+watch(panActive, enabled => { if(enabled) resetPointer() })
 watch(following, enabled => { if (!enabled) resetPointer() })
 function followCanvas(event: PointerEvent) {
-  if (!playing.value || !following.value || gesture || tool.value === 'pan' || reducedMotion.value || event.pointerType === 'touch' && !event.buttons || !artwork.value) return
+  if (!playing.value || !following.value || panActive.value || reducedMotion.value || event.pointerType === 'touch' && !event.buttons || !artwork.value) return
   const box = artwork.value.getBoundingClientRect()
   player.value?.setPointer(clamp((event.clientX-box.left)/box.width-.5,-.5,.5),clamp((event.clientY-box.top)/box.height-.5,-.5,.5))
   const eyes=model.value.face?.eyes
-  if(eyes){const cx=(eyes[0].center[0]+eyes[1].center[0])/2,cy=(eyes[0].center[1]+eyes[1].center[1])/2;player.value?.setGaze((event.clientX-box.left-box.width*cx)/(box.width*.22),(event.clientY-box.top-box.height*cy)/(box.height*.14))}
+  if(eyes)player.value?.setGaze(...pointerGaze([event.clientX,event.clientY],box,model.value.face!,snapshot.value?.trackingOffset))
 }
 function keyboardFollow(event: KeyboardEvent) {
   if (event.target !== event.currentTarget || !following.value || reducedMotion.value) return
@@ -90,9 +95,11 @@ function zoomWheel(event: WheelEvent) {
   changeZoom(zoom.value * Math.exp(-clamp(delta, -200, 200) * .002), anchor)
 }
 function startGesture(event: PointerEvent) {
-  if (gesture || event.button !== 0 || tool.value !== 'pan') return
+  if (gesture || !(event.button === 1 || event.button === 0 && panActive.value)) return
   event.preventDefault()
   const target = event.currentTarget as HTMLElement
+  target.focus({ preventScroll: true })
+  resetPointer()
   gesture = { id: event.pointerId, target, start: { x: event.clientX, y: event.clientY }, pan: { ...pan.value } }
   dragging.value = true
   target.setPointerCapture(event.pointerId)
@@ -143,7 +150,7 @@ function preset(name: string) {
 }
 function replaceModel(next: RigModel) {
   finishGesture(); resetView()
-  gazeStrength.value = 1; activePreset.value = 'default';
+  gazeStrength.value = .75; activePreset.value = 'default';
   changingModel.value = true; player.value = undefined; debugMesh.value = undefined
   editableParts.value = structuredClone(next.parts ?? []); selectedPartId.value = editableParts.value[0]?.id ?? ''
   model.value = next; settings.value = { ...next.motion }
@@ -178,20 +185,33 @@ const skeletonBones = computed(() => skeletonNodes.value.flatMap(node => {
 }))
 let media: MediaQueryList
 const mediaChange = () => { reducedMotion.value = media.matches; playing.value = !media.matches }
-const interruptGesture = () => finishGesture()
+function panKeyDown(event: KeyboardEvent) {
+  if (event.code !== 'Space' || event.altKey || event.ctrlKey || event.metaKey) return
+  const target = event.target
+  if (target instanceof HTMLElement && target.closest('input,textarea,select,button,a,[contenteditable]:not([contenteditable="false"]),[role="combobox"]')) return
+  if (!pointerWithin.value && !canvasArea.value?.contains(document.activeElement)) return
+  event.preventDefault()
+  spacePan.value = true
+}
+function panKeyUp(event: KeyboardEvent) { if(event.code === 'Space') spacePan.value = false }
+const interruptGesture = () => { spacePan.value = false; finishGesture() }
 onMounted(() => {
   media = matchMedia('(prefers-reduced-motion: reduce)'); mediaChange(); media.addEventListener('change', mediaChange)
   // Release may land outside the canvas, or be consumed by another control.
   window.addEventListener('pointerup', finishGesture, true)
   window.addEventListener('pointercancel', finishGesture, true)
   window.addEventListener('blur', interruptGesture)
+  window.addEventListener('keydown', panKeyDown)
+  window.addEventListener('keyup', panKeyUp)
 })
 onBeforeUnmount(() => {
-  gesture = undefined
+  interruptGesture()
   media?.removeEventListener('change', mediaChange)
   window.removeEventListener('pointerup', finishGesture, true)
   window.removeEventListener('pointercancel', finishGesture, true)
   window.removeEventListener('blur', interruptGesture)
+  window.removeEventListener('keydown', panKeyDown)
+  window.removeEventListener('keyup', panKeyUp)
 })
 </script>
 <template>
@@ -204,13 +224,13 @@ onBeforeUnmount(() => {
         <div class="studio-model"><img :src="model.texture.src" alt="" /><div><strong>{{ tr('海月みれあ') }}</strong><span>1024 × 1536</span></div></div>
         <div class="studio-tools" :aria-label="tr('畫布工具')">
           <button :aria-label="tr('圖層')" :title="tr('圖層')" :aria-pressed="tool === 'select' && tab === 'layers'" :class="{ active: tool === 'select' && tab === 'layers' }" @click="switchTab('layers')"><Icon name="layers" :size="22" /></button>
-          <button :aria-label="tr('平移畫布')" :title="tr('平移畫布')" :aria-pressed="tool === 'pan'" :class="{ active: tool === 'pan' }" @click="tool = 'pan'"><Icon name="move" :size="22" /></button>
+          <button :aria-label="tr('平移畫布')" :title="tr('平移畫布：拖曳移動，再點一次返回追蹤')" :aria-pressed="tool === 'pan'" :class="{ active: panActive }" @click="tool = tool === 'pan' ? 'select' : 'pan'"><Icon name="move" :size="22" /></button>
           <button :aria-label="tr('格線')" :title="tr('格線')" :aria-pressed="showGrid" @click="showGrid = !showGrid"><Icon name="grid" :size="22" /></button>
           <button :aria-label="tr('骨架')" :title="tr('骨架')" :aria-pressed="showSkeleton" @click="showSkeleton = !showSkeleton"><Icon name="skeleton" :size="22" /></button>
           <button aria-label="Mesh" title="Mesh" :aria-pressed="showMeshRegions" @click="showMeshRegions = !showMeshRegions"><Icon name="mesh" :size="22" /></button>
           <button :aria-label="tr('重設視圖')" :title="tr('重設視圖')" @click="resetView"><Icon name="fit" :size="22" /></button>
         </div>
-        <div class="preview-canvas studio-canvas" :class="['bg-' + bg, { 'with-grid': showGrid, 'pan-tool': tool === 'pan', 'is-dragging': dragging }]" @wheel.prevent="zoomWheel" @pointerdown="startGesture($event)" @pointermove="moveGesture($event); followCanvas($event)" @pointerleave="resetPointer" @blur.self="resetPointer" @keydown="keyboardFollow" tabindex="0" :aria-label="model.name + tr('游標與方向鍵互動區')" @pointerup="finishGesture($event); $event.pointerType === 'touch' && player?.setPointer(0,0)" @pointercancel="finishGesture($event); player?.setPointer(0,0)" @lostpointercapture="finishGesture">
+        <div ref="canvasArea" class="preview-canvas studio-canvas" :class="['bg-' + bg, { 'with-grid': showGrid, 'pan-tool': panActive, 'is-dragging': dragging }]" @wheel.prevent="zoomWheel" @pointerenter="pointerWithin = true" @pointerdown="startGesture($event)" @pointermove="moveGesture($event); followCanvas($event)" @pointerleave="pointerWithin = false; resetPointer()" @blur.self="interruptGesture(); resetPointer()" @keydown="keyboardFollow" @auxclick="$event.button === 1 && $event.preventDefault()" tabindex="0" :aria-label="model.name + tr('游標與方向鍵互動區')" :aria-describedby="'playground-pan-help'" @pointerup="finishGesture($event); $event.pointerType === 'touch' && resetPointer()" @pointercancel="finishGesture($event); resetPointer()" @lostpointercapture="finishGesture">
           <div ref="artwork" class="preview-art studio-art" :style="viewStyle">
             <CharacterStage :model="model" :interactive="false" :autoplay="playing" @ready="ready" @frame="onFrame" @error="error => message = error.message" />
             <canvas v-if="showTriangles" ref="meshCanvas" class="rig-mesh-overlay" aria-hidden="true" />
@@ -234,7 +254,7 @@ onBeforeUnmount(() => {
           <button class="studio-fit" @click="resetView"><Icon name="fit" :size="18" />{{ tr('適應畫布') }}</button>
           <label class="studio-follow"><input type="checkbox" v-model="following" />{{ tr('游標跟隨') }}</label>
         </div>
-        <p class="studio-hint">{{ tr(tool === 'pan' ? '拖曳平移；滾輪或按鈕縮放' : '移動游標，讓角色看向你。') }}</p>
+        <p id="playground-pan-help" class="studio-hint"><span class="desktop-pan-hint">{{ tr(panActive ? '平移模式：拖曳移動；滾輪縮放。' : '移動游標追蹤 · 空白鍵＋拖曳／中鍵平移 · 滾輪縮放') }}</span><span class="touch-pan-hint">{{ tr('點平移工具後拖曳；再次點擊可返回追蹤。') }}</span></p>
       </section>
       <aside class="studio-inspector" :aria-label="tr('調整項目')">
         <header class="inspector-heading"><span class="inspector-eyebrow">MIREA / PLAYGROUND</span><div><h2>{{ tr('讓海月動起來') }}</h2><span class="inspector-live"><i></i>{{ tr(!playing ? '靜態預覽' : '即時預覽') }}</span></div><p>{{ tr('先試試互動，再微調你的角色。') }}</p></header>
@@ -286,6 +306,8 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.touch-pan-hint { display: none; }
+@media (hover: none) { .desktop-pan-hint { display: none; } .touch-pan-hint { display: inline; } }
 .studio-inspector { padding: 24px 18px 0; background: #f6fafc; }
 .inspector-heading { padding: 0 6px 18px; }
 .inspector-eyebrow { color: #6c8a9c; font-size: 10px; letter-spacing: .14em; font-weight: 600; }

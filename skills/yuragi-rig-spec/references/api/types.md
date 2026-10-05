@@ -10,6 +10,36 @@ Canvas overscan on each edge: 0.12 (12%).
 export const CANVAS_PADDING: 0.12
 ```
 
+## REVIEW_STEP
+
+Import: `@yuragi/rig`
+
+Shared fixed step: 1000 / 60 milliseconds.
+
+```ts
+export const REVIEW_STEP: number
+```
+
+## reviewPoses
+
+Import: `@yuragi/rig`
+
+Shared pose definitions: source-centered pointer values and millisecond sequences; generating images does not establish visual acceptance.
+
+```ts
+export const reviewPoses: ReviewPose[]
+```
+
+## ReviewPose
+
+Import: `@yuragi/rig`
+
+
+
+```ts
+export interface ReviewPose { id: string; sequence: { pointer: Vec2; milliseconds: number; face?: LayeredFacePose; gaze?: Vec2 }[] }
+```
+
 ## Vec2
 
 Import: `@yuragi/rig`
@@ -438,6 +468,8 @@ export interface PlayerOptions {
   canvas: HTMLCanvasElement
   model: RigModel
   autoplay?: boolean
+  /** Disable animation-frame scheduling; drive with advance(). */
+  manual?: boolean
   reducedMotion?: 'respect' | 'ignore'
   pixelRatio?: number
   onFrame?: (snapshot: RigSnapshot) => void
@@ -455,6 +487,8 @@ Import: `@yuragi/rig`
 export interface RigPlayer {
   play(): void
   pause(): void
+  /** Fixed 60Hz time stepping, milliseconds, at most 60000 per call. */
+  advance(milliseconds: number): void
   setPointer(x: number, y: number): void
   /** Eye-only direction in -1…1; does not deform the head or body. */
   setGaze(x: number, y: number): void
@@ -513,6 +547,8 @@ export interface LayeredModel {
     }[];
     /** Array order IS draw order. Only consecutive compatible attachments batch. */
     attachments: LayerAttachment[];
+    hairGroups?: { id: string; nodes: string[]; coupling: number }[];
+    face?: LayeredFace;
 }
 ```
 
@@ -618,6 +654,7 @@ export interface LayeredSnapshot {
     playing: boolean;
     reducedMotion: boolean;
     pointer: Vec2;
+    face?: LayeredFacePose & { gaze: Vec2 };
     nodes: {
         id: string;
         rotation: number;
@@ -643,6 +680,7 @@ export interface LayeredPlayerOptions {
     canvas: HTMLCanvasElement;
     model: LayeredModel;
     autoplay?: boolean;
+    manual?: boolean;
     reducedMotion?: 'respect' | 'ignore';
     pixelRatio?: number;
     signal?: AbortSignal;
@@ -661,6 +699,9 @@ Import: `@yuragi/rig`
 export interface LayeredPlayer {
     play(): void;
     pause(): void;
+    advance(milliseconds: number): void;
+    setGaze(x: number, y: number): void;
+    setFace(pose: LayeredFacePose): void;
     setPointer(x: number, y: number): void;
     reset(): void;
     getModel(): LayeredModel;
@@ -671,6 +712,62 @@ export interface LayeredPlayer {
         indices: Uint16Array;
     };
     destroy(): void;
+}
+```
+
+## MouthShape
+
+Import: `@yuragi/rig`
+
+
+
+```ts
+export type MouthShape = 'closed' | 'a' | 'i' | 'u' | 'e' | 'o';
+```
+
+## LayeredFacePose
+
+Import: `@yuragi/rig`
+
+
+
+```ts
+export interface LayeredFacePose { eyeOpenLeft?: number; eyeOpenRight?: number; mouthOpen?: number; mouthShape?: MouthShape }
+```
+
+## LayeredEye
+
+Import: `@yuragi/rig`
+
+
+
+```ts
+export interface LayeredEye {
+    side: 'left' | 'right';
+    /** All layers use the same head node. Skin under lids must be supplied. */
+    node: string;
+    ball: string;
+    iris?: string;
+    lines: string[];
+    half: string;
+    closed: string;
+    /** Sampled source-normalized eye edges, increasing X. */
+    top: [number, number][];
+    bottom: [number, number][];
+    travel: Vec2;
+}
+```
+
+## LayeredFace
+
+Import: `@yuragi/rig`
+
+
+
+```ts
+export interface LayeredFace {
+    eyes?: LayeredEye[];
+    mouth?: { node: string; shapes: Partial<Record<MouthShape, string>> };
 }
 ```
 

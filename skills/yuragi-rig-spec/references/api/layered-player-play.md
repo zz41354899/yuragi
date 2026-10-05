@@ -32,10 +32,10 @@ player.play();
 
 - [player/play](player-play.md)
 - [layered-player/pause](layered-player-pause.md)
+- [layered-player/advance](layered-player-advance.md)
+- [layered-player/set-gaze](layered-player-set-gaze.md)
+- [layered-player/set-face](layered-player-set-face.md)
 - [layered-player/set-pointer](layered-player-set-pointer.md)
-- [layered-player/reset](layered-player-reset.md)
-- [layered-player/get-model](layered-player-get-model.md)
-- [layered-player/get-snapshot](layered-player-get-snapshot.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

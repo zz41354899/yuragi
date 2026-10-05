@@ -21,7 +21,7 @@ void
 
 ## Behavior, defaults and limits
 
-The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives the authored node response and does not provide the v1 face APIs.
+The v1 player also sets gaze. Call setPointer before setGaze for separate targets. Simulation-only setPointer has no face compositor. v2 drives authored node response; optional attachment-based setGaze/setFace is separate from v1 measured-eye APIs.
 
 ## Example
 
@@ -32,11 +32,11 @@ simulation.setPointer(.2, -.1);
 ## Related
 
 - [simulation/set-pointer](simulation-set-pointer.md)
+- [layered-simulation/set-face](layered-simulation-set-face.md)
 - [layered-simulation/reset](layered-simulation-reset.md)
 - [layered-simulation/update](layered-simulation-update.md)
 - [layered-simulation/get-pointer](layered-simulation-get-pointer.md)
 - [player/set-pointer](player-set-pointer.md)
-- [layered-player/set-pointer](layered-player-set-pointer.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

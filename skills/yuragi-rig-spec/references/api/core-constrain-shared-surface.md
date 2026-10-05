@@ -37,6 +37,8 @@ const diagnostics = constrainSharedSurface(mesh, .65);
 - [core/to-canvas](core-to-canvas.md)
 - [core/create-simulation](core-create-simulation.md)
 - [core/validate-model](core-validate-model.md)
+- [core/fixed-steps](core-fixed-steps.md)
+- [core/face-review-poses](core-face-review-poses.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

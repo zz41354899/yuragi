@@ -1,4 +1,8 @@
 export const workspaceCopy: [string, string, string][] = [
+  ['平移畫布：拖曳移動，再點一次返回追蹤', 'Pan canvas: drag to move; click again to resume tracking', 'キャンバス移動：ドラッグで移動、再クリックで追従に戻る'],
+  ['平移模式：拖曳移動；滾輪縮放。', 'Pan mode: drag to move; scroll to zoom.', '移動モード：ドラッグで移動、ホイールで拡大。'],
+  ['移動游標追蹤 · 空白鍵＋拖曳／中鍵平移 · 滾輪縮放', 'Move pointer to track · Space + drag / middle drag to pan · Scroll to zoom', 'ポインターで追従 · スペース＋ドラッグ／中ボタンで移動 · ホイールで拡大'],
+  ['點平移工具後拖曳；再次點擊可返回追蹤。', 'Tap the pan tool, then drag. Tap again to resume tracking.', '移動ツールをタップしてドラッグ。再タップで追従に戻ります。'],
   ['圖層', 'Layers', 'レイヤー'],
   ['圖層清單', 'Layer list', 'レイヤー一覧'],
   ['個圖層', 'layers', 'レイヤー'],

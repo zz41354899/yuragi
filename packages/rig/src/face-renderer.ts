@@ -15,18 +15,21 @@ export function faceFragment(features:FaceFeatures,width:number,height:number) {
     mat2 turn(float a){return mat2(cos(a),-sin(a),sin(a),cos(a));}
     vec4 eye(vec4 color,vec2 center,vec2 radius,vec2 iris,vec2 irisRadius,vec2 travel,float angle,vec3 white){
       vec2 q=turn(angle)*((v_uv-center)*size);
-      float inside=1.0-smoothstep(.94,1.08,length(q/radius));
+      float inside=1.0-smoothstep(.42,.92,length(q/radius));
       if(inside<.001)return color;
       vec2 shift=u_gaze*travel;
-      float moving=min(1.0,length(shift*size)/.75);
-      // Move only the pupil. The eye border, face UVs and mesh never shrink.
-      if(moving>.0001){
-        vec2 oldQ=turn(angle)*((v_uv-iris)*size);
-        vec2 newQ=turn(angle)*((v_uv-iris-shift)*size);
-        float erased=(1.0-smoothstep(.92,1.15,length(oldQ/irisRadius)))*inside*moving;
-        color.rgb=mix(color.rgb,white,erased);
-        float pupil=(1.0-smoothstep(.92,1.12,length(newQ/irisRadius)))*inside*moving;
-        color=mix(color,texture2D(u_image,v_uv-shift),pupil);
+      // A bounded continuous texture warp avoids erasing the original iris
+      // with a flat white disk or stamping a second iris over lashes/skin.
+      if(length(shift*size)>.0001){
+        float violet=color.b-color.r;
+        float luminance=dot(color.rgb,vec3(.299,.587,.114));
+        float skin=1.0-smoothstep(-.045,-.01,violet);
+        float ink=(1.0-smoothstep(.13,.29,luminance))*(1.0-smoothstep(.02,.08,violet));
+        float movable=inside*(1.0-skin)*(1.0-ink);
+        vec2 localShift=turn(angle)*(shift*size);
+        float extent=length(localShift/radius);
+        shift*=min(1.0,.10/max(extent,.00001));
+        color=texture2D(u_image,v_uv-shift*movable);
       }
       return color;
     }

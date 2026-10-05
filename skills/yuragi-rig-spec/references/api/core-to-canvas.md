@@ -34,6 +34,8 @@ const center = toCanvas(.5);
 - [core/create-simulation](core-create-simulation.md)
 - [core/constrain-shared-surface](core-constrain-shared-surface.md)
 - [core/validate-model](core-validate-model.md)
+- [core/fixed-steps](core-fixed-steps.md)
+- [core/face-review-poses](core-face-review-poses.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

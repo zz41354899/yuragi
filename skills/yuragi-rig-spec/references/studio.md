@@ -1,34 +1,32 @@
-# Local Yuragi Studio
+# Local Studio preview
 
-Studio is a prebuilt Vue authoring tool bundled with the local `@yuragi/rig` package. Users need Node.js/npm, not Vite. Python/Pillow are only required for the existing inspect/extract/build preparation flow. No npm publication is implied.
-
-## Prepare and open
-
-Read the Skill and [API index](api/index.md) first. View the actual source artwork and inspect grid, write fingerprint-bound annotations, run extract and build with the real built runtime, then open the resulting character folder:
+Studio is the preview-only viewer for models produced by the agent's [saved JSON / Python workflow](agent-workflow.md). The agent saves annotation, decomposition, diagnosis and quality records. Studio does not edit contours/bindings, launch an agent, collect issue forms, manage acceptance or deliver a model.
 
 ```sh
 npm install /actual/path/to/yuragi-rig-0.2.0.tgz
-npx yuragi studio --project ./character-v1 --out ./yuragi-output
+npx yuragi studio --project ./character-v1/model --out ./character-v1/preview
 ```
 
-In the Yuragi checkout, `npm run pack:lib` builds the library and Studio and creates the tarball. A local source-directory installation also requires that build first. Use the actual checkout/tarball path, never the developer’s hardcoded machine path. Installing the package does not start Studio or install Skills. `--no-open` prints the URL without opening it; `--port 4321` chooses a port. With no project, Studio opens a start screen with the Mirea example. It listens only on 127.0.0.1.
+Studio is prebuilt in the local runtime package; consumer projects do not need Vite. Skill, Python/Pillow and Node/npm are separate installations. The Skill's workflow.py run ... --studio compiles successfully before invoking the installed CLI. No npm publication is implied.
 
-The project needs `model.json` and its referenced local relative images. v1 Python output is supported directly; analysis.json, character-analysis.json, report.json, image-info.json and parts-manifest.json are optional historical records. v2 needs its authored model, atlas images and fallback. Remote, absolute and escaping image paths are rejected; rewrite references relative to model.json before opening.
+## Preview controls
 
-## Edit and review
+Play, pause, reset pose, source/model comparison, zoom/pan and fixed poses affect only the view. Optional part location and mesh/annotation overlays help examine deformation. Face controls appear only for actual supplied/bound capabilities. Mobile separates preview from controls; Traditional Chinese is default, with English and Japanese available.
 
-v1 supports pins/parents, polygons, roots/tips, exclusions, region ownership, head/neck, measured eyes and motion settings. New geometry is a draft to measure against actual artwork, not an inferred anatomy result. Coordinates use the entire original image including margins: top-left (0,0), bottom-right (1,1), positive X right and Y down. Do not use canvas padding, zoomed display pixels or trimmed bounds as source coordinates.
+The server automatically saves OUT/missing-assets.json with source/model/material fingerprints and material IDs, and displays its path. Ask the agent to read it and return to Python diagnosis/extraction. The UI has no save button or repair operation. Hidden artwork requires supplied materials; missing optional eyes/mouths leave existing motion usable. Python diagnostics copied alongside the model remain authoring evidence.
 
-Edit mode uses unchanged geometry. Select a point/polygon in the structure or inspector, drag handles or use arrow keys (Shift for larger steps). Numeric fields expose the exact model contract. Re-draw a selected polygon by clicking reviewed vertices, then Finish. Fix invalid edits or Undo; Studio retains the last valid preview. Optional geometry can be removed in the inspector. The full model editor exposes existing chains, tracking, pointer groups, mesh and protected areas.
+Old folders with model.json and local relative PNG/WebP/JPEG references still open. Optional project.json catalogs support independent version folders. Studio checks versions every two seconds while visible, offers valid new versions and preserves zoom/pan when switching. Failed loads preserve the previous valid preview. Use project.py to validate/register complete versions; never overwrite published files.
 
-Layered v2 is inspection-only: view nodes, attachment order/coverage, atlas metadata, meshes and diagnostics; do not claim that the tool creates independent layers or weights. Visible-only coverage still needs completed occluded artwork before large-motion acceptance.
+--port 4321 chooses the port; --no-open prints the URL. Omitting --project opens the bundled Mirea start screen. Studio listens only on 127.0.0.1. All files stay local.
 
-Compare source artwork, neutral geometry, four directions/corners, rapid reversal, eyes at zoom, roots, seams, clipping and prop contacts. Test reduced motion and WebGL failure in the actual browser. Record missing/N/A anatomy, observations, devices and untested cases in notes. The checkboxes are explicit human observations, never automatically passed by the preset buttons or format validation. Changes clear review; saved drafts do not restore old acceptance.
+## Optional agent pose sheets
 
-## Save and deliver
+```sh
+npm install -D playwright
+npx playwright install chromium
+npx yuragi review --project ./character-v1/model --out ./character-v1/model/review
+```
 
-Save draft at any time, including invalid edits. Drafts live under the selected output root; original artwork, annotations and prepared extraction fingerprints remain unchanged. Edits make the model authoritative; old annotations remain historical evidence and are not re-extracted or re-certified. Source-image changes require reopening and repeating review.
+Output must be a fresh folder. Actual-player 60Hz stepping produces full frames, detail crops, a contact sheet and fingerprint-bound poses.json. The agent views these artifacts and records observations in JSON. Executed rendering and format checks are separate from human visual acceptance. See [v2 authoring](layered-authoring.md) for independent hair, mesh and face attachments.
 
-Delivery requires successful model validation and all current visual checks. It creates a new versioned folder containing model.json, local assets, acceptance.json and examples for Vue, React and vanilla JS. Each model image reference is rewritten relative to the delivered folder. Copy model.json and assets/ into the consuming project’s public/models/character; use the provided loader to resolve URLs relative to the model URL. Examples respect reduced motion, provide source-art fallback, cancel loads and clean resources on unmount. Actual physical devices/other GPUs remain untested unless recorded in notes.
-
-Use [individual API references](api/index.md) when adjusting integration behavior. Do not claim universal auto-rigging, hidden-pixel reconstruction, Spine import, IK, npm publication, hosted services or MCP/Plugin support.
+Reviewed v1 eyes expose pointer tracking and a strength slider. Pointer coordinates account for zoom/pan; leaving returns gaze to neutral. Blink/mouth controls and requests for supplemental facial artwork are absent. Existing v1/v2 models still open.

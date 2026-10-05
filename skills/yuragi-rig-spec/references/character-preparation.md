@@ -2,9 +2,11 @@
 
 Read the Skill and [API contract](api-reference.md) before Python. The agent views artwork and annotates semantic anatomy; Python measures and exports pixels. Python does not launch Skills, infer anatomy, fetch models or call services. Character design belongs to yuragi-character.
 
+For JSON diagnosis and automatic compilation/Studio launch, read [the agent workflow](agent-workflow.md). Studio only previews; missing assets return to the agent as JSON.
+
 ## Requirements and staged commands
 
-Python 3.10+ with Pillow, Node.js on PATH, and built local @yuragi/rig 0.2.0. Install Skill and runtime separately. In a checkout, run npm run build:lib; in another project install that built package by local path. No npm publication is implied.
+Python 3.10+ with Pillow, Node.js on PATH, and built local @yuragi/rig with the required validator capabilities. Install Skill and runtime separately. In a checkout, run npm run build:lib; in another project install that built package by local path. No npm publication is implied.
 
 ```sh
 python3 -m venv .venv
@@ -77,7 +79,7 @@ partsExtracted, modelValidation:passed and visualAcceptance are separate. Genera
 | Prepared asset mismatch | Correct/review source annotations and regenerate extract; do not edit hashed files in place |
 | Empty mask | Correct polygons/subtractions; missing visible pixels need actual materials |
 | Legacy/unknown face field | Migrate explicitly, inspect report, re-extract and validate |
-| Missing/wrong runtime or Node | Build/install local 0.2.0 and make Node available |
+| Missing/wrong runtime or Node | Build/install the local runtime and make Node available |
 | Runtime validation rejected | Correct binding/schema; no playable preview is delivered |
 | Valid model with distorted motion | Repair ownership/contact points or reduce motion, then review again |
 

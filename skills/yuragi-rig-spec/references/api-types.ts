@@ -190,6 +190,8 @@ export interface PlayerOptions {
   canvas: HTMLCanvasElement
   model: RigModel
   autoplay?: boolean
+  /** Disable animation-frame scheduling; drive with advance(). */
+  manual?: boolean
   reducedMotion?: 'respect' | 'ignore'
   pixelRatio?: number
   onFrame?: (snapshot: RigSnapshot) => void
@@ -198,6 +200,8 @@ export interface PlayerOptions {
 export interface RigPlayer {
   play(): void
   pause(): void
+  /** Fixed 60Hz time stepping, milliseconds, at most 60000 per call. */
+  advance(milliseconds: number): void
   setPointer(x: number, y: number): void
   /** Eye-only direction in -1…1; does not deform the head or body. */
   setGaze(x: number, y: number): void

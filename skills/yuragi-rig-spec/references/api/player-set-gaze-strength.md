@@ -20,7 +20,7 @@ void
 
 ## Behavior, defaults and limits
 
-Finite 0…1 is required. This changes only pupil translation; blinking, mouth expressions and expression tracks are not supported in 0.2.0.
+Finite 0…1 is required. This changes only pupil translation; v1 does not support blink/mouth/expression tracks; v2 attachment-based setFace is separate.
 
 ## Example
 
@@ -32,10 +32,10 @@ player.setGazeStrength(.8);
 
 - [player/play](player-play.md)
 - [player/pause](player-pause.md)
+- [player/advance](player-advance.md)
 - [player/set-pointer](player-set-pointer.md)
 - [player/set-gaze](player-set-gaze.md)
 - [player/set-parameter](player-set-parameter.md)
-- [player/set-motion](player-set-motion.md)
 
 - [Types and constants](types.md)
 - [API index](index.md)

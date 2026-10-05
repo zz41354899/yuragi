@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "sourceSha256": "6382f74df8b5dcfa4f85cb2120c7260021236c02b478eef0724171e79ffaba05",
+  "modelFingerprint": "19e553095624b07a16ac89f17eb858434962fcb7d54ea41ff897289b3db799ed",
+  "assetFingerprint": "2c6d76fd8644fa4dbdc415f164cc839f0fbc9bbd6857fb77829dc0daf447684a",
+  "visualAcceptance": "partial",
+  "observed": [
+    "Mirea neutral rendering",
+    "Original/model side-by-side comparison",
+    "Compiled model playback",
+    "Preview-only desktop controls",
+    "390x844 mobile preview/control tabs",
+    "Missing-material JSON path shown",
+    "Saved JSON consumed by Python diagnosis"
+  ],
+  "untested": [
+    "Physical phone interaction",
+    "Full visual acceptance of all deformation extremes",
+    "Mirea layered closed-eye and mouth artwork unavailable"
+  ]
+}

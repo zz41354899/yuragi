@@ -213,8 +213,8 @@
     }
   },
   "motion": {
-    "sway": 0.32,
-    "speed": 0.62,
+    "sway": 0.52,
+    "speed": 0.72,
     "hair": 0,
     "accessories": 0,
     "follow": 1,
@@ -261,7 +261,7 @@
         0.177
       ],
       "feather": 0.009359999999999999,
-      "rotation": 0.011000000000000001,
+      "rotation": 0.0099,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 0,
@@ -664,7 +664,7 @@
         0.166
       ],
       "feather": 0.01008,
-      "rotation": 0.0099,
+      "rotation": 0.00891,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 0.79,
@@ -1067,7 +1067,7 @@
         0.163
       ],
       "feather": 0.00864,
-      "rotation": 0.0099,
+      "rotation": 0.00891,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 1.58,
@@ -1470,7 +1470,7 @@
         0.159
       ],
       "feather": 0.00792,
-      "rotation": 0.0099,
+      "rotation": 0.00891,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 2.37,
@@ -1873,7 +1873,7 @@
         0.152
       ],
       "feather": 0.009359999999999999,
-      "rotation": 0.0099,
+      "rotation": 0.00891,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 3.16,
@@ -2276,7 +2276,7 @@
         0.178
       ],
       "feather": 0.00792,
-      "rotation": 0.011000000000000001,
+      "rotation": 0.0099,
       "stiffness": 0.018,
       "damping": 0.95,
       "phase": 3.95,
@@ -2679,12 +2679,12 @@
         0.323
       ],
       "feather": 0.00864,
-      "rotation": 0.030250000000000003,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.038115,
+      "stiffness": 0.014,
+      "damping": 0.94,
       "phase": 4.74,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": 0.55,
       "exclusions": [
         [
@@ -3082,12 +3082,12 @@
         0.291
       ],
       "feather": 0.01008,
-      "rotation": 0.030250000000000003,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.038115,
+      "stiffness": 0.014,
+      "damping": 0.94,
       "phase": 5.53,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": -0.55,
       "exclusions": [
         [
@@ -3485,12 +3485,12 @@
         0.418
       ],
       "feather": 0.0324,
-      "rotation": 0.02475,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.031185,
+      "stiffness": 0.014,
+      "damping": 0.94,
       "phase": 6.32,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": 0.55,
       "exclusions": [
         [
@@ -3888,12 +3888,12 @@
         0.522
       ],
       "feather": 0.03528,
-      "rotation": 0.02475,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.031185,
+      "stiffness": 0.01,
+      "damping": 0.94,
       "phase": 7.11,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": 0.55,
       "exclusions": [
         [
@@ -4291,12 +4291,12 @@
         0.398
       ],
       "feather": 0.03168,
-      "rotation": 0.02475,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.031185,
+      "stiffness": 0.014,
+      "damping": 0.94,
       "phase": 7.9,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": -0.55,
       "exclusions": [
         [
@@ -4694,12 +4694,12 @@
         0.528
       ],
       "feather": 0.036719999999999996,
-      "rotation": 0.02475,
-      "stiffness": 0.018,
-      "damping": 0.95,
+      "rotation": 0.031185,
+      "stiffness": 0.01,
+      "damping": 0.94,
       "phase": 8.690000000000001,
       "wind": 0.85,
-      "follow": 1.1,
+      "follow": 1.4,
       "followY": 0.55,
       "exclusions": [
         [
@@ -5097,12 +5097,12 @@
         0.355
       ],
       "feather": 0.02376,
-      "rotation": 0.052000000000000005,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.05616,
+      "stiffness": 0.023,
+      "damping": 0.92,
       "phase": 9.48,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": -0.22,
       "exclusions": [
         [
@@ -5500,12 +5500,12 @@
         0.379
       ],
       "feather": 0.02232,
-      "rotation": 0.048,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.05184,
+      "stiffness": 0.023,
+      "damping": 0.92,
       "phase": 10.27,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": -0.22,
       "exclusions": [
         [
@@ -5903,12 +5903,12 @@
         0.442
       ],
       "feather": 0.04392,
-      "rotation": 0.032,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.03456,
+      "stiffness": 0.023,
+      "damping": 0.92,
       "phase": 11.06,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": 0.22,
       "exclusions": [
         [
@@ -6306,12 +6306,12 @@
         0.444
       ],
       "feather": 0.037439999999999994,
-      "rotation": 0.032,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.03456,
+      "stiffness": 0.023,
+      "damping": 0.92,
       "phase": 11.850000000000001,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": -0.22,
       "exclusions": [
         [
@@ -6709,12 +6709,12 @@
         0.508
       ],
       "feather": 0.0324,
-      "rotation": 0.044000000000000004,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.04752,
+      "stiffness": 0.016,
+      "damping": 0.92,
       "phase": 12.64,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": 0.22,
       "exclusions": [
         [
@@ -7112,12 +7112,12 @@
         0.515
       ],
       "feather": 0.02952,
-      "rotation": 0.04000000000000001,
-      "stiffness": 0.032,
-      "damping": 0.93,
+      "rotation": 0.0432,
+      "stiffness": 0.016,
+      "damping": 0.92,
       "phase": 13.43,
       "wind": 0.65,
-      "follow": 0.75,
+      "follow": 1,
       "followY": -0.22,
       "exclusions": [
         [
@@ -7515,12 +7515,12 @@
         0.434
       ],
       "feather": 0.03528,
-      "rotation": 0.0145,
-      "stiffness": 0.013,
-      "damping": 0.96,
+      "rotation": 0.024143,
+      "stiffness": 0.008,
+      "damping": 0.94,
       "phase": 14.22,
       "wind": 1.15,
-      "follow": 1.25,
+      "follow": 1.65,
       "followY": 0.65
     },
     {
@@ -7562,12 +7562,12 @@
         0.412
       ],
       "feather": 0.0324,
-      "rotation": 0.016,
-      "stiffness": 0.013,
-      "damping": 0.96,
+      "rotation": 0.02664,
+      "stiffness": 0.008,
+      "damping": 0.94,
       "phase": 15.010000000000002,
       "wind": 1.15,
-      "follow": 1.25,
+      "follow": 1.65,
       "followY": 0.65
     },
     {
@@ -7609,12 +7609,12 @@
         0.326
       ],
       "feather": 0.02232,
-      "rotation": 0.0175,
-      "stiffness": 0.013,
-      "damping": 0.96,
+      "rotation": 0.029138,
+      "stiffness": 0.008,
+      "damping": 0.94,
       "phase": 15.8,
       "wind": 1.15,
-      "follow": 1.25,
+      "follow": 1.65,
       "followY": 0.65
     },
     {
@@ -7656,12 +7656,12 @@
         0.923
       ],
       "feather": 0.04176,
-      "rotation": 0.0135,
-      "stiffness": 0.013,
-      "damping": 0.96,
+      "rotation": 0.022478,
+      "stiffness": 0.008,
+      "damping": 0.94,
       "phase": 16.59,
       "wind": 1.15,
-      "follow": 1.25,
+      "follow": 1.65,
       "followY": -0.65
     },
     {
@@ -7703,12 +7703,12 @@
         0.899
       ],
       "feather": 0.037439999999999994,
-      "rotation": 0.014,
-      "stiffness": 0.013,
-      "damping": 0.96,
+      "rotation": 0.02331,
+      "stiffness": 0.008,
+      "damping": 0.94,
       "phase": 17.380000000000003,
       "wind": 1.15,
-      "follow": 1.25,
+      "follow": 1.65,
       "followY": 0.65
     },
     {
@@ -7750,7 +7750,7 @@
         0.253
       ],
       "feather": 0.018,
-      "rotation": 0.052000000000000005,
+      "rotation": 0.0468,
       "stiffness": 0.045,
       "damping": 0.93,
       "phase": 18.17,
@@ -7813,7 +7813,7 @@
         0.54
       ],
       "feather": 0.028,
-      "rotation": 0.017,
+      "rotation": 0.0153,
       "stiffness": 0.027,
       "damping": 0.92,
       "phase": 0,
@@ -8001,13 +8001,13 @@
     ]
   },
   "tracking": {
-    "response": 0.0735,
-    "damping": 0.694,
-    "maxVelocity": 3.14,
+    "response": 0.028,
+    "damping": 0.8,
+    "maxVelocity": 1.8,
     "bodyFollow": 0.25,
     "translation": [
-      0.07,
-      0.046667
+      0.052,
+      0.036
     ]
   },
   "surfaceRegions": [
@@ -8294,7 +8294,7 @@
         0.004
       ],
       "rotation": 0.014,
-      "response": 105,
+      "response": 160,
       "regions": [
         {
           "polygon": [
@@ -8376,7 +8376,7 @@
         0.003
       ],
       "rotation": 0.006,
-      "response": 220,
+      "response": 300,
       "regions": [
         {
           "polygon": [

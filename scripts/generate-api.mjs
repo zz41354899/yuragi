@@ -93,7 +93,8 @@ for(const [file,module] of modules) {
       add(name,group,module,signature,location)
       if(name==='createSimulation')addMethods(checker.getReturnTypeOfSignature(signature),'simulation',module,location,'simulation')
       if(name==='createLayeredSimulation')addMethods(checker.getReturnTypeOfSignature(signature),'layered-simulation',module,location,'layeredSimulation')
-    } else if(name==='CANVAS_PADDING')types.push({name,module,definition:'export const CANVAS_PADDING: '+typeString(type,location),description:'Canvas overscan on each edge: 0.12 (12%).'})
+    } else if(name==='REVIEW_STEP'||name==='reviewPoses')types.push({name,module,definition:'export const '+name+': '+typeString(type,location),description:name==='REVIEW_STEP'?'Shared fixed step: 1000 / 60 milliseconds.':'Shared pose definitions: source-centered pointer values and millisecond sequences; generating images does not establish visual acceptance.'})
+    else if(name==='CANVAS_PADDING')types.push({name,module,definition:'export const CANVAS_PADDING: '+typeString(type,location),description:'Canvas overscan on each edge: 0.12 (12%).'})
   }
 }
 if(new Set(entries.map(e=>e.id)).size!==entries.length)throw new Error('Duplicate API routes')
@@ -101,6 +102,7 @@ const groups = {
   core:text('核心','Core','コア'),player:text('播放器','Player','プレイヤー'),simulation:text('模擬器','Simulation','シミュレーション'),animation:text('動畫','Animation','アニメーション'),characters:text('角色工廠','Characters','キャラクター'),vue:text('Vue','Vue','Vue'),react:text('React','React','React'),layered:text('分層引擎','Layered engine','分層エンジン'),'layered-player':text('分層播放器','Layered player','分層プレイヤー'),'layered-simulation':text('分層模擬器','Layered simulation','分層シミュレーション'),types:text('型別與常數','Types / constants','型・定数'),
 }
 Object.assign(groups,{
+  'layered-simulation-face':text('分層模擬器・眼嘴','Layered simulation / face','分層シミュレーション・顔'),
   'simulation-hair':text('模擬器・髮絲','Simulation / hair','シミュレーション・髪'),
   'simulation-accessories':text('模擬器・配件','Simulation / accessories','シミュレーション・アクセサリ'),
   'simulation-parts':text('模擬器・柔性部件','Simulation / parts','シミュレーション・パーツ'),

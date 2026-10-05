@@ -24,12 +24,14 @@ export function parseArguments(args: string[]) {
 }
 async function main() {
   if (process.argv[2] === 'review') {
+    if (process.argv.includes('--help')) { process.stdout.write('yuragi review --project folder --out NEW-folder\nRequires local Playwright and Chromium. Render into the selected model folder’s review directory.\n'); return }
+    if (process.argv.includes('--port') || process.argv.includes('--no-open')) throw new Error('Review supports --project and --out only')
     const options = parseArguments(['studio', ...process.argv.slice(3)])
     if (!options?.project || !options.out) throw new Error('Usage: yuragi review --project folder --out NEW-folder')
     process.stdout.write(JSON.stringify(await renderReview(options.project, options.out)) + '\n'); return
   }
   const options = parseArguments(process.argv.slice(2))
-  if (!options) { process.stdout.write('Yuragi Studio\n\n  yuragi studio [--project folder] [--out folder] [--port number] [--no-open]\n\nAgent-first Vue preview and review. Models v1 / v2 supported.\n  yuragi review --project folder --out NEW-folder (optional Playwright peer).\n'); return }
+  if (!options) { process.stdout.write('Yuragi Studio\n\n  yuragi studio [--project folder] [--out folder] [--port number] [--no-open]\n\nAgent-first Vue model preview. Missing materials are saved to OUT/missing-assets.json. Models v1 / v2 supported.\n  yuragi review --project folder --out NEW-folder (optional Playwright peer).\n'); return }
   const studio = await startStudio(options)
   process.stdout.write('Yuragi Studio: ' + studio.url + '\nOutput: ' + studio.out + '\nPress Ctrl+C to stop.\n')
   let stopping = false

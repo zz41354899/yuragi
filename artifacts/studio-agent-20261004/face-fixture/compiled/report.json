@@ -1,0 +1,36 @@
+{
+  "runtimeVersion": "0.2.0",
+  "modelValidation": "passed",
+  "visualAcceptance": "not-run",
+  "prototype": false,
+  "neutralMaxChannelError": 0,
+  "prunedWeightErrorBoundPixels": 0,
+  "atlasBytes": 262144,
+  "attachments": 17,
+  "sampledGeometry": {
+    "pointerSamples": 9,
+    "framesPerSample": 120,
+    "minimumAreaRatio": 0.15999939740595437,
+    "sharedJointGroups": 0,
+    "maxJointErrorPixels": null
+  },
+  "attachmentFingerprints": {
+    "skin": "9b425289436a611ec6751bb195c9ab7fa3e52fd347876c40b4952c6ce82ec2f5",
+    "left-ball": "902d037e8f33b9039d02142bc68bed29922eef70e3e96494ac84150ebfe30c48",
+    "left-iris": "890c79b5bc3a85229a7ed4ebc624a1a5ec7acd4bc3a0c4cd654f934bc6fae2f9",
+    "left-line": "024fe4b78ac0557d4bec2e714c31506f6fbcd68adc398ebcb6e57916874aa087",
+    "left-half": "834a16b3e8d172a1f444cbf696435809bdf8fc9525029ce7ab03ce5b25560934",
+    "left-closed": "e7d690faadaab79270f8f6f71cc33b5a9fef6803f957bb50ee0b749524acbe22",
+    "right-ball": "902d037e8f33b9039d02142bc68bed29922eef70e3e96494ac84150ebfe30c48",
+    "right-iris": "890c79b5bc3a85229a7ed4ebc624a1a5ec7acd4bc3a0c4cd654f934bc6fae2f9",
+    "right-line": "024fe4b78ac0557d4bec2e714c31506f6fbcd68adc398ebcb6e57916874aa087",
+    "right-half": "834a16b3e8d172a1f444cbf696435809bdf8fc9525029ce7ab03ce5b25560934",
+    "right-closed": "e7d690faadaab79270f8f6f71cc33b5a9fef6803f957bb50ee0b749524acbe22",
+    "mouth-closed": "c7e01e55f5790db0b9784a633692cc4e7ee2eb2c6b770a9976dd3908c8c0fd95",
+    "mouth-a": "0db7dcae0ec7337b5bb6b0acc7aa30a61e98d7ba294630991c08413dec92ca48",
+    "mouth-i": "cdaaa9ed9baf3c636abd2ef0dcc80e22c0ec448da594bdb4aec9218d2adfd510",
+    "mouth-u": "93532d07e827eac285be7b4acf09adf4b5b609da8b2e7cf065dce02650d4fb06",
+    "mouth-e": "4da20f249a5dc424cf11b1ce51a2612c86d8ed19567ea6833167864df425684a",
+    "mouth-o": "e0c39d706bb4dedc915f064eaf9f4b8474ebebb8f4975ad0bce4b4e454d6766c"
+  }
+}
