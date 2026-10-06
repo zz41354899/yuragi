@@ -1,6 +1,6 @@
 # Yuragi 多部位動態與分層協定
 
-狀態：`parts`、`motion.parts`、`pose.headFollow` 已在本機 TypeScript 引擎實作。獨立 v2 分層播放器也已實作，使用另一個模型與 API，現有 createPlayer 仍只接受 `version: 1`。本次未發布 npm。
+狀態：`parts`、`motion.parts`、`pose.headFollow` 已在本機 TypeScript 引擎實作。獨立 v2 分層播放器也已實作，使用另一個模型與 API，現有 createPlayer 仍只接受 `version: 1`。套件 v0.2.0 可從 npm 安裝。
 
 ## 目前可運行的多部位模型
 

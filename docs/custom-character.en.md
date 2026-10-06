@@ -12,12 +12,12 @@ The `yuragi-rig-spec` skill includes a local Python/Pillow helper. It measures d
 
 Uncertain or nonhuman anatomy starts with silhouette idle. Reviewed humanoids can use measured head/waist landmarks and optional suitable arm/hair/accessory bindings. A prop-holding arm should not be enabled for wave just because an elbow and wrist are visible.
 
-## Local library installation
+## Library installation
 
-This library has not been published to npm. In a Yuragi checkout run `npm run build:lib`, then in the target project:
+Install the runtime from npm in the target project:
 
 ```sh
-npm install /path/to/yuragi/packages/rig
+npm install @z7589xxz758/yuragi
 ```
 
 The installed package includes `assets/mirea`, `assets/starter/model.json`, TypeScript declarations and ESM code. Skill installation is separate and does not install the runtime. Do not use `createMireaModel()` bindings for a different illustration: dimensions and binding must be measured from that artwork.

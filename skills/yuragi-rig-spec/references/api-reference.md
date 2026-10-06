@@ -6,7 +6,7 @@ This reference follows the actual exports, types, player and simulation in Yurag
 
 ## Installation and entry points
 
-The library has not been published to npm. Build a Yuragi checkout with `npm run build:lib`, then install it in the target project with `npm install /path/to/yuragi/packages/rig`. Installing this skill supplies instructions, Python preparation code and templates; it does not install the runtime or artwork.
+Install the runtime in the target project with `npm install @z7589xxz758/yuragi`. Installing this skill supplies instructions, Python preparation code and templates; it does not install the runtime or artwork.
 
 - `@z7589xxz758/yuragi`: createPlayer, createSimulation, validateModel, validateAnimation, sampleCurve, sampleTrack, constrainSharedSurface, CANVAS_PADDING, toCanvas and public types.
 - `@z7589xxz758/yuragi/mirea`: createMireaModel(textureSrc?), separately imported reviewed Mirea data; defaults to /models/mirea/texture.png. Copy assets/mirea into public/models/mirea first.
@@ -156,7 +156,7 @@ The website Mirea structure guide is source-measured authoring metadata, separat
 
 ## Bundled Mirea example
 
-Use `import { createMireaModel } from "@z7589xxz758/yuragi/mirea"`. This optional entry is included in the same local package but is separate from the core export, avoiding model-data cost for users who only need the engine. Copy `node_modules/@z7589xxz758/yuragi/assets/mirea` into your app’s `public/models/mirea`. Default texture is `/models/mirea/texture.png`; pass another URL for a different serving location. Model and artwork are paired; changing the image alone cannot produce another character’s binding. Mirea’s held pose uses eyes, head/neck, flexible parts and protected prop/leg groups; do not use the wave API on it. Starter assets remain available as an unbound template.
+Use `import { createMireaModel } from "@z7589xxz758/yuragi/mirea"`. This optional entry is included in the same npm package but is separate from the core export, avoiding model-data cost for users who only need the engine. Copy `node_modules/@z7589xxz758/yuragi/assets/mirea` into your app’s `public/models/mirea`. Default texture is `/models/mirea/texture.png`; pass another URL for a different serving location. Model and artwork are paired; changing the image alone cannot produce another character’s binding. Mirea’s held pose uses eyes, head/neck, flexible parts and protected prop/leg groups; do not use the wave API on it. Starter assets remain available as an unbound template.
 
 
 ## Independent layered v2

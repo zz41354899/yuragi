@@ -197,9 +197,9 @@ export const homeCopy: [string, string, string][] = [
     "ローカルパッケージを入手"
   ],
   [
-    "本機預覽版・尚未發布至 npm。",
-    "Local preview · not published on npm yet.",
-    "ローカルプレビュー版・npm 未公開。"
+    "Yuragi v0.2.0・可從 npm 安裝。",
+    "Yuragi v0.2.0 · available on npm.",
+    "Yuragi v0.2.0・npm から導入できます。"
   ],
   [
     "海月みれあ的開心表情素材。",

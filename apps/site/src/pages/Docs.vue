@@ -37,11 +37,7 @@ function changeSection(section: string) {
   if (!sections.some(item => item.id === section)) return
   void router.push({ path: '/docs', query: { ...route.query, section, framework: framework.value } })
 }
-const install = `# 目前：從本機 Yuragi 專案安裝（先在 Yuragi 執行 npm run build:lib）
-npm install /path/to/yuragi/packages/rig
-
-# 未來發布至 npm 後才可使用（目前尚未發布）
-# npm install @z7589xxz758/yuragi`
+const install = 'npm install @z7589xxz758/yuragi'
 const installAssets = `# 在你的專案目錄執行，複製套件內附的海月素材
 node --input-type=module -e "import { mkdirSync, cpSync } from 'node:fs'; mkdirSync('public/models', { recursive: true }); cpSync('node_modules/@z7589xxz758/yuragi/assets/mirea', 'public/models/mirea', { recursive: true });"`
 const vanillaCode = `import { createPlayer } from '@z7589xxz758/yuragi'
@@ -201,7 +197,7 @@ player.setPointer(0, 0)
       <CharacterGuide v-else-if="active === 'custom-character'" :framework="framework" />
       <template v-else-if="active === 'installation'">
         <p class="docs-lead">{{ tr("Yuragi 是用 TypeScript 寫成的 2D 插畫動態 library。網站與主要指南使用 Vue；React 與原生 JavaScript 共用同一套核心。") }}</p>
-        <div class="notice"><strong>{{ tr("目前是本機預覽版 v0.2.0。") }}</strong><p>{{ tr('模型與圖片隨套件提供，網站不提供獨立 JSON 下載。目前尚未發布 npm；發布後可透過 npm 安裝取得。') }}</p></div>
+        <div class="notice"><strong>{{ tr("Yuragi v0.2.0 已發布至 npm。") }}</strong><p>{{ tr('使用 npm install @z7589xxz758/yuragi 安裝。模型與圖片隨套件提供，安裝後將海月素材複製到網站的 public 目錄。') }}</p></div>
         <h2>{{ tr('你安裝的是什麼？') }}</h2>
         <div class="table-scroll"><table><thead><tr><th>{{ tr('項目') }}</th><th>{{ tr('內容與用途') }}</th></tr></thead><tbody>
           <tr><td><code>@z7589xxz758/yuragi</code></td><td>{{ tr('安裝到你的網站專案：TypeScript 播放器、模型驗證器、Vue／React adapter，以及海月與 starter 範例素材。') }}</td></tr>

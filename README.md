@@ -6,7 +6,7 @@ Yuragi 是為網頁角色製作的 TypeScript 2D 動態工具。從待機搖擺�
 
 專案包含動態引擎、以海月みれあ（Mirea）為主角的展示與文件網站、本機 Yuragi Studio，以及協助 AI 整理角色設計和模型製作流程的 Agent Skills。
 
-目前套件版本為 `0.2.0`，以本機建置與安裝為主，尚未發布至 npm。
+`@z7589xxz758/yuragi@0.2.0` 已發布至 npm，可直接安裝。
 
 ## 從哪裡開始
 
@@ -47,7 +47,17 @@ npm run dev
 
 ## 安裝套件
 
-先在 Yuragi 專案根目錄建置並打包：
+在你的網站專案執行：
+
+```sh
+npm install @z7589xxz758/yuragi
+```
+
+Vue 與 React 是選用依賴，依你的框架另外安裝。
+
+### 本機開發安裝
+
+若要測試原始碼修改，在 Yuragi 專案根目錄建置並打包：
 
 ```sh
 npm run pack:lib
@@ -59,7 +69,7 @@ npm run pack:lib
 npm install /path/to/yuragi/artifacts/z7589xxz758-yuragi-0.2.0.tgz
 ```
 
-也可在執行 `npm run build:lib` 後，安裝本機的 `packages/rig` 目錄。打包不會發布 npm；目前請使用實際的本機路徑。
+也可在執行 `npm run build:lib` 後，安裝本機的 `packages/rig` 目錄。本機打包不會發布 npm，請使用實際的檔案路徑。
 
 ### 準備海月素材
 
@@ -156,7 +166,7 @@ v2 需要作者準備完整分層素材。只抽出原圖中看得到的像素�
 
 ## Yuragi Studio
 
-Studio 隨本機套件預先建置，安裝後即可啟動：
+Studio 隨 npm 套件預先建置，安裝後即可啟動：
 
 ```sh
 npx yuragi studio --project ./my-character --out ./yuragi-output

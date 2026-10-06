@@ -18,7 +18,7 @@ export const experienceCopy: [string, string, string][] = [
   ['Vue 元件管理載入、原畫備援與卸載清理。以 props 控制播放，透過事件或元件 ref 取得 RigPlayer。', 'The Vue component manages loading, fallback artwork, and cleanup. Control playback with props and access RigPlayer through events or a component ref.', 'Vue コンポーネントが読み込み、原画のフォールバック、破棄を管理します。props で再生を制御し、イベントか ref で RigPlayer を取得します。'],
   ['React adapter 獨立匯入，支援 Strict Mode。模型使用延遲初始化保持穩定，播放器留在 ref，不以逐幀 state 驅動動畫。', 'Import the React adapter separately. It supports Strict Mode. Initialize the model lazily, store the player in a ref, and keep per-frame animation outside React state.', 'React adapter は別にインポートし、Strict Mode に対応します。モデルを遅延初期化し、プレイヤーは ref に保持します。アニメーションは毎フレーム state を更新しません。'],
   ['完整互動範例', 'Complete interactive example', '完全なインタラクション例'],
-  ["先安裝本機套件並複製海月素材。以下包含載入錯誤、播放控制、游標互動、中立姿態與低頻 UI 快照。", "Install the local package and copy Mirea assets first. This example covers load errors, playback, pointer input, neutral pose and low-frequency UI snapshots.", "ローカルパッケージを入れて海月素材をコピーします。読み込みエラー、再生制御、ポインター操作、中立姿勢、低頻度 UI スナップショットを示します。"],
+  ["先從 npm 安裝 @z7589xxz758/yuragi 並複製海月素材。以下包含載入錯誤、播放控制、游標互動、中立姿態與低頻 UI 快照。", "Install @z7589xxz758/yuragi from npm and copy the Mirea assets first. This example covers load errors, playback, pointer input, neutral pose and low-frequency UI snapshots.", "npm から @z7589xxz758/yuragi を導入し、海月素材をコピーします。読み込みエラー、再生制御、ポインター操作、中立姿勢、低頻度 UI スナップショットを示します。"],
   ['元件 Props', 'Component props', 'コンポーネントの props'],
   ['屬性', 'Property', 'プロパティ'],
   ['預設值', 'Default', '初期値'],

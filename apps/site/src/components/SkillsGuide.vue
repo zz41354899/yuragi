@@ -37,7 +37,7 @@ python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
     <CodeBlock :code="installRig" language="Terminal" />
     <p>{{ tr('兩個 Skill 可獨立安裝；之後需要另一種功能時，再執行對應指令即可。') }}</p>
     <p><a href="https://github.com/zz41354899/yuragi" target="_blank" rel="noreferrer">{{ tr('GitHub 原始碼與 Skills') }}</a></p>
-    <p>{{ tr('Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外安裝目前的本機 Yuragi 套件。') }} <RouterLink to="/docs?section=installation">{{ tr('查看套件安裝') }}</RouterLink></p>
+    <p>{{ tr('Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外從 npm 安裝 @z7589xxz758/yuragi。') }} <RouterLink to="/docs?section=installation">{{ tr('查看套件安裝') }}</RouterLink></p>
     <h2>{{ tr('讓 AI 接續你的進度') }}</h2>
     <p>{{ tr('沒有角色時，先用角色設計 skill；已有立繪時，提供原畫路徑與想要的互動，AI 會完成判讀、轉換與預覽。也可以指定只寫 spec。') }}</p>
     <CodeBlock :code="tr(characterPrompt)" :language="tr('角色設計 Prompt')" />

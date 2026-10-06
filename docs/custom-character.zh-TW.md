@@ -18,7 +18,7 @@
 
 修改 id、name、texture 與所有位置設定。不要直接對新圖片套用 createMireaModel()：它仍會帶入海月的尺寸、控制點、局部鏈與姿態。所有頂層欄位都必須存在；沒有頭髮、配件或臉部遮罩時，使用空陣列。
 
-目前 npm 尚未發布，請先在 Yuragi 執行 `npm run build:lib`，再於自己的專案執行 `npm install /path/to/yuragi/packages/rig`。未來發布後才可直接使用 `npm install @z7589xxz758/yuragi`；兩種安裝方式都包含套件的 `assets/` 目錄。
+在自己的專案執行 `npm install @z7589xxz758/yuragi`。套件包含 `assets/` 目錄；Skill 與 Python／Pillow 需分別安裝。
 
 ```json
 {

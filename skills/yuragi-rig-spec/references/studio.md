@@ -3,11 +3,11 @@
 Studio is the preview-only viewer for models produced by the agent's [saved JSON / Python workflow](agent-workflow.md). The agent saves annotation, decomposition, diagnosis and quality records. Studio does not edit contours/bindings, launch an agent, collect issue forms, manage acceptance or deliver a model.
 
 ```sh
-npm install /actual/path/to/z7589xxz758-yuragi-0.2.0.tgz
+npm install @z7589xxz758/yuragi
 npx yuragi studio --project ./character-v1/model --out ./character-v1/preview
 ```
 
-Studio is prebuilt in the local runtime package; consumer projects do not need Vite. Skill, Python/Pillow and Node/npm are separate installations. The Skill's workflow.py run ... --studio compiles successfully before invoking the installed CLI. No npm publication is implied.
+Studio is prebuilt in the npm runtime package; consumer projects do not need Vite. Skill, Python/Pillow and Node/npm are separate installations. The Skill's workflow.py run ... --studio compiles successfully before invoking the installed CLI.
 
 ## Preview controls
 

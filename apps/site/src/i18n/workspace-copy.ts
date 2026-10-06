@@ -50,7 +50,7 @@ export const workspaceCopy: [string, string, string][] = [
   ['繼續使用手機', 'Continue on this phone', 'スマートフォンで続ける'],
   ['查看套件安裝', 'Package installation', 'パッケージの導入'],
   ['模型隨套件提供，網站不提供 JSON 下載。', 'Models come with the package. No JSON downloads on this site.', 'モデルはパッケージに付属します。サイトでは JSON を配布しません。'],
-  ['模型與圖片隨套件提供，網站不提供獨立 JSON 下載。目前尚未發布 npm；發布後可透過 npm 安裝取得。', 'Models and artwork are included in the package, not separate website downloads. It is not published to npm yet; npm installation will be available after release.', 'モデルと画像はパッケージに付属し、個別の JSON 配布はありません。npm は未公開です。公開後は npm から導入できます。'],
+  ['使用 npm install @z7589xxz758/yuragi 安裝。模型與圖片隨套件提供，安裝後將海月素材複製到網站的 public 目錄。', 'Install with npm install @z7589xxz758/yuragi. Models and artwork are bundled; copy the Mirea assets to your website’s public directory after installation.', 'npm install @z7589xxz758/yuragi で導入します。モデルと画像は同梱されています。導入後、海月の素材をサイトの public フォルダーにコピーしてください。'],
   ['01. 安裝套件', '01. Install the package', '01. パッケージを導入'],
   ["安裝後，海月模型與圖片位於 assets/mirea，起始模型位於 assets/starter。複製海月素材到 public/models/mirea。", "After installation, Mirea model/artwork are in assets/mirea and the starter is in assets/starter. Copy Mirea to public/models/mirea.", "導入後、海月のモデルと画像は assets/mirea、初期モデルは assets/starter にあります。海月素材を public/models/mirea にコピーします。"],
   ['拖曳圖釘、調整影響範圍，放大檢查角色的動態。', 'Drag pins, adjust influence, and zoom in to inspect the motion.', '制御点をドラッグし、影響範囲を調整して拡大確認します。'],

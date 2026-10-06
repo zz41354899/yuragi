@@ -6,6 +6,14 @@ A TypeScript 2D illustration rig with Mirea as the built-in example, Vue and Rea
 
 Yuragi-authored code, documentation and model-binding data are [MIT-licensed](LICENSE). Character artwork, textures, character identities and branding are excluded; third-party materials retain their own terms. See [license scope and AI output notice](LICENSE-SCOPE.md). The MIT license does not automatically license user inputs or newly generated outputs. Installing the runtime or Skills does not generate artwork; invoked Skills disclose actual AI assistance or image generation in their deliverables.
 
+## Installation
+
+```sh
+npm install @z7589xxz758/yuragi
+```
+
+Vue and React adapters require their corresponding framework to be installed separately.
+
 ## Entry points
 
 - `@z7589xxz758/yuragi`: WebGL player, pure simulation, model validation, TypeScript types.
@@ -33,7 +41,7 @@ Mirea uses the reviewed 1024×1536 source, measured eyes, owned head/neck, prote
 
 The pure `createSimulation(model)` API allows a custom renderer to consume `mesh.positions`, `mesh.uvs`, and `mesh.indices`. Model data is serializable, validated, and cloned per simulation. The initial pose behaviors use semantic humanoid pin names; binding a new character requires configuring its own image, pins, pose regions, and local chains.
 
-See the accompanying Vue documentation site for options, adapters, editable fields, and lifecycle behavior. This local preview package has not been published to the npm registry.
+See the accompanying Vue documentation site for options, adapters, editable fields, and lifecycle behavior. The package is available on npm as `@z7589xxz758/yuragi`.
 
 For a custom character, follow the complete guide at `/docs?section=custom-character` on the accompanying site: prepare artwork, create a model, bind pins and local chains, verify deformation, then load the validated JSON through the Vue or React adapter. The guide includes all model field ranges and error handling. The repository also provides `docs/custom-character.zh-TW.md`; the humanoid starter comes with the installed package at `assets/starter/model.json`. The website offers no standalone JSON downloads or model exports.
 
@@ -98,10 +106,10 @@ v2 supports hierarchical rigid transforms, bounded secondary springs, sparse ver
 
 ## Local Yuragi Studio and API reference
 
-Build the local package (`npm run pack:lib` from the workspace), then install the actual generated tarball in your project. Studio is prebuilt; no Vite installation is needed by consumers. It is not launched during npm installation.
+Install `@z7589xxz758/yuragi` from npm in your project. Studio is prebuilt; no Vite installation is needed by consumers. It is not launched during npm installation.
 
 ```sh
-npm install /actual/path/to/z7589xxz758-yuragi-0.2.0.tgz
+npm install @z7589xxz758/yuragi
 npx yuragi studio --project ./my-character --out ./yuragi-output
 ```
 
@@ -109,4 +117,4 @@ The folder contains model.json and local relative artwork paths. Studio is a pre
 
 Rendered pose sheets use `npx yuragi review --project ./my-character --out ./my-character/review` (legacy folder), or the selected version folder’s review subdirectory. Install the optional Playwright peer and Chromium first. Output must be new; fixed-step full frames, detail crops and fingerprints do not establish visual acceptance.
 
-The website API index is `/docs/api`, with an independent page for each public callable. Installable rig Skills include the same generated API index and per-callable references. The CLI ships with the local package; no npm registry publication is claimed.
+The website API index is `/docs/api`, with an independent page for each public callable. Installable rig Skills include the same generated API index and per-callable references. The CLI ships with the npm package.

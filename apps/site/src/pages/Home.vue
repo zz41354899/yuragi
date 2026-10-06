@@ -132,7 +132,7 @@ const quickstart = computed(() => framework.value === 'vue' ? [
       </div>
     </section>
     <section class="stage-cta" aria-labelledby="cta-title">
-      <div class="stage-container stage-cta-layout"><div class="stage-cta-copy"><h2 id="cta-title">{{ tr('從海月範例開始，') }}<br>{{ tr('一步步製作自己的動態角色。') }}</h2><p>{{ tr('先調整範例，熟悉控制點，再依文件製作自己的角色。') }}</p><div class="stage-actions"><RouterLink class="stage-button stage-button-white" to="/playground">{{ tr('打開遊樂場') }}<Icon name="arrow-right" /></RouterLink><RouterLink class="stage-button stage-button-glass" to="/docs?section=installation"><Icon name="book" />{{ tr('查看套件安裝') }}</RouterLink></div><p class="stage-release-note">{{ tr('本機預覽版・尚未發布至 npm。') }}</p></div><figure class="stage-cta-art"><img src="/images/home/mirea-happy-v1.png" :alt="tr('海月みれあ的開心表情素材。')" width="1024" height="1536" loading="lazy"><figcaption>{{ tr('海月みれあ・角色素材展示') }}</figcaption></figure></div>
+      <div class="stage-container stage-cta-layout"><div class="stage-cta-copy"><h2 id="cta-title">{{ tr('從海月範例開始，') }}<br>{{ tr('一步步製作自己的動態角色。') }}</h2><p>{{ tr('先調整範例，熟悉控制點，再依文件製作自己的角色。') }}</p><div class="stage-actions"><RouterLink class="stage-button stage-button-white" to="/playground">{{ tr('打開遊樂場') }}<Icon name="arrow-right" /></RouterLink><RouterLink class="stage-button stage-button-glass" to="/docs?section=installation"><Icon name="book" />{{ tr('查看套件安裝') }}</RouterLink></div><p class="stage-release-note">{{ tr('Yuragi v0.2.0・可從 npm 安裝。') }}</p></div><figure class="stage-cta-art"><img src="/images/home/mirea-happy-v1.png" :alt="tr('海月みれあ的開心表情素材。')" width="1024" height="1536" loading="lazy"><figcaption>{{ tr('海月みれあ・角色素材展示') }}</figcaption></figure></div>
     </section>
   </div>
 </template>

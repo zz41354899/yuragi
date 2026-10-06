@@ -1,6 +1,6 @@
 # Local 0.2.0 migration
 
-This is a local breaking API update; no npm publication or deployment was performed. Model JSON keeps version:1.
+This breaking API update is available on npm as `@z7589xxz758/yuragi@0.2.0`. Model JSON keeps version:1.
 
 Use setGaze and setGazeStrength instead of setExpression/blink. Face contains measured eyes only. Legacy face fields are rejected; migrate with skills/yuragi-rig-spec/scripts/migrate_gaze.py and inspect its separate report. expression.gaze becomes gaze.strength; other expression tracks are removed and empty clips must be reauthored.
 

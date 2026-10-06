@@ -55,9 +55,9 @@ export const skillsCopy: [string, string, string][] = [
     "既存キャラクターには変換スキル"
   ],
   [
-    "Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外安裝目前的本機 Yuragi 套件。",
-    "Skills include English instructions, a Python helper and spec templates. The helper requires Python 3.10+ and Pillow; playback requires the separately installed local Yuragi package.",
-    "英語ガイド、Python ツール、仕様テンプレートを含みます。Python 3.10+ と Pillow、および別途導入したローカル Yuragi パッケージが必要です。"
+    "Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外從 npm 安裝 @z7589xxz758/yuragi。",
+    "Skills include English instructions, a Python helper and spec templates. The helper requires Python 3.10+ and Pillow; playback requires the separately installed @z7589xxz758/yuragi npm package.",
+    "英語ガイド、Python ツール、仕様テンプレートを含みます。Python 3.10+ と Pillow、およびnpm から別途導入した @z7589xxz758/yuragiが必要です。"
   ],
   [
     "讓 AI 接續你的進度",

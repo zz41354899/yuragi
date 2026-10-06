@@ -1,10 +1,10 @@
 # v2 分層引擎
 
-2026-10-04：本機已實作獨立附件播放器、父子節點、稀疏權重、共享接點、局部彈簧、圖集批次與靜態 alpha 遮罩。v1 `RigModel` / `createPlayer` 與 既有 v1 動作維持原路徑。未發布或部署。
+2026-10-04：本機已實作獨立附件播放器、父子節點、稀疏權重、共享接點、局部彈簧、圖集批次與靜態 alpha 遮罩。v1 `RigModel` / `createPlayer` 與 既有 v1 動作維持原路徑。套件 v0.2.0 已發布至 npm。
 
 ## 使用
 
-先在 Yuragi 執行 `npm run build:lib`，在另一個專案執行 `npm install /path/to/yuragi/packages/rig`。v2 型別與函式由主入口匯出；框架元件分別由 Vue / React 入口匯出，不共用框架依賴。
+在你的專案執行 `npm install @z7589xxz758/yuragi`。v2 型別與函式由主入口匯出；框架元件分別由 Vue / React 入口匯出，不共用框架依賴。
 
 ```ts
 import { createLayeredPlayer, validateLayeredModel } from '@z7589xxz758/yuragi'
