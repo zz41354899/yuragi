@@ -28,8 +28,8 @@ Use a validated model with measured eyes. This maps stage position to eye direct
 ```vue
 <script setup lang="ts">
 import { onBeforeUnmount } from 'vue'
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import { validateModel, type RigModel, type RigPlayer } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import { validateModel, type RigModel, type RigPlayer } from '@z7589xxz758/yuragi'
 const props = defineProps<{ model: RigModel }>()
 validateModel(props.model)
 let player: RigPlayer | undefined
@@ -67,7 +67,7 @@ onBeforeUnmount(() => { player = undefined })
 </template>
 ```
 
-The handler caches face availability on ready; React uses @yuragi/rig/react with onReady/onError and the same RigPlayer calls. Adapters do not install global pointer listeners: the application decides stage-only or page-wide tracking and cleans up its own listeners. On model replacement, clear stale player references until ready.
+The handler caches face availability on ready; React uses @z7589xxz758/yuragi/react with onReady/onError and the same RigPlayer calls. Adapters do not install global pointer listeners: the application decides stage-only or page-wide tracking and cleans up its own listeners. On model replacement, clear stale player references until ready.
 
 For combined tracking, calculate centered stage fractions, call setPointer first, then setGaze. For eyes aimed at the visible face, measure its source center and map it using toCanvas(center + trackingOffset) and the actual overscanned canvas bounding rectangle. Normalize event deltas by a reviewed screen-space range. trackingOffset is available in low-frequency snapshots; it covers whole-image translation only, not head rotation, sway or pointerGroups. Such alignment is approximate under motion. There is no public per-frame transformed eye-center API or exact 3D gaze solver. Keep geometry conservative and review at zoom.
 
@@ -82,7 +82,7 @@ Check center and ±X/±Y separately for each eye, combined corners, rapid revers
 
 ## Mirea / 海月 source and alignment
 
-The reviewed Mirea model and original PNG now ship in assets/mirea. Import createMireaModel from @yuragi/rig/mirea and copy assets/mirea to public/models/mirea. The website's createMireaDemoModel wraps this public factory with /images/home/mirea-base-v1.png. Historical prepared candidates may differ; compare the bundled reviewed model rather than assuming they are identical.
+The reviewed Mirea model and original PNG now ship in assets/mirea. Import createMireaModel from @z7589xxz758/yuragi/mirea and copy assets/mirea to public/models/mirea. The website's createMireaDemoModel wraps this public factory with /images/home/mirea-base-v1.png. Historical prepared candidates may differ; compare the bundled reviewed model rather than assuming they are identical.
 
 | Eye | center | iris | radius | irisRadius | travel | angle |
 | --- | --- | --- | --- | --- | --- | --- |

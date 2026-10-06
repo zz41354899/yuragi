@@ -2,7 +2,7 @@
 
 Trigger shared-surface wave progress; requires suitable visible free-arm artwork and bindings.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

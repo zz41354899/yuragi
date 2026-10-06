@@ -2,7 +2,7 @@
 
 Apply shared transforms to a source vertex.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

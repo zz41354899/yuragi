@@ -2,7 +2,7 @@
 
 Limit triangle displacement gradients by scaling the positions buffer in place.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

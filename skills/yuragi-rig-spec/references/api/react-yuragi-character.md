@@ -2,7 +2,7 @@
 
 Shared-surface component with artwork fallback, reduced motion and unmount cleanup.
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 ## Signature
 
@@ -25,8 +25,8 @@ Props: model (required), autoplay=true, reducedMotion="respect", alt="Animated i
 ## Example
 
 ```tsx
-import { YuragiCharacter } from '@yuragi/rig/react'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/react'
+import type { RigModel } from '@z7589xxz758/yuragi'
 export function Example({ model }: { model: RigModel }) {
   return <YuragiCharacter model={model} alt="Character" />
 }

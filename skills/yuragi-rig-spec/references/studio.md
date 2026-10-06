@@ -3,7 +3,7 @@
 Studio is the preview-only viewer for models produced by the agent's [saved JSON / Python workflow](agent-workflow.md). The agent saves annotation, decomposition, diagnosis and quality records. Studio does not edit contours/bindings, launch an agent, collect issue forms, manage acceptance or deliver a model.
 
 ```sh
-npm install /actual/path/to/yuragi-rig-0.2.0.tgz
+npm install /actual/path/to/z7589xxz758-yuragi-0.2.0.tgz
 npx yuragi studio --project ./character-v1/model --out ./character-v1/preview
 ```
 

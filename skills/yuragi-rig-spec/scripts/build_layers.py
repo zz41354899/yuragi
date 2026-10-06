@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compile explicitly authored layered attachments; never infer missing artwork.
-Requires Pillow, Node and a built local @yuragi/rig. Output is committed only after runtime validation.
+Requires Pillow, Node and a built local @z7589xxz758/yuragi. Output is committed only after runtime validation.
 """
 from __future__ import annotations
 import argparse
@@ -192,7 +192,7 @@ def compile_layers(manifest_path, output, rig_package, allow_visible_only=False,
         shutil.copyfile(source,staging/'fallback.png')
         (staging/'model.json').write_text(json.dumps(model,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
         metadata=json.loads((rig_package/'package.json').read_text())
-        if metadata.get('name')!='@yuragi/rig': raise ValueError('Expected built @yuragi/rig package')
+        if metadata.get('name')!='@z7589xxz758/yuragi': raise ValueError('Expected built @z7589xxz758/yuragi package')
         module=rig_package/'dist/index.js'
         script = """
 import {readFileSync} from 'node:fs';

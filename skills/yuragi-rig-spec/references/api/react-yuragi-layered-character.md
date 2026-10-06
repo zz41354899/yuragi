@@ -2,7 +2,7 @@
 
 Layered v2 component with cancellable loading, artwork fallback and cleanup.
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 ## Signature
 
@@ -25,8 +25,8 @@ Props: model (required), autoplay=true, reducedMotion="respect", alt="Animated i
 ## Example
 
 ```tsx
-import { YuragiLayeredCharacter } from '@yuragi/rig/react'
-import type { LayeredModel } from '@yuragi/rig'
+import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/react'
+import type { LayeredModel } from '@z7589xxz758/yuragi'
 export function Example({ model }: { model: LayeredModel }) {
   return <YuragiLayeredCharacter model={model} alt="Character" />
 }

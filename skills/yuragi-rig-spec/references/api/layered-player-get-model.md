@@ -2,7 +2,7 @@
 
 Return a deep model copy; resolve image URLs in the consuming project.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -2,7 +2,7 @@
 
 Sample a validated animation track at a time in milliseconds.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -2,7 +2,7 @@
 
 Seek the current clip in milliseconds and apply its sampled pose.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

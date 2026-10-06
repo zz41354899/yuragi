@@ -2,7 +2,7 @@
 
 Assert v2 atlases, parent order, normalized weights, shared joints and attachments.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

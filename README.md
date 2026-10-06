@@ -56,14 +56,14 @@ npm run pack:lib
 此指令會建置引擎與 Studio，並在 `artifacts/` 產生本機安裝包。接著在你的目標專案執行，將路徑換成實際檔案位置：
 
 ```sh
-npm install /path/to/yuragi/artifacts/yuragi-rig-0.2.0.tgz
+npm install /path/to/yuragi/artifacts/z7589xxz758-yuragi-0.2.0.tgz
 ```
 
 也可在執行 `npm run build:lib` 後，安裝本機的 `packages/rig` 目錄。打包不會發布 npm；目前請使用實際的本機路徑。
 
 ### 準備海月素材
 
-套件內含 `assets/mirea/model.json` 與 `assets/mirea/texture.png`。把目標專案中 `node_modules/@yuragi/rig/assets/mirea/` 的內容複製到網站的 `public/models/mirea/`。
+套件內含 `assets/mirea/model.json` 與 `assets/mirea/texture.png`。把目標專案中 `node_modules/@z7589xxz758/yuragi/assets/mirea/` 的內容複製到網站的 `public/models/mirea/`。
 
 `createMireaModel()` 預設使用 `/models/mirea/texture.png`，也接受自訂圖片 URL。安裝套件不會自動把素材複製到網站；調整路徑時須同步更新模型的圖片來源。角色素材的使用範圍見 [授權說明](#授權與-ai-產出)。
 
@@ -73,8 +73,8 @@ Vue 是主要文件與網站使用的框架。目標專案需安裝 Vue 3.5 以�
 
 ```vue
 <script setup lang="ts">
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter } from '@yuragi/rig/vue'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
 
 const model = createMireaModel('/models/mirea/texture.png')
 </script>
@@ -94,8 +94,8 @@ React 18.3／19 使用獨立入口：
 
 ```tsx
 import { useMemo } from 'react'
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter } from '@yuragi/rig/react'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/react'
 
 export function Character() {
   const model = useMemo(() => createMireaModel('/models/mirea/texture.png'), [])
@@ -113,8 +113,8 @@ export function Character() {
 ### 原生 TypeScript
 
 ```ts
-import { createPlayer } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+import { createPlayer } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#mirea')
 if (!canvas) throw new Error('找不到角色畫布')
@@ -136,7 +136,7 @@ player.destroy()
 
 ## 兩種模型與引擎
 
-套件版本與模型版本各自管理。`@yuragi/rig@0.2.0` 同時提供 v1 和 v2，兩種模型使用各自的播放器與驗證器。
+套件版本與模型版本各自管理。`@z7589xxz758/yuragi@0.2.0` 同時提供 v1 和 v2，兩種模型使用各自的播放器與驗證器。
 
 | | v1：共用表面 | v2：獨立分層 |
 | --- | --- | --- |
@@ -200,13 +200,21 @@ Starter 是示意範本，未附圖片，座標必須依原畫重新設定。動
 | [`yuragi-character`](skills/yuragi-character/SKILL.md) | 設計或延伸角色，整理角色基準、素材與 `character-brief.md` |
 | [`yuragi-rig-spec`](skills/yuragi-rig-spec/SKILL.md) | 判讀原畫、制定動作、協助標註與建置模型，產出規格和播放器預覽 |
 
-在使用 AI 的目標專案安裝，將路徑換成你的 Yuragi checkout：
+在使用 AI 的目標專案中，依需求擇一從 GitHub 安裝。
+
+從零建立角色：
 
 ```sh
-npx skills add /path/to/yuragi --skill yuragi-character yuragi-rig-spec
+npx skills add zz41354899/yuragi --skill yuragi-character
 ```
 
-已有角色時，可只安裝 `yuragi-rig-spec`。安裝後以 `$yuragi-character` 或 `$yuragi-rig-spec` 提出需求。Skill 工作文件以英文撰寫，可接受不同語言的需求並以使用者語言回覆。
+已有角色，只需要轉換動態：
+
+```sh
+npx skills add zz41354899/yuragi --skill yuragi-rig-spec
+```
+
+兩個 Skill 可獨立安裝；之後需要另一種功能時，再執行對應指令即可。安裝後以 `$yuragi-character` 或 `$yuragi-rig-spec` 提出需求。Skill 工作文件以英文撰寫，可接受不同語言的需求並以使用者語言回覆。
 
 v1 製作流程為 **inspect → AI 標註 → extract → build → 播放與視覺修正**。AI 負責看圖與決定綁定；本機 Python／Pillow 工具依標註量測、抽取可見像素，並透過實際 runtime 驗證模型。Python 不會自行辨識角色或補回遮住的圖像。v2 另用 `build_layers.py` 建置分層模型。
 
@@ -229,10 +237,10 @@ artifacts/          本機安裝包、預覽素材與驗證紀錄
 Vue／React 與海月資料各有獨立匯入入口：
 
 ```text
-@yuragi/rig         核心播放器、模擬、驗證器與型別
-@yuragi/rig/vue     Vue 元件
-@yuragi/rig/react   React 元件
-@yuragi/rig/mirea   createMireaModel()
+@z7589xxz758/yuragi         核心播放器、模擬、驗證器與型別
+@z7589xxz758/yuragi/vue     Vue 元件
+@z7589xxz758/yuragi/react   React 元件
+@z7589xxz758/yuragi/mirea   createMireaModel()
 ```
 
 ## 開發與驗證

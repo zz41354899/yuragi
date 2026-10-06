@@ -2,8 +2,8 @@
 import { useText } from "../i18n"
 const { tr } = useText()
 import { shallowRef, ref, watch } from 'vue'
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import type { RigModel, RigPlayer, RigSnapshot } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import type { RigModel, RigPlayer, RigSnapshot } from '@z7589xxz758/yuragi'
 const props = withDefaults(defineProps<{ model: RigModel; follow?: boolean; autoplay?: boolean; interactive?: boolean }>(), { follow: true, autoplay: true, interactive: true })
 const emit = defineEmits<{ ready: [player: RigPlayer]; frame: [snapshot: RigSnapshot]; error: [error: Error] }>()
 const player = shallowRef<RigPlayer>()

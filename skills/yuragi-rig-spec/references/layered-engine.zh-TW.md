@@ -7,7 +7,7 @@
 先在 Yuragi 執行 `npm run build:lib`，在另一個專案執行 `npm install /path/to/yuragi/packages/rig`。v2 型別與函式由主入口匯出；框架元件分別由 Vue / React 入口匯出，不共用框架依賴。
 
 ```ts
-import { createLayeredPlayer, validateLayeredModel } from '@yuragi/rig'
+import { createLayeredPlayer, validateLayeredModel } from '@z7589xxz758/yuragi'
 const model: unknown = await fetch('/models/my-character/model.json').then(r => r.json())
 validateLayeredModel(model)
 // src 與 fallback 由呼叫者解析為可載入的 URL；JSON 中的相對路徑不會自動以 JSON URL 為基準。
@@ -26,8 +26,8 @@ controller.abort() // 也可 player.destroy()；可重複清理
 
 ```vue
 <script setup lang="ts">
-import { YuragiLayeredCharacter } from '@yuragi/rig/vue'
-import type { LayeredModel, LayeredPlayer } from '@yuragi/rig'
+import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/vue'
+import type { LayeredModel, LayeredPlayer } from '@z7589xxz758/yuragi'
 defineProps<{ model: LayeredModel }>()
 let player: LayeredPlayer | undefined
 </script>
@@ -36,7 +36,7 @@ let player: LayeredPlayer | undefined
 </template>
 ```
 
-React 使用 `import { YuragiLayeredCharacter } from '@yuragi/rig/react'`，提供 `onReady`、`onFrame`、`onError` 與 ref.getPlayer。v2 沒有 v1 的 gaze / 動畫 / pin APIs；兩種模型不可互傳。重排附件、改權重、遮罩、素材或節點時驗證並重建播放器。
+React 使用 `import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/react'`，提供 `onReady`、`onFrame`、`onError` 與 ref.getPlayer。v2 沒有 v1 的 gaze / 動畫 / pin APIs；兩種模型不可互傳。重排附件、改權重、遮罩、素材或節點時驗證並重建播放器。
 
 ## 格式
 
@@ -69,7 +69,7 @@ python skills/yuragi-rig-spec/scripts/build_layers.py my-character/manifest.json
   --atlas-size 2048 --max-prune-error .25
 ```
 
-Python 需 Pillow；Node 需已建置的本機 `@yuragi/rig`。原图 hash、尺寸與裁片來源位置均須吻合；輸出目錄必須空白。可見裁片預設拒絕，只有明確 `--allow-visible-only` 才輸出 prototype。這個旗標不代表補圖完成或視覺驗收通过。
+Python 需 Pillow；Node 需已建置的本機 `@z7589xxz758/yuragi`。原图 hash、尺寸與裁片來源位置均須吻合；輸出目錄必須空白。可見裁片預設拒絕，只有明確 `--allow-visible-only` 才輸出 prototype。這個旗標不代表補圖完成或視覺驗收通过。
 
 作者 manifest 範例見 `artifacts/layered-engine/authoring/manifest.json`。`source` 指定 file、size、sha256；nodes 同 runtime；attachments 指定 image、boundsPixels、coverage、provenance、node、mesh `[columns,rows]`。選配 `flex: { root, tip, node }` 以根到末端進度產生平滑的雙節點權重；需要高密度局部網格或共享接點時直接提供 vertices、triangles、joints。圖片必須是已裁至 boundsPixels 的 RGBA，補圖由作者另行提供並註明來源。mask 必須以 alpha 表示，RGB 顏色不作遮罩值。
 

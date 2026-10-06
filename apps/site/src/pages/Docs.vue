@@ -41,11 +41,11 @@ const install = `# 目前：從本機 Yuragi 專案安裝（先在 Yuragi 執行
 npm install /path/to/yuragi/packages/rig
 
 # 未來發布至 npm 後才可使用（目前尚未發布）
-# npm install @yuragi/rig`
+# npm install @z7589xxz758/yuragi`
 const installAssets = `# 在你的專案目錄執行，複製套件內附的海月素材
-node --input-type=module -e "import { mkdirSync, cpSync } from 'node:fs'; mkdirSync('public/models', { recursive: true }); cpSync('node_modules/@yuragi/rig/assets/mirea', 'public/models/mirea', { recursive: true });"`
-const vanillaCode = `import { createPlayer } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+node --input-type=module -e "import { mkdirSync, cpSync } from 'node:fs'; mkdirSync('public/models', { recursive: true }); cpSync('node_modules/@z7589xxz758/yuragi/assets/mirea', 'public/models/mirea', { recursive: true });"`
+const vanillaCode = `import { createPlayer } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#mirea')!
 const player = await createPlayer({
@@ -95,7 +95,7 @@ const model = player.getModel()
 const json = JSON.stringify(model, null, 2)
 
 // 重新載入前先驗證
-import { validateModel } from '@yuragi/rig'
+import { validateModel } from '@z7589xxz758/yuragi'
 const imported: unknown = JSON.parse(json)
 validateModel(imported) // 格式錯誤會 throw
 // imported 已被縮窄為 RigModel`
@@ -103,9 +103,9 @@ const coreExports = `import {
   createPlayer, createSimulation,
   validateModel, validateAnimation, sampleCurve, sampleTrack,
   constrainSharedSurface, CANVAS_PADDING, toCanvas,
-} from '@yuragi/rig'
+} from '@z7589xxz758/yuragi'
 // Optional character entry: no Mirea data in the core bundle.
-import { createMireaModel } from '@yuragi/rig/mirea'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 
 // Validate clips before sampling. Gaze strength tracks need reviewed face=true.
 validateAnimation(clip, true)
@@ -113,8 +113,8 @@ sampleCurve(.5, [.42, 0, .58, 1])
 sampleTrack(clip.tracks[0], 1200)
 // Source 0–1 -> overscanned canvas 0–1
 toCanvas(.5)`
-const coreCode = `import { createSimulation } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+const coreCode = `import { createSimulation } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 
 const rig = createSimulation(createMireaModel())
 const mesh = rig.buildContinuousMesh()
@@ -127,8 +127,8 @@ const diagnostics = rig.updateVertices(mesh, 16.67)
 // mesh.positions：變形後頂點
 // mesh.uvs：貼圖座標
 // mesh.indices：三角形索引`
-const mireaModelCode = `import { validateModel } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+const mireaModelCode = `import { validateModel } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 
 // 先將套件 assets/mirea 複製到 public/models/mirea
 const model = createMireaModel('/models/mirea/texture.png')
@@ -137,7 +137,7 @@ validateModel(model)
 // model.texture：1024 × 1536 原畫
 // model.parts：25 個局部部件
 // model.face.eyes：左右眼的量測與瞳孔移動範圍`
-const regionCode = `import { validateModel } from '@yuragi/rig'
+const regionCode = `import { validateModel } from '@z7589xxz758/yuragi'
 
 // Vue 的 @ready 回呼取得 player 後，調整海月既有部件
 player.setPart('bang-left-outer', { rotation: .012, stiffness: .018 })
@@ -204,15 +204,15 @@ player.setPointer(0, 0)
         <div class="notice"><strong>{{ tr("目前是本機預覽版 v0.2.0。") }}</strong><p>{{ tr('模型與圖片隨套件提供，網站不提供獨立 JSON 下載。目前尚未發布 npm；發布後可透過 npm 安裝取得。') }}</p></div>
         <h2>{{ tr('你安裝的是什麼？') }}</h2>
         <div class="table-scroll"><table><thead><tr><th>{{ tr('項目') }}</th><th>{{ tr('內容與用途') }}</th></tr></thead><tbody>
-          <tr><td><code>@yuragi/rig</code></td><td>{{ tr('安裝到你的網站專案：TypeScript 播放器、模型驗證器、Vue／React adapter，以及海月與 starter 範例素材。') }}</td></tr>
+          <tr><td><code>@z7589xxz758/yuragi</code></td><td>{{ tr('安裝到你的網站專案：TypeScript 播放器、模型驗證器、Vue／React adapter，以及海月與 starter 範例素材。') }}</td></tr>
           <tr><td><code>yuragi-rig-spec</code></td><td>{{ tr('另行安裝給 Agent 的 Skill：原圖分析、標註、拆件與建模指引；不會安裝播放器。') }}</td></tr>
           <tr><td>Python / Pillow</td><td>{{ tr('本機素材準備工具的執行環境；需另外準備。Agent 先讀 Skill，再呼叫 Python；Python 不會啟動 Skill。') }}</td></tr>
-          <tr><td>{{ tr('海月套件範例') }}</td><td>{{ tr('海月圖片與模型已內附於套件的 assets/mirea。使用 @yuragi/rig/mirea 的 createMireaModel() 載入相同綁定；網站的結構參考標記仍屬展示工具。') }}</td></tr>
+          <tr><td>{{ tr('海月套件範例') }}</td><td>{{ tr('海月圖片與模型已內附於套件的 assets/mirea。使用 @z7589xxz758/yuragi/mirea 的 createMireaModel() 載入相同綁定；網站的結構參考標記仍屬展示工具。') }}</td></tr>
         </tbody></table></div>
         <p>{{ tr('下方命令只安裝網站播放器。製作自己的角色時，另依 Skill 流程準備圖片、標註與模型；換一張圖片不會自動完成綁定。') }}</p>
         <p><RouterLink to="/docs?section=skills">{{ tr('查看 Skill 的安裝與製作流程') }}</RouterLink></p>
         <h2>{{ tr('01. 安裝套件') }}</h2><CodeBlock :code="install" :language="tr('終端機')" />
-        <h2>{{ tr("02. 放入角色素材") }}</h2><p>{{ tr('目前主要範例使用海月：將 assets/mirea 複製到 public/models/mirea，再用 createMireaModel() 載入。製作自己的角色時可參考 assets/starter。') }}</p><CodeBlock :code="installAssets" :language="tr('終端機')" /><CodeBlock :code="'node_modules/@yuragi/rig/assets/\n├── mirea/\n│   ├── texture.png\n│   └── model.json\n└── starter/\n    └── model.json'" :language="tr('海月與起始素材目錄')" />
+        <h2>{{ tr("02. 放入角色素材") }}</h2><p>{{ tr('目前主要範例使用海月：將 assets/mirea 複製到 public/models/mirea，再用 createMireaModel() 載入。製作自己的角色時可參考 assets/starter。') }}</p><CodeBlock :code="installAssets" :language="tr('終端機')" /><CodeBlock :code="'node_modules/@z7589xxz758/yuragi/assets/\n├── mirea/\n│   ├── texture.png\n│   └── model.json\n└── starter/\n    └── model.json'" :language="tr('海月與起始素材目錄')" />
         <h2>{{ tr("03. 選擇你的框架") }}</h2><div class="docs-frameworks"><RouterLink to="/docs?section=vue"><strong>Vue 3</strong><span>{{ tr("主要指南 · script setup") }}</span></RouterLink><RouterLink to="/docs?section=react"><strong>React</strong><span>{{ tr("函式元件 · hooks") }}</span></RouterLink><RouterLink to="/docs?section=vanilla"><strong>JavaScript</strong><span>{{ tr("直接使用 Canvas") }}</span></RouterLink></div>
         <p>{{ tr("核心執行於瀏覽器，不需要外部 API key。Vue 與 React 是選用依賴；只匯入核心時不會載入這兩個框架。") }}</p>
       </template>
@@ -223,7 +223,7 @@ player.setPointer(0, 0)
       <template v-else-if="active === 'model'">
         <p class="docs-lead">{{ tr('目前以海月みれあ為主要範例：1024 × 1536 的完整原畫，搭配控制點、局部部件、持傘保護、頭頸跟隨與左右眼量測。圖片與綁定設定分開保存，模型隨套件提供。') }}</p>
         <h2>{{ tr('載入海月模型') }}</h2>
-        <p>{{ tr('從 @yuragi/rig/mirea 匯入 createMireaModel()，取得海月綁定的獨立副本。網站與套件使用相同模型，圖片路徑依你的專案設定。') }}</p>
+        <p>{{ tr('從 @z7589xxz758/yuragi/mirea 匯入 createMireaModel()，取得海月綁定的獨立副本。網站與套件使用相同模型，圖片路徑依你的專案設定。') }}</p>
         <CodeBlock :code="mireaModelCode" />
         <h2>{{ tr('海月模型包含什麼？') }}</h2>
         <div class="table-scroll"><table>

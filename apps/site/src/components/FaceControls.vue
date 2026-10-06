@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed,ref,watch} from 'vue'
-import type {RigModel,RigPlayer,RigSnapshot,AnimationClip} from '@yuragi/rig'
+import type {RigModel,RigPlayer,RigSnapshot,AnimationClip} from '@z7589xxz758/yuragi'
 import {useText} from '../i18n'
 const {tr}=useText()
 const props=defineProps<{player?:RigPlayer;model:RigModel;snapshot?:RigSnapshot;reduced?:boolean}>()

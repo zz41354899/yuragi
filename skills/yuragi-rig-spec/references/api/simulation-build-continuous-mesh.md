@@ -2,7 +2,7 @@
 
 Build a continuous triangle mesh and bindings for a source-pixel rectangle.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

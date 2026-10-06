@@ -2,7 +2,7 @@
 
 Patch an existing flexible part; the player rebinds when geometry fields change.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

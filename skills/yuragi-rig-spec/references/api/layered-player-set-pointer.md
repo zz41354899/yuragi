@@ -2,7 +2,7 @@
 
 Set centered pointer coordinates, normally −0.5…0.5 per axis; positive X is right and Y is down.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, shallowRef } from 'vue'
 import { RouterLink } from 'vue-router'
-import { type RigPlayer } from '@yuragi/rig'
+import { type RigPlayer } from '@z7589xxz758/yuragi'
 import { createMireaDemoModel } from '../models/mirea'
 import CharacterStage from './CharacterStage.vue'
 import Icon from './Icon.vue'

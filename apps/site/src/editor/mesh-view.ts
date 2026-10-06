@@ -1,4 +1,4 @@
-import type { RigMeshSnapshot, Vec2 } from '@yuragi/rig'
+import type { RigMeshSnapshot, Vec2 } from '@z7589xxz758/yuragi'
 
 /** Sample the actual rendered triangle of the regular continuous source mesh. */
 export function meshPoint(mesh: RigMeshSnapshot, columns: number, rows: number, [x,y]: Vec2): Vec2 {

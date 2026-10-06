@@ -4,11 +4,11 @@ Generated from the package public exports and TypeScript signatures. Behavior an
 
 ## Package entries
 
-- `@yuragi/rig`
-- `@yuragi/rig/vue`
-- `@yuragi/rig/react`
-- `@yuragi/rig/mirea`
-- `@yuragi/rig/assets/*` — installed package files at `./assets/*`. Copy the matching model/artwork into your project’s public assets; a replacement image is not a rig.
+- `@z7589xxz758/yuragi`
+- `@z7589xxz758/yuragi/vue`
+- `@z7589xxz758/yuragi/react`
+- `@z7589xxz758/yuragi/mirea`
+- `@z7589xxz758/yuragi/assets/*` — installed package files at `./assets/*`. Copy the matching model/artwork into your project’s public assets; a replacement image is not a rig.
 
 ## Functions and methods
 

@@ -2,7 +2,7 @@
 
 Copy the last submitted mesh on demand for low-frequency inspection.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

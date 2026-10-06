@@ -2,7 +2,7 @@
 
 Read face attachment visibility, clipping and iris translation.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

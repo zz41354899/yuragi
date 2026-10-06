@@ -2,7 +2,7 @@
 
 Compile v2 nodes, sparse weights and consecutive draw batches; call update yourself.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

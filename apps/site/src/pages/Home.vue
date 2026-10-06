@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from 'vue'
 import { RouterLink } from 'vue-router'
-import { type RigPlayer } from '@yuragi/rig'
+import { type RigPlayer } from '@z7589xxz758/yuragi'
 import { useText } from '../i18n'
 import CharacterStage from '../components/CharacterStage.vue'
 import HomeRigPreview from '../components/HomeRigPreview.vue'
@@ -35,9 +35,9 @@ function choose(mode: typeof active.value) {
 const quickstart = computed(() => framework.value === 'vue' ? [
   '<!-- YourCharacter.vue -->', '<script setup lang="ts">',
   "import { shallowRef } from 'vue'",
-  "import { type RigPlayer } from '@yuragi/rig'",
-  "import { createMireaModel } from '@yuragi/rig/mirea'",
-  "import { YuragiCharacter } from '@yuragi/rig/vue'", '',
+  "import { type RigPlayer } from '@z7589xxz758/yuragi'",
+  "import { createMireaModel } from '@z7589xxz758/yuragi/mirea'",
+  "import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'", '',
   "const model = createMireaModel('/models/mirea/texture.png')",
   'const player = shallowRef<RigPlayer>()',
   'function follow(event: PointerEvent) {',
@@ -57,8 +57,8 @@ const quickstart = computed(() => framework.value === 'vue' ? [
 ].join('\n') : [
   "'use client'", '// YourCharacter.tsx',
   "import { useRef, useState, type PointerEvent } from 'react'",
-  "import { createMireaModel } from '@yuragi/rig/mirea'",
-  "import { YuragiCharacter, type YuragiCharacterHandle } from '@yuragi/rig/react'", '',
+  "import { createMireaModel } from '@z7589xxz758/yuragi/mirea'",
+  "import { YuragiCharacter, type YuragiCharacterHandle } from '@z7589xxz758/yuragi/react'", '',
   'export function YourCharacter() {',
   "  const [model] = useState(() => createMireaModel('/models/mirea/texture.png'))",
   '  const character = useRef<YuragiCharacterHandle>(null)',

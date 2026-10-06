@@ -2,7 +2,7 @@
 
 Sample a linear, step or cubic-bezier animation curve.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

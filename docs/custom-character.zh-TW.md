@@ -14,11 +14,11 @@
 
 ## 02. 建立模型檔案
 
-先安裝套件，再把 `node_modules/@yuragi/rig/assets/starter/model.json` 複製為 `public/models/my-character/model.json`，圖片放在同目錄的 `texture.png`。範例座標只是人形示意，必須逐點依自己的原圖重新配置；起始模型不包含圖片，也沒有替你完成綁定。網站不提供獨立 JSON 下載。
+先安裝套件，再把 `node_modules/@z7589xxz758/yuragi/assets/starter/model.json` 複製為 `public/models/my-character/model.json`，圖片放在同目錄的 `texture.png`。範例座標只是人形示意，必須逐點依自己的原圖重新配置；起始模型不包含圖片，也沒有替你完成綁定。網站不提供獨立 JSON 下載。
 
 修改 id、name、texture 與所有位置設定。不要直接對新圖片套用 createMireaModel()：它仍會帶入海月的尺寸、控制點、局部鏈與姿態。所有頂層欄位都必須存在；沒有頭髮、配件或臉部遮罩時，使用空陣列。
 
-目前 npm 尚未發布，請先在 Yuragi 執行 `npm run build:lib`，再於自己的專案執行 `npm install /path/to/yuragi/packages/rig`。未來發布後才可直接使用 `npm install @yuragi/rig`；兩種安裝方式都包含套件的 `assets/` 目錄。
+目前 npm 尚未發布，請先在 Yuragi 執行 `npm run build:lib`，再於自己的專案執行 `npm install /path/to/yuragi/packages/rig`。未來發布後才可直接使用 `npm install @z7589xxz758/yuragi`；兩種安裝方式都包含套件的 `assets/` 目錄。
 
 ```json
 {
@@ -71,7 +71,7 @@ fixed 仍可能被人形動作帶動，不代表像素永遠固定。joint 不�
 頭髮鏈與配件鏈要另外配置，不會從 pins 自動產生。頭髮三點依序為髮根、髮中、髮梢；配件使用固定根部與自由末端。先以空陣列驗證身體，再逐組增加，避免沿用其他角色的髮梢座標。
 
 ```ts
-import { validateModel } from '@yuragi/rig'
+import { validateModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const model = await loadModel()
@@ -109,7 +109,7 @@ motionScale 接近 1 代表較少觸發網格保護；長期顯著低於 1 時�
 ```
 
 ```ts
-import { createPlayer } from '@yuragi/rig'
+import { createPlayer } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#character')!
@@ -143,7 +143,7 @@ try {
 ### load-model.ts
 
 ```ts
-import { validateModel, type RigModel } from '@yuragi/rig'
+import { validateModel, type RigModel } from '@z7589xxz758/yuragi'
 
 export async function loadModel(signal?: AbortSignal): Promise<RigModel> {
   const response = await fetch('/models/my-character/model.json', { signal })
@@ -159,8 +159,8 @@ export async function loadModel(signal?: AbortSignal): Promise<RigModel> {
 ```vue
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, shallowRef } from 'vue'
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import type { RigModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const model = shallowRef<RigModel>()
@@ -187,8 +187,8 @@ onBeforeUnmount(() => controller.abort())
 
 ```tsx
 import { useEffect, useState } from 'react'
-import { YuragiCharacter } from '@yuragi/rig/react'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/react'
+import type { RigModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 export function Character() {
@@ -270,7 +270,7 @@ setPin 的 name 必須存在；setParameter 使用 lookX／lookY／bodyX／wave 
 
 已實作 `parts?: DeformationPart[]`、`motion.parts` 與 `pose.headFollow`，保留原有 version:1 模型及 數值基準行為。完整欄位、驗證範圍、可用 API 與真正分層的能力界線，見 [多部位與分層協定](./parts-and-layers.zh-TW.md)。parts 仍是共用原畫上的變形區域；獨立 v2 schema 已實作，使用方式見 [v2 分層引擎](layered-engine.zh-TW.md)。
 
-目前官網與遊樂場使用 `@yuragi/rig/mirea` 的 `createMireaModel()` 展示局部部件、剛性區域與有界追蹤；舊 Momo 工廠及素材已移除。自製角色的 Python 分析可用 `regions[].binding` 產生 surfaceRegions、`regions[].deformation` 產生 parts；裁片、遮罩、來源矩形與根／中／末端作者資料由 parts-manifest.json 管理。請閱讀 [完整部件 API 與分層邊界](parts-and-layers.zh-TW.md)。硬物與握柄手共用附件錨點，柔性飄帶獨立標註，不能因裁出圖片就推定已完成獨立圖層或 Live2D 綁定。
+目前官網與遊樂場使用 `@z7589xxz758/yuragi/mirea` 的 `createMireaModel()` 展示局部部件、剛性區域與有界追蹤；舊 Momo 工廠及素材已移除。自製角色的 Python 分析可用 `regions[].binding` 產生 surfaceRegions、`regions[].deformation` 產生 parts；裁片、遮罩、來源矩形與根／中／末端作者資料由 parts-manifest.json 管理。請閱讀 [完整部件 API 與分層邊界](parts-and-layers.zh-TW.md)。硬物與握柄手共用附件錨點，柔性飄帶獨立標註，不能因裁出圖片就推定已完成獨立圖層或 Live2D 綁定。
 
 既有部件可用 `player.setPart(id, patch)` 即時修改 root/tip、polygon/exclusions、彈性和 channel；先完整驗證再更新，重建綁定但重用 GPU buffers。該部件彈簧歸零，不新增動畫循環。getModel() 包含變更；新增／刪除部件、修改 surfaceRegions 或 tracking 仍需重建播放器。
 
@@ -297,7 +297,7 @@ partsExtracted、modelValidation 與 visualAcceptance 是不同階段。可提�
 
 ## 套件範例素材
 
-主要範例改為海月：複製 assets/mirea 到 public/models/mirea，從 @yuragi/rig/mirea 匯入 createMireaModel。starter 保留作新原圖的範本。不能只換圖片就套用任一範例的綁定。
+主要範例改為海月：複製 assets/mirea 到 public/models/mirea，從 @z7589xxz758/yuragi/mirea 匯入 createMireaModel。starter 保留作新原圖的範本。不能只換圖片就套用任一範例的綁定。
 
 
 ## Independent layered v2

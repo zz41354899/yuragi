@@ -2,7 +2,7 @@
 
 Update parts engine state.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

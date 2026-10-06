@@ -2,7 +2,7 @@
 
 Set lookX/lookY (−30…30), bodyX (−10…10) or wave (0…1).
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

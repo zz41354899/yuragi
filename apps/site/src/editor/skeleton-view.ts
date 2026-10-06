@@ -1,4 +1,4 @@
-import type { RigMeshSnapshot, RigModel, Vec2 } from '@yuragi/rig'
+import type { RigMeshSnapshot, RigModel, Vec2 } from '@z7589xxz758/yuragi'
 import { meshPoint } from './mesh-view'
 
 /** A tapered bone follows the same sampled surface as the artwork. Coordinates are source pixels. */

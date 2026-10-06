@@ -40,7 +40,7 @@ Run `extract` with analysis into a new folder. Inspect full/cropped parts, masks
 
 Accept artist/user-completed parts through `--supplements`; preserve their placement and source records. This bundles authoring assets only, not independently rendered attachments. Never generate missing artwork as an incidental step.
 
-Run `build --prepared ... --rig-package ...` into another new folder. It verifies source/analysis and asset fingerprints, builds the candidate and invokes the actual built `@yuragi/rig` validateModel (package identity and required capabilities checked; actual runtime version recorded) via Node.js. The CLI requires both arguments; missing/invalid runtime or altered prepared assets must fail. Python callers may prepare candidates without runtime, but these have no playable preview and modelValidation is not-run.
+Run `build --prepared ... --rig-package ...` into another new folder. It verifies source/analysis and asset fingerprints, builds the candidate and invokes the actual built `@z7589xxz758/yuragi` validateModel (package identity and required capabilities checked; actual runtime version recorded) via Node.js. The CLI requires both arguments; missing/invalid runtime or altered prepared assets must fail. Python callers may prepare candidates without runtime, but these have no playable preview and modelValidation is not-run.
 
 Runtime playback uses the unchanged full source texture. Parts, supplements and pointerGroups do not imply independent texture layers. No CDN or API key is needed. Skill, Python/Pillow, Node and local Yuragi runtime installations are separate.
 
@@ -56,6 +56,6 @@ Keep existing valid models and source art. The agent saves observed quality find
 
 ## Integrate
 
-Vue uses `@yuragi/rig/vue`; React separately imports `@yuragi/rig/react`. Keep strict types, SSR-safe imports, mount-time creation, cancellable loading, fallback, reduced motion and idempotent cleanup. Keep per-frame state in engine; snapshots are low frequency.
+Vue uses `@z7589xxz758/yuragi/vue`; React separately imports `@z7589xxz758/yuragi/react`. Keep strict types, SSR-safe imports, mount-time creation, cancellable loading, fallback, reduced motion and idempotent cleanup. Keep per-frame state in engine; snapshots are low frequency.
 
 Call setPointer before setGaze for combined head/body and independent eyes; lookX/lookY parameter tracks reclaim gaze following. Preserve numeric deformation baselines when changing library behavior and run typecheck/tests/build plus browser QA. Do not promise npm publication, hosted API, MCP/Plugin, universal auto-rigging, IK or automatic completion of layered artwork.

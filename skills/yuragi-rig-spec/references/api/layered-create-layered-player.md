@@ -2,7 +2,7 @@
 
 Create a v2 player, load atlases and preserve authored attachment order.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

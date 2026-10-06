@@ -2,7 +2,7 @@
 
 Write the simulated pose into mesh positions and return deformation diagnostics.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

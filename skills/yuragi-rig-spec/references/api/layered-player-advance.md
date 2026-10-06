@@ -2,7 +2,7 @@
 
 Advance a manual player using shared fixed steps and render the result.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

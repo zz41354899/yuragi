@@ -2,7 +2,7 @@
 
 Convert source-normalized coordinates to canvas coordinates with 12% padding.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

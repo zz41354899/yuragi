@@ -2,9 +2,9 @@ export type Framework = 'vue' | 'react'
 export const integrationExamples: Record<Framework, string> = {
   vue: `<script setup lang="ts">
 import { ref, shallowRef } from 'vue'
-import { type RigPlayer, type RigSnapshot } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter } from '@yuragi/rig/vue'
+import { type RigPlayer, type RigSnapshot } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
 
 const model = createMireaModel('/models/mirea/texture.png')
 const player = shallowRef<RigPlayer>()
@@ -46,9 +46,9 @@ function followPointer(event: PointerEvent) {
 </template>`,
   react: `'use client'
 import { useRef, useState, type PointerEvent } from 'react'
-import { type RigSnapshot } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter, type YuragiCharacterHandle } from '@yuragi/rig/react'
+import { type RigSnapshot } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter, type YuragiCharacterHandle } from '@z7589xxz758/yuragi/react'
 
 export function Character() {
   const [model] = useState(() => createMireaModel('/models/mirea/texture.png'))
@@ -90,9 +90,9 @@ export function Character() {
 export const handleExamples: Record<Framework, string> = {
   vue: `<script setup lang="ts">
 import { shallowRef } from 'vue'
-import { type RigPlayer } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter } from '@yuragi/rig/vue'
+import { type RigPlayer } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
 
 type CharacterHandle = { getPlayer(): RigPlayer | undefined }
 const character = shallowRef<CharacterHandle>()
@@ -105,8 +105,8 @@ function neutral() { character.value?.getPlayer()?.reset() }
   <button @click="neutral">回到中立姿態</button>
 </template>`,
   react: `import { useRef, useState } from 'react'
-import { createMireaModel } from '@yuragi/rig/mirea'
-import { YuragiCharacter, type YuragiCharacterHandle } from '@yuragi/rig/react'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
+import { YuragiCharacter, type YuragiCharacterHandle } from '@z7589xxz758/yuragi/react'
 
 export function Character() {
   const [model] = useState(() => createMireaModel('/models/mirea/texture.png'))

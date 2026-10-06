@@ -123,7 +123,7 @@ def run(source, analysis_path, output, rig_package, feedback=None, manifest_path
     if not 0 <= port <= 65535: raise ValueError('Port must be 0..65535')
     if studio and not (rig_package/'dist/studio/cli.js').is_file(): raise ValueError('Runtime does not include Studio; rebuild/install the current package')
     metadata = json.loads((rig_package/'package.json').read_text(encoding='utf-8'))
-    if metadata.get('name') != '@yuragi/rig' or not isinstance(metadata.get('version'), str): raise ValueError('A built @yuragi/rig package is required')
+    if metadata.get('name') != '@z7589xxz758/yuragi' or not isinstance(metadata.get('version'), str): raise ValueError('A built @z7589xxz758/yuragi package is required')
     validator = 'validateLayeredModel' if manifest_path else 'validateModel'
     subprocess.run(['node', '--input-type=module', '-e', "const runtime = await import(process.argv[1]); if(typeof runtime[process.argv[2]] !== 'function') throw new Error('Runtime validator unavailable')", (rig_package/'dist/index.js').as_uri(), validator], check=True, capture_output=True, text=True, timeout=30)
     diagnosis = diagnose(source, analysis_path, output/'diagnostics', feedback, manifest_path)

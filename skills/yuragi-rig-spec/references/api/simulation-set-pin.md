@@ -2,7 +2,7 @@
 
 Patch an existing pin’s position/dynamics; this setter does not rename, reparent or add pins.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

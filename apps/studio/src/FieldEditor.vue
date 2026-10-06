@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Json, Path } from '../../../packages/rig/src/studio/document'
-import type { RigModel } from '@yuragi/rig'
+import type { RigModel } from '@z7589xxz758/yuragi'
 import DropdownSelect from '../../site/src/components/DropdownSelect.vue'
 import { arrayItem, optionalFields, choices } from './schema'
 const props = defineProps<{ value: Json; path: Path; model: RigModel; readonly?: boolean; depth?: number }>()

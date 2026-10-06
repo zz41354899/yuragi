@@ -2,7 +2,7 @@
 
 Shared-surface component with artwork fallback, reduced motion and unmount cleanup.
 
-Import: `@yuragi/rig/vue`
+Import: `@z7589xxz758/yuragi/vue`
 
 ## Signature
 
@@ -26,8 +26,8 @@ Props: model (required), autoplay=true, reducedMotion="respect", alt="Animated i
 
 ```vue
 <script setup lang="ts">
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import type { RigModel } from '@z7589xxz758/yuragi'
 defineProps<{ model: RigModel }>()
 </script>
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
-import type { RigPlayer, RigSnapshot } from '@yuragi/rig'
+import type { RigPlayer, RigSnapshot } from '@z7589xxz758/yuragi'
 import CharacterStage from './CharacterStage.vue'
 import { createMireaDemoModel } from '../models/mirea'
 import { useText } from '../i18n'

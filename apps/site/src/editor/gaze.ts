@@ -1,4 +1,4 @@
-import type { FaceFeatures, Vec2 } from '@yuragi/rig'
+import type { FaceFeatures, Vec2 } from '@z7589xxz758/yuragi'
 
 /** Shared source-space pointer mapping for the website and local Studio. */
 export function pointerGaze(pointer: Vec2, box: {left:number;top:number;width:number;height:number}, face: FaceFeatures, offset: Vec2 = [0,0]): Vec2 {

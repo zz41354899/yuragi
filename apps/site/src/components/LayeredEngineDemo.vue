@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
-import { YuragiLayeredCharacter } from '@yuragi/rig/vue'
-import { validateLayeredModel, type LayeredPlayer, type LayeredSnapshot } from '@yuragi/rig'
+import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/vue'
+import { validateLayeredModel, type LayeredPlayer, type LayeredSnapshot } from '@z7589xxz758/yuragi'
 import authored from '../models/layered-mirea.json'
 import { useText } from '../i18n'
 const { tr } = useText()

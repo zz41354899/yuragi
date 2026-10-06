@@ -2,7 +2,7 @@
 
 Create a framework-independent shared-surface simulation; the caller owns time and rendering.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

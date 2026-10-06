@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
-import { createPlayer, createLayeredPlayer, reviewPoses } from '@yuragi/rig'
-import type { RigPlayer, LayeredPlayer, RigSnapshot, LayeredSnapshot, Vec2 } from '@yuragi/rig'
+import { createPlayer, createLayeredPlayer, reviewPoses } from '@z7589xxz758/yuragi'
+import type { RigPlayer, LayeredPlayer, RigSnapshot, LayeredSnapshot, Vec2 } from '@z7589xxz758/yuragi'
 import type { StudioModel } from '../../../packages/rig/src/studio/document'
 import type { MissingAssetsReport } from '../../../packages/rig/src/studio/materials'
 import DropdownSelect from '../../site/src/components/DropdownSelect.vue'

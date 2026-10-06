@@ -1,4 +1,4 @@
-import type { RigModel, Vec2 } from '@yuragi/rig'
+import type { RigModel, Vec2 } from '@z7589xxz758/yuragi'
 import type { Path } from '../../../packages/rig/src/studio/document'
 export interface Handle { id: string; path: Path; point: Vec2; pin?: number }
 export interface Outline { id: string; path: Path; points: Vec2[]; closed: boolean }

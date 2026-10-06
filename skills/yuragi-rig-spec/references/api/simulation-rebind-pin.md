@@ -2,7 +2,7 @@
 
 Recompute pin weights for a mesh; keep this low-level operation consistent with model settings.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

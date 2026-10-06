@@ -2,7 +2,7 @@
 
 Merge motion settings; omitted fields retain their values and validation failures do not partially commit.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

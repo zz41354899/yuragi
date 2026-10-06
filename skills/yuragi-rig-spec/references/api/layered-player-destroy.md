@@ -2,7 +2,7 @@
 
 Stop playback, detach listeners and release GPU resources; repeated calls are safe.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

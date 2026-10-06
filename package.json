@@ -12,10 +12,10 @@
   "scripts": {
     "dev": "npm run dev --workspace @yuragi/site",
     "build": "npm run build:lib && npm run build --workspace @yuragi/site",
-    "build:lib": "node scripts/sync-mirea-model.mjs && npm run build --workspace @yuragi/rig && npm run build --workspace @yuragi/studio-app",
+    "build:lib": "node scripts/sync-mirea-model.mjs && npm run build --workspace @z7589xxz758/yuragi && npm run build --workspace @yuragi/studio-app",
     "typecheck": "npm run typecheck --workspaces",
     "test": "npm run test --workspaces --if-present",
-    "pack:lib": "npm run build:lib && npm pack --workspace @yuragi/rig --pack-destination artifacts",
+    "pack:lib": "npm run build:lib && npm pack --workspace @z7589xxz758/yuragi --pack-destination artifacts",
     "preview": "npm run preview --workspace @yuragi/site",
     "sync:skills": "node scripts/sync-skills.mjs",
     "sync:api": "node scripts/generate-api.mjs"

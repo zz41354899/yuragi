@@ -2,7 +2,7 @@
 
 Stop the animation loop and retain the current pose.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -1,4 +1,4 @@
-import type { DeformationPart, RigMeshSnapshot, RigModel, Vec2 } from '@yuragi/rig'
+import type { DeformationPart, RigMeshSnapshot, RigModel, Vec2 } from '@z7589xxz758/yuragi'
 import { meshPoint } from './mesh-view'
 
 export interface RigRegion { id: string; name: string; polygon: Vec2[]; color: string }

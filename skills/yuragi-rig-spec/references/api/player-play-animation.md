@@ -2,7 +2,7 @@
 
 Play a validated parameter, gaze-strength or motion-weight clip.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

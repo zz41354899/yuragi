@@ -4,8 +4,8 @@ const { tr, locale } = useText()
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { createElement, StrictMode, useMemo } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
-import { YuragiCharacter } from '@yuragi/rig/react'
-import type { RigPlayer } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/react'
+import type { RigPlayer } from '@z7589xxz758/yuragi'
 import { createMireaDemoModel } from '../models/mirea'
 const host = ref<HTMLDivElement>()
 const status = ref('載入 React 範例…')

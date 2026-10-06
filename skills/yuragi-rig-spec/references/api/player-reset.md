@@ -2,7 +2,7 @@
 
 Restore neutral state while retaining edited model settings.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -1,14 +1,14 @@
 {
   "version": "0.2.0",
   "modules": [
-    "@yuragi/rig",
-    "@yuragi/rig/vue",
-    "@yuragi/rig/react",
-    "@yuragi/rig/mirea"
+    "@z7589xxz758/yuragi",
+    "@z7589xxz758/yuragi/vue",
+    "@z7589xxz758/yuragi/react",
+    "@z7589xxz758/yuragi/mirea"
   ],
   "resources": [
     {
-      "module": "@yuragi/rig/assets/*",
+      "module": "@z7589xxz758/yuragi/assets/*",
       "target": "./assets/*"
     }
   ],
@@ -99,7 +99,7 @@
       "id": "animation/sample-curve",
       "name": "sampleCurve",
       "group": "animation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "取樣線性、階梯或 cubic-bezier 曲線。",
         "en": "Sample a linear, step or cubic-bezier animation curve.",
@@ -145,7 +145,7 @@
       "id": "animation/sample-track",
       "name": "sampleTrack",
       "group": "animation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "依毫秒時間取樣一條已驗證動畫軌。",
         "en": "Sample a validated animation track at a time in milliseconds.",
@@ -190,7 +190,7 @@
       "id": "animation/validate-animation",
       "name": "validateAnimation",
       "group": "animation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "驗證動畫軌與關鍵影格；眼神強度軌需有已審核的 face。",
         "en": "Validate tracks and keyframes. Gaze-strength tracks require reviewed face features.",
@@ -236,7 +236,7 @@
       "id": "characters/create-mirea-model",
       "name": "createMireaModel",
       "group": "characters",
-      "module": "@yuragi/rig/mirea",
+      "module": "@z7589xxz758/yuragi/mirea",
       "summary": {
         "zh-TW": "從獨立角色入口取得內附海月綁定；圖片必須符合原模型。",
         "en": "Create the bundled Mirea bindings through the separate character entry. The image must match the authored rig.",
@@ -269,7 +269,7 @@
       "id": "core/constrain-shared-surface",
       "name": "constrainSharedSurface",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "依三角形位移梯度降低整體動態，直接修改 positions。",
         "en": "Limit triangle displacement gradients by scaling the positions buffer in place.",
@@ -319,7 +319,7 @@
       "id": "core/create-player",
       "name": "createPlayer",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "建立共享網格播放器；驗證模型並載入原圖後回傳 Promise。",
         "en": "Create a shared-surface player after model validation and source-image loading.",
@@ -358,7 +358,7 @@
       "id": "core/create-simulation",
       "name": "createSimulation",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "建立不依賴框架的共享網格模擬器；自行管理時間與渲染。",
         "en": "Create a framework-independent shared-surface simulation; the caller owns time and rendering.",
@@ -397,7 +397,7 @@
       "id": "core/face-review-poses",
       "name": "faceReviewPoses",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "取得分層眼嘴的固定測試定義；需依模型素材篩選。",
         "en": "Return fixed face review definitions; filter by available authored assets.",
@@ -425,7 +425,7 @@
       "id": "core/fixed-steps",
       "name": "fixedSteps",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "將 0–60000 毫秒拆成固定步進與最後餘數。",
         "en": "Split 0–60000 milliseconds into fixed steps and a final remainder.",
@@ -474,7 +474,7 @@
       "id": "core/to-canvas",
       "name": "toCanvas",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "將原圖 0–1 座標轉為含 12% 留白的 canvas 0–1 座標。",
         "en": "Convert source-normalized coordinates to canvas coordinates with 12% padding.",
@@ -513,7 +513,7 @@
       "id": "core/validate-model",
       "name": "validateModel",
       "group": "core",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "驗證 v1 模型；成功會縮窄 unknown，失敗會拋錯。",
         "en": "Assert the complete v1 model contract, narrow unknown on success and throw on failure.",
@@ -552,7 +552,7 @@
       "id": "layered-player/advance",
       "name": "advance",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "以共用固定步進更新手動播放器並繪製。",
@@ -592,7 +592,7 @@
       "id": "layered-player/destroy",
       "name": "destroy",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "取消播放、移除監聽並釋放 GPU 資源；可重複呼叫。",
@@ -621,7 +621,7 @@
       "id": "layered-player/get-mesh-snapshot",
       "name": "getMeshSnapshot",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "按需複製最後提交的網格；適合低頻檢視，避免每幀大量複製。",
@@ -650,7 +650,7 @@
       "id": "layered-player/get-model",
       "name": "getModel",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
@@ -679,7 +679,7 @@
       "id": "layered-player/get-snapshot",
       "name": "getSnapshot",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
@@ -708,7 +708,7 @@
       "id": "layered-player/pause",
       "name": "pause",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "停止動畫迴圈並保留目前姿態。",
@@ -737,7 +737,7 @@
       "id": "layered-player/play",
       "name": "play",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
@@ -766,7 +766,7 @@
       "id": "layered-player/reset",
       "name": "reset",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
@@ -795,7 +795,7 @@
       "id": "layered-player/set-face",
       "name": "setFace",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
@@ -835,7 +835,7 @@
       "id": "layered-player/set-gaze",
       "name": "setGaze",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
@@ -885,7 +885,7 @@
       "id": "layered-player/set-pointer",
       "name": "setPointer",
       "group": "layered-player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredPlayer",
       "summary": {
         "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
@@ -935,7 +935,7 @@
       "id": "layered-simulation-face/eye-for",
       "name": "eyeFor",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "查詢附件所屬的眼睛設定。",
@@ -974,7 +974,7 @@
       "id": "layered-simulation-face/layer",
       "name": "layer",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "取得眼嘴附件的可見度、裁切與虹膜位移。",
@@ -1024,7 +1024,7 @@
       "id": "layered-simulation-face/reset",
       "name": "reset",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
@@ -1053,7 +1053,7 @@
       "id": "layered-simulation-face/set-face",
       "name": "setFace",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
@@ -1093,7 +1093,7 @@
       "id": "layered-simulation-face/set-gaze",
       "name": "setGaze",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
@@ -1143,7 +1143,7 @@
       "id": "layered-simulation-face/snapshot",
       "name": "snapshot",
       "group": "layered-simulation-face",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation.face",
       "summary": {
         "zh-TW": "取得目前眼嘴與眼神狀態；減少動態時回傳中立值。",
@@ -1183,7 +1183,7 @@
       "id": "layered-simulation/get-pointer",
       "name": "getPointer",
       "group": "layered-simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation",
       "summary": {
         "zh-TW": "取得 v2 目前設定的游標目標。",
@@ -1210,7 +1210,7 @@
       "id": "layered-simulation/reset",
       "name": "reset",
       "group": "layered-simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation",
       "summary": {
         "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
@@ -1239,7 +1239,7 @@
       "id": "layered-simulation/set-face",
       "name": "setFace",
       "group": "layered-simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation",
       "summary": {
         "zh-TW": "設定 v2 眼睛開合、嘴型與開合；缺素材或無效值會拋錯。",
@@ -1279,7 +1279,7 @@
       "id": "layered-simulation/set-pointer",
       "name": "setPointer",
       "group": "layered-simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation",
       "summary": {
         "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
@@ -1329,7 +1329,7 @@
       "id": "layered-simulation/update",
       "name": "update",
       "group": "layered-simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "layeredSimulation",
       "summary": {
         "zh-TW": "更新 v2 節點矩陣與變形網格；時間為毫秒，回傳頂點是否改變。",
@@ -1390,7 +1390,7 @@
       "id": "layered/create-layered-player",
       "name": "createLayeredPlayer",
       "group": "layered",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "建立 v2 分層播放器，載入圖集並保留附件順序。",
         "en": "Create a v2 player, load atlases and preserve authored attachment order.",
@@ -1425,7 +1425,7 @@
       "id": "layered/create-layered-simulation",
       "name": "createLayeredSimulation",
       "group": "layered",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "編譯 v2 節點、權重與批次；自行呼叫 update 更新。",
         "en": "Compile v2 nodes, sparse weights and consecutive draw batches; call update yourself.",
@@ -1460,7 +1460,7 @@
       "id": "layered/validate-layered-model",
       "name": "validateLayeredModel",
       "group": "layered",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "summary": {
         "zh-TW": "驗證 v2 圖集、父子節點、权重、共享接點與附件資料。",
         "en": "Assert v2 atlases, parent order, normalized weights, shared joints and attachments.",
@@ -1495,7 +1495,7 @@
       "id": "player/advance",
       "name": "advance",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "以共用固定步進更新手動播放器並繪製。",
@@ -1535,7 +1535,7 @@
       "id": "player/destroy",
       "name": "destroy",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "取消播放、移除監聽並釋放 GPU 資源；可重複呼叫。",
@@ -1564,7 +1564,7 @@
       "id": "player/get-mesh-snapshot",
       "name": "getMeshSnapshot",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "按需複製最後提交的網格；適合低頻檢視，避免每幀大量複製。",
@@ -1593,7 +1593,7 @@
       "id": "player/get-model",
       "name": "getModel",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "取得目前模型的深層獨立副本；圖片網址仍需由整合專案處理。",
@@ -1622,7 +1622,7 @@
       "id": "player/get-snapshot",
       "name": "getSnapshot",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "取得目前播放狀態及診斷；不是每幀渲染時鐘。",
@@ -1651,7 +1651,7 @@
       "id": "player/pause",
       "name": "pause",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "停止動畫迴圈並保留目前姿態。",
@@ -1680,7 +1680,7 @@
       "id": "player/pause-animation",
       "name": "pauseAnimation",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "暫停片段時間軸；與暫停播放器迴圈分開。",
@@ -1709,7 +1709,7 @@
       "id": "player/play",
       "name": "play",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "開始或恢復播放，尊重 reducedMotion 設定。",
@@ -1738,7 +1738,7 @@
       "id": "player/play-animation",
       "name": "playAnimation",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "播放已驗證的參數、眼神強度或動態權重動畫。",
@@ -1778,7 +1778,7 @@
       "id": "player/reset",
       "name": "reset",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
@@ -1807,7 +1807,7 @@
       "id": "player/seek-animation",
       "name": "seekAnimation",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "以毫秒定位目前片段，取樣後更新姿態。",
@@ -1847,7 +1847,7 @@
       "id": "player/set-gaze",
       "name": "setGaze",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "設定獨立眼神，每軸 −1…1；需已量測的 eyes，不改變頭身。",
@@ -1897,7 +1897,7 @@
       "id": "player/set-gaze-strength",
       "name": "setGazeStrength",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "設定眼神強度 0–1，預設 1；沒有 face 時不可使用。",
@@ -1937,7 +1937,7 @@
       "id": "player/set-motion",
       "name": "setMotion",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "合併更新動態設定；省略欄位保留原值，驗證失敗不部分更新。",
@@ -1977,7 +1977,7 @@
       "id": "player/set-parameter",
       "name": "setParameter",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "設定 lookX／lookY（−30…30）、bodyX（−10…10）或 wave（0…1）。",
@@ -2027,7 +2027,7 @@
       "id": "player/set-part",
       "name": "setPart",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "修改既有柔性部件；播放器會在幾何欄位修改後重新計算綁定。",
@@ -2077,7 +2077,7 @@
       "id": "player/set-pin",
       "name": "setPin",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "修改現有控制點座標與動態欄位；不能透過此方法改名、改父節點或新增。",
@@ -2127,7 +2127,7 @@
       "id": "player/set-pointer",
       "name": "setPointer",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
@@ -2177,7 +2177,7 @@
       "id": "player/set-tracking",
       "name": "setTracking",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "合併追蹤慣性設定；設定需符合 TrackingSettings 數值範圍。",
@@ -2217,7 +2217,7 @@
       "id": "player/stop-animation",
       "name": "stopAnimation",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "停止並清除片段；不自動還原片段已修改的數值。",
@@ -2246,7 +2246,7 @@
       "id": "player/wave",
       "name": "wave",
       "group": "player",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "player",
       "summary": {
         "zh-TW": "觸發共享網格的揮手進度；需符合可見自由手臂的素材與綁定。",
@@ -2275,7 +2275,7 @@
       "id": "react/yuragi-character",
       "name": "YuragiCharacter",
       "group": "react",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "summary": {
         "zh-TW": "Vue／React 共享網格元件；提供原畫備援、減少動態與卸載清理。",
         "en": "Shared-surface component with artwork fallback, reduced motion and unmount cleanup.",
@@ -2289,7 +2289,7 @@
         "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
         "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
       },
-      "example": "import { YuragiCharacter } from '@yuragi/rig/react'\nimport type { RigModel } from '@yuragi/rig'\nexport function Example({ model }: { model: RigModel }) {\n  return <YuragiCharacter model={model} alt=\"Character\" />\n}",
+      "example": "import { YuragiCharacter } from '@z7589xxz758/yuragi/react'\nimport type { RigModel } from '@z7589xxz758/yuragi'\nexport function Example({ model }: { model: RigModel }) {\n  return <YuragiCharacter model={model} alt=\"Character\" />\n}",
       "related": [
         "vue/yuragi-character",
         "react/yuragi-character-get-player",
@@ -2301,7 +2301,7 @@
       "id": "react/yuragi-character-get-player",
       "name": "getPlayer",
       "group": "react",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "owner": "reactHandle",
       "summary": {
         "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
@@ -2329,7 +2329,7 @@
       "id": "react/yuragi-layered-character",
       "name": "YuragiLayeredCharacter",
       "group": "react",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "summary": {
         "zh-TW": "Vue／React v2 分層元件；支援取消載入、原畫備援與資源清理。",
         "en": "Layered v2 component with cancellable loading, artwork fallback and cleanup.",
@@ -2343,7 +2343,7 @@
         "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
         "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
       },
-      "example": "import { YuragiLayeredCharacter } from '@yuragi/rig/react'\nimport type { LayeredModel } from '@yuragi/rig'\nexport function Example({ model }: { model: LayeredModel }) {\n  return <YuragiLayeredCharacter model={model} alt=\"Character\" />\n}",
+      "example": "import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/react'\nimport type { LayeredModel } from '@z7589xxz758/yuragi'\nexport function Example({ model }: { model: LayeredModel }) {\n  return <YuragiLayeredCharacter model={model} alt=\"Character\" />\n}",
       "related": [
         "vue/yuragi-layered-character",
         "react/yuragi-character",
@@ -2355,7 +2355,7 @@
       "id": "react/yuragi-layered-character-get-player",
       "name": "getPlayer",
       "group": "react",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "owner": "reactHandle",
       "summary": {
         "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
@@ -2383,7 +2383,7 @@
       "id": "simulation-accessories/bind",
       "name": "bind",
       "group": "simulation-accessories",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.accessories",
       "summary": {
         "zh-TW": "計算配件的稀疏網格綁定。",
@@ -2422,7 +2422,7 @@
       "id": "simulation-accessories/displacement",
       "name": "displacement",
       "group": "simulation-accessories",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.accessories",
       "summary": {
         "zh-TW": "取樣指定頂點的配件位移。",
@@ -2490,7 +2490,7 @@
       "id": "simulation-accessories/update",
       "name": "update",
       "group": "simulation-accessories",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.accessories",
       "summary": {
         "zh-TW": "更新配件引擎狀態。",
@@ -2560,7 +2560,7 @@
       "id": "simulation-hair/bind",
       "name": "bind",
       "group": "simulation-hair",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.hair",
       "summary": {
         "zh-TW": "計算髮絲的稀疏網格綁定。",
@@ -2610,7 +2610,7 @@
       "id": "simulation-hair/displacement",
       "name": "displacement",
       "group": "simulation-hair",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.hair",
       "summary": {
         "zh-TW": "取樣指定頂點的髮絲位移。",
@@ -2658,7 +2658,7 @@
       "id": "simulation-hair/update",
       "name": "update",
       "group": "simulation-hair",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.hair",
       "summary": {
         "zh-TW": "更新髮絲引擎狀態。",
@@ -2728,7 +2728,7 @@
       "id": "simulation-parts/bind",
       "name": "bind",
       "group": "simulation-parts",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.parts",
       "summary": {
         "zh-TW": "計算柔性部件的稀疏網格綁定。",
@@ -2768,7 +2768,7 @@
       "id": "simulation-parts/displacement",
       "name": "displacement",
       "group": "simulation-parts",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.parts",
       "summary": {
         "zh-TW": "取樣指定頂點的柔性部件位移。",
@@ -2837,7 +2837,7 @@
       "id": "simulation-parts/reset",
       "name": "reset",
       "group": "simulation-parts",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.parts",
       "summary": {
         "zh-TW": "清除柔性部件的彈簧或追蹤狀態。",
@@ -2866,7 +2866,7 @@
       "id": "simulation-parts/update",
       "name": "update",
       "group": "simulation-parts",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.parts",
       "summary": {
         "zh-TW": "更新柔性部件引擎狀態。",
@@ -2958,7 +2958,7 @@
       "id": "simulation-pointer-groups/apply",
       "name": "apply",
       "group": "simulation-pointer-groups",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.pointerGroups",
       "summary": {
         "zh-TW": "對原圖頂點套用共同變換。",
@@ -3025,7 +3025,7 @@
       "id": "simulation-pointer-groups/bind",
       "name": "bind",
       "group": "simulation-pointer-groups",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.pointerGroups",
       "summary": {
         "zh-TW": "計算共同變換的稀疏網格綁定。",
@@ -3065,7 +3065,7 @@
       "id": "simulation-pointer-groups/reset",
       "name": "reset",
       "group": "simulation-pointer-groups",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.pointerGroups",
       "summary": {
         "zh-TW": "清除共同變換的彈簧或追蹤狀態。",
@@ -3094,7 +3094,7 @@
       "id": "simulation-pointer-groups/update",
       "name": "update",
       "group": "simulation-pointer-groups",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation.pointerGroups",
       "summary": {
         "zh-TW": "更新共同變換引擎狀態。",
@@ -3154,7 +3154,7 @@
       "id": "simulation/build-continuous-mesh",
       "name": "buildContinuousMesh",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "建立原圖像素區域的連續三角網格與初始綁定。",
@@ -3217,7 +3217,7 @@
       "id": "simulation/rebind-pin",
       "name": "rebindPin",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "重新計算指定網格的控制點權重；低階操作需與模型設定一致。",
@@ -3277,7 +3277,7 @@
       "id": "simulation/reset",
       "name": "reset",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "回到中立狀態，保留編輯過的模型設定。",
@@ -3306,7 +3306,7 @@
       "id": "simulation/set-motion",
       "name": "setMotion",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "合併更新動態設定；省略欄位保留原值，驗證失敗不部分更新。",
@@ -3346,7 +3346,7 @@
       "id": "simulation/set-parameter",
       "name": "setParameter",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "設定 lookX／lookY（−30…30）、bodyX（−10…10）或 wave（0…1）。",
@@ -3396,7 +3396,7 @@
       "id": "simulation/set-part",
       "name": "setPart",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "修改既有柔性部件；播放器會在幾何欄位修改後重新計算綁定。",
@@ -3446,7 +3446,7 @@
       "id": "simulation/set-pin",
       "name": "setPin",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "修改現有控制點座標與動態欄位；不能透過此方法改名、改父節點或新增。",
@@ -3496,7 +3496,7 @@
       "id": "simulation/set-pointer",
       "name": "setPointer",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "設定舞台中心的相對游標；一般每軸 −0.5…0.5，X 右、Y 下。",
@@ -3546,7 +3546,7 @@
       "id": "simulation/set-tracking",
       "name": "setTracking",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "合併追蹤慣性設定；設定需符合 TrackingSettings 數值範圍。",
@@ -3586,7 +3586,7 @@
       "id": "simulation/update-pins",
       "name": "updatePins",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "依經過時間與時間差更新參數、控制點及彈簧狀態；單位為毫秒。",
@@ -3636,7 +3636,7 @@
       "id": "simulation/update-vertices",
       "name": "updateVertices",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "將目前模擬狀態寫入網格 positions，並回傳變形保護診斷。",
@@ -3697,7 +3697,7 @@
       "id": "simulation/wave",
       "name": "wave",
       "group": "simulation",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "owner": "simulation",
       "summary": {
         "zh-TW": "觸發共享網格的揮手進度；需符合可見自由手臂的素材與綁定。",
@@ -3738,7 +3738,7 @@
       "id": "vue/yuragi-character",
       "name": "YuragiCharacter",
       "group": "vue",
-      "module": "@yuragi/rig/vue",
+      "module": "@z7589xxz758/yuragi/vue",
       "summary": {
         "zh-TW": "Vue／React 共享網格元件；提供原畫備援、減少動態與卸載清理。",
         "en": "Shared-surface component with artwork fallback, reduced motion and unmount cleanup.",
@@ -3752,7 +3752,7 @@
         "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
         "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
       },
-      "example": "<script setup lang=\"ts\">\nimport { YuragiCharacter } from '@yuragi/rig/vue'\nimport type { RigModel } from '@yuragi/rig'\ndefineProps<{ model: RigModel }>()\n</script>\n<template>\n  <YuragiCharacter :model=\"model\" alt=\"Character\" />\n</template>",
+      "example": "<script setup lang=\"ts\">\nimport { YuragiCharacter } from '@z7589xxz758/yuragi/vue'\nimport type { RigModel } from '@z7589xxz758/yuragi'\ndefineProps<{ model: RigModel }>()\n</script>\n<template>\n  <YuragiCharacter :model=\"model\" alt=\"Character\" />\n</template>",
       "related": [
         "vue/yuragi-character-get-player",
         "vue/yuragi-layered-character",
@@ -3764,7 +3764,7 @@
       "id": "vue/yuragi-character-get-player",
       "name": "getPlayer",
       "group": "vue",
-      "module": "@yuragi/rig/vue",
+      "module": "@z7589xxz758/yuragi/vue",
       "owner": "vueHandle",
       "summary": {
         "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
@@ -3792,7 +3792,7 @@
       "id": "vue/yuragi-layered-character",
       "name": "YuragiLayeredCharacter",
       "group": "vue",
-      "module": "@yuragi/rig/vue",
+      "module": "@z7589xxz758/yuragi/vue",
       "summary": {
         "zh-TW": "Vue／React v2 分層元件；支援取消載入、原畫備援與資源清理。",
         "en": "Layered v2 component with cancellable loading, artwork fallback and cleanup.",
@@ -3806,7 +3806,7 @@
         "en": "Props: model (required), autoplay=true, reducedMotion=\"respect\", alt=\"Animated illustration\". Vue emits ready(player), error(Error), frame(snapshot); expose getPlayer(). React: onReady, onError, onFrame; ref.current?.getPlayer(); className and style are optional. Loading is cancellable; model/reducedMotion changes recreate the player; unmount destroys it. Artwork is shown while loading or on WebGL failure.",
         "ja": "model は必須。autoplay=true、reducedMotion=\"respect\"、alt=\"Animated illustration\"。Vue イベント：ready(player)・error(Error)・frame(snapshot)、ref に getPlayer()。React：onReady/onError/onFrame、ref.current?.getPlayer()、className/style。読み込み取消・モデル変更の再生成・終了時の解放に対応。読み込み中・WebGL 失敗時は原画を表示。"
       },
-      "example": "<script setup lang=\"ts\">\nimport { YuragiLayeredCharacter } from '@yuragi/rig/vue'\nimport type { LayeredModel } from '@yuragi/rig'\ndefineProps<{ model: LayeredModel }>()\n</script>\n<template>\n  <YuragiLayeredCharacter :model=\"model\" alt=\"Character\" />\n</template>",
+      "example": "<script setup lang=\"ts\">\nimport { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/vue'\nimport type { LayeredModel } from '@z7589xxz758/yuragi'\ndefineProps<{ model: LayeredModel }>()\n</script>\n<template>\n  <YuragiLayeredCharacter :model=\"model\" alt=\"Character\" />\n</template>",
       "related": [
         "vue/yuragi-character",
         "vue/yuragi-character-get-player",
@@ -3818,7 +3818,7 @@
       "id": "vue/yuragi-layered-character-get-player",
       "name": "getPlayer",
       "group": "vue",
-      "module": "@yuragi/rig/vue",
+      "module": "@z7589xxz758/yuragi/vue",
       "owner": "vueHandle",
       "summary": {
         "zh-TW": "取得已就緒的播放器；載入前或卸載後為 undefined。",
@@ -3846,289 +3846,289 @@
   "types": [
     {
       "name": "CANVAS_PADDING",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export const CANVAS_PADDING: 0.12",
       "description": "Canvas overscan on each edge: 0.12 (12%)."
     },
     {
       "name": "REVIEW_STEP",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export const REVIEW_STEP: number",
       "description": "Shared fixed step: 1000 / 60 milliseconds."
     },
     {
       "name": "reviewPoses",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export const reviewPoses: ReviewPose[]",
       "description": "Shared pose definitions: source-centered pointer values and millisecond sequences; generating images does not establish visual acceptance."
     },
     {
       "name": "ReviewPose",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface ReviewPose { id: string; sequence: { pointer: Vec2; milliseconds: number; face?: LayeredFacePose; gaze?: Vec2 }[] }",
       "description": ""
     },
     {
       "name": "Vec2",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export type Vec2 = [number, number]",
       "description": ""
     },
     {
       "name": "ParameterName",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export type ParameterName = 'lookX' | 'lookY' | 'bodyX' | 'wave'",
       "description": ""
     },
     {
       "name": "EyeFeature",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface EyeFeature {\n  id: 'left' | 'right'\n  center: Vec2\n  radius: Vec2\n  iris: Vec2\n  irisRadius: Vec2\n  travel: Vec2\n  angle: number\n  sclera: [number, number, number]\n}",
       "description": "Reviewed source-image geometry for bounded pupil translation."
     },
     {
       "name": "FaceFeatures",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface FaceFeatures { eyes: [EyeFeature, EyeFeature] }",
       "description": ""
     },
     {
       "name": "AnimationCurve",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export type AnimationCurve = 'linear' | 'step' | [number, number, number, number]",
       "description": ""
     },
     {
       "name": "Keyframe",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface Keyframe { time: number; value: number; curve?: AnimationCurve }",
       "description": ""
     },
     {
       "name": "AnimationTrack",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export type AnimationTrack = { target: 'parameter'; name: ParameterName; keys: Keyframe[] }\n  | { target: 'gaze'; name: 'strength'; keys: Keyframe[] }\n  | { target: 'motion'; name: 'weight'; keys: Keyframe[] }",
       "description": ""
     },
     {
       "name": "AnimationClip",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface AnimationClip { id: string; duration: number; loop?: boolean; tracks: AnimationTrack[] }",
       "description": ""
     },
     {
       "name": "AnimationSnapshot",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface AnimationSnapshot { id: string; time: number; duration: number; playing: boolean }",
       "description": ""
     },
     {
       "name": "PinSpec",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface PinSpec {\n  name: string\n  type: 'fixed' | 'joint' | 'spring'\n  parent?: string\n  x: number\n  y: number\n  radius: number\n  stiffness?: number\n  damping?: number\n  wind?: number\n}",
       "description": ""
     },
     {
       "name": "RigPin",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigPin extends PinSpec { px: number; py: number; vx: number; vy: number }",
       "description": ""
     },
     {
       "name": "HairChain",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface HairChain { id: string; points: [Vec2, Vec2, Vec2]; phase: number; radius: number; gain: number }",
       "description": ""
     },
     {
       "name": "AccessoryChain",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface AccessoryChain {\n  id: string; root: Vec2; tip: Vec2; radius: number; angle: number\n  stiffness: number; damping: number; phase: number\n}",
       "description": ""
     },
     {
       "name": "MotionSettings",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface MotionSettings {\n  /** Blend the complete geometry from the original artwork (0) to full motion (1). Defaults to 1. */\n  weight?: number\n  sway: number\n  speed: number\n  hair: number\n  accessories: number\n  follow: number\n  /** Optional strength for polygon-bound parts; defaults to 1. */\n  parts?: number\n  /** Gain for authored pointer motion groups; defaults to 1. Applied before rotation. */\n  layers?: number\n}",
       "description": ""
     },
     {
       "name": "DeformationPart",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface DeformationPart {\n  id: string\n  name?: string\n  kind: 'hair' | 'cloth' | 'ribbon' | 'accessory'\n  /** Optional additional motion gain, for migrating legacy hair/accessory controls. */\n  channel?: 'hair' | 'accessories'\n  polygon: Vec2[]\n  /** Protected source areas such as visible skin or a held prop. */\n  exclusions?: Vec2[][]\n  root: Vec2\n  tip: Vec2\n  /** Feather distance in units of source image width, aspect corrected. */\n  feather: number\n  /** Maximum spring rotation, in radians. */\n  rotation: number\n  stiffness: number\n  damping: number\n  phase: number\n  wind: number\n  follow: number\n  /** Signed response to vertical gaze/inertia; omitted keeps the original X-only flow. */\n  followY?: number\n}",
       "description": "A local deformation region on the shared artwork, not an independent image layer."
     },
     {
       "name": "SurfaceRegion",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface SurfaceRegion {\n  id: string\n  polygon: Vec2[]\n  /** Blend OUTSIDE the polygon; its interior is fully protected. */\n  feather: number\n  mode: 'weighted' | 'rigid'\n  /** Weighted regions receive displacement only from these pins. */\n  pins?: string[]\n  /** Rigid regions translate with this pin; omit for a stationary local object. */\n  anchor?: string\n  /** Rigid rotation about the anchor, before whole-character sway. */\n  rotation?: 'none' | 'head' | 'body'\n  /** Weighted regions can opt out of hair, accessory and part flow. */\n  secondary?: boolean\n}",
       "description": "Ownership on the shared source texture. Later regions take precedence at overlaps."
     },
     {
       "name": "TrackingSettings",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface TrackingSettings {\n  response: number\n  damping: number\n  maxVelocity: number\n  bodyFollow?: number\n  /** Equal X/Y travel for the complete artwork at look ±30; never local stretching. */\n  translation?: Vec2\n}",
       "description": ""
     },
     {
       "name": "PointerMotionGroup",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface PointerMotionGroup {\n  id: string\n  name?: string\n  pivot: Vec2\n  regions: { polygon: Vec2[]; feather: number }[]\n  /** Source-normalized travel at look ±30, before whole-character translation. */\n  translation: Vec2\n  /** Signed horizontal follow rotation, in radians. */\n  rotation: number\n  /** Exponential settling time in milliseconds; independent of frame rate. */\n  response: number\n}",
       "description": "Several visible source regions share one rigid pointer-driven transform."
     },
     {
       "name": "RigModel",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigModel {\n  version: 1\n  id: string\n  name: string\n  texture: { src: string; width: number; height: number }\n  mesh: { columns: number; rows: number }\n  pins: PinSpec[]\n  hair: HairChain[]\n  accessories: AccessoryChain[]\n  parts?: DeformationPart[]\n  surfaceRegions?: SurfaceRegion[]\n  /** Shared transforms applied after local detail. Later interiors own overlaps. */\n  pointerGroups?: PointerMotionGroup[]\n  /** Opt-in bounded pointer spring. Omit to preserve the original legacy response. */\n  tracking?: TrackingSettings\n  /** Opt-in face compositing; neutral and reduced motion preserve original pixels. */\n  face?: FaceFeatures\n  faceClearance: [number, number, number, number][]\n  motion: MotionSettings\n  pose: {\n    headCenter: number\n    headBounds: [number, number]\n    headHorizontal: [number, number]\n    /** Optional original-image Y bounds for custom head warping; absent preserves legacy. */\n    headWarpBounds?: [number, number]\n    /** Optional aspect-correct head pose; absence preserves the legacy original warp. */\n    headFollow?: {\n      rotation: number; translation: Vec2\n      /** Reviewed skull/bangs ownership; replaces Gaussian head-pin warping. */\n      region?: Vec2[]\n      feather?: number\n      /** Body-attached base blending to head-root; no separate neck spring. */\n      neck?: { polygon: Vec2[]; base: Vec2; feather: number }\n    }\n    bodyBounds: [number, number]\n    bodyPivot: Vec2\n    swayPivot: Vec2\n  }\n}",
       "description": ""
     },
     {
       "name": "Binding",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface Binding { offsets: Uint32Array; indices: Uint16Array; weights: Float32Array }",
       "description": ""
     },
     {
       "name": "MeshSpec",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface MeshSpec { x: number; y: number; width: number; height: number }",
       "description": ""
     },
     {
       "name": "RigMesh",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigMesh extends MeshSpec {\n  rest: Float32Array; positions: Float32Array; uvs: Float32Array\n  indices: Uint16Array; weights: Float32Array\n  hairBinding: Binding; accessoryBinding: Binding\n  partBinding?: Binding\n  regionBinding?: Binding\n  pointerBinding?: Binding\n  headBinding?: { head: Float32Array; neck: Float32Array; neckProgress: Float32Array }\n}",
       "description": ""
     },
     {
       "name": "SwayPose",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface SwayPose { rotation: number; sin: number; cos: number; x: number; y: number; followVelocity: number }",
       "description": ""
     },
     {
       "name": "RigMeshSnapshot",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigMeshSnapshot {\n  rest: Float32Array\n  positions: Float32Array\n  indices: Uint16Array\n  /** Base pin weights, vertex-major. Region/head/part ownership can override their effect. */\n  weights: Float32Array\n  pinNames: string[]\n}",
       "description": "On-demand copy of the mesh last submitted to the renderer; full-source 0–1 coordinates."
     },
     {
       "name": "Diagnostics",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface Diagnostics { motionScale: number; maxDisplacementGradient: number }",
       "description": ""
     },
     {
       "name": "RigSnapshot",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigSnapshot {\n  /** Effective overall geometry weight; independent from gaze strength. */\n  motionWeight?: number\n  parameters: Record<ParameterName, number>\n  pins: { name: string; parent?: string; type: PinSpec['type']; x: number; y: number }[]\n  diagnostics: Diagnostics\n  sway: SwayPose\n  playing: boolean\n  /** Full-source normalized travel; zero in reduced motion. */\n  trackingOffset?: Vec2\n  parts?: { id: string; rotation: number }[]\n  pointerGroups?: { id: string; offset: Vec2; rotation: number }[]\n  face?: { gaze: Vec2; strength: number }\n  animation?: AnimationSnapshot\n}",
       "description": ""
     },
     {
       "name": "PlayerOptions",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface PlayerOptions {\n  canvas: HTMLCanvasElement\n  model: RigModel\n  autoplay?: boolean\n  /** Disable animation-frame scheduling; drive with advance(). */\n  manual?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  pixelRatio?: number\n  onFrame?: (snapshot: RigSnapshot) => void\n  onError?: (error: Error) => void\n}",
       "description": ""
     },
     {
       "name": "RigPlayer",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface RigPlayer {\n  play(): void\n  pause(): void\n  /** Fixed 60Hz time stepping, milliseconds, at most 60000 per call. */\n  advance(milliseconds: number): void\n  setPointer(x: number, y: number): void\n  /** Eye-only direction in -1…1; does not deform the head or body. */\n  setGaze(x: number, y: number): void\n  setParameter(name: ParameterName, value: number): void\n  setMotion(settings: Partial<MotionSettings>): void\n  setTracking(settings: Partial<TrackingSettings>): void\n  /** Reviewed eyes required; finite 0…1, defaults to 1. */\n  setGazeStrength(value: number): void\n  playAnimation(clip: AnimationClip): void\n  pauseAnimation(): void\n  seekAnimation(time: number): void\n  stopAnimation(): void\n  setPin(name: string, patch: Partial<Omit<PinSpec, 'name' | 'parent' | 'type'>>): void\n  setPart(id: string, patch: Partial<Omit<DeformationPart, 'id'>>): void\n  wave(): void\n  reset(): void\n  getModel(): RigModel\n  getSnapshot(): RigSnapshot\n  /** Copies only when requested; inspect at UI frequency, never as an animation clock. */\n  getMeshSnapshot(): RigMeshSnapshot\n  destroy(): void\n}",
       "description": ""
     },
     {
       "name": "LayeredModel",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredModel {\n    version: 2;\n    renderer: 'layered';\n    id: string;\n    name: string;\n    source: {\n        width: number;\n        height: number;\n        fallback: string;\n        sha256: string;\n    };\n    atlases: {\n        id: string;\n        src: string;\n        width: number;\n        height: number;\n    }[];\n    /** Parent precedes child. Pivots and translations use full-source coordinates. */\n    nodes: LayerNode[];\n    /** Authoritative seam vertices, reused by any number of attachments. */\n    joints: {\n        id: string;\n        position: Vec2;\n        weights: LayerWeight[];\n    }[];\n    /** Array order IS draw order. Only consecutive compatible attachments batch. */\n    attachments: LayerAttachment[];\n    hairGroups?: { id: string; nodes: string[]; coupling: number }[];\n    face?: LayeredFace;\n}",
       "description": "Separate from RigModel v1; extracted PNGs are never implicitly playable."
     },
     {
       "name": "LayerWeight",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayerWeight {\n    node: string;\n    weight: number;\n}",
       "description": ""
     },
     {
       "name": "LayerNode",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayerNode {\n    id: string;\n    parent?: string;\n    pivot: Vec2;\n    rotation: number;\n    translation: Vec2;\n    response: number;\n    /** Bounded local secondary rotation; root vertices bind to the parent. */\n    spring?: {\n        rotation: number;\n        stiffness: number;\n        damping: number;\n        wind: number;\n        phase: number;\n    };\n}",
       "description": ""
     },
     {
       "name": "LayerVertex",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayerVertex {\n    position: Vec2;\n    weights: LayerWeight[];\n    joint?: string;\n}",
       "description": ""
     },
     {
       "name": "LayerAttachment",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayerAttachment {\n    id: string;\n    atlas: string;\n    /** Atlas pixel rectangle, excluding extruded gutters. */\n    rect: [\n        number,\n        number,\n        number,\n        number\n    ];\n    /** Source-normalized rectangle corresponding to the cropped image. */\n    bounds: [\n        number,\n        number,\n        number,\n        number\n    ];\n    vertices: LayerVertex[];\n    triangles: number[];\n    opacity?: number;\n    /** Optional static alpha mask in the SAME atlas, aligned to attachment bounds. */\n    mask?: [\n        number,\n        number,\n        number,\n        number\n    ];\n    coverage: 'complete' | 'visible-only';\n    provenance: string;\n}",
       "description": ""
     },
     {
       "name": "LayeredSnapshot",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredSnapshot {\n    playing: boolean;\n    reducedMotion: boolean;\n    pointer: Vec2;\n    face?: LayeredFacePose & { gaze: Vec2 };\n    nodes: {\n        id: string;\n        rotation: number;\n    }[];\n    diagnostics: {\n        drawCalls: number;\n        vertices: number;\n        triangles: number;\n        atlasBytes: number;\n        cpuMilliseconds: number;\n    };\n}",
       "description": ""
     },
     {
       "name": "LayeredPlayerOptions",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredPlayerOptions {\n    canvas: HTMLCanvasElement;\n    model: LayeredModel;\n    autoplay?: boolean;\n    manual?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    pixelRatio?: number;\n    signal?: AbortSignal;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n    onError?: (error: Error) => void;\n}",
       "description": ""
     },
     {
       "name": "LayeredPlayer",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredPlayer {\n    play(): void;\n    pause(): void;\n    advance(milliseconds: number): void;\n    setGaze(x: number, y: number): void;\n    setFace(pose: LayeredFacePose): void;\n    setPointer(x: number, y: number): void;\n    reset(): void;\n    getModel(): LayeredModel;\n    getSnapshot(): LayeredSnapshot;\n    getMeshSnapshot(): {\n        rest: Float32Array;\n        positions: Float32Array;\n        indices: Uint16Array;\n    };\n    destroy(): void;\n}",
       "description": ""
     },
     {
       "name": "MouthShape",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export type MouthShape = 'closed' | 'a' | 'i' | 'u' | 'e' | 'o';",
       "description": ""
     },
     {
       "name": "LayeredFacePose",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredFacePose { eyeOpenLeft?: number; eyeOpenRight?: number; mouthOpen?: number; mouthShape?: MouthShape }",
       "description": ""
     },
     {
       "name": "LayeredEye",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredEye {\n    side: 'left' | 'right';\n    /** All layers use the same head node. Skin under lids must be supplied. */\n    node: string;\n    ball: string;\n    iris?: string;\n    lines: string[];\n    half: string;\n    closed: string;\n    /** Sampled source-normalized eye edges, increasing X. */\n    top: [number, number][];\n    bottom: [number, number][];\n    travel: Vec2;\n}",
       "description": ""
     },
     {
       "name": "LayeredFace",
-      "module": "@yuragi/rig",
+      "module": "@z7589xxz758/yuragi",
       "definition": "export interface LayeredFace {\n    eyes?: LayeredEye[];\n    mouth?: { node: string; shapes: Partial<Record<MouthShape, string>> };\n}",
       "description": ""
     },
     {
       "name": "YuragiCharacterProps",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "definition": "export interface YuragiCharacterProps {\n  model: RigModel\n  autoplay?: boolean\n  reducedMotion?: 'respect' | 'ignore'\n  alt?: string\n  className?: string\n  style?: CSSProperties\n  onReady?: (player: RigPlayer) => void\n  onError?: (error: Error) => void\n  onFrame?: (snapshot: RigSnapshot) => void\n}",
       "description": ""
     },
     {
       "name": "YuragiCharacterHandle",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "definition": "export interface YuragiCharacterHandle { getPlayer(): RigPlayer | undefined }",
       "description": ""
     },
     {
       "name": "YuragiLayeredCharacterProps",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "definition": "export interface YuragiLayeredCharacterProps {\n    model: LayeredModel;\n    autoplay?: boolean;\n    reducedMotion?: 'respect' | 'ignore';\n    alt?: string;\n    className?: string;\n    style?: CSSProperties;\n    onReady?: (player: LayeredPlayer) => void;\n    onError?: (error: Error) => void;\n    onFrame?: (snapshot: LayeredSnapshot) => void;\n}",
       "description": ""
     },
     {
       "name": "YuragiLayeredCharacterHandle",
-      "module": "@yuragi/rig/react",
+      "module": "@z7589xxz758/yuragi/react",
       "definition": "export interface YuragiLayeredCharacterHandle {\n    getPlayer(): LayeredPlayer | undefined;\n}",
       "description": ""
     }

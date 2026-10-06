@@ -2,7 +2,7 @@
 
 Create a shared-surface player after model validation and source-image loading.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

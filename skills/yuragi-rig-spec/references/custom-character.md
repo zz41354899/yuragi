@@ -75,7 +75,7 @@ Hair chains require separate root/middle/tip points; accessories have root/tip, 
 Always parse external JSON as unknown and call `validateModel`. The player separately checks image dimensions/load results and WebGL availability. `texture.src` resolves against the page URL, not the model.json path; use a root URL in a web app, or resolve it explicitly in a standalone preview.
 
 ```ts
-import { createPlayer, validateModel } from '@yuragi/rig'
+import { createPlayer, validateModel } from '@z7589xxz758/yuragi'
 const controller = new AbortController()
 const fallback = document.querySelector<HTMLImageElement>('#fallback')!
 window.addEventListener('pagehide', () => controller.abort(), { once: true })
@@ -106,8 +106,8 @@ Validate neutral, pointer extremes, enabled wave and extended idle. Inspect face
 ```vue
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, shallowRef, ref } from 'vue'
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import { validateModel, type RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import { validateModel, type RigModel } from '@z7589xxz758/yuragi'
 const model = shallowRef<RigModel>()
 const error = ref('')
 const controller = new AbortController()
@@ -131,7 +131,7 @@ onBeforeUnmount(() => controller.abort())
 </template>
 ```
 
-React uses the separately imported `@yuragi/rig/react` component. Load after mount in an effect with an AbortController, validate unknown JSON, avoid state updates after abort and return cleanup. onReady/onError/onFrame correspond to Vue ready/error/frame events. Stable model identity avoids unnecessary remounts. Pure core imports do not import either framework; never instantiate DOM/player at module load during SSR.
+React uses the separately imported `@z7589xxz758/yuragi/react` component. Load after mount in an effect with an AbortController, validate unknown JSON, avoid state updates after abort and return cleanup. onReady/onError/onFrame correspond to Vue ready/error/frame events. Stable model identity avoids unnecessary remounts. Pure core imports do not import either framework; never instantiate DOM/player at module load during SSR.
 
 ## Errors
 
@@ -160,7 +160,7 @@ Optional `name` is a display label; kind is metadata, while numeric settings det
 
 Optional `pose.headFollow: {rotation, translation: [x,y]}` replaces legacy head warping with aspect-correct rotation and translation. Rotation is 0–0.3 radians, each translation amplitude 0–0.08. Existing headCenter, headBounds and headHorizontal still feather the pose. Omitting the new fields preserves the numeric baseline. Image replacement alone does not bind a rig. Independent image layers, draw order, occlusion and hidden-surface reconstruction remain unsupported.
 
-The website and playground use `createMireaModel()` from `@yuragi/rig/mirea` for polygon parts, rigid protection and bounded tracking. Python annotations can generate `surfaceRegions` from region binding and `parts` from deformation. `parts-manifest.json` indexes full-canvas/cropped PNGs, masks, source bounds, hierarchy and authoring root/middle/tip anchors. Rigid props and their grip share attachment transforms; free ribbons remain flexible. These visible-pixel exports require occlusion completion for independent layer playback. See the installed skill's character-preparation reference for the exact schema.
+The website and playground use `createMireaModel()` from `@z7589xxz758/yuragi/mirea` for polygon parts, rigid protection and bounded tracking. Python annotations can generate `surfaceRegions` from region binding and `parts` from deformation. `parts-manifest.json` indexes full-canvas/cropped PNGs, masks, source bounds, hierarchy and authoring root/middle/tip anchors. Rigid props and their grip share attachment transforms; free ribbons remain flexible. These visible-pixel exports require occlusion completion for independent layer playback. See the installed skill's character-preparation reference for the exact schema.
 
 Existing parts can be edited with `player.setPart(id, patch)`: root/tip, polygon/exclusions, material response and channel are validated before any state change. Binding rebuild uses existing GPU buffers; part spring state resets without duplicating the animation loop. Inputs are copied and getModel() includes edits. Recreate for adding/removing parts or changing surfaceRegions.
 
@@ -198,7 +198,7 @@ Independent attachments and independent bones require additional renderer suppor
 
 ## Bundled sample assets
 
-The primary packaged example is Mirea: copy assets/mirea to public/models/mirea and import createMireaModel from @yuragi/rig/mirea. Starter remains the template for new artwork. Neither sample can be reused on arbitrary images without new measured bindings.
+The primary packaged example is Mirea: copy assets/mirea to public/models/mirea and import createMireaModel from @z7589xxz758/yuragi/mirea. Starter remains the template for new artwork. Neither sample can be reused on arbitrary images without new measured bindings.
 
 
 ## Independent layered v2

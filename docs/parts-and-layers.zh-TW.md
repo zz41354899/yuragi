@@ -9,7 +9,7 @@
 這能改善不同材質同時僵硬移動的問題，也避免切開原畫後露洞、重複邊緣。它不是完整圖層分離；重疊的頭髮、衣料仍共用原畫可見像素，因此適合小幅到中幅變形。
 
 ```ts
-import type { DeformationPart, RigModel } from '@yuragi/rig'
+import type { DeformationPart, RigModel } from '@z7589xxz758/yuragi'
 
 const sleeve: DeformationPart = {
   id: 'sleeve-left', name: '左袖薄紗', kind: 'cloth',
@@ -78,11 +78,11 @@ player.getSnapshot().parts   // [{ id, rotation }]; reduced motion reports zero
 
 ## 本次可用的物件保護 API
 
-官網、遊樂場與框架整合範例使用 `@yuragi/rig/mirea` 的 `createMireaModel(src)`，回傳具有局部部件、剛性區域和有界追蹤的 v1 RigModel。
+官網、遊樂場與框架整合範例使用 `@z7589xxz758/yuragi/mirea` 的 `createMireaModel(src)`，回傳具有局部部件、剛性區域和有界追蹤的 v1 RigModel。
 
 ```ts
-import { validateModel } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+import { validateModel } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 const model = createMireaModel('/models/mirea/texture.png')
 model.tracking = { response: .024, damping: .65, maxVelocity: 1.8 }
 // 對實際握傘角色標註；不可直接套用其他角色的綁定：
@@ -133,7 +133,7 @@ Python 的 `headMotion` 讀取審核過的 head/neck 區域與 neck-base landmar
 `RigModel.pointerGroups` 讓多個可見區域共用同一個旋轉與位移，在局部髮束／衣料動態之後、整體 sway 與 tracking.translation 之前執行。每個群組有不同的收斂時間；共用剛性矩陣的區域內不使用頂點之間的旋轉插值，避免縮短腿或拉扯持傘接點。這仍是原圖網格，並非獨立圖層或骨架父子關係。
 
 ```ts
-import type { PointerMotionGroup } from '@yuragi/rig'
+import type { PointerMotionGroup } from '@z7589xxz758/yuragi'
 const upper: PointerMotionGroup = {
   id: 'upper', name: '肩膀與持傘動作', pivot: [.58,.41],
   translation: [.008,.004], rotation: .014, response: 105,

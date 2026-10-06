@@ -19,16 +19,16 @@
       "node"
     ],
     "paths": {
-      "@yuragi/rig": [
+      "@z7589xxz758/yuragi": [
         "../../packages/rig/src/index.ts"
       ],
-      "@yuragi/rig/vue": [
+      "@z7589xxz758/yuragi/vue": [
         "../../packages/rig/src/vue.ts"
       ],
-      "@yuragi/rig/react": [
+      "@z7589xxz758/yuragi/react": [
         "../../packages/rig/src/react.tsx"
       ],
-      "@yuragi/rig/mirea": [
+      "@z7589xxz758/yuragi/mirea": [
         "../../packages/rig/src/mirea.ts"
       ]
     }

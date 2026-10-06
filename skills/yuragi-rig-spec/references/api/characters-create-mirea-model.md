@@ -2,7 +2,7 @@
 
 Create the bundled Mirea bindings through the separate character entry. The image must match the authored rig.
 
-Import: `@yuragi/rig/mirea`
+Import: `@z7589xxz758/yuragi/mirea`
 
 ## Signature
 

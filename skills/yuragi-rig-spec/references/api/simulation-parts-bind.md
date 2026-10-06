@@ -2,7 +2,7 @@
 
 Compute sparse mesh bindings for parts.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

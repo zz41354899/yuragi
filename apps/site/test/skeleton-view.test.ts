@@ -1,7 +1,7 @@
-import { createMireaModel } from '@yuragi/rig/mirea'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { type RigMeshSnapshot } from '@yuragi/rig'
+import { type RigMeshSnapshot } from '@z7589xxz758/yuragi'
 import { boneOutline } from '../src/editor/skeleton-view.ts'
 
 test('tapered bones follow the submitted triangles and retain exact joint endpoints', () => {

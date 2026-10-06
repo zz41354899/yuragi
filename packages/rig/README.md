@@ -1,6 +1,6 @@
-# @yuragi/rig
+# @z7589xxz758/yuragi
 
-A TypeScript single-surface illustration rig extracted from the Momo character in Kirameki Catch.
+A TypeScript 2D illustration rig with Mirea as the built-in example, Vue and React adapters, and a local Studio preview.
 
 ## License
 
@@ -8,16 +8,16 @@ Yuragi-authored code, documentation and model-binding data are [MIT-licensed](LI
 
 ## Entry points
 
-- `@yuragi/rig`: WebGL player, pure simulation, model validation, TypeScript types.
-- `@yuragi/rig/vue`: `YuragiCharacter` Vue 3 component.
-- `@yuragi/rig/mirea`: `createMireaModel(textureSrc?)`, the reviewed Mirea character data. This opt-in entry keeps character data outside the core bundle.
-- `@yuragi/rig/react`: `YuragiCharacter` React 18/19 component.
+- `@z7589xxz758/yuragi`: WebGL player, pure simulation, model validation, TypeScript types.
+- `@z7589xxz758/yuragi/vue`: `YuragiCharacter` Vue 3 component.
+- `@z7589xxz758/yuragi/mirea`: `createMireaModel(textureSrc?)`, the reviewed Mirea character data. This opt-in entry keeps character data outside the core bundle.
+- `@z7589xxz758/yuragi/react`: `YuragiCharacter` React 18/19 component.
 
 Vue and React are optional peer dependencies. Importing the core does not import either framework.
 
 ```ts
-import { createPlayer } from '@yuragi/rig'
-import { createMireaModel } from '@yuragi/rig/mirea'
+import { createPlayer } from '@z7589xxz758/yuragi'
+import { createMireaModel } from '@z7589xxz758/yuragi/mirea'
 const player = await createPlayer({
   canvas: document.querySelector<HTMLCanvasElement>('canvas')!,
   model: createMireaModel('/models/mirea/texture.png'),
@@ -27,7 +27,7 @@ player.setMotion({ hair: 1.2, sway: .8 })
 player.destroy()
 ```
 
-The primary sample is Mirea: `assets/mirea/model.json` and `assets/mirea/texture.png`. Copy `node_modules/@yuragi/rig/assets/mirea` to your app's `public/models/mirea`; `createMireaModel()` defaults to `/models/mirea/texture.png`. Installation does not copy files into your app automatically. `assets/starter/model.json` is the template for your own measured rig.
+The primary sample is Mirea: `assets/mirea/model.json` and `assets/mirea/texture.png`. Copy `node_modules/@z7589xxz758/yuragi/assets/mirea` to your app's `public/models/mirea`; `createMireaModel()` defaults to `/models/mirea/texture.png`. Installation does not copy files into your app automatically. `assets/starter/model.json` is the template for your own measured rig.
 
 Mirea uses the reviewed 1024×1536 source, measured eyes, owned head/neck, protected umbrella/holding hand, rigid crossed legs, 25 flexible parts and pointer groups. Its held pose does not support waving. Each factory call returns independent data. The website's additional anatomical structure guide is inspection metadata, not new runtime bones or IK.
 
@@ -88,11 +88,11 @@ Read yuragi-rig-spec before Python. Use inspect → annotation → extract → b
 
 ### Inspect the rendered mesh
 
-`player.getMeshSnapshot()` returns independent typed-array copies of `rest`, `positions`, `indices`, base pin `weights` and `pinNames`. Coordinates use the complete source image (0–1); request only while debugging at UI frequency. Base weights do not account for ownership overrides. Current positions reflect the actual rendered geometry, including those overrides. The installed package bundles Mirea/starter assets. Mirea data is separately imported from @yuragi/rig/mirea. Installing the runtime does not install Agent Skills or Python/Pillow.
+`player.getMeshSnapshot()` returns independent typed-array copies of `rest`, `positions`, `indices`, base pin `weights` and `pinNames`. Coordinates use the complete source image (0–1); request only while debugging at UI frequency. Base weights do not account for ownership overrides. Current positions reflect the actual rendered geometry, including those overrides. The installed package bundles Mirea/starter assets. Mirea data is separately imported from @z7589xxz758/yuragi/mirea. Installing the runtime does not install Agent Skills or Python/Pillow.
 
 ## Independent layers (local v2)
 
-`createLayeredPlayer`, `createLayeredSimulation`, `validateLayeredModel`, and the `LayeredModel` / `LayeredPlayer` types are exported from the main entry. Import `YuragiLayeredCharacter` separately from `@yuragi/rig/vue` or `@yuragi/rig/react`. Existing `createPlayer` continues to require the v1 model.
+`createLayeredPlayer`, `createLayeredSimulation`, `validateLayeredModel`, and the `LayeredModel` / `LayeredPlayer` types are exported from the main entry. Import `YuragiLayeredCharacter` separately from `@z7589xxz758/yuragi/vue` or `@z7589xxz758/yuragi/react`. Existing `createPlayer` continues to require the v1 model.
 
 v2 supports hierarchical rigid transforms, bounded secondary springs, sparse vertex weights, authoritative shared joints, ordered atlas batches and one static atlas alpha mask per attachment. Asset URLs must be resolved by the caller. Models require explicit coverage and provenance; visible extracts do not reconstruct occluded pixels. The offline `build_layers.py` compiler validates through the actual local runtime and refuses incomplete layers unless prototype mode is explicitly enabled. See the repository's `docs/layered-engine.zh-TW.md` and `src/layered-types.ts` for the contract. No IK, Spine import, layered gaze or animation mixer is provided.
 
@@ -101,7 +101,7 @@ v2 supports hierarchical rigid transforms, bounded secondary springs, sparse ver
 Build the local package (`npm run pack:lib` from the workspace), then install the actual generated tarball in your project. Studio is prebuilt; no Vite installation is needed by consumers. It is not launched during npm installation.
 
 ```sh
-npm install /actual/path/to/yuragi-rig-0.2.0.tgz
+npm install /actual/path/to/z7589xxz758-yuragi-0.2.0.tgz
 npx yuragi studio --project ./my-character --out ./yuragi-output
 ```
 

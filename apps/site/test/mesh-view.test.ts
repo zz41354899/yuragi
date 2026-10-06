@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { meshPoint } from '../src/editor/mesh-view.ts'
-import type { RigMeshSnapshot } from '@yuragi/rig'
+import type { RigMeshSnapshot } from '@z7589xxz758/yuragi'
 
 test('overlay samples the rendered triangle, not bilinear coordinates or undeformed pins',()=>{
   const mesh: RigMeshSnapshot={

@@ -35,19 +35,19 @@ export const skillsCopy: [string, string, string][] = [
     "Yuragi Skills を導入"
   ],
   [
-    "在你使用 AI 的專案目錄執行，一次安裝兩個 skill；也可以只安裝角色轉換 skill。",
-    "Run in your AI project to install both skills, or install only the character conversion skill.",
-    "AI を使うプロジェクトで両方を導入、または変換スキルだけを導入できます。"
+    "在你使用 AI 的專案目錄執行，依需求擇一安裝。以下指令透過 npx skills 從 GitHub 取得對應的 Skill。",
+    "Run in your AI project and choose the Skill you need. These commands use npx skills to install the selected Skill from GitHub.",
+    "AI を使うプロジェクトで、目的に合う Skill を1つ選んで導入してください。以下のコマンドは npx skills で GitHub から選んだ Skill を取得します。"
   ],
   [
-    "目前網站是本機預覽。",
-    "This site is currently a local preview.",
-    "現在はローカルプレビューです。"
+    "兩個 Skill 可獨立安裝；之後需要另一種功能時，再執行對應指令即可。",
+    "Each Skill can be installed independently. If you need the other later, run its installation command.",
+    "各 Skill は個別に導入できます。後でもう一方が必要になったら、対応するコマンドを実行してください。"
   ],
   [
-    "本機網址只適用於這台電腦。公開網站後，這裡會顯示公開網址；其他人才能從網站安裝。目前也可以從取得的 Yuragi 專案目錄安裝。",
-    "The local URL works on this computer only. Once the site is public, its URL will appear here so others can install from it. For now, you can also install from a local copy of Yuragi.",
-    "ローカル URL はこのパソコン専用です。サイト公開後は公開 URL が表示され、他の人も導入できます。現在は取得した Yuragi のローカルフォルダーからも導入できます。"
+    "GitHub 原始碼與 Skills",
+    "Source code and Skills on GitHub",
+    "GitHub のソースコードと Skills"
   ],
   [
     "已有角色，只需要轉換動態",

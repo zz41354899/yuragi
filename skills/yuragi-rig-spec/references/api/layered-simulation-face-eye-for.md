@@ -2,7 +2,7 @@
 
 Find the authored eye owning an attachment.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

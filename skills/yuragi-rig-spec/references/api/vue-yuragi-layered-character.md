@@ -2,7 +2,7 @@
 
 Layered v2 component with cancellable loading, artwork fallback and cleanup.
 
-Import: `@yuragi/rig/vue`
+Import: `@z7589xxz758/yuragi/vue`
 
 ## Signature
 
@@ -26,8 +26,8 @@ Props: model (required), autoplay=true, reducedMotion="respect", alt="Animated i
 
 ```vue
 <script setup lang="ts">
-import { YuragiLayeredCharacter } from '@yuragi/rig/vue'
-import type { LayeredModel } from '@yuragi/rig'
+import { YuragiLayeredCharacter } from '@z7589xxz758/yuragi/vue'
+import type { LayeredModel } from '@z7589xxz758/yuragi'
 defineProps<{ model: LayeredModel }>()
 </script>
 <template>

@@ -2,7 +2,7 @@
 
 Stop and clear the clip without restoring values it already changed.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -2,7 +2,7 @@
 
 Update v2 node matrices and mesh positions using milliseconds; return whether positions changed.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

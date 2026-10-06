@@ -2,7 +2,7 @@
 
 Read face and gaze state; reduced motion returns neutral values.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -2,7 +2,7 @@
 
 Assert the complete v1 model contract, narrow unknown on success and throw on failure.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

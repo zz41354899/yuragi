@@ -2,7 +2,7 @@
 
 Get the ready player; undefined before loading or after cleanup.
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 ## Signature
 

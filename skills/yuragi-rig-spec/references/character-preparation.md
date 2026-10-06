@@ -6,7 +6,7 @@ For JSON diagnosis and automatic compilation/Studio launch, read [the agent work
 
 ## Requirements and staged commands
 
-Python 3.10+ with Pillow, Node.js on PATH, and built local @yuragi/rig with the required validator capabilities. Install Skill and runtime separately. In a checkout, run npm run build:lib; in another project install that built package by local path. No npm publication is implied.
+Python 3.10+ with Pillow, Node.js on PATH, and built local @z7589xxz758/yuragi with the required validator capabilities. Install Skill and runtime separately. In a checkout, run npm run build:lib; in another project install that built package by local path. No npm publication is implied.
 
 ```sh
 python3 -m venv .venv

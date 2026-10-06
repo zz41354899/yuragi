@@ -4,7 +4,7 @@ The agent reads the Skill, views the original/grid/local crops and saves semanti
 
 ## Files and commands
 
-Use the actual installed Skill script directory, Python/Pillow environment and built `@yuragi/rig` package directory. Existing inspect/extract/build commands remain available.
+Use the actual installed Skill script directory, Python/Pillow environment and built `@z7589xxz758/yuragi` package directory. Existing inspect/extract/build commands remain available.
 
 ```sh
 python /actual/skill/scripts/prepare_character.py inspect source.png --out inspection-v1
@@ -14,7 +14,7 @@ python /actual/skill/scripts/workflow.py diagnose source.png \
 # Agent inspects measured bounds and corrects saved annotations if needed.
 python /actual/skill/scripts/workflow.py run source.png \
   --analysis character-analysis.json --out character-v1 \
-  --rig-package ./node_modules/@yuragi/rig --studio
+  --rig-package ./node_modules/@z7589xxz758/yuragi --studio
 ```
 
 `run` saves diagnostics, extracts into `prepared/`, compiles into `model/` and opens Studio with output `preview/`. Omit `--studio` when building without starting a server. `--port` chooses the local port; `--no-open` leaves opening the URL to the user/agent. The process stays running while Studio is open; cancel it normally when finished. Required missing materials stop compilation but still save diagnostic JSON. Failed candidates never replace earlier versions.

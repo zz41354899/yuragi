@@ -2,7 +2,7 @@
 
 Read current state and diagnostics; snapshots are not a frame clock.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

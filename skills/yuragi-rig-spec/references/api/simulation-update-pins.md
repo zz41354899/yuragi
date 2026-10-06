@@ -2,7 +2,7 @@
 
 Update parameters, pins and spring state using elapsed time and delta in milliseconds.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

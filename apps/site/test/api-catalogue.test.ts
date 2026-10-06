@@ -27,7 +27,7 @@ test('API catalogue matches public exports and standalone skill references',()=>
   assert.ok(!catalogue.entries.some(e=>['createTimeline','createFaceState','startStudio'].includes(e.name)))
 })
 test('all API examples compile against the actual public TypeScript contracts',()=>{
-  const rootFunctions=catalogue.entries.filter(e=>e.module==='@yuragi/rig'&&!e.owner).map(e=>e.name)
+  const rootFunctions=catalogue.entries.filter(e=>e.module==='@z7589xxz758/yuragi'&&!e.owner).map(e=>e.name)
   const virtual=new Map<string,string>()
   for(const entry of catalogue.entries){
     const file=resolve(root,'apps/site/test/api-virtual-'+entry.id.replaceAll('/','-')+'.tsx')
@@ -43,9 +43,9 @@ test('all API examples compile against the actual public TypeScript contracts',(
     const playerDecl=/\bconst player\b/.test(entry.example)?'':`declare const player: ${layered?'LayeredPlayer':'RigPlayer'};`
     const simulationDecl=entry.owner?.includes('imulation')?`declare const simulation: ReturnType<typeof ${layered?'createLayeredSimulation':'createSimulation'}>;`:''
     const meshDecl=entry.owner==='simulation'&&entry.name!=='buildContinuousMesh'?'declare const mesh: RigMesh;':''
-    virtual.set(file,`import { ${rootFunctions.join(', ')} } from '@yuragi/rig';\nimport { createMireaModel } from '@yuragi/rig/mirea';\nimport type { RigModel, LayeredModel, RigPlayer, LayeredPlayer, RigMesh, AnimationClip } from '@yuragi/rig';\ndeclare const canvas: HTMLCanvasElement; declare const signal: AbortSignal; declare const serialized: string; declare const layeredModel: LayeredModel; declare const clip: AnimationClip; ${modelDecl} ${playerDecl} ${simulationDecl} ${meshDecl} declare const handle: { getPlayer(): ${layered?'LayeredPlayer':'RigPlayer'} | undefined };\n${entry.example}\nexport {};`)
+    virtual.set(file,`import { ${rootFunctions.join(', ')} } from '@z7589xxz758/yuragi';\nimport { createMireaModel } from '@z7589xxz758/yuragi/mirea';\nimport type { RigModel, LayeredModel, RigPlayer, LayeredPlayer, RigMesh, AnimationClip } from '@z7589xxz758/yuragi';\ndeclare const canvas: HTMLCanvasElement; declare const signal: AbortSignal; declare const serialized: string; declare const layeredModel: LayeredModel; declare const clip: AnimationClip; ${modelDecl} ${playerDecl} ${simulationDecl} ${meshDecl} declare const handle: { getPlayer(): ${layered?'LayeredPlayer':'RigPlayer'} | undefined };\n${entry.example}\nexport {};`)
   }
-  const options:ts.CompilerOptions={target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,moduleResolution:ts.ModuleResolutionKind.Bundler,jsx:ts.JsxEmit.ReactJSX,strict:true,skipLibCheck:true,noEmit:true,baseUrl:root,paths:{'@yuragi/rig':['packages/rig/src/index.ts'],'@yuragi/rig/mirea':['packages/rig/src/mirea.ts'],'@yuragi/rig/react':['packages/rig/src/react.tsx'],'@yuragi/rig/vue':['packages/rig/src/vue.ts']}}
+  const options:ts.CompilerOptions={target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,moduleResolution:ts.ModuleResolutionKind.Bundler,jsx:ts.JsxEmit.ReactJSX,strict:true,skipLibCheck:true,noEmit:true,baseUrl:root,paths:{'@z7589xxz758/yuragi':['packages/rig/src/index.ts'],'@z7589xxz758/yuragi/mirea':['packages/rig/src/mirea.ts'],'@z7589xxz758/yuragi/react':['packages/rig/src/react.tsx'],'@z7589xxz758/yuragi/vue':['packages/rig/src/vue.ts']}}
   const host=ts.createCompilerHost(options),read=host.readFile,fileExists=host.fileExists
   host.readFile=path=>virtual.get(path)??read(path);host.fileExists=path=>virtual.has(path)||fileExists(path)
   const program=ts.createProgram([...virtual.keys()],options,host)

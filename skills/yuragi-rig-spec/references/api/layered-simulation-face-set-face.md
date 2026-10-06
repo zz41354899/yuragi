@@ -2,7 +2,7 @@
 
 Set v2 eye openness, mouth shape and openness; missing assets or invalid values throw.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

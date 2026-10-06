@@ -2,7 +2,7 @@
 
 Set independent eye direction in −1…1 per axis; requires measured eyes and does not move the head/body.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

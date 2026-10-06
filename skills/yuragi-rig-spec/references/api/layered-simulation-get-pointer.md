@@ -2,7 +2,7 @@
 
 Return the current v2 pointer target.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

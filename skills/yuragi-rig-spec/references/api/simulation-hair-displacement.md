@@ -2,7 +2,7 @@
 
 Sample hair displacement at a vertex.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -2,7 +2,7 @@
 
 Return fixed face review definitions; filter by available authored assets.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

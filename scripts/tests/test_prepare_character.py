@@ -236,7 +236,7 @@ class PrepareCharacterTests(unittest.TestCase):
         a=self.analysis();a['waveSafe']=False;prepared=self.root/'prepared'
         helper.extract(self.image,self.save_analysis(a),prepared)
         fake=self.root/'runtime';(fake/'dist').mkdir(parents=True)
-        helper.save_json(fake/'package.json',{'name':'@yuragi/rig','version':'0.2.0','type':'module'})
+        helper.save_json(fake/'package.json',{'name':'@z7589xxz758/yuragi','version':'0.2.0','type':'module'})
         (fake/'dist/index.js').write_text("export function validateModel(){throw new Error('fixture rejected')}\n")
         with self.assertRaisesRegex(ValueError,'fixture rejected'):helper.build(self.image,None,self.root/'rejected',fake,prepared)
         self.assertFalse((self.root/'rejected').exists())

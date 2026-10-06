@@ -1,4 +1,4 @@
-import type { Vec2 } from '@yuragi/rig'
+import type { Vec2 } from '@z7589xxz758/yuragi'
 
 // Read-only source measurements, not extra skinning pins or an IK rig.
 // Source: mirea-base-v1.png, 1024×1536, inspected 2026-10-03.

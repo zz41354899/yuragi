@@ -23,9 +23,9 @@ function skillMarkdownUtf8(): Plugin {
 export default defineConfig({
   plugins: [vue(), skillMarkdownUtf8()],
   resolve: { alias: [
-    { find: '@yuragi/rig/mirea', replacement: fileURLToPath(new URL('../../packages/rig/src/mirea.ts', import.meta.url)) },
-    { find: '@yuragi/rig/vue', replacement: fileURLToPath(new URL('../../packages/rig/src/vue.ts', import.meta.url)) },
-    { find: '@yuragi/rig/react', replacement: fileURLToPath(new URL('../../packages/rig/src/react.tsx', import.meta.url)) },
-    { find: '@yuragi/rig', replacement: fileURLToPath(new URL('../../packages/rig/src/index.ts', import.meta.url)) },
+    { find: '@z7589xxz758/yuragi/mirea', replacement: fileURLToPath(new URL('../../packages/rig/src/mirea.ts', import.meta.url)) },
+    { find: '@z7589xxz758/yuragi/vue', replacement: fileURLToPath(new URL('../../packages/rig/src/vue.ts', import.meta.url)) },
+    { find: '@z7589xxz758/yuragi/react', replacement: fileURLToPath(new URL('../../packages/rig/src/react.tsx', import.meta.url)) },
+    { find: '@z7589xxz758/yuragi', replacement: fileURLToPath(new URL('../../packages/rig/src/index.ts', import.meta.url)) },
   ] },
 })

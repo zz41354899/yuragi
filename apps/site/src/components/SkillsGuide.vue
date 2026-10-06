@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useText } from '../i18n'
 import CodeBlock from './CodeBlock.vue'
 const { tr } = useText()
-const origin = ref('http://127.0.0.1:4310')
-onMounted(() => { origin.value = window.location.origin })
-const isLocal = computed(() => ['localhost', '127.0.0.1', '[::1]'].includes(new URL(origin.value).hostname))
-const install = computed(() => `npx skills add ${origin.value} --skill yuragi-character yuragi-rig-spec`)
-const onlyRig = computed(() => `npx skills add ${origin.value} --skill yuragi-rig-spec`)
-const local = 'npx skills add /path/to/yuragi --skill yuragi-character yuragi-rig-spec'
+const installCharacter = 'npx skills add zz41354899/yuragi --skill yuragi-character'
+const installRig = 'npx skills add zz41354899/yuragi --skill yuragi-rig-spec'
 const characterPrompt = '$yuragi-character\n' + '請從零建立我的原創角色，先整理角色設定與固定特徵。\n' + '交付角色基準與 character-brief.md，供後續動態規劃使用。'
 const rigPrompt = "$yuragi-rig-spec\n請把 /path/to/my-character.png 轉成我的動態角色，保留原本設計。\n先看圖判斷合適的動作，使用 Python 量測、拆解可見部位並建立綁定。\n對應 Yuragi API，交付 model.json、rig-spec.md 與可播放的預覽，實際檢查並修正動態。"
 const prepareCommand = `python3 -m venv .venv
@@ -17,7 +12,7 @@ const prepareCommand = `python3 -m venv .venv
 .venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py inspect artwork.png --out character-inspect
 # AI writes character-analysis.json after inspecting the image
 .venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py extract artwork.png --analysis character-analysis.json --out character-parts
-.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py build artwork.png --prepared character-parts --out character-v1 --rig-package /path/to/node_modules/@yuragi/rig
+.venv/bin/python /path/to/yuragi-rig-spec/scripts/prepare_character.py build artwork.png --prepared character-parts --out character-v1 --rig-package /path/to/node_modules/@z7589xxz758/yuragi
 python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
 </script>
 
@@ -35,11 +30,13 @@ python3 -m http.server 4320 --bind 127.0.0.1 --directory character-v1`
       <article><span class="skill-step">02 · CHARACTER MOTION</span><h2>{{ tr('把既有角色轉成動態') }}</h2><code>yuragi-rig-spec</code><p>{{ tr('AI 判讀造型與可動部位，Python 產出綁定、可見部位素材與 spec，再使用 Yuragi API 建立並驗證動態預覽。') }}</p><strong>model.json · rig-spec.md · preview.html</strong></article>
     </div>
     <h2>{{ tr('安裝 Yuragi Skills') }}</h2>
-    <p>{{ tr('在你使用 AI 的專案目錄執行，一次安裝兩個 skill；也可以只安裝角色轉換 skill。') }}</p>
-    <CodeBlock :code="install" language="Terminal" />
-    <div v-if="isLocal" class="notice"><strong>{{ tr('目前網站是本機預覽。') }}</strong><p>{{ tr('本機網址只適用於這台電腦。公開網站後，這裡會顯示公開網址；其他人才能從網站安裝。目前也可以從取得的 Yuragi 專案目錄安裝。') }}</p></div>
-    <CodeBlock :code="local" language="Terminal · local source" />
-    <h3>{{ tr('已有角色，只需要轉換動態') }}</h3><CodeBlock :code="onlyRig" language="Terminal" />
+    <p>{{ tr('在你使用 AI 的專案目錄執行，依需求擇一安裝。以下指令透過 npx skills 從 GitHub 取得對應的 Skill。') }}</p>
+    <h3>{{ tr('從零建立角色') }}</h3>
+    <CodeBlock :code="installCharacter" language="Terminal" />
+    <h3>{{ tr('已有角色，只需要轉換動態') }}</h3>
+    <CodeBlock :code="installRig" language="Terminal" />
+    <p>{{ tr('兩個 Skill 可獨立安裝；之後需要另一種功能時，再執行對應指令即可。') }}</p>
+    <p><a href="https://github.com/zz41354899/yuragi" target="_blank" rel="noreferrer">{{ tr('GitHub 原始碼與 Skills') }}</a></p>
     <p>{{ tr('Skill 包含英文指南、Python 輔助工具與 spec 範本。執行工具需要 Python 3.10+ 和 Pillow；播放需要另外安裝目前的本機 Yuragi 套件。') }} <RouterLink to="/docs?section=installation">{{ tr('查看套件安裝') }}</RouterLink></p>
     <h2>{{ tr('讓 AI 接續你的進度') }}</h2>
     <p>{{ tr('沒有角色時，先用角色設計 skill；已有立繪時，提供原畫路徑與想要的互動，AI 會完成判讀、轉換與預覽。也可以指定只寫 spec。') }}</p>

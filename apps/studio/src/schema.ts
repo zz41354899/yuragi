@@ -1,5 +1,5 @@
 import type { Json, Path } from '../../../packages/rig/src/studio/document'
-import type { RigModel, Vec2 } from '@yuragi/rig'
+import type { RigModel, Vec2 } from '@z7589xxz758/yuragi'
 export const polygon: Vec2[] = [[.35,.35],[.65,.35],[.65,.65],[.35,.65]]
 const part = { id: 'new-part', name: 'New part', kind: 'hair', polygon, root: [.5,.35], tip: [.5,.65], feather: .02, rotation: .05, stiffness: .04, damping: .75, phase: 0, wind: .1, follow: .1 }
 const eye = (id: string) => ({ id, center: [id === 'left' ? .45 : .55,.25], radius: [.015,.012], iris: [id === 'left' ? .45 : .55,.25], irisRadius: [.006,.005], travel: [.003,.002], angle: 0, sclera: [.95,.95,.95] })

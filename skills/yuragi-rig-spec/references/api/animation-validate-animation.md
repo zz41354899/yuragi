@@ -2,7 +2,7 @@
 
 Validate tracks and keyframes. Gaze-strength tracks require reviewed face features.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

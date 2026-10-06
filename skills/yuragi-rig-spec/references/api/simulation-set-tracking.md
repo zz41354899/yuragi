@@ -2,7 +2,7 @@
 
 Merge pointer inertia settings within the TrackingSettings bounds.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

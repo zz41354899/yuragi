@@ -1,5 +1,5 @@
 // Run against an installed tarball, never against workspace aliases.
-// node scripts/verify-studio-package.mjs /path/to/installed/@yuragi/rig /path/to/test-output [/path/to/v2-character]
+// node scripts/verify-studio-package.mjs /path/to/installed/@z7589xxz758/yuragi /path/to/test-output [/path/to/v2-character]
 import assert from 'node:assert/strict'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve, join } from 'node:path'

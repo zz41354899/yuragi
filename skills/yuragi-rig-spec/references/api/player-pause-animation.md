@@ -2,7 +2,7 @@
 
 Pause the clip timeline independently of the player loop.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

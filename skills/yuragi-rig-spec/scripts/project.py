@@ -14,7 +14,7 @@ def publish(root, source, version_id, folder, rig_package, inputs=()):
     if not source.is_relative_to(root) or not folder.is_relative_to(root): raise ValueError('Source and version must stay inside project root')
     if not version_id or any(c not in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-' for c in version_id): raise ValueError('Invalid version ID')
     metadata=json.loads((rig_package/'package.json').read_text())
-    if metadata.get('name')!='@yuragi/rig': raise ValueError('Expected @yuragi/rig runtime')
+    if metadata.get('name')!='@z7589xxz758/yuragi': raise ValueError('Expected @z7589xxz758/yuragi runtime')
     model=json.loads((folder/'model.json').read_text())
     code="const r=await import(process.argv[1]);const m=JSON.parse(process.argv[2]);(m.version===2?r.validateLayeredModel:r.validateModel)(m);"
     subprocess.run(['node','--input-type=module','-e',code,(rig_package/'dist/index.js').as_uri(),json.dumps(model)],check=True,capture_output=True)

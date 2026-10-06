@@ -2,7 +2,7 @@
 
 Set gaze strength in 0…1, default 1; unavailable without face features.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

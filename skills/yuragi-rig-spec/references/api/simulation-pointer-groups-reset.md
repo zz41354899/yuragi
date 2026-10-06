@@ -2,7 +2,7 @@
 
 Reset pointer groups spring or following state.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

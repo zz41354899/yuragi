@@ -21,7 +21,7 @@ const callbacks = computed(() => [
 </script>
 <template>
   <section class="framework-reference">
-    <div class="framework-summary"><span class="framework-badge">{{ isVue ? 'Vue 3' : 'React 18 / 19' }}</span><code>{{ isVue ? '@yuragi/rig/vue' : '@yuragi/rig/react' }}</code></div>
+    <div class="framework-summary"><span class="framework-badge">{{ isVue ? 'Vue 3' : 'React 18 / 19' }}</span><code>{{ isVue ? '@z7589xxz758/yuragi/vue' : '@z7589xxz758/yuragi/react' }}</code></div>
     <p class="docs-lead">{{ tr(isVue ? 'Vue 元件管理載入、原畫備援與卸載清理。以 props 控制播放，透過事件或元件 ref 取得 RigPlayer。' : 'React adapter 獨立匯入，支援 Strict Mode。模型使用延遲初始化保持穩定，播放器留在 ref，不以逐幀 state 驅動動畫。') }}</p>
     <template v-if="integration"><h2>{{ tr('完整互動範例') }}</h2><p>{{ tr('先安裝本機套件並複製海月素材。以下包含載入錯誤、播放控制、游標互動、中立姿態與低頻 UI 快照。') }}</p><CodeBlock :code="integrationExamples[framework]" :filename="isVue ? 'Character.vue' : 'Character.tsx'" /></template>
     <h2>{{ tr('元件 Props') }}</h2>

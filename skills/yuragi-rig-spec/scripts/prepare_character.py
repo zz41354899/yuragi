@@ -612,7 +612,7 @@ def verify_prepared(prepared, analysis, info):
 
 def validate_runtime(model, rig_package):
     metadata=json.loads((rig_package/'package.json').read_text(encoding='utf-8'))
-    if metadata.get('name')!='@yuragi/rig' or not isinstance(metadata.get('version'),str): raise ValueError('--rig-package must point to a built @yuragi/rig package')
+    if metadata.get('name')!='@z7589xxz758/yuragi' or not isinstance(metadata.get('version'),str): raise ValueError('--rig-package must point to a built @z7589xxz758/yuragi package')
     entry=(rig_package/'dist/index.js').resolve()
     if not entry.is_file(): raise ValueError('Build/install library first; dist/index.js is missing')
     node=shutil.which('node')
@@ -721,8 +721,8 @@ Existing flexible parts can be updated with setPart(id, patch); surfaceRegions a
 ## Preview and integration
 
 Run a local HTTP server in this output folder, then open `preview.html`. Runtime included: {runtime_ready}.
-If missing, rebuild with `--rig-package /path/to/node_modules/@yuragi/rig` (or a built local library checkout).
-The preview uses native createPlayer, AbortSignal, a static fallback, low-frequency UI diagnostics and idempotent destroy. Vue uses `@yuragi/rig/vue`; React uses `@yuragi/rig/react`.
+If missing, rebuild with `--rig-package /path/to/node_modules/@z7589xxz758/yuragi` (or a built local library checkout).
+The preview uses native createPlayer, AbortSignal, a static fallback, low-frequency UI diagnostics and idempotent destroy. Vue uses `@z7589xxz758/yuragi/vue`; React uses `@z7589xxz758/yuragi/react`.
 
 ## Acceptance
 

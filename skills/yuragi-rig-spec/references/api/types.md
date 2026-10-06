@@ -2,7 +2,7 @@
 
 ## CANVAS_PADDING
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Canvas overscan on each edge: 0.12 (12%).
 
@@ -12,7 +12,7 @@ export const CANVAS_PADDING: 0.12
 
 ## REVIEW_STEP
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Shared fixed step: 1000 / 60 milliseconds.
 
@@ -22,7 +22,7 @@ export const REVIEW_STEP: number
 
 ## reviewPoses
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Shared pose definitions: source-centered pointer values and millisecond sequences; generating images does not establish visual acceptance.
 
@@ -32,7 +32,7 @@ export const reviewPoses: ReviewPose[]
 
 ## ReviewPose
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -42,7 +42,7 @@ export interface ReviewPose { id: string; sequence: { pointer: Vec2; millisecond
 
 ## Vec2
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -52,7 +52,7 @@ export type Vec2 = [number, number]
 
 ## ParameterName
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -62,7 +62,7 @@ export type ParameterName = 'lookX' | 'lookY' | 'bodyX' | 'wave'
 
 ## EyeFeature
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Reviewed source-image geometry for bounded pupil translation.
 
@@ -81,7 +81,7 @@ export interface EyeFeature {
 
 ## FaceFeatures
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -91,7 +91,7 @@ export interface FaceFeatures { eyes: [EyeFeature, EyeFeature] }
 
 ## AnimationCurve
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -101,7 +101,7 @@ export type AnimationCurve = 'linear' | 'step' | [number, number, number, number
 
 ## Keyframe
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -111,7 +111,7 @@ export interface Keyframe { time: number; value: number; curve?: AnimationCurve 
 
 ## AnimationTrack
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -123,7 +123,7 @@ export type AnimationTrack = { target: 'parameter'; name: ParameterName; keys: K
 
 ## AnimationClip
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -133,7 +133,7 @@ export interface AnimationClip { id: string; duration: number; loop?: boolean; t
 
 ## AnimationSnapshot
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -143,7 +143,7 @@ export interface AnimationSnapshot { id: string; time: number; duration: number;
 
 ## PinSpec
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -163,7 +163,7 @@ export interface PinSpec {
 
 ## RigPin
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -173,7 +173,7 @@ export interface RigPin extends PinSpec { px: number; py: number; vx: number; vy
 
 ## HairChain
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -183,7 +183,7 @@ export interface HairChain { id: string; points: [Vec2, Vec2, Vec2]; phase: numb
 
 ## AccessoryChain
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -196,7 +196,7 @@ export interface AccessoryChain {
 
 ## MotionSettings
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -218,7 +218,7 @@ export interface MotionSettings {
 
 ## DeformationPart
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 A local deformation region on the shared artwork, not an independent image layer.
 
@@ -250,7 +250,7 @@ export interface DeformationPart {
 
 ## SurfaceRegion
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Ownership on the shared source texture. Later regions take precedence at overlaps.
 
@@ -274,7 +274,7 @@ export interface SurfaceRegion {
 
 ## TrackingSettings
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -291,7 +291,7 @@ export interface TrackingSettings {
 
 ## PointerMotionGroup
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Several visible source regions share one rigid pointer-driven transform.
 
@@ -312,7 +312,7 @@ export interface PointerMotionGroup {
 
 ## RigModel
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -360,7 +360,7 @@ export interface RigModel {
 
 ## Binding
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -370,7 +370,7 @@ export interface Binding { offsets: Uint32Array; indices: Uint16Array; weights: 
 
 ## MeshSpec
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -380,7 +380,7 @@ export interface MeshSpec { x: number; y: number; width: number; height: number 
 
 ## RigMesh
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -398,7 +398,7 @@ export interface RigMesh extends MeshSpec {
 
 ## SwayPose
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -408,7 +408,7 @@ export interface SwayPose { rotation: number; sin: number; cos: number; x: numbe
 
 ## RigMeshSnapshot
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 On-demand copy of the mesh last submitted to the renderer; full-source 0–1 coordinates.
 
@@ -425,7 +425,7 @@ export interface RigMeshSnapshot {
 
 ## Diagnostics
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -435,7 +435,7 @@ export interface Diagnostics { motionScale: number; maxDisplacementGradient: num
 
 ## RigSnapshot
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -459,7 +459,7 @@ export interface RigSnapshot {
 
 ## PlayerOptions
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -479,7 +479,7 @@ export interface PlayerOptions {
 
 ## RigPlayer
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -515,7 +515,7 @@ export interface RigPlayer {
 
 ## LayeredModel
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 Separate from RigModel v1; extracted PNGs are never implicitly playable.
 
@@ -554,7 +554,7 @@ export interface LayeredModel {
 
 ## LayerWeight
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -567,7 +567,7 @@ export interface LayerWeight {
 
 ## LayerNode
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -592,7 +592,7 @@ export interface LayerNode {
 
 ## LayerVertex
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -606,7 +606,7 @@ export interface LayerVertex {
 
 ## LayerAttachment
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -645,7 +645,7 @@ export interface LayerAttachment {
 
 ## LayeredSnapshot
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -671,7 +671,7 @@ export interface LayeredSnapshot {
 
 ## LayeredPlayerOptions
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -691,7 +691,7 @@ export interface LayeredPlayerOptions {
 
 ## LayeredPlayer
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -717,7 +717,7 @@ export interface LayeredPlayer {
 
 ## MouthShape
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -727,7 +727,7 @@ export type MouthShape = 'closed' | 'a' | 'i' | 'u' | 'e' | 'o';
 
 ## LayeredFacePose
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -737,7 +737,7 @@ export interface LayeredFacePose { eyeOpenLeft?: number; eyeOpenRight?: number; 
 
 ## LayeredEye
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -760,7 +760,7 @@ export interface LayeredEye {
 
 ## LayeredFace
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 
 
@@ -773,7 +773,7 @@ export interface LayeredFace {
 
 ## YuragiCharacterProps
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 
 
@@ -793,7 +793,7 @@ export interface YuragiCharacterProps {
 
 ## YuragiCharacterHandle
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 
 
@@ -803,7 +803,7 @@ export interface YuragiCharacterHandle { getPlayer(): RigPlayer | undefined }
 
 ## YuragiLayeredCharacterProps
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 
 
@@ -823,7 +823,7 @@ export interface YuragiLayeredCharacterProps {
 
 ## YuragiLayeredCharacterHandle
 
-Import: `@yuragi/rig/react`
+Import: `@z7589xxz758/yuragi/react`
 
 
 

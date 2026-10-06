@@ -8,7 +8,7 @@ python /path/to/skill/scripts/workflow.py diagnose source.png \\
   --analysis character-analysis.json --out diagnosis-v1
 python /path/to/skill/scripts/workflow.py run source.png \\
   --analysis character-analysis.json --out character-v1 \\
-  --rig-package ./node_modules/@yuragi/rig --studio`
+  --rig-package ./node_modules/@z7589xxz758/yuragi --studio`
 const feedback=`python /path/to/skill/scripts/workflow.py diagnose source.png \\
   --analysis character-analysis.json \\
   --missing character-v1/preview/missing-assets.json --out diagnosis-v2`

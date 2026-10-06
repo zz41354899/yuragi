@@ -2,7 +2,7 @@
 
 Split 0–60000 milliseconds into fixed steps and a final remainder.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 

@@ -26,7 +26,7 @@ const prepareRows = [
   ['起始建議', '約 1024 × 1536'], ['注意', '格式合法不代表綁定品質正確。'],
 ]
 const starterSetup = `# 安裝套件後，在你的專案目錄執行
-node --input-type=module -e "import { mkdirSync, cpSync } from 'node:fs'; mkdirSync('public/models/my-character', { recursive: true }); cpSync('node_modules/@yuragi/rig/assets/starter/model.json', 'public/models/my-character/model.json');"`
+node --input-type=module -e "import { mkdirSync, cpSync } from 'node:fs'; mkdirSync('public/models/my-character', { recursive: true }); cpSync('node_modules/@z7589xxz758/yuragi/assets/starter/model.json', 'public/models/my-character/model.json');"`
 const fields: [string, keyof typeof guideMessages][] = [
   ['version / id / name', 'identity'], ['texture.src', 'source'], ['texture.width / height', 'size'],
   ['mesh.columns / rows', 'mesh'], ['pins[].name / type', 'pins'], ['pins[].parent', 'parent'],
@@ -44,7 +44,7 @@ const errors: [string, keyof typeof guideMessages][] = [
   ['Unknown pin / Invalid parameter / Pointer coordinates must be finite', 'parameterError'],
 ]
 const directories = 'public/\n└── models/\n    └── my-character/\n        ├── texture.png\n        └── model.json'
-const chainsCode = `import { validateModel } from '@yuragi/rig'
+const chainsCode = `import { validateModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const model = await loadModel()
@@ -60,7 +60,7 @@ model.motion.hair = 0.5
 model.motion.accessories = 0.5
 validateModel(model)
 console.log(JSON.stringify(model, null, 2))`
-const loaderCode = `import { validateModel, type RigModel } from '@yuragi/rig'
+const loaderCode = `import { validateModel, type RigModel } from '@z7589xxz758/yuragi'
 
 export async function loadModel(signal?: AbortSignal): Promise<RigModel> {
   const response = await fetch('/models/my-character/model.json', { signal })
@@ -69,7 +69,7 @@ export async function loadModel(signal?: AbortSignal): Promise<RigModel> {
   validateModel(value)
   return value
 }`
-const previewCode = `import { createPlayer } from '@yuragi/rig'
+const previewCode = `import { createPlayer } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#character')!
@@ -100,8 +100,8 @@ const previewHtml = `<div style="position: relative; width: 320px; aspect-ratio:
 </div>`
 const vueCode = `<script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, shallowRef } from 'vue'
-import { YuragiCharacter } from '@yuragi/rig/vue'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/vue'
+import type { RigModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 const model = shallowRef<RigModel>()
@@ -123,8 +123,8 @@ onBeforeUnmount(() => controller.abort())
   </div>
 </template>`
 const reactCode = `import { useEffect, useState } from 'react'
-import { YuragiCharacter } from '@yuragi/rig/react'
-import type { RigModel } from '@yuragi/rig'
+import { YuragiCharacter } from '@z7589xxz758/yuragi/react'
+import type { RigModel } from '@z7589xxz758/yuragi'
 import { loadModel } from './load-model'
 
 export function Character() {

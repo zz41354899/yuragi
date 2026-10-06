@@ -2,7 +2,7 @@
 
 Start or resume playback while respecting reducedMotion.
 
-Import: `@yuragi/rig`
+Import: `@z7589xxz758/yuragi`
 
 ## Signature
 
